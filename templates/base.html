@@ -1,3 +1,5 @@
+<!-- templates/base.html -->
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -49,12 +51,9 @@
     <header>
       {% block header %}
       
-      <!-- Desktop Navigation -->
+      <!-- Navigation -->
       {% include 'includes/header.html' %}
 
-      <!-- Mobile Navigation -->
-      {% include 'includes/mobile-nav.html' %} 
-      
       {% endblock %}
     </header>
 
@@ -76,7 +75,7 @@
     integrity="sha384-UG8ao2jwOWB7/oDdObZc6ItJmwUkR/PfMyt9Qs5AwX7PsnYn1CRKCTWyncPTWvaS"
     crossorigin="anonymous"></script>
     
-    <!-- Bootstrap js -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <!-- FontAwesome kit -->
@@ -84,9 +83,7 @@
 
     <!-- Your base.js -->
     <script src="{% static 'js/base.js' %}"></script>
-    <!-- Headers scripts-->
-    <!-- <script src="{% static 'js/slidebar.js' %}"></script> -->
-    <!-- <script src="{% static 'js/header.js' %}"></script> -->
+
     {% endblock %} {% block extra_js %} {% endblock %}
   </body>
 
