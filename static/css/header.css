@@ -1,3 +1,5 @@
+/* static/css/header.css */
+
 /* Transparent overlay */
 .header-overlay {
     background-color: rgba(0, 0, 0, 0.5);
@@ -16,173 +18,214 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 80vh; 
-    min-height: 500px;
+    height: 70vh;
+    min-height: 400px;
 }
 
 /* Top bar with contact info and social media icons */
 .header-top-bar {
-    z-index: 3; /* Ensure it is above the overlay */
-    padding: 10px 0;
+    z-index: 3;
+    padding: 0 45px;
     background-color: transparent;
     color: #fff;
-    border-bottom: 1px solid rgba(255, 255, 255, 1); /* Separator line */
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
 }
 
 /* Specific items inside top bar */
 .header-top-item {
-    z-index: 4; /* Ensure it is above the top bar */
-    color: #fff !important;
+    z-index: 4;
+    color: #fff;
     font-size: 14px;
-    display: inline-block;
+    display: flex;
     margin-right: 35px;
-    position: relative; /* Ensure z-index applies */
+    position: relative;
 }
 
 /* Styling the email link */
 .email-link {
-    color: #fff !important; /* White by default */
-    text-decoration: none; /* Remove underline */
-    transition: color 0.3s ease; /* Smooth color transition */
-    padding-bottom: 2mm; /* Add 2mm padding below */
-    display: inline-block; /* Ensure padding is applied properly */
+    text-decoration: none;
+    line-height: inherit;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    padding: 10px;
 }
 
 /* Hover effect for email */
 .email-link:hover {
-    color: #088cdc; /* Blue on hover */
+    color: #088cdc !important;
+}
+
+.header-top-item {
+    display: flex;
+    align-items: center;
 }
 
 /* Phone icon styling */
 .header-top-item i {
-    color: #fff !important; /* Ensure the icon color stays white */
+    color: #fff;
     margin-right: 8px;
     z-index: 4;
-    position: relative; /* Make sure it stays clickable */
+    position: relative;
 }
 
 /* Social media icons default style */
 .list-inline-item a {
-    color: #fff !important; /* White color by default */
+    color: #fff;
     font-size: 16px;
     margin-left: 15px;
-    transition: color 0.3s ease; /* Smooth transition for hover effect */
+    transition: color 0.3s ease;
 }
 
 /* Blue hover effect for social media icons */
 .list-inline-item a:hover {
-    color: #088cdc !important; /* Blue color on hover */
+    color: #088cdc !important;
 }
 
 /* Ensure links and icons have the correct z-index */
 .list-inline-item a,
 .email-link,
 .header-top-item i {
-    z-index: 4; /* Highest to make sure these are clickable */
+    z-index: 4;
     position: relative;
 }
 
 /* Semi-transparent background and white separator line */
 .header-main {
-  position: relative;
-  z-index: 2;
-  padding: 0 45px;
-  background-color: transparent;
-  display: flex;
-  align-items: center; 
-  justify-content: space-between;
-  height: 80px;
+    position: relative;
+    z-index: 2;
+    padding: 0 45px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: auto;
+    height: 80px;
 }
 
 /* Logo adjustments */
-.navbar-brand-light img {
+.normal-logo {
     max-width: 180px;
     height: auto;
+    z-index: 20;
     display: inline-block;
+    position: relative;
+    top: 0;
     vertical-align: middle;
+    margin: 0 auto !important;
 }
 
 /* Menu alignment */
-.navbar-navigation {
-    display: flex; 
+.navbar-nav {
+    display: flex;
     flex-direction: row;
     list-style: none;
     padding-left: 0;
 }
 
 /* Spacing between menu items */
-.navbar-navigation .nav-item {
-    margin-right: 20px;
+.navbar-nav .nav-item {
+    margin-right: 10px;
 }
 
-.navbar-navigation .nav-link {
+.navbar-nav .nav-link {
     font-size: 15px;
-    font-weight: 700;
     color: #fff;
     text-transform: uppercase;
     transition: color 0.3s ease;
     line-height: 80px;
-    padding-top: 15px;
-    padding-bottom: 0 15px;
 }
 
-.navbar-navigation .nav-link:hover {
+.navbar-nav .nav-link:hover {
     color: #088cdc !important;
 }
 
 /* "Book Now" button */
 .header-main-btn {
-  background-color: #088cdc;
-  color: #fff;
-  border-radius: 0;
-  padding: 8px 20px; 
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
-  border: none;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background-color: #088cdc;
+    color: #fff;
+    border-radius: 0;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    border: none;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0 20px;
+    margin-left: 15px;
 }
 
 .header-main-btn:hover {
-  background-color: #006bb3;
+    background-color: #006bb3;
 }
 
-/* Dropdown menu in the navigation */
-.navbar-navigation .dropdown-menu {
-    background-color: rgba(0, 0, 0, 0.8); /* Background for dropdown menus */
-    border: none;
+.navbar-collapse {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.navbar-navigation .dropdown-item {
-    color: #fff;
-    padding: 10px 20px;
+.navbar-nav {
+    display: flex;
+    align-items: center;
 }
 
-.navbar-navigation .dropdown-item:hover {
+
+.navbar-nav .dropdown-item:hover {
     background-color: #088cdc;
     color: #fff;
 }
 
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-toggler {
+    border: none;
+}
+
 .fixed-menu {
-    background-color: rgba(255, 255, 255, 0.9); /* Light background color */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for visibility */
-    position: fixed; /* Fix the position at the top of the page */
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9999; /* Ensure the fixed menu stays on top */
-    padding: 10px 0; /* Adjust the padding */
-    transition: background-color 0.3s ease, padding 0.3s ease; /* Smooth transitions for background and padding */
+    z-index: 9999;
+    padding: 10px 0;
+    transition: background-color 0.3s ease, padding 0.3s ease;
 }
 
 /* Adjust nav link colors for fixed menu */
 .fixed-menu .nav-link {
-    color: #333; /* Dark color for the menu text */
+    color: #333;
 }
 
 .fixed-menu .nav-link:hover {
-    color: #088cdc; /* Hover effect stays blue */
+    color: #088cdc;
+}
+
+.offcanvas-header {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px 15px;
+}
+
+
+/* KNEE */
+
+
+/* Logo */
+
+
+/* Footer */
+footer {
+    flex-shrink: 0;
+    width: 100%;
+    bottom: 0;
 }

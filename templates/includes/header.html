@@ -1,93 +1,92 @@
+<!-- templates/includes/header.html -->
+
 {% load static %}
 
-<!-- HEADER -->
+<!-- Header section -->
 <header class="{% block header_class %}header{% endblock %}">
     <!-- Transparent overlay -->
     <div class="header-overlay"></div>
 
-    <!-- Top bar with contact info and social media icons -->
-    <div class="header-top-bar" id="top-bar">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <!-- Contact info: phone and email -->
-                <div class="col-auto">
-                    <div class="d-inline-block me-4 header-top-item">
-                        <i class="fas fa-phone-square"></i> Phone: 755 302 8549
-                    </div>
-                    <div class="d-inline-block header-top-item">
-                        <i class="fas fa-envelope-square"></i>
-                        <a href="mailto:support@yachtsescape.com" class="email-link">Email: support@yachtsescape.com</a>
-                    </div>
-                </div>
-                <!-- Social media icons -->
-                <div class="col-auto">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item">
-                            <a class="text-white" href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="text-white" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="text-white" href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="text-white" href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Top bar -->
+    <div class="d-flex justify-content-between align-items-center py-2 ms-3 me-3 header-top-bar" id="top-bar">
+        <!-- Phone -->
+        <div class="d-flex align-items-center flex-shrink-0 ms-3 header-top-item">
+            <span class="me-3 d-none d-md-block">
+                <i class="fas fa-phone-square"></i> Phone: 755 302 8549
+            </span>
+        </div>
+
+        <!-- Email -->
+        <div class="d-flex align-items-center flex-shrink-0 ms-3 header-top-item" id="email-align">
+            <a href="mailto:support@yachtsescape.com" class="email-link"><i class="fas fa-envelope"></i>Email:
+                support@yachtsescape.com</a>
+        </div>
+
+        <!-- Social Media -->
+        <div class="d-flex align-items-center justify-content-end ms-auto">
+            <ul class="list-inline mb-0">
+                <li class="list-inline-item">
+                    <a class="text-white" href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="text-white" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="text-white" href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="text-white" href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
         </div>
     </div>
 
-    <!-- Main navigation menu with "Book Now" button -->
-    <div class="header-main" id="main-nav">
-        <div class="container">
-            <div class="row align-items-center justify-content-between">
-                <!-- Logo -->
-                <div class="col-auto">
-                    <a class="navbar-brand navbar-brand-light scroll" href="#">
-                        <img class="normal-logo img-fluid" id="logo" src="{% static 'images/logo-light.png' %}"
-                            data-light-logo="{% static 'images/logo-light.png' %}"
-                            data-dark-logo="{% static 'images/logo-dark.png' %}" alt="logo" />
-                    </a>
-                </div>
+    <!-- Main navigation section -->
+    <div class="navbar navbar-expand-lg header-main" id="main-nav">
+        <!-- Brand logo -->
+        <div class="d-flex align-items-center">
+            <a class="" href="#" aria-label="Homepage">
+                <img class="normal-logo img-fluid" id="logo" src="{% static 'images/logo-light.png' %}"
+                    data-light-logo="{% static 'images/logo-light.png' %}"
+                    data-dark-logo="{% static 'images/logo-dark.png' %}"
+                    data-small-light-logo="{% static 'images/logo-light-small.png' %}" 
+                    data-small-dark-logo="{% static 'images/logo-dark-small.png' %}" alt="logo" />
+            </a>
+        </div>
 
-                <!-- Desktop menu -->
-                <div class="col-xl d-none d-xl-block">
-                    <nav class="navbar navbar-expand-lg justify-content-end" id="nav">
-                        <ul class="navbar-navigation">
-                            <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#">Our Fleet</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Boats Listing 1</a>
-                                    <a class="dropdown-item" href="#">Boats Listing 2</a>
-                                    <a class="dropdown-item" href="#">Boats Details</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#">Our Tours</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Tours Listing</a>
-                                    <a class="dropdown-item" href="#">Tour Details</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#">News</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Blog main</a>
-                                    <a class="dropdown-item" href="#">Blog grid</a>
-                                    <a class="dropdown-item" href="#">Blog post</a>
-                                </div>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                        </ul>
-                        <!-- "Book Now" button -->
-                        <button class="header-main-btn btn btn-secondary">Book Now</button>
-                    </nav>
-                </div>
+        <!-- Navigation toggler button (for mobile menu) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Offcanvas menu -->
+        <div class="offcanvas offcanvas-end text-center" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header justify-content-between">
+                <h5 class="offcanvas-title flex-grow-1 text-center" id="offcanvasNavbarLabel">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" aria-label="Home Page">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" aria-label="Profile Page">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" aria-label="Log In Page">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" aria-label="Our Fleet Page">Our Fleet</a>
+                    </li>
+                    <li class="nav-item"></li>
+                    <a class="nav-link" href="#" aria-label="About Us Page">About us</a>
+                    </li>
+                    <!-- "Book Now" button -->
+                    <button class="btn btn-sm header-main-btn">Book Now</button>
+                </ul>
+
             </div>
         </div>
     </div>
