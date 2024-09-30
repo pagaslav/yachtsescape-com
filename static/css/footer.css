@@ -48,7 +48,7 @@ footer .footer-list-inline {
     list-style: none;
     display: flex;
     justify-content: space-between; /* Equal space between icons */
-    width: 70%
+    width: 70%;
 }
 
 footer .footer-list-inline-item {

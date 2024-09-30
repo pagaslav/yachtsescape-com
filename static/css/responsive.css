@@ -16,7 +16,6 @@
   /* Style the collapsed navbar menu (for mobile and tablet) */
   .navbar-collapse {
     background-color: rgba(255, 255, 255, 0.95);
-    /* Light background for the mobile menu */
     padding: 15px;
     position: absolute;
     top: 100%;
@@ -56,6 +55,16 @@
   .header-main-btn:hover {
     background-color: #006bb3;
   }
+  footer .footer-list-inline {
+        width: 80%;
+        justify-content: center;
+        gap: 25px;
+        margin: 0 auto;
+    }
+
+    footer .footer-list-inline-item a {
+        font-size: 28px; /* Slightly smaller icons for mobile */
+    }
 }
 
 /* Additional styles for very small screens (below 689px) */
