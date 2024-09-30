@@ -50,6 +50,7 @@
     align-items: center;
     color: inherit;
     padding: 10px;
+    vertical-align: baseline;
 }
 
 /* Hover effect for email */
