@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Our Fleet - Yachtsescape
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/yachts/yacht-list.css' %}">
+{% endblock %}
+
+{% block header_class %}
+  yacht-header  <!-- Custom class for the yacht list header -->
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Section for the centered title in the header -->
+    <div class="header-content">
+        <h1 class="hero-title">Our Fleet</h1> <!-- Centered page title -->
+    </div>
+
+    <!-- Yacht card section -->
+    <div class="row">
+        {% for yacht in yachts %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ yacht.image.url }}" class="card-img-top" alt="{{ yacht.name }}"> <!-- Image of the yacht -->
+                    <div class="card-body">
+                        <h5 class="card-title">{{ yacht.name }}</h5> <!-- Yacht name -->
+                        <p class="card-text">Price: ${{ yacht.price_per_day }} / per day</p> <!-- Yacht price -->
+                        <a href="#" class="btn btn-primary">Read More</a> <!-- Button to read more details -->
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

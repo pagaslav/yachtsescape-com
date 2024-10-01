@@ -3,7 +3,7 @@
 {% load static %}
 
 <!-- Header section -->
-<header class="{% block header_class %}header{% endblock %}">
+<header class="{% block header_class %}{% if request.path == '/yachts/' %}yacht-header{% else %}header{% endif %}{% endblock %}">
     <!-- Transparent overlay -->
     <div class="header-overlay"></div>
 
