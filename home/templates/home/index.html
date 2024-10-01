@@ -1,13 +1,65 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
-    Home - Yachtsescape
+Home - Yachtsescape
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/home/index.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>Welcome to Yachtsescape</h1>
-        <p>Discover the best yachts in the Mediterranean.</p>
-        <a href="#" class="btn btn-primary">Explore Yachts</a>
+  <!-- Hero Section -->
+  <div class="hero-content">
+    <h1 class="hero-title">Welcome to Yachtsescape</h1>
+    <a href="#" class="hero-link">Explore More</a>
+  </div>
+
+<!-- Search Form Section -->
+<div class="container search-form-container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <form action="{% url 'search_results' %}" method="GET" class="bg-white p-4 rounded shadow">
+                <div class="row align-items-center">
+                    <!-- Boat Type -->
+                    <div class="col-md-3">
+                        <label for="boatType" class="form-label">Select Boat Type</label>
+                        <select id="boatType" class="form-select">
+                            <option value="celebrations">Celebrations</option>
+                            <option value="fishing">Fishing</option>
+                            <option value="leisure">Leisure</option>
+                        </select>
+                    </div>
+
+                    <!-- Model -->
+                    <div class="col-md-3">
+                        <label for="model" class="form-label">Select a Model</label>
+                        <select id="model" class="form-select">
+                            <option value="model1">Model 1</option>
+                            <option value="model2">Model 2</option>
+                            <option value="model3">Model 3</option>
+                        </select>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="col-md-3">
+                        <label for="priceRange" class="form-label">Price Range</label>
+                        <select id="priceRange" class="form-select">
+                            <option value="50">$50 per day</option>
+                            <option value="100">$100 per day</option>
+                            <option value="200">$200 per day</option>
+                        </select>
+                    </div>
+
+                    <!-- Search Button -->
+                    <div class="col-md-3 text-center">
+                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
 {% endblock %}
