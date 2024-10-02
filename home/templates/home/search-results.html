@@ -1,0 +1,11 @@
+<!-- home/search-results.html -->
+<h2>Search Results for "{{ query }}"</h2>
+<ul>
+    {% for result in results %}
+        <!-- Display yacht name and description -->
+        <li>{{ result.name }} - {{ result.description }}</li>
+    {% empty %}
+        <!-- If no results were found -->
+        <li>No results found.</li>
+    {% endfor %}
+</ul>
