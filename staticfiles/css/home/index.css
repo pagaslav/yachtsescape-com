@@ -1,0 +1,94 @@
+/* Center the content on the background image */
+.hero-content {
+  position: absolute;
+  top: 45%;
+  left: 70%;
+  transform: translate(-50%, -65%);
+  text-align: center;
+  z-index: 2;
+  color: white !important; 
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: white !important;
+}
+
+.hero-link {
+  font-size: 1.5rem;
+  color: #ffffff !important;
+  text-decoration: none;
+  background-color: #088cdc;
+  padding: 10px 20px;
+}
+
+.hero-link:hover {
+  background-color: #006bb3;
+}
+
+.search-form-container {
+    position: relative;
+    margin-top: -60px; 
+    z-index: 2;
+}
+
+.search-form-container .btn {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 1rem;
+    white-space: nowrap;
+    margin-top: 28px; /* Lower the button */
+    border-radius: 0; /* Remove rounding */
+    background-color: #088cdc;
+    color: #fff;
+}
+
+.search-form-container .btn:hover {
+    background-color: #006bb3;
+}
+
+.search-form-container .form-select {
+    padding: 10px;
+}
+
+.search-form-container .form-label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+/* Container for the form */
+.search-form-container .row {
+    justify-content: space-between;
+}
+
+.search-form-container .col-md-3, 
+.search-form-container .col-md-4 {
+    padding: 0 10px; /* Adds some space between inputs */
+}
+
+.search-form-container .col-md-3.text-center {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/* Input fields adjustments */
+.search-form-container .form-select,
+.search-form-container .form-label {
+    width: 100%;
+}
+
+/* Box-shadow for form container */
+.search-form-container form {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search-form-container .col-md-3, 
+    .search-form-container .col-md-4 {
+        margin-bottom: 15px;
+    }
+}

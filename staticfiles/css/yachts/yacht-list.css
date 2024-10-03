@@ -1,0 +1,63 @@
+/* Custom header for yacht listing page */
+.yacht-header {
+    position: relative;
+    background-image: url('/static/images/home-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 40vh;
+}
+
+/* Center the page title on the background */
+.header-content {
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+}
+
+/* Style for the page title */
+.hero-title {
+    color: white; /* White text color */
+    font-size: 48px; /* Large font size */
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    z-index: 2; /* Ensure it displays above the background */
+}
+
+/* Card styling for yachts */
+.card {
+    border: none; /* Remove default border */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+/* Hover effect for cards */
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+/* Image inside the card */
+.card-img-top {
+    height: 200px; /* Fixed height for the image */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+}
+
+/* Body of the card */
+.card-body {
+    text-align: center; /* Center the text */
+}
+
+/* Primary button styling */
+.btn-primary {
+    background-color: #088cdc; /* Custom blue color */
+    border: none; /* Remove default border */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Hover state for the button */
+.btn-primary:hover {
+    background-color: #006bb3; /* Darker blue on hover */
+}
