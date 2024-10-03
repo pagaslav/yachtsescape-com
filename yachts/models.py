@@ -1,6 +1,8 @@
-# yachts/models.py
-
 from django.db import models
+import logging
+
+# Настройка логирования
+logger = logging.getLogger(__name__)
 
 class Yacht(models.Model):
     # Name of the yacht
@@ -26,6 +28,12 @@ class Yacht(models.Model):
     # Uploaded image of the yacht
     image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        try:
+            super().save(*args, **kwargs)  # Сохранение экземпляра модели
+        except Exception as e:
+            logger.error(f"Error uploading image: {e}")  # Логируем ошибку
+            raise  # Поднимаем исключение, чтобы оно не затерялось
 
     def __str__(self):
         return self.name
