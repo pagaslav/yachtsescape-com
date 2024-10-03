@@ -1,3 +1,5 @@
+# yachts/models.py
+
 from django.db import models
 
 class Yacht(models.Model):
@@ -23,6 +25,7 @@ class Yacht(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     # Uploaded image of the yacht
     image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
+
 
     def __str__(self):
         return self.name

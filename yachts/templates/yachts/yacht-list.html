@@ -1,3 +1,5 @@
+<!-- yachts/templates/yachts/yacht-list.html -->
+
 {% extends 'base.html' %}
 {% load static %}
 
@@ -15,25 +17,31 @@ Our Fleet - Yachtsescape
 
 {% block content %}
 <div class="container">
-    <!-- Section for the centered title in the header -->
+    <!-- Title section in the header -->
     <div class="header-content">
-        <h1 class="hero-title">Our Fleet</h1> <!-- Centered page title -->
+        <h1 class="hero-title">Our Fleet</h1>
     </div>
 
     <!-- Yacht card section -->
-    <div class="row">
-        {% for yacht in yachts %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ yacht.image.url }}" class="card-img-top" alt="{{ yacht.name }}"> <!-- Image of the yacht -->
-                    <div class="card-body">
-                        <h5 class="card-title">{{ yacht.name }}</h5> <!-- Yacht name -->
-                        <p class="card-text">Price: ${{ yacht.price_per_day }} / per day</p> <!-- Yacht price -->
-                        <a href="#" class="btn btn-primary">Read More</a> <!-- Button to read more details -->
-                    </div>
+    <div class="row mt-5">
+    {% for yacht in yachts %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if yacht.image %}
+                    <!-- Display yacht image if available -->
+                    <img src="{{ yacht.image.url }}" class="card-img-top" alt="{{ yacht.name }}">
+                {% else %}
+                    <!-- Display placeholder image if no yacht image is available -->
+                    <img src="{% static 'images/default-yacht.jpg' %}" class="card-img-top" alt="{{ yacht.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <!-- Display yacht name and price -->
+                    <h5 class="card-title">{{ yacht.name }}</h5>
+                    <p class="card-text">Price: ${{ yacht.price_per_day }} / per day</p>
+                    <a href="#" class="btn btn-primary">Read More</a> <!-- Link to detailed yacht page -->
                 </div>
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}

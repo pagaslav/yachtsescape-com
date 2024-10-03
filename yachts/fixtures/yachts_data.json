@@ -1,0 +1,257 @@
+[
+    {
+        "model": "yachts.yacht",
+        "pk": 1,
+        "fields": {
+            "name": "Leisure Model A",
+            "type": "Leisure",
+            "description": "Spacious and comfortable leisure yacht for family and friends.",
+            "location": "Mallorca",
+            "capacity": 8,
+            "price_per_day": 1500,
+            "rating": 4.5,
+            "available": true,
+            "image": "yachts/cards/yacht-001-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 2,
+        "fields": {
+            "name": "Leisure Model B",
+            "type": "Leisure",
+            "description": "Luxurious yacht with modern amenities for an unforgettable experience.",
+            "location": "Bodrum",
+            "capacity": 10,
+            "price_per_day": 1800,
+            "rating": 4.8,
+            "available": true,
+            "image": "yachts/cards/yacht-002-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 3,
+        "fields": {
+            "name": "Celebration Model C",
+            "type": "Celebrations",
+            "description": "Perfect yacht for celebrations and events with top-tier service.",
+            "location": "Bodrum",
+            "capacity": 12,
+            "price_per_day": 2000,
+            "rating": 4.9,
+            "available": true,
+            "image": "yachts/cards/yacht-003-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 4,
+        "fields": {
+            "name": "Leisure Model D",
+            "type": "Leisure",
+            "description": "A beautiful yacht for enjoying the Mediterranean sea.",
+            "location": "Antibes",
+            "capacity": 6,
+            "price_per_day": 1300,
+            "rating": 4.7,
+            "available": true,
+            "image": "yachts/cards/yacht-004-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 5,
+        "fields": {
+            "name": "Fishing Model E",
+            "type": "Fishing",
+            "description": "Fully equipped fishing yacht for professionals and enthusiasts.",
+            "location": "Mallorca",
+            "capacity": 5,
+            "price_per_day": 1200,
+            "rating": 4.3,
+            "available": true,
+            "image": "yachts/cards/yacht-005-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 6,
+        "fields": {
+            "name": "Fishing Model F",
+            "type": "Fishing",
+            "description": "The best fishing experience with top-notch facilities.",
+            "location": "Bodrum",
+            "capacity": 7,
+            "price_per_day": 1400,
+            "rating": 4.6,
+            "available": true,
+            "image": "yachts/cards/yacht-006-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 7,
+        "fields": {
+            "name": "Leisure Model G",
+            "type": "Leisure",
+            "description": "Spacious yacht ideal for relaxed sea voyages with loved ones.",
+            "location": "Mallorca",
+            "capacity": 8,
+            "price_per_day": 1550,
+            "rating": 4.4,
+            "available": true,
+            "image": "yachts/cards/yacht-007-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 8,
+        "fields": {
+            "name": "Leisure Model H",
+            "type": "Leisure",
+            "description": "Elegant yacht with state-of-the-art amenities for comfort.",
+            "location": "Mallorca",
+            "capacity": 9,
+            "price_per_day": 1600,
+            "rating": 4.5,
+            "available": true,
+            "image": "yachts/cards/yacht-008-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 9,
+        "fields": {
+            "name": "Leisure Model I",
+            "type": "Leisure",
+            "description": "Top-tier leisure yacht for an unforgettable Mediterranean journey.",
+            "location": "Bodrum",
+            "capacity": 10,
+            "price_per_day": 1700,
+            "rating": 4.7,
+            "available": true,
+            "image": "yachts/cards/yacht-009-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 10,
+        "fields": {
+            "name": "Leisure Model J",
+            "type": "Leisure",
+            "description": "Modern yacht for leisure and relaxation in the Costa Brava.",
+            "location": "Costa Brava",
+            "capacity": 12,
+            "price_per_day": 1900,
+            "rating": 4.9,
+            "available": true,
+            "image": "yachts/cards/yacht-010-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 11,
+        "fields": {
+            "name": "Leisure Model K",
+            "type": "Leisure",
+            "description": "Luxury yacht with personalized services in Saint-Tropez.",
+            "location": "Saint-Tropez",
+            "capacity": 10,
+            "price_per_day": 2200,
+            "rating": 5.0,
+            "available": true,
+            "image": "yachts/cards/yacht-011-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 12,
+        "fields": {
+            "name": "Celebration Model L",
+            "type": "Celebrations",
+            "description": "Elegant and spacious yacht perfect for celebrations and events.",
+            "location": "Mallorca",
+            "capacity": 14,
+            "price_per_day": 2400,
+            "rating": 4.8,
+            "available": true,
+            "image": "yachts/cards/yacht-012-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 13,
+        "fields": {
+            "name": "Celebration Model M",
+            "type": "Celebrations",
+            "description": "Luxurious celebration yacht for grand occasions.",
+            "location": "Costa Brava",
+            "capacity": 12,
+            "price_per_day": 2500,
+            "rating": 4.9,
+            "available": true,
+            "image": "yachts/cards/yacht-013-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 14,
+        "fields": {
+            "name": "Celebration Model N",
+            "type": "Celebrations",
+            "description": "Top-tier yacht for celebrations in Bodrum.",
+            "location": "Bodrum",
+            "capacity": 15,
+            "price_per_day": 2600,
+            "rating": 4.7,
+            "available": true,
+            "image": "yachts/cards/yacht-014-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 15,
+        "fields": {
+            "name": "Leisure Model O",
+            "type": "Leisure",
+            "description": "Enjoy the sun and sea on this luxury leisure yacht.",
+            "location": "Antibes",
+            "capacity": 8,
+            "price_per_day": 1800,
+            "rating": 4.6,
+            "available": true,
+            "image": "yachts/cards/yacht-015-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 16,
+        "fields": {
+            "name": "Fishing Model P",
+            "type": "Fishing",
+            "description": "Fully equipped for fishing and leisure.",
+            "location": "Bodrum",
+            "capacity": 6,
+            "price_per_day": 1350,
+            "rating": 4.4,
+            "available": true,
+            "image": "yachts/cards/yacht-016-card.webp"
+        }
+    },
+    {
+        "model": "yachts.yacht",
+        "pk": 17,
+        "fields": {
+            "name": "Leisure Model Q",
+            "type": "Leisure",
+            "description": "A stylish leisure yacht for your Mediterranean vacation.",
+            "location": "Bodrum",
+            "capacity": 10,
+            "price_per_day": 1950,
+            "rating": 4.7,
+            "available": true,
+            "image": "yachts/cards/yacht-017-card.webp"
+        }
+    }
+]
