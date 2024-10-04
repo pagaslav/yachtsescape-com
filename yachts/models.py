@@ -28,8 +28,8 @@ class Yacht(models.Model):
     available = models.BooleanField(default=True)
     # URL for an external image of the yacht
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-    # Uploaded image of the yacht
-    image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
+    # Uploaded image of the yacht upload_to='yachts/cards/', 
+    image = models.ImageField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         """
