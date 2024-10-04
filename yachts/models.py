@@ -32,7 +32,12 @@ class Yacht(models.Model):
     image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
 
     def save(self, *args, **kwargs):
+        """
+        Save the yacht instance to the database.
+        Logs the image upload status.
+        """
         try:
+            logger.debug(f"Attempting to save yacht: {self.name}")  # Log the attempt to save
             super().save(*args, **kwargs)  # Save the model instance
             logger.info(f"Image uploaded successfully: {self.image.url}")  # Log successful upload
         except Exception as e:
@@ -40,11 +45,15 @@ class Yacht(models.Model):
             raise  # Raise the exception to prevent silent failure
 
     def delete(self, *args, **kwargs):
-        # Delete the image from S3 storage if it exists
+        """
+        Delete the yacht instance from the database and remove the image from S3 storage if it exists.
+        """
         if self.image:
             storage = S3Boto3Storage()
-            storage.delete(self.image.name)
+            storage.delete(self.image.name)  # Delete the image from S3 storage
+            logger.info(f"Image deleted from S3: {self.image.name}")  # Log successful deletion
         super().delete(*args, **kwargs)  # Delete the model instance
 
     def __str__(self):
+        """Return the name of the yacht as its string representation."""
         return self.name  # String representation of the model
