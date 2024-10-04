@@ -1,8 +1,6 @@
 # yachts/models.py
 
 from django.db import models
-from django.db.models.signals import pre_delete
-from django.dispatch import receiver
 from storages.backends.s3boto3 import S3Boto3Storage
 import logging
 
@@ -49,8 +47,3 @@ class Yacht(models.Model):
 
     def __str__(self):
         return self.name  # String representation of the model
-
-# Connect the pre_delete signal to the yacht's delete method
-@receiver(pre_delete, sender=Yacht)
-def yacht_pre_delete(sender, instance, **kwargs):
-    instance.delete()  # Ensure the image gets deleted when the yacht is removed
