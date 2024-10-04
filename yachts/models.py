@@ -1,7 +1,12 @@
+# yachts/models.py
+
 from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+from storages.backends.s3boto3 import S3Boto3Storage
 import logging
 
-# Настройка логирования
+# Setting up logging for error tracking
 logger = logging.getLogger(__name__)
 
 class Yacht(models.Model):
@@ -30,10 +35,22 @@ class Yacht(models.Model):
 
     def save(self, *args, **kwargs):
         try:
-            super().save(*args, **kwargs)  # Сохранение экземпляра модели
+            super().save(*args, **kwargs)  # Save the model instance
         except Exception as e:
-            logger.error(f"Error uploading image: {e}")  # Логируем ошибку
-            raise  # Поднимаем исключение, чтобы оно не затерялось
+            logger.error(f"Error uploading image: {e}")  # Log the error for debugging
+            raise  # Raise the exception to prevent silent failure
+
+    def delete(self, *args, **kwargs):
+        # Delete the image from S3 storage if it exists
+        if self.image:
+            storage = S3Boto3Storage()
+            storage.delete(self.image.name)
+        super().delete(*args, **kwargs)  # Delete the model instance
 
     def __str__(self):
-        return self.name
+        return self.name  # String representation of the model
+
+# Connect the pre_delete signal to the yacht's delete method
+@receiver(pre_delete, sender=Yacht)
+def yacht_pre_delete(sender, instance, **kwargs):
+    instance.delete()  # Ensure the image gets deleted when the yacht is removed
