@@ -34,6 +34,7 @@ class Yacht(models.Model):
     def save(self, *args, **kwargs):
         try:
             super().save(*args, **kwargs)  # Save the model instance
+            logger.info(f"Image uploaded successfully: {self.image.url}")  # Log successful upload
         except Exception as e:
             logger.error(f"Error uploading image: {e}")  # Log the error for debugging
             raise  # Raise the exception to prevent silent failure
