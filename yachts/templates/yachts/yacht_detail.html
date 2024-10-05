@@ -1,0 +1,39 @@
+<!-- yachts/templates/yachts/yacht_detail.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Our Fleet - {{ yacht.name }} details
+{% endblock %}
+
+{% block content %}
+<body>
+    <!-- Display yacht details -->
+    <h1>{{ yacht.name }}</h1>
+    <p><strong>Description:</strong> {{ yacht.description }}</p>
+    <p><strong>Type:</strong> {{ yacht.type }}</p>
+    <p><strong>Location:</strong> {{ yacht.location }}</p>
+    <p><strong>Capacity:</strong> {{ yacht.capacity }}</p>
+    <p><strong>Price per day:</strong> {{ yacht.price_per_day }} €</p>
+    <p><strong>Rating:</strong> {{ yacht.rating }}</p>
+    <img src="{{ yacht.image.url }}" alt="{{ yacht.name }}" />
+
+    <h2>Booked Dates</h2>
+    <ul>
+        {% for date in booked_dates %}
+            <li>From {{ date.start }} to {{ date.end }}</li>
+        {% empty %}
+            <li>No booked dates</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Booking form -->
+    <h2>Book This Yacht</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Book Now</button>
+    </form>
+</body>
+{% endblock %}
