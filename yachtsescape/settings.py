@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'yachts',
     'home',
     'storages',
+    'booking',
 ]
 
 MIDDLEWARE = [

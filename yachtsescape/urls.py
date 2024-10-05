@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('yachts/', include('yachts.urls')),
+    path('booking/', include('booking.urls')),
 ]
 
 # Serve media files during development

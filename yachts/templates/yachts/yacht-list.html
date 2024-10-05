@@ -32,13 +32,13 @@ Our Fleet - Yachtsescape
                     <img src="{{ yacht.image.url }}" class="card-img-top" alt="{{ yacht.name }}">
                 {% else %}
                     <!-- Display placeholder image if no yacht image is available -->
-                    <img src="{% static 'images/default-yacht.jpg' %}" class="card-img-top" alt="{{ yacht.name }}">
+                    <img src="{% static 'images/default-yacht.png' %}" class="card-img-top" alt="{{ yacht.name }}">
                 {% endif %}
                 <div class="card-body">
                     <!-- Display yacht name and price -->
                     <h5 class="card-title">{{ yacht.name }}</h5>
                     <p class="card-text">Price: ${{ yacht.price_per_day }} / per day</p>
-                    <a href="#" class="btn btn-primary">Read More</a> <!-- Link to detailed yacht page -->
+                    <a href="{% url 'yacht_detail' yacht.id %}" class="btn btn-primary">Read More</a> <!-- Link to detailed yacht page -->
                 </div>
             </div>
         </div>
