@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+User Profile
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>User Profile</h1>
+    <p>Welcome, {{ user.username }}!</p>
+    <!-- You can add more user information here if needed -->
+</div>
+{% endblock %}

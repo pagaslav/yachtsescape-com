@@ -10,6 +10,8 @@ urlpatterns = [
     path('', include('home.urls')),
     path('yachts/', include('yachts.urls')),
     path('booking/', include('booking.urls')),
+    # path('profiles/', include('profiles.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 # Serve media files during development
