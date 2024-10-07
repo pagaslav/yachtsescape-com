@@ -1,38 +1,59 @@
-{% extends "account/base_entrance.html" %}
+<!-- templates/allauth/account/signup_by_passkey.html -->
+
+{% extends "base.html" %}
+{% load static %}
 {% load allauth i18n %}
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock extra_css %}
+
+{% block title %}
+    Sign Up
+{% endblock title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Passkey Sign Up" %}
-    {% endelement %}
-    {% setvar link %}
-        <a href="{{ login_url }}">
-        {% endsetvar %}
-        {% setvar end_link %}
-        </a>
-    {% endsetvar %}
-    {% element p %}
-        {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-    {% endelement %}
-    {% url 'account_signup_by_passkey' as action_url %}
-    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button tags="prominent,signup" type="submit" %}
+<div class="container">
+    <!-- Header section with title -->
+    <div class="allauth-header-content">
+        <h1 class="allauth-hero-title">{% trans "Passkey Sign Up" %}</h1>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <!-- Introductory text with link to login -->
+    <p class="text-center text-muted">
+        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}" class="text-primary font-weight-bold align-top">sign in</a>.{% endblocktrans %}
+    </p>
+
+    <!-- Signup form for passkey -->
+    <form method="POST" action="{% url 'account_signup_by_passkey' %}" class="mt-4">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                    <!-- Form fields for passkey signup -->
+                    <div class="mb-3">
+                        {% element fields form=form unlabeled=True %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sign Up button -->
+        <div class="container text-center mt-4">
+            <button type="submit" class="btn header-main-btn">
                 {% trans "Sign Up" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% element hr %}
-    {% endelement %}
-    {% element button href=signup_url tags="prominent,signup,outline,primary" %}
-        {% trans "Other options" %}
-    {% endelement %}
+            </button>
+        </div>
+    </form>
+
+    <!-- Divider and button for other signup options -->
+    <div class="container text-center mt-3">
+        <hr>
+        <a href="{{ signup_url }}" class="btn btn-outline-primary mt-3">
+            {% trans "Other options" %}
+        </a>
+    </div>
+</div>
 {% endblock content %}

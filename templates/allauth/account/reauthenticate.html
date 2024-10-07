@@ -1,22 +1,49 @@
-{% extends "account/base_reauthenticate.html" %}
-{% load allauth %}
-{% load i18n %}
-{% block reauthenticate_content %}
-    {% element p %}
-        {% blocktranslate %}Enter your password:{% endblocktranslate %}
-    {% endelement %}
-    {% url 'account_reauthenticate' as action_url %}
-    {% element form form=form method="post" action=action_url %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" tags="primary,reauthenticate" %}
-                {% trans "Confirm" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-{% endblock %}
+<!-- templates/allauth/account/reauthenticate.html -->
+
+{% extends "base.html" %}
+{% load static %}
+{% load allauth i18n %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock extra_css %}
+
+{% block title %}
+    Confirm Access
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <!-- Header section with title -->
+    <div class="allauth-header-content">
+        <h1 class="allauth-hero-title">{% trans "Confirm Access" %}</h1>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <!-- Message prompting user to re-enter password -->
+    <p class="text-center text-muted">
+        {% blocktranslate %}Please enter your password to confirm access to this area of the site.{% endblocktranslate %}
+    </p>
+
+    <!-- Reauthentication form -->
+    <form method="POST" action="{% url 'account_reauthenticate' %}">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                    <!-- Form fields for password entry -->
+                    <div class="mb-3">
+                        {% element fields form=form unlabeled=True %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit button below the form -->
+        <div class="container text-center mt-4">
+            <button type="submit" class="btn header-main-btn">{% trans "Confirm" %}</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

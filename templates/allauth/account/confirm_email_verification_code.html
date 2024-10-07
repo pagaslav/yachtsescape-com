@@ -1,48 +1,66 @@
-{% extends "account/base_entrance.html" %}
-{% load i18n %}
-{% load allauth account %}
-{% block head_title %}
-    {% translate "Email Verification" %}
-{% endblock head_title %}
+<!-- templates/allauth/account/confirm_email_verification_code.html -->
+
+{% extends "base.html" %}
+{% load static %}
+{% load allauth i18n %}
+{% load account %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock %}
+
+{% block title %}
+Email Verification
+{% endblock %}
+
 {% block content %}
-    {% element h1 %}
-        {% translate "Enter Email Verification Code" %}
-    {% endelement %}
-    {% setvar email_link %}
-        <a href="mailto:{{ email }}">{{ email }}</a>
-    {% endsetvar %}
-    {% element p %}
-        {% blocktranslate %}We’ve sent a code to {{ email_link }}. The code expires shortly, so please enter it soon.{% endblocktranslate %}
-    {% endelement %}
-    {% url 'account_email_verification_sent' as action_url %}
-    {% element form form=form method="post" action=action_url tags="entrance,email,verification" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" tags="prominent,confirm" %}
-                {% translate "Confirm" %}
-            {% endelement %}
+<div class="container">
+    <!-- Header section with title -->
+    <div class="allauth-header-content">
+        <h1 class="allauth-hero-title">{% trans "Enter Email Verification Code" %}</h1>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <!-- Instruction text with email link -->
+    <p class="text-center text-muted mb-4">
+        {% trans "We’ve sent a code to" %} <a href="mailto:{{ email }}" class="text-primary align-top">{{ email }}</a>.
+        {% trans "The code expires shortly, so please enter it soon." %}
+    </p>
+
+    <!-- Verification code form -->
+    <form method="post" action="{% url 'account_email_verification_sent' %}" class="mt-4">
+        {% csrf_token %}
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                    <!-- Verification code input field -->
+                    <div class="mb-3">
+                        <label for="id_code" class="form-label">{% trans "Verification Code" %}</label>
+                        {{ form.code }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirm and Cancel buttons -->
+        <div class="container text-center mt-4">
+            <button type="submit" class="btn header-main-btn">{% trans "Confirm" %}</button>
             {% if cancel_url %}
-                {% element button href=cancel_url tags="link,cancel" %}
-                    {% translate "Cancel" %}
-                {% endelement %}
+                <a href="{{ cancel_url }}" class="btn btn-link text-muted">{% trans "Cancel" %}</a>
             {% else %}
-                {% element button type="submit" form="logout-from-stage" tags="link,cancel" %}
-                    {% translate "Cancel" %}
-                {% endelement %}
+                <button type="submit" form="logout-from-stage" class="btn btn-link text-muted">{% trans "Cancel" %}</button>
             {% endif %}
-        {% endslot %}
-    {% endelement %}
+        </div>
+    </form>
+
+    <!-- Hidden logout form for alternative cancellation -->
     {% if not cancel_url %}
-        <form id="logout-from-stage"
-              method="post"
-              action="{% url 'account_logout' %}">
+        <form id="logout-from-stage" method="post" action="{% url 'account_logout' %}">
             <input type="hidden" name="next" value="{% url 'account_login' %}">
             {% csrf_token %}
         </form>
     {% endif %}
-{% endblock content %}
+</div>
+{% endblock %}

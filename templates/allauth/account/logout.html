@@ -1,25 +1,45 @@
-{% extends "account/base_manage.html" %}
-{% load allauth i18n %}
-{% block head_title %}
-    {% trans "Sign Out" %}
-{% endblock head_title %}
+<!-- templates/allauth/account/logout.html -->
+
+<!-- templates/allauth/account/logout.html -->
+
+{% extends "base.html" %}
+{% load static %}
+
+{% load account %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock %}
+
+{% block title %}
+Sign Out
+{% endblock %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    {% element p %}
-        {% trans 'Are you sure you want to sign out?' %}
-    {% endelement %}
-    {% url 'account_logout' as action_url %}
-    {% element form method="post" action=action_url no_visible_fields=True %}
-        {% slot body %}
-            {% csrf_token %}
-            {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-{% endblock content %}
+<div class="container">
+    <!-- Header section with title -->
+    <div class="allauth-header-content">
+        <h1 class="allauth-hero-title">Sign Out</h1>
+    </div>
+</div>
+
+<div class="container mt-4">
+   <!-- Confirmation message for signing out -->
+   <p class="text-center text-muted mb-4">
+       Are you sure you want to sign out?
+   </p>
+
+    <!-- Logout form -->
+    <form class="text-center" method="POST" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        {{ redirect_field }}
+
+        <!-- Buttons: Sign Out and Cancel -->
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-outline-secondary home-btn me-2" href="{% url 'home' %}">Cancel</a>
+            <button type="submit" class="btn btn-primary header-main-btn">Sign Out</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

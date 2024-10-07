@@ -5,86 +5,135 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    {% block meta %}
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- Meta tags for character set and responsive design -->
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="language" content="en" />
+<head>
+  {% block meta %}
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Meta tags for character set and responsive design -->
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="language" content="en" />
 
-    <!-- Metadata for SEO -->
-    <meta name="description" content="Luxury yacht rentals in the Mediterranean." />
-    <meta name="keywords" content="yachts, rental, Mediterranean, luxury, boats" />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="Artem Bryzh" />
+  <!-- Metadata for SEO -->
+  <meta name="description" content="Luxury yacht rentals in the Mediterranean." />
+  <meta name="keywords" content="yachts, rental, Mediterranean, luxury, boats" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Artem Bryzh" />
 
-    <!-- Open Graph Metadata for Social Media -->
-    <meta property="og:title" content="Yachtsescape - Luxury Yacht Rentals" />
-    <meta property="og:description" content="Find and rent luxury yachts in the Mediterranean." />
-    {% endblock %} {% block extra_meta %} {% endblock %}
+  <!-- Open Graph Metadata for Social Media -->
+  <meta property="og:title" content="Yachtsescape - Luxury Yacht Rentals" />
+  <meta property="og:description" content="Find and rent luxury yachts in the Mediterranean." />
+  {% endblock %} {% block extra_meta %} {% endblock %}
 
-    <!-- Core CSS -->
-    {% block corecss %}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet" />
+  <!-- Core CSS -->
+  {% block corecss %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet" />
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Include custom CSS files -->
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  <!-- Include custom CSS files -->
+  <link rel="stylesheet" href="{% static 'css/base.css' %}" />
 
-    <!-- Stripe -->
-    <script src="https://js.stripe.com/v3/"></script>
-    {% endblock %} {% block extra_css %}{% endblock %}
+  <!-- Stripe -->
+  <script src="https://js.stripe.com/v3/"></script>
+  {% endblock %} {% block extra_css %}{% endblock %}
 
-    <!-- Favicon and Title-->
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
-    <title>{% block title %}Yacht Rental | {% endblock %}</title>
-  </head>
+  <!-- Favicon and Title-->
+  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+  <title>YachtsEscape | {% block title %}{% endblock %}</title>
+</head>
 
-  <body>
-    <!-- Header content (navbar, etc.) -->
-    <header>
-      {% block header %}
-      
-      <!-- Navigation -->
-      {% include 'includes/header.html' %}
+<body>
+  <!-- Header content (navbar, etc.) -->
+  <header>
+    {% block header %}
 
-      {% endblock %}
-    </header>
+    <!-- Navigation -->
+    {% include 'includes/header.html' %}
 
-    <!-- Main content -->
-    <main>
-      {% block content %} 
-      {% endblock %}
-    </main>
-
-    <!-- Footer -->
-    {% block footer %}
-    {% include 'includes/footer.html' %}
     {% endblock %}
+  </header>
 
-    <!-- Core JS -->
-    {% block corejs %}
-    <!-- jQuery -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"
+  <!-- Toasts container -->
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+    <!-- Position it -->
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1055;">
+      {% for message in messages %}
+      <div class="toast align-items-center 
+                    {% if message.tags == 'error' %}text-bg-danger
+                    {% elif message.tags == 'warning' %}text-bg-warning
+                    {% elif message.tags == 'success' %}text-bg-success
+                    {% else %}text-bg-primary{% endif %} 
+                    border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true"
+        data-bs-delay="5000">
+        <div class="d-flex">
+          <div class="toast-body">
+            <!-- Add icons based on the type of message -->
+            {% if message.tags == 'error' %}
+            <i class="fas fa-exclamation-circle me-2"></i>
+            {% elif message.tags == 'warning' %}
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            {% elif message.tags == 'success' %}
+            <i class="fas fa-check-circle me-2"></i>
+            {% else %}
+            <i class="fas fa-info-circle me-2"></i>
+            {% endif %}
+            {{ message }}
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+            aria-label="Close"></button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <!-- Footer -->
+  {% block footer %}
+  {% include 'includes/footer.html' %}
+  {% endblock %}
+
+  <!-- Core JS -->
+  {% block corejs %}
+  <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"
     integrity="sha384-UG8ao2jwOWB7/oDdObZc6ItJmwUkR/PfMyt9Qs5AwX7PsnYn1CRKCTWyncPTWvaS"
     crossorigin="anonymous"></script>
-    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <!-- FontAwesome kit -->
-    <script src="https://kit.fontawesome.com/d63b433288.js" crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 
-    <!-- Your base.js -->
-    <script src="{% static 'js/base.js' %}"></script>
+  <!-- FontAwesome kit -->
+  <script src="https://kit.fontawesome.com/d63b433288.js" crossorigin="anonymous"></script>
 
-    {% endblock %} {% block extra_js %} {% endblock %}
-  </body>
+  <!-- Your base.js -->
+  <script src="{% static 'js/base.js' %}"></script>
+
+  {% endblock %}
+  {% block extra_js %}
+  <script>
+    // Activate all Bootstrap toasts on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+      var toastList = toastElList.map(function (toastEl) {
+        return new bootstrap.Toast(toastEl);
+      });
+      toastList.forEach(toast => toast.show());
+    });
+  </script>
+  {% endblock %}
+</body>
 
 </html>

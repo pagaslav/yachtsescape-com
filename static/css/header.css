@@ -22,6 +22,16 @@
     min-height: 400px;
 }
 
+.header-short {
+    position: relative;
+    background-image: url('/static/images/home-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 40vh;
+    z-index: 1;
+}
+
 /* Top bar with contact info and social media icons */
 .header-top-bar {
     z-index: 3;
@@ -150,13 +160,12 @@
     transition: background-color 0.3s ease;
     border: none;
     height: 40px;
-    display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     text-align: center;
-    padding: 0 20px;
-    margin-left: 15px;
+    padding: 0 10px;
+    margin-left: 10px;
 }
 
 .header-main-btn:hover {
@@ -215,18 +224,4 @@
     align-items: center !important;
     border-bottom: 1px solid #eaeaea;
     padding: 10px 15px;
-}
-
-
-/* KNEE */
-
-
-/* Logo */
-
-
-/* Footer */
-footer {
-    flex-shrink: 0;
-    width: 100%;
-    bottom: 0;
 }

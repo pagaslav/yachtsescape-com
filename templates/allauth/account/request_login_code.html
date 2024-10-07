@@ -1,32 +1,57 @@
-{% extends "account/base_entrance.html" %}
+<!-- templates/allauth/account/request_login_code.html -->
+
+{% extends "base.html" %}
+{% load static %}
 {% load i18n %}
 {% load allauth account %}
-{% block head_title %}
-    {% translate "Sign In" %}
-{% endblock head_title %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock extra_css %}
+
+{% block title %}
+    Sign In
+{% endblock title %}
+
 {% block content %}
-    {% element h1 %}
-        {% translate "Mail me a sign-in code" %}
-    {% endelement %}
-    {% element p %}
-        {% blocktranslate %}You will receive an email containing a special code for a password-free sign-in.{% endblocktranslate %}
-    {% endelement %}
-    {% url 'account_request_login_code' as login_url %}
-    {% element form form=form method="post" action=login_url tags="entrance,login" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" tags="prominent,login" %}
-                {% translate "Request Code" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% url 'account_login' as login_url %}
-    {% element button href=login_url tags="link" %}
-        {% translate "Other sign-in options" %}
-    {% endelement %}
+<div class="container">
+    <!-- Header section with title -->
+    <div class="allauth-header-content">
+        <h1 class="allauth-hero-title">{% trans "Mail me a sign-in code" %}</h1>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <!-- Introductory text -->
+    <p class="text-center text-muted">
+        {% blocktrans %}You will receive an email containing a special code for a password-free sign-in.{% endblocktrans %}
+    </p>
+
+    <!-- Request code form -->
+    <form method="POST" action="{% url 'account_request_login_code' %}" class="mt-4">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                    <!-- Form fields for requesting code -->
+                    <div class="mb-3">
+                        {% element fields form=form unlabeled=True %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Request Code button -->
+        <div class="container text-center mt-4">
+            <button type="submit" class="btn header-main-btn">
+                {% trans "Request Code" %}
+            </button>
+        </div>
+    </form>
+
+    <!-- Link for other sign-in options -->
+    <div class="container text-center mt-3">
+        <a href="{% url 'account_login' %}" class="text-primary font-weight-bold align-top">{% trans "Other sign-in options" %}</a>
+    </div>
+</div>
 {% endblock content %}

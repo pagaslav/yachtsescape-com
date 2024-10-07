@@ -1,14 +1,33 @@
-{% extends "account/base_entrance.html" %}
-{% load i18n %}
-{% load allauth %}
-{% block head_title %}
-    {% trans "Verify Your Email Address" %}
-{% endblock head_title %}
+<!-- templates/allauth/account/verification_sent.html -->
+
+{% extends "base.html" %}
+{% load static %}
+{% load allauth i18n %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock extra_css %}
+
+{% block title %}
+    Verify Your Email Address
+{% endblock title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Verify Your Email Address" %}
-    {% endelement %}
-    {% element p %}
-        {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
-    {% endelement %}
+<div class="container">
+    <!-- Header section with title -->
+    <div class="allauth-header-content">
+        <h1 class="allauth-hero-title">{% trans "Verify Your Email Address" %}</h1>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <!-- Informative message about email verification -->
+    <p class="text-center text-muted fs-5">
+        {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. <br>If you do not see the verification email in your main inbox, check your spam folder. <br>
+        Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
+    </p>
+    <p class="text-center text-muted fs-4">
+        Have a good day!
+    </p>
+</div>
 {% endblock content %}

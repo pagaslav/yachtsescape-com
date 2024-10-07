@@ -1,25 +1,43 @@
-{% extends "account/base_manage.html" %}
-{% load i18n %}
-{% load allauth %}
-{% block head_title %}
-    {% trans "Verify Your Email Address" %}
-{% endblock head_title %}
+<!-- templates/allauth/account/verified_email_required.html -->
+
+{% extends "base.html" %}
+{% load static %}
+{% load allauth i18n %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock extra_css %}
+
+{% block title %}
+    Verify Your Email Address
+{% endblock title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Verify Your Email Address" %}
-    {% endelement %}
-    {% url 'account_email' as email_url %}
-    {% element p %}
+<div class="container">
+    <!-- Header section with title -->
+    <div class="allauth-header-content">
+        <h1 class="allauth-hero-title">{% trans "Verify Your Email Address" %}</h1>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <!-- Message explaining the email verification requirement -->
+    <p class="text-center text-muted">
         {% blocktrans %}This part of the site requires us to verify that
-you are who you claim to be. For this purpose, we require that you
-verify ownership of your email address. {% endblocktrans %}
-    {% endelement %}
-    {% element p %}
+        you are who you claim to be. For this purpose, we require that you
+        verify ownership of your email address.{% endblocktrans %}
+    </p>
+
+    <!-- Message about the verification email sent to the user -->
+    <p class="text-center text-muted">
         {% blocktrans %}We have sent an email to you for
-verification. Please click on the link inside that email. If you do not see the verification email in your main inbox, check your spam folder. Otherwise
-contact us if you do not receive it within a few minutes.{% endblocktrans %}
-    {% endelement %}
-    {% element p %}
-        {% blocktrans %}<strong>Note:</strong> you can still <a href="{{ email_url }}">change your email address</a>.{% endblocktrans %}
-    {% endelement %}
+        verification. Please click on the link inside that email. If you do not see the verification email in your main inbox, check your spam folder. Otherwise,
+        contact us if you do not receive it within a few minutes.{% endblocktrans %}
+    </p>
+
+    <!-- Link to change the email address -->
+    <p class="text-center text-muted">
+        {% blocktrans %}<strong>Note:</strong> you can still <a href="{{ email_url }}" class="text-primary font-weight-bold align-top">change your email address</a>.{% endblocktrans %}
+    </p>
+</div>
 {% endblock content %}

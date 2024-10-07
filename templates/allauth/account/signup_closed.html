@@ -1,14 +1,29 @@
-{% extends "account/base_entrance.html" %}
-{% load i18n %}
-{% load allauth %}
-{% block head_title %}
-    {% trans "Sign Up Closed" %}
-{% endblock head_title %}
+<!-- templates/allauth/account/signup_closed.html -->
+
+{% extends "base.html" %}
+{% load static %}
+{% load allauth i18n %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock extra_css %}
+
+{% block title %}
+    Sign Up Closed
+{% endblock title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up Closed" %}
-    {% endelement %}
-    {% element p %}
+<div class="container">
+    <!-- Header section with title -->
+    <div class="allauth-header-content">
+        <h1 class="allauth-hero-title">{% trans "Sign Up Closed" %}</h1>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <!-- Informative message about sign-up being closed -->
+    <p class="text-center text-muted">
         {% trans "We are sorry, but the sign up is currently closed." %}
-    {% endelement %}
+    </p>
+</div>
 {% endblock content %}

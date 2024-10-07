@@ -3,7 +3,9 @@
 {% load static %}
 
 <!-- Header section -->
-<header class="{% block header_class %}{% if request.path == '/yachts/' %}yacht-header{% else %}header{% endif %}{% endblock %}">
+<!-- class="{% block header_class %}{% if request.path == '/yachts/' %}yacht-header{% else %}header{% endif %}{% endblock %}" -->
+<header class="{% if request.path == '/' %}header{% else %}header-short{% endif %}">
+
     <!-- Transparent overlay -->
     <div class="header-overlay"></div>
 
@@ -49,7 +51,7 @@
                 <img class="normal-logo img-fluid" id="logo" src="{% static 'images/logo-light.png' %}"
                     data-light-logo="{% static 'images/logo-light.png' %}"
                     data-dark-logo="{% static 'images/logo-dark.png' %}"
-                    data-small-light-logo="{% static 'images/logo-light-small.png' %}" 
+                    data-small-light-logo="{% static 'images/logo-light-small.png' %}"
                     data-small-dark-logo="{% static 'images/logo-dark-small.png' %}" alt="logo" />
             </a>
         </div>
@@ -61,7 +63,8 @@
         </button>
 
         <!-- Offcanvas menu -->
-        <div class="offcanvas offcanvas-end text-center" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas offcanvas-end text-center" tabindex="-1" id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header justify-content-between">
                 <h5 class="offcanvas-title flex-grow-1 text-center" id="offcanvasNavbarLabel">Menu</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -71,22 +74,40 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'home' %}" aria-label="Home Page">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" aria-label="Profile Page">Profile</a>
+
+                    <!-- Conditional Menu Based on User Authentication Status -->
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            My Account
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <!-- Admin option first -->
+                            {% if user.is_superuser or user.is_staff %}
+                            <li><a class="dropdown-item" href="#">Yachts Management</a></li>
+                            {% endif %}
+                            <!-- Profile and Logout for authenticated users -->
+                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                        </ul>
                     </li>
+                    {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#" aria-label="Log In Page">Log In</a>
+                        <a class="nav-link" href="{% url 'account_login' %}" aria-label="Log In Page">Log In</a>
                     </li>
+                    {% endif %}
+
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'yacht_list' %}" aria-label="Our Fleet Page">Our Fleet</a>
                     </li>
-                    <li class="nav-item"></li>
-                    <a class="nav-link" href="#" aria-label="About Us Page">About us</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" aria-label="About Us Page">About us</a>
                     </li>
+
                     <!-- "Book Now" button -->
                     <button class="btn btn-sm header-main-btn">Book Now</button>
                 </ul>
-
             </div>
         </div>
     </div>

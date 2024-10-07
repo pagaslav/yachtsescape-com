@@ -1,12 +1,3 @@
-/* Custom header for yacht listing page */
-.yacht-header {
-    position: relative;
-    background-image: url('/static/images/home-bg.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 40vh;
-}
 
 /* Center the page title on the background */
 .header-content {

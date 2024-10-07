@@ -1,14 +1,30 @@
-{% extends "allauth/layouts/entrance.html" %}
+<!-- templates/allauth/account/account_inactive.html -->
+
+{% extends "base.html" %}
+{% load static %}
 {% load i18n %}
 {% load allauth %}
-{% block head_title %}
-    {% translate "Account Inactive" %}
-{% endblock head_title %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock %}
+
+{% block title %}
+Account Inactive
+{% endblock %}
+
 {% block content %}
-    {% element h1 %}
-        {% translate "Account Inactive" %}
-    {% endelement %}
-    {% element p %}
+<div class="container">
+    <!-- Header section with title -->
+    <div class="allauth-header-content">
+        <h1 class="allauth-hero-title">{% translate "Account Inactive" %}</h1>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <!-- Message about inactive account -->
+    <p class="text-center text-muted">
         {% translate "This account is inactive." %}
-    {% endelement %}
-{% endblock content %}
+    </p>
+</div>
+{% endblock %}

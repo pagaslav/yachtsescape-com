@@ -1,40 +1,54 @@
-{% extends "account/base_entrance.html" %}
+<!-- templates/allauth/account/confirm_login_code.html -->
+
+{% extends "base.html" %}
 {% load i18n %}
 {% load allauth account %}
-{% block head_title %}
-    {% translate "Sign In" %}
-{% endblock head_title %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+{% endblock extra_css %}
+{% block title %}
+    Sign In
+{% endblock title %}
+
 {% block content %}
-    {% element h1 %}
-        {% translate "Enter Sign-In Code" %}
-    {% endelement %}
-    {% setvar email_link %}
-        <a href="mailto:{{ email }}">{{ email }}</a>
-    {% endsetvar %}
-    {% element p %}
-        {% blocktranslate %}We’ve sent a code to {{ email_link }}. The code expires shortly, so please enter it soon.{% endblocktranslate %}
-    {% endelement %}
-    {% url 'account_confirm_login_code' as login_url %}
-    {% element form form=form method="post" action=login_url tags="entrance,login" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" tags="prominent,login" %}
-                {% translate "Sign In" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% element button type="submit" form="logout-from-stage" tags="link" %}
-        {% translate "Cancel" %}
-    {% endelement %}
-    <form id="logout-from-stage"
-          method="post"
-          action="{% url 'account_logout' %}">
+<div class="container">
+    <!-- Header section with title -->
+    <div class="allauth-header-content">
+        <h1 class="allauth-hero-title">{% trans "Enter Sign-In Code" %}</h1>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <!-- Information about where the code was sent -->
+    <p class="text-center text-muted mb-4">
+        {% blocktrans %}We’ve sent a code to <a href="mailto:{{ email }}" class="text-primary font-weight-bold align-top">{{ email }}</a>. The code expires shortly, so please enter it soon.{% endblocktrans %}
+    </p>
+
+    <!-- Code input form -->
+    <form method="POST" action="{% url 'account_confirm_login_code' %}">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-8 col-10">
+                    <!-- Code input field -->
+                    <div class="mb-3">
+                        {{ form.code }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="container text-center mt-3">
+            <button type="submit" class="btn btn-primary header-main-btn">{% trans "Sign In" %}</button>
+            <button type="submit" form="logout-from-stage" class="btn btn-outline-secondary mt-2">{% trans "Cancel" %}</button>
+        </div>
+    </form>
+
+    <!-- Hidden form to handle logout -->
+    <form id="logout-from-stage" method="post" action="{% url 'account_logout' %}">
         <input type="hidden" name="next" value="{% url 'account_login' %}">
         {% csrf_token %}
     </form>
+</div>
 {% endblock content %}

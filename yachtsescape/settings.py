@@ -28,7 +28,6 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'yachtsescape-a7b4e5d759f6.herokuapp.
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,13 +36,15 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'allauth',
+    'allauth.account',
     'yachts',
     'home',
     'storages',
     'booking',
     'profiles',
-    'allauth',
-    'allauth.account',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +63,10 @@ ROOT_URLCONF = 'yachtsescape.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,6 +121,10 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
