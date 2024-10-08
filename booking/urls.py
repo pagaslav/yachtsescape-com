@@ -1,8 +1,9 @@
 # booking/urls.py
 
 from django.urls import path
-from .views import yacht_detail
+from . import views
 
 urlpatterns = [
-    path('yacht/<int:yacht_id>/', yacht_detail, name='yacht_detail'),  # URL for yacht details
+    path('booking/create/', views.booking_create, name='booking_create'),
+    path('yacht/<int:yacht_id>/', views.yacht_detail, name='yacht_detail'),
 ]
