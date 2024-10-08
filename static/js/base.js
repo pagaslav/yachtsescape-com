@@ -1,3 +1,5 @@
+// static / js / base.js
+
 $(document).ready(function () {
   let scrollTrigger = 50
 

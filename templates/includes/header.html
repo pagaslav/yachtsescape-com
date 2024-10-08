@@ -97,7 +97,7 @@
                         <a class="nav-link" href="{% url 'account_login' %}" aria-label="Log In Page">Log In</a>
                     </li>
                     {% endif %}
-                    
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="yachtTypeDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -111,16 +111,61 @@
                                     href="{% url 'yacht_list' %}?type=Celebrations">Celebrations</a></li>
                         </ul>
                     </li>
-
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="{% url 'yacht_list' %}" aria-label="Our Fleet Page">Our Fleet</a>
-                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="#" aria-label="About Us Page">About us</a>
                     </li>
 
                     <!-- "Book Now" button -->
-                    <button class="btn btn-sm header-main-btn">Book Now</button>
+                    <button class="btn btn-sm header-main-btn" data-bs-toggle="modal"
+                        data-bs-target="#bookNowModal">Book Now</button>
+
+                    <!-- Book Now Modal -->
+                    <div class="modal fade" id="bookNowModal" tabindex="-1" aria-labelledby="bookNowModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="bookNowModalLabel">Booking Form</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="bookingForm" action="{% url 'yacht_list' %}" method="GET">
+                                        <div class="mb-3">
+                                            <label for="boatType" class="form-label">Select Boat Type</label>
+                                            <select id="boatType" name="type" class="form-select">
+                                                <option value="">Any Type</option>
+                                                <option value="celebrations">Celebrations</option>
+                                                <option value="fishing">Fishing</option>
+                                                <option value="leisure">Leisure</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="capacity" class="form-label">Select Capacity</label>
+                                            <select id="capacity" name="capacity" class="form-select">
+                                                <option value="">Any Capacity</option>
+                                                <option value="2-4">Up to 4</option>
+                                                <option value="4-6">4-6</option>
+                                                <option value="6-8">6-8</option>
+                                                <option value="8_plus">More than 8</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="startDate" class="form-label">Start Date</label>
+                                            <input type="date" id="startDate" name="start_date" class="form-control"
+                                                required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="endDate" class="form-label">End Date</label>
+                                            <input type="date" id="endDate" name="end_date" class="form-control"
+                                                required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </ul>
             </div>
         </div>

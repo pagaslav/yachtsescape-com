@@ -229,3 +229,25 @@
 .dropdown-menu {
     margin-top: -30px !important;
 }
+
+.modal-backdrop {
+    z-index: 1040;
+    display: none !important;
+}
+
+.modal {
+    z-index: 1050;
+}
+
+.modal-content {
+    z-index: 1051;
+    border-radius: 8px; /* Пример настройки закругления углов */
+}
+
+.modal-header {
+    background-color: #f8f9fa; /* Пример цвета заголовка */
+}
+
+.modal-body {
+    padding: 20px; /* Пример отступов внутри модального окна */
+}
