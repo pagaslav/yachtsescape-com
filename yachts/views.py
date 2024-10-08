@@ -48,4 +48,13 @@ def yacht_list(request):
     if capacity in capacity_filter:
         yachts = yachts.filter(**capacity_filter[capacity])  # Apply filtering based on the selected capacity
 
+    # Date filtering to exclude yachts booked during the selected dates
+    start_date = request.GET.get('start_date')  # Get the selected start date from the GET request
+    end_date = request.GET.get('end_date')  # Get the selected end date from the GET request
+    if start_date and end_date:
+        yachts = yachts.exclude(
+            bookings__start_date__lt=end_date,
+            bookings__end_date__gt=start_date
+        )  # Exclude yachts that are booked during the selected dates
+
     return render(request, 'yachts/yacht-list.html', {'yachts': yachts})
