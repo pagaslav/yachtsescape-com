@@ -8,6 +8,11 @@ import logging
 logger = logging.getLogger(__name__)
 
 class Yacht(models.Model):
+    COUNTRY_CHOICES = [
+        ('Turkey', 'Turkey'),
+        ('France', 'France'),
+        ('Spain', 'Spain'),
+    ]
     # Name of the yacht
     name = models.CharField(max_length=100)  
     # ID for inventory management
@@ -16,6 +21,8 @@ class Yacht(models.Model):
     type = models.CharField(max_length=50, default='default_type')
     # Detailed description of the yacht
     description = models.TextField()
+    # Country where the yacht is available
+    country = models.CharField(max_length=50, choices=COUNTRY_CHOICES, default='Turkey')
     # Location where the yacht is available
     location = models.CharField(max_length=100)
     # Maximum number of people the yacht can accommodate

@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/yachts/yacht-list.css' %}">
+<link rel="stylesheet" href="{% static 'css/yachts/yacht-list.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -18,26 +18,102 @@ Our Fleet
         <h1 class="hero-title">Our Fleet</h1>
     </div>
 
+    <!-- Sorting section -->
+    <div class="d-flex justify-content-between mt-4">
+        <!-- Location filter -->
+        <div class="dropdown">
+            <button class="btn dropdown-toggle custom-dropdown-btn" type="button" id="locationDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Location
+            </button>
+            <ul class="dropdown-menu custom-dropdown-menu" aria-labelledby="locationDropdown">
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?country=Turkey">Turkey</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?country=France">France</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?country=Spain">Spain</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?location=Bodrum">Bodrum</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?location=Antibes">Antibes</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?location=Costa Brava">Costa Brava</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?location=Mallorca">Mallorca</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?location=Saint-Tropez">Saint-Tropez</a></li>
+            </ul>
+        </div>
+
+        <!-- Sort by dropdown -->
+        <div class="dropdown">
+            <button class="btn dropdown-toggle custom-dropdown-btn" type="button" id="sortDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Sort by
+            </button>
+            <ul class="dropdown-menu custom-dropdown-menu" aria-labelledby="sortDropdown">
+                <!-- Price sorting -->
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?sort=price_low">Price: Low to High</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?sort=price_high">Price: High to Low</a></li>
+
+                <!-- Rating sorting -->
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?sort=rating_low">Rating: Low to High</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?sort=rating_high">Rating: High to Low</a></li>
+
+                <!-- Name sorting -->
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?sort=name_az">Name: A-Z</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?sort=name_za">Name: Z-A</a></li>
+
+                <!-- Type sorting -->
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?sort=type_az">Type: A-Z</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?sort=type_za">Type: Z-A</a></li>
+
+                <!-- Capacity sorting -->
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?capacity=2-4">Capacity: Up to 4</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?capacity=4-6">Capacity: 4-6</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?capacity=6-8">Capacity: 6-8</a></li>
+                <li><a class="dropdown-item" href="{% url 'yacht_list' %}?capacity=8_plus">Capacity: More than 8</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Yacht card section -->
     <div class="row mt-5">
-    {% for yacht in yachts %}
+        {% for yacht in yachts %}
         <div class="col-md-4 mb-4">
             <div class="card h-100">
                 {% if yacht.image %}
-                    <!-- Display yacht image if available -->
-                    <img src="{{ yacht.image.url }}" class="card-img-top" alt="{{ yacht.name }}">
+                <!-- Display yacht image if available -->
+                <img src="{{ yacht.image.url }}" class="card-img-top" alt="{{ yacht.name }}">
                 {% else %}
-                    <!-- Display placeholder image if no yacht image is available -->
-                    <img src="{% static 'images/default-yacht.png' %}" class="card-img-top" alt="{{ yacht.name }}">
+                <!-- Display placeholder image if no yacht image is available -->
+                <img src="{% static 'images/default-yacht.png' %}" class="card-img-top" alt="{{ yacht.name }}">
                 {% endif %}
                 <div class="card-body">
-                    <!-- Display yacht name and price -->
+                    <!-- Yacht name -->
                     <h5 class="card-title">{{ yacht.name }}</h5>
+
+                    <!-- Yacht rating in stars -->
+                    <div class="rating mb-2">
+                        {% for i in "12345" %}
+                        {% if forloop.counter <= yacht.rating|default:0 %} <i class="fas fa-star filled"></i>
+                            {% else %}
+                            <i class="fas fa-star"></i>
+                            {% endif %}
+                            {% endfor %}
+                    </div>
+
+                    <!-- Yacht price -->
                     <p class="card-text">Price: ${{ yacht.price_per_day }} / per day</p>
-                    <a href="{% url 'yacht_detail' yacht.id %}" class="btn btn-primary">Read More</a> <!-- Link to detailed yacht page -->
+
+                    <!-- Yacht capacity -->
+                    <p class="card-text">Capacity: {{ yacht.capacity }} people</p>
+
+                    <!-- Yacht location -->
+                    <p class="card-text">Location: {{ yacht.location }}</p>
+
+                    <!-- Button to read more -->
+                    <a href="{% url 'yacht_detail' yacht.id %}" class="btn btn-primary">Read More</a>
                 </div>
             </div>
         </div>
-    {% endfor %}
-</div>
-{% endblock %}
+        {% endfor %}
+    </div>
+    {% endblock %}

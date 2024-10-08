@@ -225,3 +225,7 @@
     border-bottom: 1px solid #eaeaea;
     padding: 10px 15px;
 }
+
+.dropdown-menu {
+    margin-top: -30px !important;
+}

@@ -1,3 +1,5 @@
+<!-- home/templates/home/index.html -->
+
 {% extends 'base.html' %}
 
 {% load static %}
@@ -7,49 +9,53 @@ Home - Yachtsescape
 {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/home/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/home/index.css' %}">
 {% endblock %}
 
 {% block content %}
-  <!-- Hero Section -->
-  <div class="hero-content">
+<!-- Hero Section -->
+<div class="hero-content">
     <h1 class="hero-title">Welcome to Yachtsescape</h1>
     <a href="#" class="hero-link">Explore More</a>
-  </div>
+</div>
 
 <!-- Search Form Section -->
 <div class="container search-form-container">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-            <form action="{% url 'search_results' %}" method="GET" class="bg-white p-4 rounded shadow">
+            <form action="{% url 'yacht_list' %}" method="GET" class="bg-white p-4 rounded shadow">
                 <div class="row align-items-center">
                     <!-- Boat Type -->
                     <div class="col-md-3">
                         <label for="boatType" class="form-label">Select Boat Type</label>
-                        <select id="boatType" class="form-select">
+                        <select id="boatType" name="type" class="form-select">
+                            <option value="">Any Type</option> <!-- Default option for any type -->
                             <option value="celebrations">Celebrations</option>
                             <option value="fishing">Fishing</option>
                             <option value="leisure">Leisure</option>
                         </select>
                     </div>
 
-                    <!-- Model -->
+                    <!-- Capacity -->
                     <div class="col-md-3">
-                        <label for="model" class="form-label">Select a Model</label>
-                        <select id="model" class="form-select">
-                            <option value="model1">Model 1</option>
-                            <option value="model2">Model 2</option>
-                            <option value="model3">Model 3</option>
+                        <label for="capacity" class="form-label">Select Capacity</label>
+                        <select id="capacity" name="capacity" class="form-select">
+                            <option value="">Any Capacity</option> <!-- Default option for any capacity -->
+                            <option value="2-4">Up to 4</option>
+                            <option value="4-6">4-6</option>
+                            <option value="6-8">6-8</option>
+                            <option value="8_plus">More than 8</option>
                         </select>
                     </div>
 
-                    <!-- Price Range -->
+                    <!-- Location -->
                     <div class="col-md-3">
-                        <label for="priceRange" class="form-label">Price Range</label>
-                        <select id="priceRange" class="form-select">
-                            <option value="50">$50 per day</option>
-                            <option value="100">$100 per day</option>
-                            <option value="200">$200 per day</option>
+                        <label for="country" class="form-label">Select Сountry</label>
+                        <select id="country" name="country" class="form-select">
+                            <option value="">Any Сountry</option> <!-- Default option for any location -->
+                            <option value="Turkey">Turkey</option>
+                            <option value="France">France</option>
+                            <option value="Spain">Spain</option>
                         </select>
                     </div>
 
