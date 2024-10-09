@@ -91,3 +91,11 @@
 .card-text {
     margin-bottom: 0.5rem; 
 }
+
+.carousel-inner img {
+    width: 100%;        
+    height: auto;         
+    max-height: 600px;   
+    object-fit: cover;  
+    aspect-ratio: 4 / 3;
+}

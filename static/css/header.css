@@ -240,7 +240,7 @@
 }
 
 .modal-content {
-    z-index: 1051;
+    z-index: 1050;
     border-radius: 8px; /* Пример настройки закругления углов */
 }
 
