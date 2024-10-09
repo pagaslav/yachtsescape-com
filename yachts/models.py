@@ -3,6 +3,7 @@
 from django.db import models
 from storages.backends.s3boto3 import S3Boto3Storage
 import logging
+import os
 
 # Setting up logging for error tracking
 logger = logging.getLogger(__name__)
@@ -35,8 +36,24 @@ class Yacht(models.Model):
     available = models.BooleanField(default=True)
     # URL for an external image of the yacht
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-    # Uploaded image of the yacht upload_to='yachts/cards/',
+    # Uploaded image of the yacht
     image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
+
+    def get_detail_images(self):
+        """Returns a list of paths to the detailed images of the yacht."""
+        
+        folder_path = f"media/yachts/details/{str(self.id).zfill(3)}"
+        detail_images = []
+
+        # Проверяем, существует ли папка
+        if os.path.exists(folder_path) and os.path.isdir(folder_path):
+            for filename in os.listdir(folder_path):
+                if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):  # Укажите нужные расширения
+                    detail_images.append(f"{folder_path}/{filename}")
+        else:
+            logger.warning(f"Detail images folder does not exist for yacht id {self.id}")
+
+        return detail_images
 
     def save(self, *args, **kwargs):
         """

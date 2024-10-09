@@ -12,6 +12,7 @@ urlpatterns = [
     path('booking/', include('booking.urls')),
     # path('profiles/', include('profiles.urls')),
     path('accounts/', include('allauth.urls')),
+    path('checkout/', include('checkout.urls')),
 ]
 
 # Serve media files during development

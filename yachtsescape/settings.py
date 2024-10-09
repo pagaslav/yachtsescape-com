@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'home',
     'storages',
     'booking',
+    'checkout',
     'profiles',
     'widget_tweaks',
 ]
