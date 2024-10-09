@@ -3,37 +3,85 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/yachts/yacht-list.css' %}">
+{% endblock %}
+
 {% block title %}
 Our Fleet - {{ yacht.name }} details
 {% endblock %}
 
 {% block content %}
-<body>
+<div class="container text-center">
+    <!-- Title section in the header -->
+    <div class="header-content">
+        <h1 class="hero-title">{{ yacht.name }}</h1>
+    </div>
     <!-- Display yacht details -->
-    <h1>{{ yacht.name }}</h1>
-    <p><strong>Description:</strong> {{ yacht.description }}</p>
-    <p><strong>Type:</strong> {{ yacht.type }}</p>
-    <p><strong>Location:</strong> {{ yacht.location }}</p>
-    <p><strong>Capacity:</strong> {{ yacht.capacity }}</p>
-    <p><strong>Price per day:</strong> {{ yacht.price_per_day }} €</p>
-    <p><strong>Rating:</strong> {{ yacht.rating }}</p>
-    <img src="{{ yacht.image.url }}" alt="{{ yacht.name }}" />
+    <p class="lead mt-4">{{ yacht.description }}</p>
+    <ul class="list-unstyled">
+        <li><strong>Type:</strong> {{ yacht.type }}</li>
+        <li><strong>Rating:</strong> {{ yacht.rating }}</li>
+        <li><strong>ID:</strong> {{ yacht.id }}</li>
+    </ul>
+
+    <div id="yachtGallery" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for image in yacht.get_detail_images %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img src="/{{ image }}" class="d-block w-100" alt="{{ yacht.name }} image {{ forloop.counter }}">
+            </div>
+            {% empty %}
+            <div class="carousel-item active">
+                <img src="{{ yacht.image.url }}" class="d-block w-100" alt="Default Yacht Image">
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#yachtGallery" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#yachtGallery" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <ul class="list-unstyled mt-3">
+        <li><strong>Location:</strong> {{ yacht.location }}</li>
+        <li><strong>Capacity:</strong> {{ yacht.capacity }}</li>
+        <li><strong>Price per day:</strong> ${{ yacht.price_per_day }}</li>
+    </ul>
 
     <h2>Booked Dates</h2>
     <ul>
         {% for date in booked_dates %}
-            <li>From {{ date.start }} to {{ date.end }}</li>
+        <li>From {{ date.start }} to {{ date.end }}</li>
         {% empty %}
-            <li>No booked dates</li>
+        <li>No booked dates</li>
         {% endfor %}
     </ul>
 
     <!-- Booking form -->
     <h2>Book This Yacht</h2>
-    <form method="post">
+    <form id="bookingForm" method="post" action="{% url 'booking_create' %}" class="text-start mt-4">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Book Now</button>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="dateRange" class="form-label">Select Dates</label>
+                <input type="text" id="dateRange" name="date_range" class="form-control" placeholder="Select dates"
+                    required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="handleFormSubmit(event)">Book Now</button>
     </form>
-</body>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script id="bookedDates" type="application/json">
+  [{"start": "2024-10-09", "end": "2024-10-11"}, {"start": "2024-10-15", "end": "2024-10-17"}]
+</script>
+<script src="{% static 'js/yachts.js' %}"></script>
 {% endblock %}
