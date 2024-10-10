@@ -4,7 +4,6 @@ from django.db import models
 from storages.backends.s3boto3 import S3Boto3Storage
 import logging
 import os
-import boto3
 
 # Setting up logging for error tracking
 logger = logging.getLogger(__name__)
@@ -45,33 +44,29 @@ class Yacht(models.Model):
     def get_detail_images(self):
         """Returns a list of URLs to the detailed images of the yacht."""
         detail_images = []
-        folder_path = f"yachts/details/{str(self.id).zfill(3)}"  # Folder based on the yacht ID
+        # Folder path based on yacht ID (no leading zeros)
+        folder_path = f"yachts/details/{self.id}"
         
         # Check if using S3 storage
         if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
-            s3 = boto3.client('s3')
-            bucket_name = os.environ['AWS_STORAGE_BUCKET_NAME']
-            s3_base_url = f"https://{bucket_name}.s3.amazonaws.com/"
-
-            # List all files in the S3 folder
-            try:
-                result = s3.list_objects_v2(Bucket=bucket_name, Prefix=folder_path)
-                if 'Contents' in result:
-                    for obj in result['Contents']:
-                        file_key = obj['Key']
-                        # Check file extensions
-                        if file_key.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                            detail_images.append(f"{s3_base_url}{file_key}")
-            except Exception as e:
-                logger.error(f"Error accessing S3 bucket: {e}")  # Log any error accessing S3
+            # Base URL for accessing images from S3 bucket
+            s3_base_url = f"https://{os.environ['AWS_STORAGE_BUCKET_NAME']}.s3.amazonaws.com/"
+            for num in range(1, 4):  # Adjust the range to match your images count per yacht
+                image_url = f"{s3_base_url}{folder_path}/yacht-{self.id}-detail-{num}.webp"
+                detail_images.append(image_url)
+                logger.debug(f"Adding S3 image URL to list: {image_url}")
         else:
-            # Local development - access files directly from media folder
-            local_folder_path = f"media/{folder_path}"
-            if os.path.exists(local_folder_path) and os.path.isdir(local_folder_path):
-                for filename in os.listdir(local_folder_path):
+            # Local development path
+            media_base_url = "/media/"
+            if os.path.exists(media_base_url + folder_path):
+                for filename in os.listdir(media_base_url + folder_path):
                     if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                        detail_images.append(f"/{local_folder_path}/{filename}")
-        
+                        image_url = f"{media_base_url}{folder_path}/{filename}"
+                        detail_images.append(image_url)
+                        logger.debug(f"Adding local image URL to list: {image_url}")
+            else:
+                logger.warning(f"Folder {media_base_url + folder_path} does not exist for yacht ID {self.id}")
+
         return detail_images
 
     def save(self, *args, **kwargs):
