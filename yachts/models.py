@@ -1,5 +1,5 @@
 # yachts/models.py
-
+from django.conf import settings
 from django.db import models
 from storages.backends.s3boto3 import S3Boto3Storage
 import logging
@@ -43,29 +43,22 @@ class Yacht(models.Model):
 
     def get_detail_images(self):
         """Returns a list of URLs to the detailed images of the yacht."""
-        detail_images = []
-        # Folder path based on yacht ID (no leading zeros)
-        folder_path = f"yachts/details/{self.id}"
         
-        # Check if using S3 storage
-        if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
-            # Base URL for accessing images from S3 bucket
-            s3_base_url = f"https://{os.environ['AWS_STORAGE_BUCKET_NAME']}.s3.amazonaws.com/"
-            for num in range(1, 4):  # Adjust the range to match your images count per yacht
-                image_url = f"{s3_base_url}{folder_path}/yacht-{self.id}-detail-{num}.webp"
-                detail_images.append(image_url)
-                logger.debug(f"Adding S3 image URL to list: {image_url}")
+        # Используем MEDIA_ROOT для формирования полного пути
+        folder_path = os.path.join(settings.MEDIA_ROOT, f"yachts/details/{self.id}")
+        detail_images = []
+
+        # Debugging output
+        print(f"Checking path: {folder_path}")
+
+        if os.path.exists(folder_path) and os.path.isdir(folder_path):
+            for filename in os.listdir(folder_path):
+                if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                    detail_images.append(f"/media/yachts/details/{self.id}/{filename}")
+            print(f"Images found: {detail_images}")
         else:
-            # Local development path
-            media_base_url = "/media/"
-            if os.path.exists(media_base_url + folder_path):
-                for filename in os.listdir(media_base_url + folder_path):
-                    if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                        image_url = f"{media_base_url}{folder_path}/{filename}"
-                        detail_images.append(image_url)
-                        logger.debug(f"Adding local image URL to list: {image_url}")
-            else:
-                logger.warning(f"Folder {media_base_url + folder_path} does not exist for yacht ID {self.id}")
+            print(f"Folder {folder_path} does not exist for yacht ID {self.id}")
+            logger.warning(f"Folder {folder_path} does not exist for yacht ID {self.id}")
 
         return detail_images
 

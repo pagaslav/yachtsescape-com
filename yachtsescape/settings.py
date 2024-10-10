@@ -11,8 +11,8 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Media files settings
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 # Quick-start development settings - unsuitable for production
