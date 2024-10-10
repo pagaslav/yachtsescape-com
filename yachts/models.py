@@ -40,8 +40,6 @@ class Yacht(models.Model):
     # New field for detailed images
     detail_image = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
 
-    from django.conf import settings
-
     def get_detail_images(self):
         """Returns a list of URLs to the detailed images of the yacht."""
         
