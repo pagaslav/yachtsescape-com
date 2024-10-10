@@ -90,6 +90,7 @@ class Yacht(models.Model):
             else:
                 logger.warning(f"Detail images folder does not exist for yacht id {self.id}")
 
+        logger.debug(f"Generated detail image URLs for yacht {self.id}: {detail_images}")
         return detail_images
 
     def save(self, *args, **kwargs):

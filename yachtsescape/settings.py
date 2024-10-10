@@ -209,3 +209,18 @@ if USE_AWS:
 else:
     MEDIA_URL = '/media/'
     STATIC_URL = '/static/'
+
+    LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}

@@ -79,7 +79,7 @@ Our Fleet
         {% for yacht in yachts %}
         <div class="col-md-4 mb-4">
             <div class="card h-100">
-                {% if yacht.card_image %}  <!-- Используйте card_image вместо image -->
+                {% if yacht.card_image %}
                 <!-- Display yacht image if available -->
                 <img src="{{ yacht.card_image.url }}" class="card-img-top" alt="{{ yacht.name }}">
                 {% else %}
