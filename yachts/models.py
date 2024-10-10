@@ -40,35 +40,25 @@ class Yacht(models.Model):
     # New field for detailed images
     detail_image = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
 
+    from django.conf import settings
+
     def get_detail_images(self):
         """Returns a list of URLs to the detailed images of the yacht."""
         
-        # List to store image URLs
-        detail_images = []
-
-        # Check if using AWS
-        if getattr(settings, 'USE_AWS', False):
-            # Construct S3 base URL
-            s3_base_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/yachts/details/{self.id}"
-            # Hardcoded file names assuming these files exist
-            file_names = ["yacht-003-detail-01.webp", "yacht-003-detail-02.webp", "yacht-003-detail-03.webp"]
-            # Append each file name to the S3 base URL
-            for filename in file_names:
-                detail_images.append(f"{s3_base_url}/{filename}")
-
+        # Use MEDIA_ROOT to form the full path for local and S3 for production
+        if settings.USE_AWS:
+            s3_base_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/yachts/details/{self.id}/"
+            detail_images = [f"{s3_base_url}{filename}" for filename in self.get_files_from_s3(f"yachts/details/{self.id}")]
         else:
-            # For local environment, construct the local folder path
             folder_path = os.path.join(settings.MEDIA_ROOT, f"yachts/details/{self.id}")
-            # Check if the folder exists
-            if os.path.exists(folder_path) and os.path.isdir(folder_path):
-                # List all files with image extensions
-                for filename in os.listdir(folder_path):
-                    if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                        detail_images.append(f"/media/yachts/details/{self.id}/{filename}")
-                logger.info(f"Local images found: {detail_images}")
-            else:
-                logger.warning(f"Folder {folder_path} does not exist for yacht ID {self.id}")
+            detail_images = [f"/media/yachts/details/{self.id}/{filename}" for filename in os.listdir(folder_path) if filename.endswith(('.png', '.jpg', '.jpeg', '.webp'))]
 
+        # Debugging output
+        print(f"Generated URLs: {detail_images}")
+
+        if not detail_images:
+            logger.warning(f"No images found for yacht ID {self.id} in {folder_path}")
+        
         return detail_images
 
     def save(self, *args, **kwargs):
