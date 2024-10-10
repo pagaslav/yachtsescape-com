@@ -53,20 +53,27 @@ class Yacht(models.Model):
 
     def get_detail_images(self):
         """Returns a list of URLs to the detailed images of the yacht."""
-        detail_images = []
-        folder_path = f"yachts/details/{self.id}/"  # Assuming your S3 path follows this structure
         
-        if 'USE_AWS' in os.environ:
-            files = self.get_files_from_s3(folder_path)
+        detail_images = []
+        # Folder path for detailed images based on the yacht ID
+        folder_path = os.path.join(settings.MEDIA_ROOT, f"yachts/details/{self.id}")  # Use MEDIA_ROOT for local path
+        
+        if 'USE_AWS' in os.environ:  # Check if using AWS S3
+            # Form the S3 folder path
+            s3_folder_path = f"yachts/details/{self.id}/"
+            files = self.get_files_from_s3(s3_folder_path)  # Fetch files from S3
+            
+            # Base URL for S3 bucket
             s3_base_url = f"https://{os.environ['AWS_STORAGE_BUCKET_NAME']}.s3.amazonaws.com/"
             for filename in files:
-                detail_images.append(f"{s3_base_url}{filename}")
+                detail_images.append(f"{s3_base_url}{filename}")  # Append full S3 URL to the list
         else:
-            folder_path = os.path.join(settings.MEDIA_ROOT, f"yachts/details/{self.id}")
-            if os.path.exists(folder_path) and os.path.isdir(folder_path):
+            if os.path.exists(folder_path) and os.path.isdir(folder_path):  # Check local directory for images
                 for filename in os.listdir(folder_path):
                     if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                        detail_images.append(f"/media/yachts/details/{self.id}/{filename}")
+                        detail_images.append(f"/media/yachts/details/{self.id}/{filename}")  # Local path
+            else:
+                logger.warning(f"Detail images folder does not exist for yacht id {self.id}")
 
         return detail_images
 
