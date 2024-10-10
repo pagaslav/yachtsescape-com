@@ -1,0 +1,75 @@
+/* about.css */
+
+/* Center the page title on the background */
+.about-content {
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+}
+
+/* Style for the page title */
+.about-title {
+    color: white; /* White text color */
+    font-size: 48px; /* Large font size */
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    z-index: 2; /* Ensure it displays above the background */
+}
+
+/* Main style for the About page container */
+.container {
+    margin-top: 30px; /* Top margin for spacing */
+}
+
+/* Header style for the About page */
+.hero-title {
+    font-size: 2.5rem; /* Font size for the header */
+    font-weight: bold; /* Bold font weight */
+    margin-bottom: 20px; /* Bottom margin for spacing */
+}
+
+/* Styles for the accordion buttons */
+.accordion-button {
+    background-color: #f8f9fa; /* Background color for accordion button */
+    border: 1px solid #ddd; /* Border for the button */
+    color: #333; /* Text color for the button */
+}
+
+/* Hover effect for the accordion button */
+.accordion-button:hover {
+    background-color: #e2e6ea; /* Background color on hover */
+}
+
+/* Styles for the accordion body */
+.accordion-body {
+    background-color: #ffffff; /* Background color for accordion body */
+    color: #666; /* Text color for accordion body */
+}
+
+/* Styles for the diploma images in the diploma section */
+.diploma-img {
+    width: 100%; /* Image width set to 100% */
+    height: auto; /* Height automatically adjusted */
+    border-radius: 5px; /* Rounded corners for images */
+    margin-bottom: 15px; /* Bottom margin for spacing */
+}
+
+/* Style for the comment form */
+.comment-form {
+    margin-top: 30px; /* Top margin for spacing */
+}
+
+/* Header style for the comment form */
+.comment-form h3 {
+    margin-bottom: 15px; /* Bottom margin for spacing */
+}
+
+/* Style for registration warning text */
+.registration-warning {
+    color: #dc3545; /* Warning text color (red) */
+    font-weight: bold; /* Bold font weight */
+    margin-top: 20px; /* Top margin for spacing */
+}

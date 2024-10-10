@@ -1,0 +1,103 @@
+<!-- about/templates/about/about.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about/about.css' %}">
+{% endblock %}
+
+{% block title %}
+About Us
+{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <div class="about-content">
+        <h1 class="about-title">About Us</h1>
+    </div>
+
+    <!-- Accordion for sections -->
+    <div class="accordion" id="aboutAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTeam">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTeam" aria-expanded="true" aria-controls="collapseTeam">
+                    <i class="fas fa-users"></i>&nbsp;Our Team 
+                </button>
+            </h2>
+            <div id="collapseTeam" class="accordion-collapse collapse show" aria-labelledby="headingTeam" data-bs-parent="#aboutAccordion">
+                <div class="accordion-body">
+                    <!-- Content for Our Team -->
+                    We are a dedicated team of professionals committed to providing the best services.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingHistory">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHistory" aria-expanded="false" aria-controls="collapseHistory">
+                     <i class="fas fa-history"></i>&nbsp;Our History
+                </button>
+            </h2>
+            <div id="collapseHistory" class="accordion-collapse collapse" aria-labelledby="headingHistory" data-bs-parent="#aboutAccordion">
+                <div class="accordion-body">
+                    <!-- Content for Our History -->
+                    Our journey started in 2010, and we have been growing ever since.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingWhyUs">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWhyUs" aria-expanded="false" aria-controls="collapseWhyUs">
+                   <i class="fas fa-thumbs-up"></i>&nbsp; Why Choose Us? 
+                </button>
+            </h2>
+            <div id="collapseWhyUs" class="accordion-collapse collapse" aria-labelledby="headingWhyUs" data-bs-parent="#aboutAccordion">
+                <div class="accordion-body">
+                    <!-- Content for Why Choose Us -->
+                    We offer unparalleled services with a focus on customer satisfaction.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diploma images section -->
+    <h2 class="mt-5 mb-4">Our Achievements</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{% static 'images/diploma1.jpg' %}" alt="Diploma 1" class="diploma-img">
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/diploma2.jpg' %}" alt="Diploma 2" class="diploma-img">
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/diploma3.jpg' %}" alt="Diploma 3" class="diploma-img">
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/diploma4.jpg' %}" alt="Diploma 4" class="diploma-img">
+        </div>
+    </div>
+
+    <!-- Comment form section -->
+    <h2 class="mt-4">Leave a Comment</h2>
+    <div class="comment-form">
+        <h3>Share your thoughts</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <textarea class="form-control" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="registration-warning">
+        Only registered users can leave comments.
+    </div>
+
+    <!-- Displaying reviews -->
+    <h2 class="mt-4">User Reviews</h2>
+    <div class="reviews">
+        <p><strong>User1:</strong> Great experience! <span class="badge bg-primary">5/5</span></p>
+        <p><strong>User2:</strong> Highly recommend! <span class="badge bg-primary">4/5</span></p>
+    </div>
+</div>
+{% endblock %}

@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Review
 from .forms import ReviewForm
+from django.views.generic import TemplateView
+
+class AboutView(TemplateView):
+    template_name = 'about/about.html'
 
 def add_review(request):
     if request.method == 'POST':
