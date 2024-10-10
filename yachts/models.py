@@ -3,6 +3,7 @@ from django.conf import settings
 from storages.backends.s3boto3 import S3Boto3Storage
 import logging
 import os
+import boto3  # Ensure you import boto3
 
 # Setting up logging for error tracking
 logger = logging.getLogger(__name__)
@@ -40,23 +41,33 @@ class Yacht(models.Model):
     # New field for detailed images
     detail_image = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
 
+    def get_files_from_s3(self, folder_path):
+        """Fetches all files from the specified S3 folder."""
+        s3_client = boto3.client('s3')
+        response = s3_client.list_objects_v2(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Prefix=folder_path)
+        files = []
+        if 'Contents' in response:
+            for obj in response['Contents']:
+                files.append(obj['Key'])
+        return files
+
     def get_detail_images(self):
         """Returns a list of URLs to the detailed images of the yacht."""
+        detail_images = []
+        folder_path = f"yachts/details/{self.id}/"  # Assuming your S3 path follows this structure
         
-        # Use MEDIA_ROOT to form the full path for local and S3 for production
-        if settings.USE_AWS:
-            s3_base_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/yachts/details/{self.id}/"
-            detail_images = [f"{s3_base_url}{filename}" for filename in self.get_files_from_s3(f"yachts/details/{self.id}")]
+        if 'USE_AWS' in os.environ:
+            files = self.get_files_from_s3(folder_path)
+            s3_base_url = f"https://{os.environ['AWS_STORAGE_BUCKET_NAME']}.s3.amazonaws.com/"
+            for filename in files:
+                detail_images.append(f"{s3_base_url}{filename}")
         else:
             folder_path = os.path.join(settings.MEDIA_ROOT, f"yachts/details/{self.id}")
-            detail_images = [f"/media/yachts/details/{self.id}/{filename}" for filename in os.listdir(folder_path) if filename.endswith(('.png', '.jpg', '.jpeg', '.webp'))]
+            if os.path.exists(folder_path) and os.path.isdir(folder_path):
+                for filename in os.listdir(folder_path):
+                    if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                        detail_images.append(f"/media/yachts/details/{self.id}/{filename}")
 
-        # Debugging output
-        print(f"Generated URLs: {detail_images}")
-
-        if not detail_images:
-            logger.warning(f"No images found for yacht ID {self.id} in {folder_path}")
-        
         return detail_images
 
     def save(self, *args, **kwargs):
