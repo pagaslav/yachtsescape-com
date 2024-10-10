@@ -40,6 +40,8 @@ class Yacht(models.Model):
     card_image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
     # Uploaded images of the yacht for the details
     detail_image = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
+    # External URL for the detail image, if needed
+    detail_image_url = models.URLField(max_length=1024, null=True, blank=True)
 
     def get_files_from_s3(self, folder_path):
         """Fetches all files from the specified S3 folder."""
@@ -67,30 +69,19 @@ class Yacht(models.Model):
         return card_images
 
     def get_detail_images(self):
-        """Returns a list of URLs to the detailed images of the yacht."""
+        """Returns a list of detail image URLs."""
         detail_images = []
-        # Form the path to the detail images folder based on the yacht ID
-        folder_path = os.path.join(settings.MEDIA_ROOT, f"yachts/details/{self.id}")
+        
+        # Local image from the ImageField
+        if self.detail_image:
+            detail_images.append(self.detail_image.url)
 
-        if 'USE_AWS' in os.environ:  # Check if using AWS S3
-            # S3 folder path for detail images
-            s3_folder_path = f"yachts/details/{self.id}/"
-            files = self.get_files_from_s3(s3_folder_path)  # Fetch files from S3
+        # External URL if it exists
+        if self.detail_image_url:
+            detail_images.append(self.detail_image_url)
 
-            # Base URL for S3 bucket
-            s3_base_url = f"https://{os.environ['AWS_STORAGE_BUCKET_NAME']}.s3.amazonaws.com/"
-            for filename in files:
-                detail_images.append(f"{s3_base_url}{filename}")  # Append full S3 URL to the list
-        else:
-            # Check local directory for images
-            if os.path.exists(folder_path) and os.path.isdir(folder_path):
-                for filename in os.listdir(folder_path):
-                    if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                        detail_images.append(f"/media/yachts/details/{self.id}/{filename}")  # Local path
-            else:
-                logger.warning(f"Detail images folder does not exist for yacht id {self.id}")
+        # Optionally, you can add logic to get images from S3 if needed
 
-        logger.debug(f"Generated detail image URLs for yacht {self.id}: {detail_images}")
         return detail_images
 
     def save(self, *args, **kwargs):
@@ -110,10 +101,10 @@ class Yacht(models.Model):
         """
         Delete the yacht instance from the database and remove the image from S3 storage if it exists.
         """
-        if self.image:
+        if self.card_image:  # Ensure card_image exists before trying to delete it
             storage = S3Boto3Storage()
-            storage.delete(self.image.name)  # Delete the image from S3 storage
-            logger.info(f"Image deleted from S3: {self.image.name}")  # Log successful deletion
+            storage.delete(self.card_image.name)  # Delete the image from S3 storage
+            logger.info(f"Image deleted from S3: {self.card_image.name}")  # Log successful deletion
         super().delete(*args, **kwargs)  # Delete the model instance
 
     def __str__(self):
