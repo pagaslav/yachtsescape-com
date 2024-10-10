@@ -1,6 +1,8 @@
 # yachts/views.py
 
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse
+from django.views import View
 from .models import Yacht
 from booking.models import Booking
 from booking.forms import BookingForm  # Import the booking form
@@ -123,3 +125,11 @@ def yacht_detail(request, yacht_id):
     }
 
     return render(request, 'yachts/yacht_detail.html', context)
+
+
+# View to return yacht images as JSON
+class YachtImageView(View):
+    def get(self, request, yacht_id):
+        yacht = get_object_or_404(Yacht, id=yacht_id)  # Get the yacht by its ID
+        images = yacht.get_detail_images()  # Get the images using your method
+        return JsonResponse(images, safe=False)  # Return images in JSON format

@@ -1,64 +1,78 @@
-// static / js / yachts.js
-
-console.log("yachts.js loaded"); // Проверка загрузки файла
+console.log("yachts.js loaded") // Check if the file is loaded
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Get the element with booked dates from HTML
   const bookedDatesElement = document.getElementById("bookedDates")
-
-  // Initialize an empty array for booked dates
   let bookedDates = []
 
-  // Check if the element exists
+  // Parse booked dates from JSON
   if (bookedDatesElement) {
     try {
-      // Parse the JSON content inside the element
       bookedDates = JSON.parse(bookedDatesElement.textContent)
-      console.log("Booked Dates:", bookedDates) // Log booked dates for debugging
+      console.log("Booked Dates:", bookedDates) // Log booked dates
     } catch (error) {
-      console.error("Error parsing booked dates:", error) // Log any parsing error
+      console.error("Error parsing booked dates:", error) // Log parsing error
     }
   }
-function handleFormSubmit(event) {
-  console.log("Submit button clicked.") // Сообщение для проверки клика
-  event.preventDefault() // Остановка стандартного поведения отправки формы
-  console.log("Form submission intercepted.") // Подтверждение перехвата отправки формы
 
-  // Получаем все <li> элементы
-  const listItems = document.getElementsByTagName("li")
+  // Find yacht ID by looping through all <li> elements
   let yachtId = null
-
-  // Ищем <li>, содержащий "ID:"
-  for (let i = 0; i < listItems.length; i++) {
-    if (listItems[i].textContent.includes("ID:")) {
-        yachtId = listItems[i].textContent.replace("ID:", "").trim()
-        console.log(yachtId)
-      break // Останавливаем цикл после нахождения нужного элемента
+  const listItems = document.querySelectorAll("li")
+  listItems.forEach((item) => {
+    if (item.textContent.includes("ID:")) {
+      yachtId = item.textContent.replace("ID:", "").trim()
     }
+  })
+
+  if (!yachtId) {
+    console.error("Yacht ID not found.")
+    return // Stop execution if yachtId is not found
   }
 
-  // Получаем диапазон дат из формы
-  const form = document.getElementById("bookingForm")
-  const dateRange = form.elements["date_range"].value
+  console.log("Yacht ID:", yachtId) // Log the yacht ID to check if it was found
+  const imageContainer = document.querySelector("#yachtGallery .carousel-inner") // Select the carousel inner container
 
-  // Логирование значений для отладки
-  console.log("Yacht ID:", yachtId) // Вывод идентификатора яхты
-  console.log("Date Range:", dateRange) // Вывод диапазона дат
+  // Fetch images from the API if yachtId is found
+  fetch(`/api/yacht/${yachtId}/images`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`)
+      }
+      return response.json()
+    })
+    .then((images) => {
+      if (images.length === 0) {
+        console.log("No images found, using default image.")
+        const carouselItem = document.createElement("div")
+        carouselItem.className = "carousel-item active"
+        carouselItem.innerHTML = `<img src="/media/default_image.jpg" class="d-block w-100" alt="Default Image">`
+        imageContainer.appendChild(carouselItem)
+      } else {
+        images.forEach((image, index) => {
+          const carouselItem = document.createElement("div")
+          carouselItem.className = `carousel-item ${
+            index === 0 ? "active" : ""
+          }`
+          carouselItem.innerHTML = `<img src="${image}" class="d-block w-100" alt="Image ${
+            index + 1
+          }">`
+          imageContainer.appendChild(carouselItem) // Append the carousel item
+        })
+      }
+    })
+    .catch((error) => console.error("Error fetching images:", error)) // Log fetch error
 
-  // Проверка наличия значений
-  if (yachtId && dateRange) {
-    console.log("Yacht ID and Date Range captured correctly.")
-    // Здесь можно добавить AJAX для отправки данных, если нужно
-  } else {
-    console.error("Yacht ID or Date Range is missing.")
+  // Form submission handler
+  window.handleFormSubmit = function (event) {
+    event.preventDefault() // Prevent default form submission
+    const form = document.getElementById("bookingForm")
+    const dateRange = form.elements["date_range"].value
+
+    // Log yacht ID and date range
+    console.log("Yacht ID:", yachtId)
+    console.log("Date Range:", dateRange)
   }
-}
 
-window.handleFormSubmit = handleFormSubmit
-
-    window.handleFormSubmit = handleFormSubmit
-
-  // Initialize Flatpickr for date range selection
+  // Initialize Flatpickr for date selection
   const dateRangeInput = document.querySelector("#dateRange")
   if (dateRangeInput) {
     flatpickr("#dateRange", {
@@ -69,10 +83,6 @@ window.handleFormSubmit = handleFormSubmit
         from: date.start,
         to: date.end,
       })),
-      onChange: function (selectedDates, dateStr) {
-        console.log("Selected date range: ", dateStr) // Log the selected date range as a string
-        console.log("Selected dates array: ", selectedDates) // Log the selected dates as an array
-      },
     })
   }
 })
