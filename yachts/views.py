@@ -3,7 +3,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Yacht
 from booking.models import Booking
-from booking.forms import BookingForm  # Импортируем форму бронирования
+from booking.forms import BookingForm  # Import the booking form
 from datetime import datetime
 
 # View to display a list of yachts
@@ -62,29 +62,30 @@ def yacht_list(request):
 
     return render(request, 'yachts/yacht-list.html', {'yachts': yachts})
 
+# View to display yacht details and handle booking form submission
 def yacht_detail(request, yacht_id):
     yacht = get_object_or_404(Yacht, id=yacht_id)
     bookings = Booking.objects.filter(yacht=yacht).values('start_date', 'end_date')
 
-   # Формируем список занятых дат для передачи в шаблон
+    # Create a list of booked dates to pass to the template
     booked_dates = []
     for booking in bookings:
         start_date = booking['start_date']
         end_date = booking['end_date']
         
-        # Проверяем, являются ли start_date и end_date объектами datetime.date
+        # Check if start_date and end_date are datetime.date objects
         print(f"Start Date Type: {type(start_date)}, End Date Type: {type(end_date)}")
         
-        # Если это объекты datetime.date, преобразуем их в строки
+        # Convert to string if they are datetime.date objects
         if isinstance(start_date, datetime):
             start_date_str = start_date.strftime('%Y-%m-%d')
         else:
-            start_date_str = start_date  # Если это уже строка
+            start_date_str = start_date  # If already a string
 
         if isinstance(end_date, datetime):
             end_date_str = end_date.strftime('%Y-%m-%d')
         else:
-            end_date_str = end_date  # Если это уже строка
+            end_date_str = end_date  # If already a string
 
         booked_dates.append({
             'start': start_date_str,
@@ -96,21 +97,21 @@ def yacht_detail(request, yacht_id):
         form = BookingForm(request.POST)
         if form.is_valid():
             booking = form.save(commit=False)
-            booking.yacht = yacht  # Устанавливаем текущую яхту
-            booking.user = request.user  # Устанавливаем текущего пользователя
+            booking.yacht = yacht  # Assign the current yacht to the booking
+            booking.user = request.user  # Assign the current user to the booking
             
-            # Получаем диапазон дат из формы
+            # Get date range from the form
             date_range = form.cleaned_data['date_range']
             
-            # Разделяем диапазон на начальную и конечную даты
+            # Split the range into start and end dates
             start_date_str, end_date_str = date_range.split(" to ")
             
-            # Преобразуем строки в объекты даты
+            # Convert strings to date objects
             booking.start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
             booking.end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
             
-            booking.save()  # Сохраняем объект бронирования
-            return redirect('booking_success')  # Перенаправляем на страницу успешного бронирования
+            booking.save()  # Save the booking instance
+            return redirect('booking_success')  # Redirect to the booking success page
 
     else:
         form = BookingForm()
@@ -118,7 +119,7 @@ def yacht_detail(request, yacht_id):
     context = {
         'yacht': yacht,
         'booked_dates': booked_dates,
-        'form': form,  # Передаём форму в контекст
+        'form': form,  # Pass the form to the context
     }
 
     return render(request, 'yachts/yacht_detail.html', context)
