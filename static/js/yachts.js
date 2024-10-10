@@ -31,35 +31,19 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("Yacht ID:", yachtId) // Log the yacht ID to check if it was found
   const imageContainer = document.querySelector("#yachtGallery .carousel-inner") // Select the carousel inner container
 
-  // Fetch images from the API if yachtId is found
-  fetch(`/api/yacht/${yachtId}/images`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.statusText}`)
-      }
-      return response.json()
-    })
-    .then((images) => {
-      if (images.length === 0) {
-        console.log("No images found, using default image.")
-        const carouselItem = document.createElement("div")
-        carouselItem.className = "carousel-item active"
-        carouselItem.innerHTML = `<img src="/media/default_image.jpg" class="d-block w-100" alt="Default Image">`
-        imageContainer.appendChild(carouselItem)
-      } else {
-        images.forEach((image, index) => {
-          const carouselItem = document.createElement("div")
-          carouselItem.className = `carousel-item ${
-            index === 0 ? "active" : ""
-          }`
-          carouselItem.innerHTML = `<img src="${image}" class="d-block w-100" alt="Image ${
-            index + 1
-          }">`
-          imageContainer.appendChild(carouselItem) // Append the carousel item
-        })
-      }
-    })
-    .catch((error) => console.error("Error fetching images:", error)) // Log fetch error
+  // Define the base URL for images
+  const bucketUrl =
+    "https://yachtsescape.s3.eu-west-2.amazonaws.com/media/yachts/details/"
+  const totalImages = 4 // Maximum number of images to display
+
+  // Loop to create image elements
+  for (let i = 1; i <= totalImages; i++) {
+    const imageUrl = `${bucketUrl}${yachtId}/yacht-${yachtId}-detail-${i}.webp`
+    const carouselItem = document.createElement("div")
+    carouselItem.className = `carousel-item ${i === 1 ? "active" : ""}`
+    carouselItem.innerHTML = `<img src="${imageUrl}" class="d-block w-100" alt="Yacht ${yachtId} Image ${i}">`
+    imageContainer.appendChild(carouselItem)
+  }
 
   // Form submission handler
   window.handleFormSubmit = function (event) {
