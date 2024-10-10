@@ -180,8 +180,10 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+USE_AWS = 'USE_AWS' in os.environ
+
 # AWS S3 settings
-if 'USE_AWS' in os.environ:
+if USE_AWS:
     # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
