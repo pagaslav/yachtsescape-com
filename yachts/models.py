@@ -44,16 +44,20 @@ class Yacht(models.Model):
     def get_detail_images(self):
         """Returns a list of URLs to the detailed images of the yacht."""
         detail_images = []
-        folder_path = f"media/yachts/details/{str(self.id).zfill(3)}"  # Путь к папке для текущей яхты
-
-        if os.path.exists(folder_path) and os.path.isdir(folder_path):
+        folder_path = f"media/yachts/details/{str(self.id).zfill(3)}"
+        
+        # Check if using S3 storage
+        if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
+            s3_base_url = f"https://{os.environ['AWS_STORAGE_BUCKET_NAME']}.s3.amazonaws.com/"
             for filename in os.listdir(folder_path):
                 if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                    # Добавляем URL, подходящий для использования в шаблоне
-                    detail_images.append(f"/{folder_path}/{filename}")
+                    detail_images.append(f"{s3_base_url}{folder_path}/{filename}")
         else:
-            logger.warning(f"Detail images folder does not exist for yacht id {self.id}")
-
+            if os.path.exists(folder_path) and os.path.isdir(folder_path):
+                for filename in os.listdir(folder_path):
+                    if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                        detail_images.append(f"/{folder_path}/{filename}")
+        
         return detail_images
 
     def save(self, *args, **kwargs):
