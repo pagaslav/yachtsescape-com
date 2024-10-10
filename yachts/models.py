@@ -4,6 +4,7 @@ from django.db import models
 from storages.backends.s3boto3 import S3Boto3Storage
 import logging
 import os
+import boto3
 
 # Setting up logging for error tracking
 logger = logging.getLogger(__name__)
@@ -44,19 +45,32 @@ class Yacht(models.Model):
     def get_detail_images(self):
         """Returns a list of URLs to the detailed images of the yacht."""
         detail_images = []
-        folder_path = f"media/yachts/details/{str(self.id).zfill(3)}"
+        folder_path = f"yachts/details/{str(self.id).zfill(3)}"  # Folder based on the yacht ID
         
         # Check if using S3 storage
         if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
-            s3_base_url = f"https://{os.environ['AWS_STORAGE_BUCKET_NAME']}.s3.amazonaws.com/"
-            for filename in os.listdir(folder_path):
-                if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                    detail_images.append(f"{s3_base_url}{folder_path}/{filename}")
+            s3 = boto3.client('s3')
+            bucket_name = os.environ['AWS_STORAGE_BUCKET_NAME']
+            s3_base_url = f"https://{bucket_name}.s3.amazonaws.com/"
+
+            # List all files in the S3 folder
+            try:
+                result = s3.list_objects_v2(Bucket=bucket_name, Prefix=folder_path)
+                if 'Contents' in result:
+                    for obj in result['Contents']:
+                        file_key = obj['Key']
+                        # Check file extensions
+                        if file_key.endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                            detail_images.append(f"{s3_base_url}{file_key}")
+            except Exception as e:
+                logger.error(f"Error accessing S3 bucket: {e}")  # Log any error accessing S3
         else:
-            if os.path.exists(folder_path) and os.path.isdir(folder_path):
-                for filename in os.listdir(folder_path):
+            # Local development - access files directly from media folder
+            local_folder_path = f"media/{folder_path}"
+            if os.path.exists(local_folder_path) and os.path.isdir(local_folder_path):
+                for filename in os.listdir(local_folder_path):
                     if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                        detail_images.append(f"/{folder_path}/{filename}")
+                        detail_images.append(f"/{local_folder_path}/{filename}")
         
         return detail_images
 
