@@ -1,6 +1,5 @@
-# yachts/models.py
-from django.conf import settings
 from django.db import models
+from django.conf import settings
 from storages.backends.s3boto3 import S3Boto3Storage
 import logging
 import os
@@ -44,21 +43,31 @@ class Yacht(models.Model):
     def get_detail_images(self):
         """Returns a list of URLs to the detailed images of the yacht."""
         
-        # Используем MEDIA_ROOT для формирования полного пути
-        folder_path = os.path.join(settings.MEDIA_ROOT, f"yachts/details/{self.id}")
+        # List to store image URLs
         detail_images = []
 
-        # Debugging output
-        print(f"Checking path: {folder_path}")
+        # Check if using AWS
+        if getattr(settings, 'USE_AWS', False):
+            # Construct S3 base URL
+            s3_base_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/yachts/details/{self.id}"
+            # Hardcoded file names assuming these files exist
+            file_names = ["yacht-003-detail-01.webp", "yacht-003-detail-02.webp", "yacht-003-detail-03.webp"]
+            # Append each file name to the S3 base URL
+            for filename in file_names:
+                detail_images.append(f"{s3_base_url}/{filename}")
 
-        if os.path.exists(folder_path) and os.path.isdir(folder_path):
-            for filename in os.listdir(folder_path):
-                if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                    detail_images.append(f"/media/yachts/details/{self.id}/{filename}")
-            print(f"Images found: {detail_images}")
         else:
-            print(f"Folder {folder_path} does not exist for yacht ID {self.id}")
-            logger.warning(f"Folder {folder_path} does not exist for yacht ID {self.id}")
+            # For local environment, construct the local folder path
+            folder_path = os.path.join(settings.MEDIA_ROOT, f"yachts/details/{self.id}")
+            # Check if the folder exists
+            if os.path.exists(folder_path) and os.path.isdir(folder_path):
+                # List all files with image extensions
+                for filename in os.listdir(folder_path):
+                    if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                        detail_images.append(f"/media/yachts/details/{self.id}/{filename}")
+                logger.info(f"Local images found: {detail_images}")
+            else:
+                logger.warning(f"Folder {folder_path} does not exist for yacht ID {self.id}")
 
         return detail_images
 
