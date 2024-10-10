@@ -69,11 +69,11 @@ class Yacht(models.Model):
     def get_detail_images(self):
         """Returns a list of URLs to the detailed images of the yacht."""
         detail_images = []
-        # Folder path for detailed images based on the yacht ID
+        # Form the path to the detail images folder based on the yacht ID
         folder_path = os.path.join(settings.MEDIA_ROOT, f"yachts/details/{self.id}")
 
         if 'USE_AWS' in os.environ:  # Check if using AWS S3
-            # Form the S3 folder path
+            # S3 folder path for detail images
             s3_folder_path = f"yachts/details/{self.id}/"
             files = self.get_files_from_s3(s3_folder_path)  # Fetch files from S3
 
@@ -82,7 +82,8 @@ class Yacht(models.Model):
             for filename in files:
                 detail_images.append(f"{s3_base_url}{filename}")  # Append full S3 URL to the list
         else:
-            if os.path.exists(folder_path) and os.path.isdir(folder_path):  # Check local directory for images
+            # Check local directory for images
+            if os.path.exists(folder_path) and os.path.isdir(folder_path):
                 for filename in os.listdir(folder_path):
                     if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
                         detail_images.append(f"/media/yachts/details/{self.id}/{filename}")  # Local path
