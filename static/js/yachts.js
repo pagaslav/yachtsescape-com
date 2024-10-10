@@ -45,17 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
     imageContainer.appendChild(carouselItem)
   }
 
-  // Form submission handler
-  window.handleFormSubmit = function (event) {
-    event.preventDefault() // Prevent default form submission
-    const form = document.getElementById("bookingForm")
-    const dateRange = form.elements["date_range"].value
-
-    // Log yacht ID and date range
-    console.log("Yacht ID:", yachtId)
-    console.log("Date Range:", dateRange)
-  }
-
   // Initialize Flatpickr for date selection
   const dateRangeInput = document.querySelector("#dateRange")
   if (dateRangeInput) {
@@ -68,5 +57,15 @@ document.addEventListener("DOMContentLoaded", function () {
         to: date.end,
       })),
     })
+  }
+  // Form submission handler
+  window.handleFormSubmit = function (event) {
+    event.preventDefault() // Prevent default form submission
+    const form = document.getElementById("bookingForm")
+    const dateRange = form.elements["date_range"].value
+
+    // Log yacht ID and date range
+    console.log("Yacht ID:", yachtId)
+    console.log("Date Range:", dateRange)
   }
 })
