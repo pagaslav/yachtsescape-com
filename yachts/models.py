@@ -77,11 +77,19 @@ class Yacht(models.Model):
         if self.detail_image_url:
             detail_images.append(self.detail_image_url)
 
-        folder_path = os.path.join(settings.MEDIA_ROOT, f'yachts/details/{self.id}')
-        if os.path.exists(folder_path) and os.path.isdir(folder_path):
-            for filename in os.listdir(folder_path):
-                if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                    detail_images.append(f"/media/yachts/details/{self.id}/{filename}")
+        folder_path = f'yachts/details/{self.id}/'
+        s3_client = boto3.client('s3')
+        try:
+            response = s3_client.list_objects_v2(
+                Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+                Prefix=folder_path
+            )
+            if 'Contents' in response:
+                for obj in response['Contents']:
+                    image_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{obj['Key']}"
+                    detail_images.append(image_url)
+        except Exception as e:
+            logger.error(f"Error fetching images from S3: {e}")
 
         return detail_images
 
