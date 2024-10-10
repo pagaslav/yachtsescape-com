@@ -38,18 +38,19 @@ class Yacht(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     # Uploaded image of the yacht
     image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
+    # New field for detailed images
+    detail_image = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
 
     def get_detail_images(self):
-        """Returns a list of paths to the detailed images of the yacht."""
-        
-        folder_path = f"media/yachts/details/{str(self.id).zfill(3)}"
+        """Returns a list of URLs to the detailed images of the yacht."""
         detail_images = []
+        folder_path = f"media/yachts/details/{str(self.id).zfill(3)}"  # Путь к папке для текущей яхты
 
-        # Проверяем, существует ли папка
         if os.path.exists(folder_path) and os.path.isdir(folder_path):
             for filename in os.listdir(folder_path):
-                if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):  # Укажите нужные расширения
-                    detail_images.append(f"{folder_path}/{filename}")
+                if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                    # Добавляем URL, подходящий для использования в шаблоне
+                    detail_images.append(f"/{folder_path}/{filename}")
         else:
             logger.warning(f"Detail images folder does not exist for yacht id {self.id}")
 

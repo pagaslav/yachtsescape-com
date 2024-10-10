@@ -27,9 +27,9 @@ Our Fleet - {{ yacht.name }} details
 
     <div id="yachtGallery" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            {% for image in yacht.get_detail_images %}
+            {% for image_url in yacht.get_detail_images %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img src="/{{ image }}" class="d-block w-100" alt="{{ yacht.name }} image {{ forloop.counter }}">
+                <img src="{{ image_url }}" class="d-block w-100" alt="{{ yacht.name }} image {{ forloop.counter }}">
             </div>
             {% empty %}
             <div class="carousel-item active">

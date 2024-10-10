@@ -206,3 +206,4 @@ if 'USE_AWS' in os.environ:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 else:
     MEDIA_URL = '/media/'
+    STATIC_URL = '/static/'
