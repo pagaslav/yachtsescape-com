@@ -33,7 +33,7 @@ Our Fleet - {{ yacht.name }} details
             </div>
             {% empty %}
             <div class="carousel-item active">
-                <img src="{{ yacht.image.url }}" class="d-block w-100" alt="Default Yacht Image">
+                <img src="{{ yacht.card_image.url }}" class="d-block w-100" alt="Default Yacht Image">
             </div>
             {% endfor %}
         </div>

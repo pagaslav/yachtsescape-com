@@ -69,18 +69,19 @@ class Yacht(models.Model):
         return card_images
 
     def get_detail_images(self):
-        """Returns a list of detail image URLs."""
         detail_images = []
         
-        # Local image from the ImageField
         if self.detail_image:
             detail_images.append(self.detail_image.url)
 
-        # External URL if it exists
         if self.detail_image_url:
             detail_images.append(self.detail_image_url)
 
-        # Optionally, you can add logic to get images from S3 if needed
+        folder_path = os.path.join(settings.MEDIA_ROOT, f'yachts/details/{self.id}')
+        if os.path.exists(folder_path) and os.path.isdir(folder_path):
+            for filename in os.listdir(folder_path):
+                if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                    detail_images.append(f"/media/yachts/details/{self.id}/{filename}")
 
         return detail_images
 
