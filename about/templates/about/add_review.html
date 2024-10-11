@@ -1,6 +1,24 @@
-<h1>Leave a Review</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about/about.css' %}">
+{% endblock %}
+
+{% block title %}
+Add Review
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Add Your Review</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renders the form fields as paragraphs -->
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+    </form>
+    <div class="registration-warning">
+        Note: Only registered users can leave comments.
+    </div>
+</div>
+{% endblock %}

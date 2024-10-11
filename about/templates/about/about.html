@@ -21,11 +21,13 @@ About Us
     <div class="accordion" id="aboutAccordion">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingTeam">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTeam" aria-expanded="true" aria-controls="collapseTeam">
-                    <i class="fas fa-users"></i>&nbsp;Our Team 
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTeam"
+                    aria-expanded="true" aria-controls="collapseTeam">
+                    <i class="fas fa-users"></i>&nbsp;Our Team
                 </button>
             </h2>
-            <div id="collapseTeam" class="accordion-collapse collapse show" aria-labelledby="headingTeam" data-bs-parent="#aboutAccordion">
+            <div id="collapseTeam" class="accordion-collapse collapse show" aria-labelledby="headingTeam"
+                data-bs-parent="#aboutAccordion">
                 <div class="accordion-body">
                     <!-- Content for Our Team -->
                     We are a dedicated team of professionals committed to providing the best services.
@@ -34,11 +36,13 @@ About Us
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingHistory">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHistory" aria-expanded="false" aria-controls="collapseHistory">
-                     <i class="fas fa-history"></i>&nbsp;Our History
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseHistory" aria-expanded="false" aria-controls="collapseHistory">
+                    <i class="fas fa-history"></i>&nbsp;Our History
                 </button>
             </h2>
-            <div id="collapseHistory" class="accordion-collapse collapse" aria-labelledby="headingHistory" data-bs-parent="#aboutAccordion">
+            <div id="collapseHistory" class="accordion-collapse collapse" aria-labelledby="headingHistory"
+                data-bs-parent="#aboutAccordion">
                 <div class="accordion-body">
                     <!-- Content for Our History -->
                     Our journey started in 2010, and we have been growing ever since.
@@ -47,11 +51,13 @@ About Us
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingWhyUs">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWhyUs" aria-expanded="false" aria-controls="collapseWhyUs">
-                   <i class="fas fa-thumbs-up"></i>&nbsp; Why Choose Us? 
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseWhyUs" aria-expanded="false" aria-controls="collapseWhyUs">
+                    <i class="fas fa-thumbs-up"></i>&nbsp; Why Choose Us?
                 </button>
             </h2>
-            <div id="collapseWhyUs" class="accordion-collapse collapse" aria-labelledby="headingWhyUs" data-bs-parent="#aboutAccordion">
+            <div id="collapseWhyUs" class="accordion-collapse collapse" aria-labelledby="headingWhyUs"
+                data-bs-parent="#aboutAccordion">
                 <div class="accordion-body">
                     <!-- Content for Why Choose Us -->
                     We offer unparalleled services with a focus on customer satisfaction.
@@ -78,26 +84,86 @@ About Us
     </div>
 
     <!-- Comment form section -->
-    <h2 class="mt-4">Leave a Comment</h2>
-    <div class="comment-form">
-        <h3>Share your thoughts</h3>
-        <form method="post">
-            {% csrf_token %}
-            <div class="mb-3">
-                <textarea class="form-control" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+    <h2 class="mt-5">Leave a Comment</h2>
     <div class="registration-warning">
         Only registered users can leave comments.
     </div>
+    <div class="comment-form">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3 text-center">
+                <div class="col-md-6 col-12 mx-auto">
+                    <textarea class="form-control" name="content" rows="4" required
+                        placeholder="Write your comment here..."></textarea>
+                </div>
+            </div>
+            <div class="mb-3 text-center">
+                <label for="rating" class="form-label">Rate Yachtsescape.com services:</label>
+                <div class="d-flex justify-content-center">
+                    <select class="form-select w-25 w-md-50 w-lg-25" name="rating" required>
+                        <option value="" disabled selected>Select your rating</option>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="3">3 - Good</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="5">5 - Excellent</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mb-3 header-main-btn">Submit</button>
+        </form>
+    </div>
 
     <!-- Displaying reviews -->
-    <h2 class="mt-4">User Reviews</h2>
+    <!-- <h2 class="mt-4">User Reviews</h2> -->
     <div class="reviews">
-        <p><strong>User1:</strong> Great experience! <span class="badge bg-primary">5/5</span></p>
-        <p><strong>User2:</strong> Highly recommend! <span class="badge bg-primary">4/5</span></p>
+        {% for review in reviews %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <!-- Top row with icon, username, helpful button, and rating -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <!-- User icon and name on the left -->
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-user-circle fa-lg me-2"></i> <!-- User icon -->
+                        <h5 class="card-title mb-0">{{ review.user.username }}</h5>
+                    </div>
+                    <div class="helpful-section text-center">
+                        <span class="text-muted small">{{ review.created_at|date:"d F Y, H:i" }}</span>
+                    </div>
+
+
+                    <!-- Helpful button in the center -->
+                    <!-- <div class="helpful-section text-center">
+                        <button class="btn btn-sm btn-outline-success mark-helpful" data-id="{{ review.id }}"
+                            aria-label="Mark as Helpful">
+                            <i class="fas fa-thumbs-up"></i>
+                            <span class="helpful-count">{{ review.helpful_count }}</span> users found this helpful
+                        </button>
+                    </div> -->
+
+                    <!-- Rating section on the right with text and stars -->
+                    <div class="d-flex align-items-center">
+                        <div class="rating-text me-2">User’s rating for Yachtsescape.com:</div>
+                        <div class="rating">
+                            {% for i in "12345" %}
+                            {% if forloop.counter <= review.rating|default:0 %} <i class="fas fa-star filled"></i>
+                                {% else %}
+                                <i class="fas fa-star"></i>
+                                {% endif %}
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review content text with left alignment -->
+                <p class="card-text text-start mt-3">{{ review.content }}</p>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/about.js' %}"></script>
 {% endblock %}

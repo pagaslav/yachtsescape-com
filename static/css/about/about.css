@@ -73,3 +73,49 @@
     font-weight: bold; /* Bold font weight */
     margin-top: 20px; /* Top margin for spacing */
 }
+
+.user-avatar {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rating .fa-star {
+    color: #ddd; /* Empty star color */
+}
+
+.rating .fa-star.filled {
+    color: #ffd700; /* Filled star color */
+}
+.rating {
+    color: gold;
+}
+
+/* .helpful-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.helpful-section .btn-outline-success {
+    color: #28a745;
+    border-color: #28a745;
+    font-size: 14px;
+}
+
+.helpful-section .btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.helpful-count {
+    margin-left: 5px;
+    font-weight: bold;
+    color: #333;
+} */
