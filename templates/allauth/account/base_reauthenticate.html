@@ -18,6 +18,14 @@
     <!-- Header section with title -->
     <div class="allauth-header-content">
         <h1 class="allauth-hero-title">{% trans "Confirm Access" %}</h1>
+        <div class="breadcrumb-container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item">Confirm Access</li>
+                </ol>
+            </nav>
+        </div>
     </div>
 </div>
 

@@ -18,6 +18,14 @@
     <!-- Header section with title -->
     <div class="allauth-header-content">
         <h1 class="allauth-hero-title">{% trans "Mail me a sign-in code" %}</h1>
+        <div class="breadcrumb-container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item">Mail me a sign-in code</li>
+                </ol>
+            </nav>
+        </div>
     </div>
 </div>
 
