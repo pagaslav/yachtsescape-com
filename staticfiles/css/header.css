@@ -22,6 +22,16 @@
     min-height: 400px;
 }
 
+.header-short {
+    position: relative;
+    background-image: url('/static/images/home-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 40vh;
+    z-index: 1;
+}
+
 /* Top bar with contact info and social media icons */
 .header-top-bar {
     z-index: 3;
@@ -150,13 +160,12 @@
     transition: background-color 0.3s ease;
     border: none;
     height: 40px;
-    display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     text-align: center;
-    padding: 0 20px;
-    margin-left: 15px;
+    padding: 0 10px;
+    margin-left: 10px;
 }
 
 .header-main-btn:hover {
@@ -217,16 +226,28 @@
     padding: 10px 15px;
 }
 
+.dropdown-menu {
+    margin-top: -30px !important;
+}
 
-/* KNEE */
+.modal-backdrop {
+    z-index: 1040;
+    display: none !important;
+}
 
+.modal {
+    z-index: 1050;
+}
 
-/* Logo */
+.modal-content {
+    z-index: 1050;
+    border-radius: 8px; /* Пример настройки закругления углов */
+}
 
+.modal-header {
+    background-color: #f8f9fa; /* Пример цвета заголовка */
+}
 
-/* Footer */
-footer {
-    flex-shrink: 0;
-    width: 100%;
-    bottom: 0;
+.modal-body {
+    padding: 20px; /* Пример отступов внутри модального окна */
 }

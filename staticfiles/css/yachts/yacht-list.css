@@ -1,12 +1,3 @@
-/* Custom header for yacht listing page */
-.yacht-header {
-    position: relative;
-    background-image: url('/static/images/home-bg.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 40vh;
-}
 
 /* Center the page title on the background */
 .header-content {
@@ -60,4 +51,51 @@
 /* Hover state for the button */
 .btn-primary:hover {
     background-color: #006bb3; /* Darker blue on hover */
+}
+
+/* Style for the custom dropdown button */
+.custom-dropdown-btn {
+    border: 1px solid #000; /* Black border */
+    background-color: transparent; /* Transparent background */
+    border-radius: 0; /* No rounded corners */
+    color: #000; /* Black text */
+}
+
+/* Style for the dropdown menu */
+.custom-dropdown-menu {
+    border: 1px solid #000; /* Black border */
+    background-color: rgba(255, 255, 255, 0.9); /* Lightly transparent background */
+    border-radius: 0; /* No rounded corners */
+}
+
+/* Style for the dropdown items */
+.dropdown-item {
+    color: #000; /* Black text */
+}
+
+.dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Slightly darker on hover */
+}
+
+.rating .fa-star {
+    color: #ddd; /* Empty star color */
+}
+
+.rating .fa-star.filled {
+    color: #ffd700; /* Filled star color */
+}
+.rating {
+    color: gold;
+}
+
+.card-text {
+    margin-bottom: 0.5rem; 
+}
+
+.carousel-inner img {
+    width: 100%;        
+    height: auto;         
+    max-height: 600px;   
+    object-fit: cover;  
+    aspect-ratio: 4 / 3;
 }

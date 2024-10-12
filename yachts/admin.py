@@ -1,22 +1,17 @@
 # yachts/admin.py
 
 from django.contrib import admin
-from django.utils.html import format_html
 from .models import Yacht
 
 class YachtAdmin(admin.ModelAdmin):
-    list_display = ('name', 'id', 'type', 'description', 'country', 'location', 'capacity', 'price_per_day', 'rating', 'available', 'thumbnail', 'detail_thumbnail')
+    list_display = ('name', 'id', 'type', 'description', 'country', 'location', 'capacity', 'price_per_day', 'rating', 'available', 'image_path')
 
-    def thumbnail(self, obj):
-        if obj.image:
-            return format_html('<img src="{}" style="width: 50px; height: auto;" />', obj.image.url)
-        return "-"
-    thumbnail.short_description = 'Image'
+    def image_path(self, obj):
+        return obj.card_image.url if obj.card_image else "No image"
+    image_path.short_description = 'Image Path'
 
-    def detail_thumbnail(self, obj):
-        if obj.detail_image:
-            return format_html('<img src="{}" style="width: 50px; height: auto;" />', obj.detail_image.url)
-        return "-"
-    detail_thumbnail.short_description = 'Detail Image'
+    def detail_image_path(self, obj):
+        return obj.detail_image.url if obj.detail_image else "No detail image"
+    detail_image_path.short_description = 'Detail Image Path'
 
 admin.site.register(Yacht, YachtAdmin)

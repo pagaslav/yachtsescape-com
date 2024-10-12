@@ -45,9 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
     imageContainer.appendChild(carouselItem)
   }
 
-  let selectedDateRange = [] // Store selected date range globally
-  let dateRange = [] // New array to store start and end dates
-
   // Initialize Flatpickr for date selection
   const dateRangeInput = document.querySelector("#dateRange")
   if (dateRangeInput) {
@@ -59,32 +56,16 @@ document.addEventListener("DOMContentLoaded", function () {
         from: date.start,
         to: date.end,
       })),
-      onChange: function (selectedDates, dateStr, instance) {
-        if (selectedDates.length === 2) {
-          // Store the selected date range globally
-          selectedDateRange = [selectedDates[0], selectedDates[1]]
-          // Store start and end dates in the dateRange array
-          dateRange = [
-            selectedDates[0].toISOString().split("T")[0], // Start Date in YYYY-MM-DD format
-            selectedDates[1].toISOString().split("T")[0], // End Date in YYYY-MM-DD format
-          ]
-        }
-      },
     })
   }
-
   // Form submission handler
   window.handleFormSubmit = function (event) {
     event.preventDefault() // Prevent default form submission
+    const form = document.getElementById("bookingForm")
+    const dateRange = form.elements["date_range"].value
 
     // Log yacht ID and date range
     console.log("Yacht ID:", yachtId)
-    // Check if a valid date range is selected
-    if (dateRange.length === 2) {
-      // Log the selected date range
-      console.log("Date Range:", `${dateRange[0]} to ${dateRange[1]}`)
-    } else {
-      console.log("No valid date range selected")
-    }
+    console.log("Date Range:", dateRange)
   }
 })
