@@ -96,6 +96,14 @@
     color: gold;
 }
 
+/* Center the breadcrumb container under the main heading */
+.breadcrumb-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
 /* .helpful-section {
     display: flex;
     justify-content: center;

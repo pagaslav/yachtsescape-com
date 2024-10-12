@@ -44,12 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
     carouselItem.innerHTML = `<img src="${imageUrl}" class="d-block w-100" alt="Yacht ${yachtId} Image ${i}">`
     imageContainer.appendChild(carouselItem)
   }
-
-  let selectedDateRange = [] // Store selected date range globally
-  let dateRange = [] // New array to store start and end dates
-
+    
+  let selectedDateRange = []; // Store selected date range globally
+  let dateRange = []; // New array to store start and end dates
+  
   // Initialize Flatpickr for date selection
-  const dateRangeInput = document.querySelector("#dateRange")
+  const dateRangeInput = document.querySelector("#dateRange");
   if (dateRangeInput) {
     flatpickr("#dateRange", {
       mode: "range",
@@ -62,29 +62,72 @@ document.addEventListener("DOMContentLoaded", function () {
       onChange: function (selectedDates, dateStr, instance) {
         if (selectedDates.length === 2) {
           // Store the selected date range globally
-          selectedDateRange = [selectedDates[0], selectedDates[1]]
+          selectedDateRange = [selectedDates[0], selectedDates[1]];
+          
           // Store start and end dates in the dateRange array
+          const startDate = new Date(selectedDates[0]);
+          const endDate = new Date(selectedDates[1]);
+      
+          // Convert to local date format
           dateRange = [
-            selectedDates[0].toISOString().split("T")[0], // Start Date in YYYY-MM-DD format
-            selectedDates[1].toISOString().split("T")[0], // End Date in YYYY-MM-DD format
-          ]
+            `${startDate.getFullYear()}-${String(startDate.getMonth() + 1).padStart(2, '0')}-${String(startDate.getDate()).padStart(2, '0')}`, // Start Date
+            `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`  // End Date
+          ];
         }
-      },
-    })
+      }
+      
+    });
   }
 
+  function getCSRFToken() {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Check if this cookie string begins with the CSRF token name
+            if (cookie.startsWith('csrftoken=')) {
+                cookieValue = decodeURIComponent(cookie.substring('csrftoken='.length));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+  
   // Form submission handler
   window.handleFormSubmit = function (event) {
-    event.preventDefault() // Prevent default form submission
-
+    event.preventDefault(); // Prevent default form submission
+  
     // Log yacht ID and date range
-    console.log("Yacht ID:", yachtId)
-    // Check if a valid date range is selected
+    console.log("Yacht ID:", yachtId);
+  
     if (dateRange.length === 2) {
-      // Log the selected date range
-      console.log("Date Range:", `${dateRange[0]} to ${dateRange[1]}`)
+        console.log("Date Range:", `${dateRange[0]} to ${dateRange[1]}`);
+        
+        // Construct the data to send
+        const formData = new FormData();
+        formData.append('yacht', yachtId);
+        formData.append('date_range', `${dateRange[0]} to ${dateRange[1]}`);
+
+        // Send a POST request using Fetch API
+        fetch('/booking/booking/create/', { // Replace with your actual URL
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-CSRFToken': getCSRFToken() // Ensure you include CSRF token for security
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     } else {
-      console.log("No valid date range selected")
+        console.log("No valid date range selected");
     }
-  }
+};
+
 })

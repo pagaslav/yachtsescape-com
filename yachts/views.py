@@ -64,6 +64,38 @@ def yacht_list(request):
 
     return render(request, 'yachts/yacht-list.html', {'yachts': yachts})
 
+def yacht_booking_dates(request, yacht_id):
+    yacht = get_object_or_404(Yacht, id=yacht_id)
+    bookings = Booking.objects.filter(yacht=yacht).values('start_date', 'end_date')
+
+    # Create a list of booked dates to pass to the template
+    booked_dates = []
+    for booking in bookings:
+        start_date = booking['start_date']
+        end_date = booking['end_date']
+        
+        # Check if start_date and end_date are datetime.date objects
+        print(f"Start Date Type: {type(start_date)}, End Date Type: {type(end_date)}")
+        
+        # Convert to string if they are datetime.date objects
+        if isinstance(start_date, datetime):
+            start_date_str = start_date.strftime('%Y-%m-%d')
+        else:
+            start_date_str = start_date  # If already a string
+
+        if isinstance(end_date, datetime):
+            end_date_str = end_date.strftime('%Y-%m-%d')
+        else:
+            end_date_str = end_date  # If already a string
+
+        booked_dates.append({
+            'start': start_date_str,
+            'end': end_date_str
+        })
+
+    # Return the booked dates as JSON
+    return JsonResponse({'booked_dates': booked_dates})
+
 # View to display yacht details and handle booking form submission
 def yacht_detail(request, yacht_id):
     yacht = get_object_or_404(Yacht, id=yacht_id)
