@@ -147,7 +147,8 @@
     line-height: 80px;
 }
 
-.navbar-nav .nav-link:hover {
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
     color: #088cdc !important;
 }
 
@@ -170,6 +171,7 @@
 
 .header-main-btn:hover {
     background-color: #006bb3;
+    color: #fff;
 }
 
 .navbar-collapse {

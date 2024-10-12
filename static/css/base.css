@@ -44,3 +44,41 @@ a {
   line-height: inherit;
   vertical-align: middle;
 }
+
+/* Styling for the breadcrumb navigation */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 0;
+    color: #ffffff;
+    display: inline-block;
+}
+
+/* White arrow divider between breadcrumb items */
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #ffffff;
+}
+
+/* White text color for breadcrumb links */
+.breadcrumb-item a {
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.breadcrumb-item, .breadcrumb-item a {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1.5; /* Убедись, что это значение соответствует общей высоте текста */
+}
+
+/* White color for the active breadcrumb item */
+.breadcrumb-item.active {
+    color: #ffffff;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline; /* Add underline only on hover */
+}
