@@ -15,7 +15,25 @@ About Us
 <div class="container text-center">
     <div class="about-content">
         <h1 class="about-title">About Us</h1>
+        <div class="breadcrumb-container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                </ol>
+            </nav>
+        </div>
     </div>
+
+
+    <!-- Section Title -->
+    <h2 class="mt-5">Welcome to YachtsEscape.com</h2>
+    <p class="lead">
+        At YachtsEscape, we believe that every yacht experience should be unique and unforgettable. Our dedicated team
+        of professionals is here to ensure that you find the perfect yacht for your adventures on the water. Whether
+        you're seeking a relaxing getaway or an action-packed voyage, we have you covered. Explore our team, our
+        history, and why you should choose us for your next sailing journey!
+    </p>
 
     <!-- Accordion for sections -->
     <div class="accordion" id="aboutAccordion">
@@ -120,6 +138,22 @@ About Us
             <img src="{% static 'images/diploma4.jpg' %}" alt="Diploma 4" class="diploma-img" data-bs-toggle="modal"
                 data-bs-target="#diplomaModal4">
         </div>
+    </div>
+
+
+    <!-- British Credentials Section -->
+    <h2 class="mt-5 mb-4">Our Credentials</h2>
+    <div class="credentials">
+        <p>At YachtsEscape, we take pride in our professional credentials and adherence to the highest standards in the
+            yacht rental industry...</p>
+        <p><strong>Address:</strong> YachtsEscape Ltd., 123 Ocean Drive, Cardiff, Wales, CF10 1AA, United Kingdom</p>
+        <p><strong>Banking Details:</strong></p>
+        <p><strong>Account Name:</strong> YachtsEscape Ltd.<br>
+            <strong>Account Number:</strong> 12345678<br>
+            <strong>Sort Code:</strong> 12-34-56<br>
+            <strong>IBAN:</strong> GB29NWBK12345612345678<br>
+            <strong>SWIFT/BIC:</strong> NWBKGB2L
+        </p>
     </div>
 
     <!-- Comment form section -->
