@@ -16,7 +16,7 @@ Home - Yachtsescape
 <!-- Hero Section -->
 <div class="hero-content">
     <h1 class="hero-title">Welcome to Yachtsescape</h1>
-    <a href="#" class="hero-link">Explore More</a>
+    <a href="{% url 'about' %}" class="hero-link">Explore More</a>
 </div>
 
 <!-- Search Form Section -->
@@ -61,11 +61,198 @@ Home - Yachtsescape
 
                     <!-- Search Button -->
                     <div class="col-md-3 text-center">
-                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                        <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center">Search</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+</div>
+<!-- Featured Services Section -->
+<div class="container my-5">
+    <div class="row align-items-center">
+        <!-- Text Section -->
+        <div class="col-lg-6">
+            <h2>Providing a large fleet of Boats for a perfect and dreamy experience</h2>
+            <p>We offer a wide selection of premium boats and yachts to ensure your journey on the water is
+                unforgettable. From stunning cruise paths to top-notch service, we strive to make every experience
+                unique.</p>
+            <ul class="list-unstyled list-arrow">
+                <li>&nbsp;Stunning Cruise Paths You Follow</li>
+                <li>&nbsp;Premium Boats & Yachts</li>
+                <li>&nbsp;Our Professional Approach</li>
+                <li>&nbsp;Quality Service Guaranteed</li>
+            </ul>
+            <!-- First Signature Section -->
+            <div class="signature mt-4">
+                <img src="{% static 'images/signature-john.png' %}" alt="John's Signature" class="signature-img">
+                <p class="mb-0"><strong>John F. Kendy</strong><br>CEO, Outlines Boat Rentals</p>
+            </div>
+            <!-- Second Signature Section -->
+            <div class="signature mt-4">
+                <img src="{% static 'images/signature-paul.png' %}" alt="Paul's Signature" class="signature-img">
+                <p class="mb-0"><strong>Paul D. Doe</strong><br>COO, Ocean Waves Yachts</p>
+            </div>
+        </div>
+        <!-- Flag-Shaped Image Section -->
+        <div class="col-lg-6 text-center">
+            <div class="flag-frame">
+                <img src="{% static 'images/directors.webp' %}" alt="Boat Experience" class="img-fluid">
+            </div>
+        </div>
+        <div class="icon-section mt-5">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <i class="fas fa-ic-home fa-ship fa-5x mb-3"></i>
+                    <h4>Priceless Experience</h4>
+                    <p>Experience the ultimate in luxury <br>and relaxation with our premium services.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-mask fa-5x mb-3 fa-ic-home"></i>
+                    <h4>Custom Packages</h4>
+                    <p>We provide tailored packages to suit every desire and need.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-ic-home fa-user-tie fa-5x mb-3"></i>
+                    <h4>Peoples Oriented</h4>
+                    <p>Your satisfaction is our highest priority. <br>We&#39;re here to serve you.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Featured Yachts</h2>
+    <div class="row">
+        {% for yacht in yachts %}
+        <div class="col-md-4 mb-4">
+            <div class="card yacht-card h-100 shadow-sm">
+                <div class="position-relative">
+                    <img src="{{ yacht.card_image.url }}" class="card-img-top" alt="{{ yacht.name }}">
+                    <!-- Rating overlay in the top-right corner -->
+                    <div class="rating-overlay">
+                        {% for i in "12345" %}
+                        {% if forloop.counter <= yacht.rating|default:0 %} <i class="fas fa-star filled"></i>
+                            {% else %}
+                            <i class="fas fa-star"></i>
+                            {% endif %}
+                            {% endfor %}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Yacht name -->
+                    <h5 class="card-title">{{ yacht.name }}</h5>
+
+                    <!-- Yacht price and Yacht location -->
+                    <div class="price-location">
+                        <p class="card-price">
+                            ${{ yacht.price_per_day }} <span class="text-muted">Per Day</span>
+                        </p>
+                        <p class="location">
+                            <i class="fas fa-map-marker-alt"></i> {{ yacht.location }}
+                        </p>
+                    </div>
+                    <!-- Yacht details -->
+                    <ul class="list-inline yacht-details">
+                        <li class="list-inline-item detail-item"><i class="fas fa-users"></i> {{ yacht.capacity }}
+                            Guests</li>
+                        <li class="list-inline-item detail-item"><i class="fas fa-bed"></i> 2 Master Bedroom</li>
+                        <li class="list-inline-item detail-item"><i class="fas fa-ruler-combined"></i> 44 Feet</li>
+                        <li class="list-inline-item detail-item"><i class="fas fa-utensils"></i> Fully Equipped Kitchen
+                        </li>
+                    </ul>
+                    <a href="{% url 'yacht_detail' yacht.id %}" class="btn btn-primary w-100 d-flex align-items-center justify-content-center">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'yacht_list' %}" class="btn btn-outline-dark">VIEW ALL BOATS</a>
+    </div>
+</div>
+
+<!-- Deal of the Week Section -->
+<div class="deal-of-the-week-container my-5 p-4">
+    <div class="row no-gutters align-items-center justify-content-center">
+        {% if deal_yacht %}
+        <div class="col-md-4 text-center">
+            <img src="{{ deal_yacht.card_image.url }}" alt="{{ deal_yacht.name }}" class="deal-image img-fluid">
+        </div>
+        <div class="col-md-8">
+            <div class="deal-content">
+                <h5 class="deal-title">Deal of the Week</h5>
+                <h2 class="yacht-name">{{ deal_yacht.name }}</h2>
+                <p class="yacht-price">Rent for ${{ deal_yacht.price_per_day }} / day</p>
+                <p class="yacht-description">
+                    Location: {{ deal_yacht.country }}, {{ deal_yacht.location }} | Type: {{ deal_yacht.type }} {{ deal_yacht.year }} | 
+                    Guests: {{ deal_yacht.capacity }}
+                </p>
+                <hr class="deal-divider">
+                <p class="contact-info">
+                    <i class="fas fa-phone-alt"></i> Booking a Charter Boat +1 755 302 8549 <br>
+                    <i class="fas fa-envelope"></i> info@example.com
+                </p>
+                <p class="call-to-action">
+                    Hurry up! This is a limited-time offer. Book now to enjoy exclusive rates on our top yacht.
+                </p>
+            </div>
+        </div>
+        {% else %}
+        <p class="text-white">No yacht available for the deal this week.</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Testimonials Carousel Section -->
+<div id="testimonialsCarousel" class="carousel slide my-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <!-- Testimonial 1 -->
+        <div class="carousel-item active">
+            <div class="testimonial text-center">
+                <img src="{% static 'images/testimonial1.webp' %}" class="rounded-circle testimonial-img" alt="Testimonial 1">
+                <h5 class="testimonial-name">John Doe</h5>
+                <p class="testimonial-text">“The best yacht experience I've ever had! The staff was incredible and the view was unbeatable.”</p>
+            </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="carousel-item">
+            <div class="testimonial text-center">
+                <img src="{% static 'images/testimonial2.webp' %}" class="rounded-circle testimonial-img" alt="Testimonial 2">
+                <h5 class="testimonial-name">Jane Smith</h5>
+                <p class="testimonial-text">“Unforgettable experience! From the booking process to the trip itself, everything was flawless.”</p>
+            </div>
+        </div>
+        
+        <!-- Testimonial 3 -->
+        <div class="carousel-item">
+            <div class="testimonial text-center">
+                <img src="{% static 'images/testimonial3.webp' %}" class="rounded-circle testimonial-img" alt="Testimonial 3">
+                <h5 class="testimonial-name">Tom & Martha</h5>
+                <p class="testimonial-text">“Perfect for a relaxing day out on the water. We enjoyed every moment and highly recommend it.”</p>
+            </div>
+        </div>
+        
+        <!-- Testimonial 4 -->
+        <div class="carousel-item">
+            <div class="testimonial text-center">
+                <img src="{% static 'images/testimonial4.webp' %}" class="rounded-circle testimonial-img" alt="Testimonial 4">
+                <h5 class="testimonial-name">Emily Fisher</h5>
+                <p class="testimonial-text">“Amazing fishing trip! I caught so many fish and had a wonderful time. Can't wait to go again!”</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carousel controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
 {% endblock %}

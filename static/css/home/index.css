@@ -41,7 +41,7 @@
     white-space: nowrap;
     margin-top: 28px; /* Lower the button */
     border-radius: 0; /* Remove rounding */
-    background-color: #088cdc;
+    background-color: #088cdc !important;
     color: #fff;
 }
 
@@ -86,10 +86,281 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Flag Frame for Image */
+.flag-frame {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.flag-frame img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    /* Create a flag effect */
+    clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
+    background: linear-gradient(135deg, #dfe9f3, #ffffff);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Featured Services Section */
+.signature {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.signature-img {
+    width: 120px;
+    height: auto;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Style for arrow bullets */
+.list-unstyled li {
+    position: relative;
+    padding-left: 20px; /* Space for the arrow */
+    font-size: 18px;
+    color: #333;
+}
+
+.list-arrow li::before {
+    content: "→"; /* Arrow character */
+    position: absolute;
+    left: 0;
+    color: #088cdc; /* Customize color of the arrow */
+    font-size: 20px; /* Customize arrow size */
+}
+
+.fa-ic-home {
+    color: #088cdc !important;
+}
+
+.container h2 {
+    font-size: 36px;
+    color: #333;
+    font-weight: bold;
+}
+
+.container p {
+    font-size: 16px;
+    color: #666;
+}
+
+.yacht-card {
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.yacht-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.card-price {
+    font-size: 1.25rem;
+    color: #007bff !important;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Grid Layout for Yacht Details */
+.yacht-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 5px; /* Spacing between items */
+    list-style: none; /* Remove list bullets */
+    padding: 0; /* Remove default padding */
+    margin-top: 1rem;
+}
+
+.detail-item {
+    display: flex; /* Align icon and text in a row */
+    align-items: center;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.yacht-details i {
+    margin-right: 5px; /* Spacing between icon and text */
+}
+
+/* Positioning and styling for the rating stars overlay */
+.rating-overlay {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.8); /* Light background for visibility */
+    padding: 3px 8px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+/* Style for the rating stars */
+.rating-overlay .fa-star {
+    color: #ddd; /* Light gray color for empty stars */
+}
+
+.rating-overlay .fa-star.filled {
+    color: #ffd700; /* Gold color for filled stars */
+}
+
+/* Container for price and location */
+.price-location {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.btn-primary {
+    background-color: #088cdc;
+    color: #fff;
+    border-radius: 0;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    border: none;
+    height: 40px;
+    line-height: 40px;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center !important;
+}
+
+.btn-primary:hover {
+    background-color: #006bb3;
+    color: #fff;
+}
+
+/* Deal of the Week Container */
+.deal-of-the-week-container {
+    background-color: #ffffff;
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/* Adjust image size for prominence */
+.deal-image {
+    height: 300px; /* Taller than standard card size for emphasis */
+    object-fit: cover;
+    border-radius: 8px; /* Consistent rounding for all corners */
+}
+
+/* Centering and styling the deal content */
+.deal-content {
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.deal-title {
+    font-size: 1.2rem;
+    color: red;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.yacht-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.yacht-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.deal-divider {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 15px 0;
+}
+
+.contact-info {
+    font-size: 1rem;
+    color: #666;
+}
+
+.contact-info i {
+    color: #006bb3;
+    margin-right: 5px;
+}
+
+.call-to-action {
+    font-size: 1rem;
+    font-style: italic;
+    color: #666;
+}
+
+/* Testimonials Section Styling */
+.testimonial {
+    padding: 20px;
+}
+
+.testimonial-img {
+    width: 150px; /* Увеличенный размер изображения */
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.testimonial-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+/* Carousel control icons styling */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(100%); /* Белый цвет для стрелок */
+    width: 2rem;
+    height: 2rem;
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .search-form-container .col-md-3, 
-    .search-form-container .col-md-4 {
-        margin-bottom: 15px;
+    .deal-image {
+        height: 200px; /* Adjust for smaller screens */
+    }
+    .deal-content {
+        padding: 10px;
+        text-align: center;
+    }
+    .yacht-name {
+        font-size: 2rem;
+    }
+    .yacht-price, .contact-info, .call-to-action {
+        font-size: 1rem;
     }
 }
