@@ -16,6 +16,14 @@ Our Fleet
     <!-- Title section in the header -->
     <div class="header-content">
         <h1 class="hero-title">Our Fleet</h1>
+        <div class="breadcrumb-container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Our Fleet</li>
+                </ol>
+            </nav>
+        </div>
     </div>
 
     <!-- Sorting section -->
@@ -78,20 +86,18 @@ Our Fleet
     <div class="row mt-5">
         {% for yacht in yachts %}
         <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                {% if yacht.card_image %}
-                <!-- Display yacht image if available -->
-                <img src="{{ yacht.card_image.url }}" class="card-img-top" alt="{{ yacht.name }}">
-                {% else %}
-                <!-- Display placeholder image if no yacht image is available -->
-                <img src="{% static 'images/default-yacht.png' %}" class="card-img-top" alt="{{ yacht.name }}">
-                {% endif %}
-                <div class="card-body">
-                    <!-- Yacht name -->
-                    <h5 class="card-title">{{ yacht.name }}</h5>
+            <div class="card yacht-card h-100 shadow-sm">
+                <div class="position-relative">
+                    {% if yacht.card_image %}
+                    <!-- Display yacht image if available -->
+                    <img src="{{ yacht.card_image.url }}" class="card-img-top" alt="{{ yacht.name }}">
+                    {% else %}
+                    <!-- Display placeholder image if no yacht image is available -->
+                    <img src="{% static 'images/default-yacht.png' %}" class="card-img-top" alt="{{ yacht.name }}">
+                    {% endif %}
 
-                    <!-- Yacht rating in stars -->
-                    <div class="rating mb-2">
+                    <!-- Rating overlay in the top-right corner -->
+                    <div class="rating-overlay">
                         {% for i in "12345" %}
                         {% if forloop.counter <= yacht.rating|default:0 %} <i class="fas fa-star filled"></i>
                             {% else %}
@@ -99,18 +105,33 @@ Our Fleet
                             {% endif %}
                             {% endfor %}
                     </div>
+                </div>
 
-                    <!-- Yacht price -->
-                    <p class="card-text">Price: ${{ yacht.price_per_day }} / per day</p>
+                <div class="card-body">
+                    <!-- Yacht name -->
+                    <h5 class="card-title">{{ yacht.name }}</h5>
 
-                    <!-- Yacht capacity -->
-                    <p class="card-text">Capacity: {{ yacht.capacity }} people</p>
-
-                    <!-- Yacht location -->
-                    <p class="card-text">Location: {{ yacht.location }}</p>
+                    <!-- Yacht price and Yacht location -->
+                    <div class="price-location">
+                        <p class="card-price">
+                            ${{ yacht.price_per_day }} <span class="text-muted">Per Day</span>
+                        </p>
+                        <p class="location">
+                            <i class="fas fa-map-marker-alt"></i> {{ yacht.location }}
+                        </p>
+                    </div>
+                    <!-- Yacht details -->
+                    <ul class="list-inline yacht-details">
+                        <li class="list-inline-item detail-item"><i class="fas fa-users"></i> {{ yacht.capacity }}
+                            Guests</li>
+                        <li class="list-inline-item detail-item"><i class="fas fa-bed"></i> 2 Master Bedroom</li>
+                        <li class="list-inline-item detail-item"><i class="fas fa-ruler-combined"></i> 44 Feet</li>
+                        <li class="list-inline-item detail-item"><i class="fas fa-utensils"></i> Fully Equipped Kitchen
+                        </li>
+                    </ul>
 
                     <!-- Button to read more -->
-                    <a href="{% url 'yacht_detail' yacht.id %}" class="btn btn-primary">Read More</a>
+                    <a href="{% url 'yacht_detail' yacht.id %}" class="btn btn-primary w-100">VIEW DETAILS</a>
                 </div>
             </div>
         </div>

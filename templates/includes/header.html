@@ -72,14 +72,15 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}" aria-label="Home Page">Home</a>
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}"
+                            href="{% url 'home' %}">Home</a>
                     </li>
 
                     <!-- Conditional Menu Based on User Authentication Status -->
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle {% if request.path == '/your-profile-url/' %}active{% endif %}"
+                            href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
                             My Account
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -94,13 +95,15 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_login' %}" aria-label="Log In Page">Log In</a>
+                        <a class="nav-link {% if request.path == '/accounts/login/' %}active{% endif %}"
+                            href="{% url 'account_login' %}" aria-label="Log In Page">Log In</a>
                     </li>
                     {% endif %}
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="yachtTypeDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle {% if '/yachts/' in request.path %}active{% endif %}"
+                            href="#" id="yachtTypeDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             Our Fleet
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="yachtTypeDropdown">
@@ -112,7 +115,10 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}" aria-label="About Us Page">About us</a>
+                        <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}"
+                            aria-label="About Us Page">
+                            About us
+                        </a>
                     </li>
 
                     <!-- "Book Now" button -->

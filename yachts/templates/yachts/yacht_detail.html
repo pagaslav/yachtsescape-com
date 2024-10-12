@@ -16,6 +16,15 @@ Our Fleet - {{ yacht.name }} details
     <!-- Title section in the header -->
     <div class="header-content">
         <h1 class="hero-title">{{ yacht.name }}</h1>
+        <div class="breadcrumb-container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'yacht_list' %}">Our Fleet</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ yacht.name }}</li>
+                </ol>
+            </nav>
+        </div>
     </div>
     <!-- Display yacht details -->
     <p class="lead mt-4">{{ yacht.description }}</p>
@@ -72,8 +81,31 @@ Our Fleet - {{ yacht.name }} details
 {% endblock %}
 
 {% block extra_js %}
-<!-- <script id="bookedDates" type="application/json">
+<script id="bookedDates" type="application/json">
   [{"start": "2024-10-09", "end": "2024-10-11"}, {"start": "2024-10-15", "end": "2024-10-17"}]
-</script> -->
+</script>
 <script src="{% static 'js/yachts.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Parse the booked dates from the script tag
+        const bookedDatesData = JSON.parse(document.getElementById('bookedDates').textContent);
+        const bookedDates = bookedDatesData.map(date => {
+            const startDate = new Date(date.start);
+            const endDate = new Date(date.end);
+            const disabledDates = [];
+
+            // Push all dates in the range to the disabledDates array
+            for (let dt = new Date(startDate); dt <= endDate; dt.setDate(dt.getDate() + 1)) {
+                disabledDates.push(new Date(dt)); // Adding each date in the range
+            }
+
+            return disabledDates;
+        }).flat(); // Flatten the array of arrays into a single array
+
+        // Initialize Flatpickr
+        flatpickr("#dateRange", {
+            disable: bookedDates.map(date => date.toISOString().split('T')[0]) // Format to YYYY-MM-DD
+        });
+    });
+</script>
 {% endblock %}
