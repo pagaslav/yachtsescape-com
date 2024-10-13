@@ -1,3 +1,5 @@
+# booking/models.py
+
 from django.db import models
 from yachts.models import Yacht  # Import the Yacht model
 from django.utils import timezone
