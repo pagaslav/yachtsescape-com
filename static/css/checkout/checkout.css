@@ -1,0 +1,17 @@
+.checkout-content {
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+}
+
+/* Style for the page title */
+.checkout-title {
+    color: white; /* White text color */
+    font-size: 48px; /* Large font size */
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    z-index: 2; /* Ensure it displays above the background */
+}

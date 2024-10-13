@@ -36,6 +36,7 @@ def checkout(request, booking_id):
 
     # Retrieve the selected booking by its ID
     booking = get_object_or_404(Booking, id=booking_id)
+    yacht = booking.yacht
 
     if request.method == 'POST':
         # Store form data in a dictionary to validate later
@@ -83,6 +84,8 @@ def checkout(request, booking_id):
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,  # Include Stripe client secret for frontend
+        'booking': booking,
+        'yacht': yacht,
     }
 
     return render(request, template, context)

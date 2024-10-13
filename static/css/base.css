@@ -45,6 +45,10 @@ a {
   vertical-align: middle;
 }
 
+.container {
+    margin-top: 30px; /* Top margin for spacing */
+}
+
 /* Styling for the breadcrumb navigation */
 .breadcrumb {
     background-color: transparent;
@@ -81,4 +85,10 @@ a {
 
 .breadcrumb-item a:hover {
     text-decoration: underline; /* Add underline only on hover */
+}
+
+.breadcrumb-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }

@@ -19,17 +19,6 @@
     z-index: 2; /* Ensure it displays above the background */
 }
 
-/* Main style for the About page container */
-.container {
-    margin-top: 30px; /* Top margin for spacing */
-}
-
-/* Header style for the About page */
-.hero-title {
-    font-size: 2.5rem; /* Font size for the header */
-    font-weight: bold; /* Bold font weight */
-    margin-bottom: 20px; /* Bottom margin for spacing */
-}
 
 /* Styles for the accordion buttons */
 .accordion-button {
@@ -94,13 +83,6 @@
 }
 .rating {
     color: gold;
-}
-
-/* Center the breadcrumb container under the main heading */
-.breadcrumb-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
 }
 
 

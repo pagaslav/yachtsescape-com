@@ -1,3 +1,5 @@
+# checkout/forms.py
+
 from django import forms
 from .models import Order
 
@@ -8,7 +10,7 @@ class OrderForm(forms.ModelForm):
             'full_name', 'email', 'phone_number',
             'street_address1', 'street_address2',
             'town_or_city', 'postcode', 'country',
-            'county', 'total_cost',  # Added total_cost field
+            'county',
         )
         widgets = {
             'total_cost': forms.TextInput(attrs={'readonly': 'readonly'}),  # Make total_cost read-only
