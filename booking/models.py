@@ -1,5 +1,3 @@
-# booking/models.py
-
 from django.db import models
 from yachts.models import Yacht  # Import the Yacht model
 from django.utils import timezone
@@ -22,6 +20,8 @@ class Booking(models.Model):
         ], 
         default='pending'  # Default to 'pending' until payment is confirmed
     )
+    # Timestamp for when the booking was created
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         """
