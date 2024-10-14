@@ -12,13 +12,14 @@ from profiles.forms import UserProfileForm
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
 import stripe
-import json
+stripe.api_version = "2024-06-20"
 
 # View to handle caching of checkout data for Stripe
 @require_POST
 def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
+        print("Received client_secret for caching:", pid)
         stripe.api_key = settings.STRIPE_SECRET_KEY
         # Adding metadata to Stripe's PaymentIntent for tracking
         stripe.PaymentIntent.modify(pid, metadata={
@@ -26,8 +27,10 @@ def cache_checkout_data(request):
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
+        print("Successfully cached checkout data")
         return HttpResponse(status=200)
     except Exception as e:
+        print("Error in cache_checkout_data:", e)
         # Handling payment error and sending a response
         messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
@@ -52,6 +55,7 @@ def checkout(request, booking_id, start_date, end_date):  # Add start_date and e
         return redirect(reverse('checkout_success', args=[existing_order.order_number]))
 
     if request.method == 'POST':
+        print("Received POST data:", request.POST)
         # Store form data in a dictionary to validate later
         form_data = {
             'full_name': request.POST['full_name'],
@@ -68,6 +72,7 @@ def checkout(request, booking_id, start_date, end_date):  # Add start_date and e
         # Initialize the order form with the submitted data
         order_form = OrderForm(form_data)
         if order_form.is_valid():
+            print("Order form is valid")
             # If the form is valid, save the order without committing to database
             order = order_form.save(commit=False)
             order.booking = booking  # Link the booking to the order
@@ -76,11 +81,14 @@ def checkout(request, booking_id, start_date, end_date):  # Add start_date and e
             order.total_cost = booking.total_cost  # Set the total cost from the booking
             try:
                 order.save()  # Save the order to the database
+                print("Order saved successfully:", order)
             except IntegrityError:
+                print("IntegrityError: Order for this booking already exists")
                 messages.error(request, "An order for this booking already exists.")
                 return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             # If the form is not valid, return an error message
+            print("Order form is not valid:", order_form.errors)
             messages.error(request, 'There was an error with your form. Please double check your information.')
     else:
         # If the request is GET, prepare the checkout form with initial data
@@ -88,10 +96,13 @@ def checkout(request, booking_id, start_date, end_date):  # Add start_date and e
 
         # Set up Stripe payment intent
         stripe.api_key = stripe_secret_key
+        print("Creating PaymentIntent with amount:", int(booking.total_cost * 100), "and currency:", settings.STRIPE_CURRENCY)
         intent = stripe.PaymentIntent.create(
             amount=int(booking.total_cost * 100),  # Convert cost to cents for Stripe
             currency=settings.STRIPE_CURRENCY,
         )
+
+        print("PaymentIntent created successfully:", intent if intent else "Failed to create PaymentIntent")
 
         if request.user.is_authenticated:
             try:

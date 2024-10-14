@@ -56,6 +56,8 @@ form.addEventListener("submit", function (ev) {
 
   $.post(url, postData)
     .done(function () {
+      // Добавьте перед confirmCardPayment
+      console.log("Подтверждение платежа Stripe начато", clientSecret)
       stripe
         .confirmCardPayment(clientSecret, {
           payment_method: {
@@ -85,8 +87,15 @@ form.addEventListener("submit", function (ev) {
             $(errorDiv).html(html)
             card.update({ disabled: false })
             $("#submit-button").attr("disabled", false)
+            console.log(
+                  "Ошибка при подтверждении платежа:",
+                  result.error.message
+                )
+
           } else {
             if (result.paymentIntent.status === "succeeded") {
+
+            console.log("Платеж успешно завершен")
               form.submit()
             }
           }
