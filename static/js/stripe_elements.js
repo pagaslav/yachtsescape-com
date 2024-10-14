@@ -1,5 +1,3 @@
-// static / js / stripe_elements.js
-
 var stripePublicKey = $("#id_stripe_public_key").text().slice(1, -1)
 var clientSecret = $("#id_client_secret").text().slice(1, -1)
 var stripe = Stripe(stripePublicKey)
@@ -45,7 +43,8 @@ form.addEventListener("submit", function (ev) {
   card.update({ disabled: true })
   $("#submit-button").attr("disabled", true)
 
-  var saveInfo = Boolean($("#id-save-info").attr("checked"))
+  // Check the save info checkbox status
+  var saveInfo = Boolean($("#id-save-info").prop("checked"))
   var csrfToken = $('input[name="csrfmiddlewaretoken"]').val()
   var postData = {
     csrfmiddlewaretoken: csrfToken,
@@ -54,10 +53,10 @@ form.addEventListener("submit", function (ev) {
   }
   var url = "/checkout/cache_checkout_data/"
 
+  // Cache checkout data before confirming payment
   $.post(url, postData)
     .done(function () {
-      // Добавьте перед confirmCardPayment
-      console.log("Подтверждение платежа Stripe начато", clientSecret)
+      console.log("Successfully cached checkout data for payment.")
       stripe
         .confirmCardPayment(clientSecret, {
           payment_method: {
@@ -87,21 +86,21 @@ form.addEventListener("submit", function (ev) {
             $(errorDiv).html(html)
             card.update({ disabled: false })
             $("#submit-button").attr("disabled", false)
-            console.log(
-                  "Ошибка при подтверждении платежа:",
-                  result.error.message
-                )
-
+            console.log("Error while confirming payment:", result.error.message)
           } else {
             if (result.paymentIntent.status === "succeeded") {
-
-            console.log("Платеж успешно завершен")
+              console.log("Payment succeeded. Submitting form.")
               form.submit()
             }
           }
         })
     })
-    .fail(function () {
+    .fail(function (jqXHR, textStatus, errorThrown) {
+      console.log(
+        "Error in cache_checkout_data request:",
+        textStatus,
+        errorThrown
+      )
       location.reload()
     })
 })
