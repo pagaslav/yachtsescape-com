@@ -1,4 +1,3 @@
-
 <!-- yachts/templates/yachts/yacht_detail.html -->
 
 {% extends 'base.html' %}
@@ -30,10 +29,10 @@ Our Fleet - {{ yacht.name }} details
     </div>
     <!-- Display yacht details -->
     <p class="lead mt-4">{{ yacht.description }}</p>
-    <ul class="list-unstyled">
-        <li><strong>Type:</strong> {{ yacht.type }}</li>
-        <li><strong>Rating:</strong> {{ yacht.rating }}</li>
-        <li><strong>ID:</strong> {{ yacht.id }}</li>
+    <ul class="yacht-attributes-row">
+        <li><i class="fas fa-ship"></i> <strong>Type:</strong> {{ yacht.type }}</li>
+        <li><i class="fas fa-star"></i> <strong>Rating:</strong> {{ yacht.rating }}</li>
+        <li><i class="fas fa-id-card"></i> <strong>ID:</strong> {{ yacht.id }}</li>
     </ul>
 
     <div id="yachtGallery" class="carousel slide" data-bs-ride="carousel">
@@ -50,18 +49,18 @@ Our Fleet - {{ yacht.name }} details
         </button>
     </div>
 
-    <ul class="list-unstyled mt-3">
-        <li><strong>Location:</strong> {{ yacht.location }}</li>
-        <li><strong>Capacity:</strong> {{ yacht.capacity }}</li>
-        <li><strong>Price per day:</strong> ${{ yacht.price_per_day }}</li>
+    <ul class="yacht-attributes-row mt-3">
+        <li><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> {{ yacht.location }}</li>
+        <li><i class="fas fa-users"></i> <strong>Capacity:</strong> {{ yacht.capacity }}</li>
+        <li><i class="fas fa-dollar-sign"></i> <strong>Price per day:</strong> ${{ yacht.price_per_day }}</li>
     </ul>
 
     <h2>Booked Dates</h2>
-    <ul>
+    <ul class="date-list">
         {% for date in booked_dates %}
-        <li>From {{ date.start }} to {{ date.end }}</li>
+        <li><i class="fas fa-calendar-alt"></i> From {{ date.start }} to {{ date.end }}</li>
         {% empty %}
-        <li>No booked dates</li>
+        <li class="no-dates"><i class="fas fa-calendar-times"></i> No booked dates</li>
         {% endfor %}
     </ul>
 
