@@ -20,14 +20,19 @@ def booking_create(request):
             yacht_id = request.POST.get('yacht')
             date_range = request.POST.get('date_range', '').split(' to ')
             
-            if yacht_id and len(date_range) == 2:
+            if yacht_id and len(date_range) >= 1:  # Make sure at least one date is provided
                 try:
                     yacht = get_object_or_404(Yacht, id=yacht_id)
                     booking.yacht = yacht
 
-                    # Parse dates
+                    # Parse start date
                     start_date = datetime.strptime(date_range[0], '%Y-%m-%d').date()
-                    end_date = datetime.strptime(date_range[1], '%Y-%m-%d').date()
+
+                    # If only one date is provided, treat it as both start and end date
+                    if len(date_range) == 1:
+                        end_date = start_date
+                    else:
+                        end_date = datetime.strptime(date_range[1], '%Y-%m-%d').date()
 
                     booking.start_date = start_date
                     booking.end_date = end_date
