@@ -79,8 +79,6 @@ def checkout(request, booking_id, start_date, end_date):  # Add start_date and e
             currency=settings.STRIPE_CURRENCY,
         )
 
-        print(intent)
-
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
