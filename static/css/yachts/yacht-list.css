@@ -1,22 +1,3 @@
-/* Center the page title on the background */
-.header-content {
-    position: absolute;
-    top: 26%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 2;
-}
-
-/* Styling for the page title */
-.hero-title {
-    color: white;
-    font-size: 48px;
-    font-weight: bold;
-    text-transform: uppercase;
-    z-index: 2;
-}
-
 /* Styling for yacht cards */
 .card {
     border: none;

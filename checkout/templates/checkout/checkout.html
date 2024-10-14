@@ -15,8 +15,8 @@ Checkout
 
 {% block content %}
 <div class="container text-center">
-    <div class="about-content">
-        <h1 class="about-title">Checkout</h1>
+    <div class="hero-content">
+        <h1 class="hero-title">Checkout</h1>
         <div class="breadcrumb-container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -43,7 +43,7 @@ Checkout
 
     <div class="row">
         <div class="col-12 col-lg-6 order-lg-last mb-5">
-            <p class="text-muted">Order Summary ({{ booking.quantity }})</p>
+            <p class="text-muted">Order Summary</p>
             <div class="row">
                 <div class="col-7 offset-2">
                     <p class="mb-1 mt-0 small text-muted">Item</p>
@@ -147,9 +147,9 @@ Checkout
 </div>
 {% endblock %}
 
-{% block postloadjs %}
+{% block extra_js %}
     {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
-    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+    <script src="{% static 'js/stripe_elements.js' %}"></script>
 {% endblock %}
