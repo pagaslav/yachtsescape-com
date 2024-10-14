@@ -19,9 +19,9 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         # Adding metadata to Stripe's PaymentIntent for tracking
         stripe.PaymentIntent.modify(pid, metadata={
-            'booking_id': request.POST.get('booking_id'),
-            'save_info': request.POST.get('save_info'),
-            'username': request.user,
+            # 'booking_id': request.POST.get('booking_id'),
+            # 'save_info': request.POST.get('save_info'),
+            # 'username': request.user,
         })
         return HttpResponse(status=200)
     except Exception as e:
