@@ -117,10 +117,14 @@ def checkout(request, booking_id, start_date, end_date):  # Add start_date and e
             Did you forget to set it in your environment?')
 
     template = 'checkout/checkout.html'
+
+    client_secret_value = intent.client_secret if intent else ''
+
+
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret,  # Include Stripe client secret for frontend
+        'client_secret': client_secret_value,  # Include Stripe client secret for frontend
         'booking': booking,
         'yacht': yacht,
         'start_date': start_date,  # Pass start_date to context if needed
