@@ -145,7 +145,7 @@ def yacht_detail(request, yacht_id):
             booking.end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
             
             booking.save()  # Save the booking instance
-            return redirect('booking_success')  # Redirect to the booking success page
+            # return redirect('booking_success')  # Redirect to the booking success page
 
     else:
         form = BookingForm()
