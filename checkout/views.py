@@ -19,9 +19,9 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         # Adding metadata to Stripe's PaymentIntent for tracking
         stripe.PaymentIntent.modify(pid, metadata={
-            # 'booking_id': request.POST.get('booking_id'),
-            # 'save_info': request.POST.get('save_info'),
-            # 'username': request.user,
+            'booking_id': request.POST.get('booking_id'),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
         })
         return HttpResponse(status=200)
     except Exception as e:
@@ -30,7 +30,7 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 # Main checkout view responsible for displaying the form and processing the order
-def checkout(request, booking_id):
+def checkout(request, booking_id, start_date, end_date):  # Add start_date and end_date here
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -86,6 +86,8 @@ def checkout(request, booking_id):
         'client_secret': intent.client_secret,  # Include Stripe client secret for frontend
         'booking': booking,
         'yacht': yacht,
+        'start_date': start_date,  # Pass start_date to context if needed
+        'end_date': end_date,      # Pass end_date to context if needed
     }
 
     return render(request, template, context)
