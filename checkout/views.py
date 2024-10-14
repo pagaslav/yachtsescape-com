@@ -37,6 +37,9 @@ def checkout(request, booking_id, start_date, end_date):  # Add start_date and e
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
+    # Initialize intent as None
+    intent = None
+
     # Retrieve the selected booking by its ID
     booking = get_object_or_404(Booking, id=booking_id)
     yacht = booking.yacht
