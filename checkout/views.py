@@ -8,6 +8,9 @@ from .forms import OrderForm
 from .models import Order
 from booking.models import Booking
 from profiles.models import UserProfile
+from profiles.forms import UserProfileForm
+from django.views.decorators.csrf import csrf_exempt
+from django.db import IntegrityError
 import stripe
 import json
 
@@ -38,6 +41,13 @@ def checkout(request, booking_id, start_date, end_date):  # Add start_date and e
     booking = get_object_or_404(Booking, id=booking_id)
     yacht = booking.yacht
 
+    # Check if an order already exists for this booking
+    existing_order = Order.objects.filter(booking=booking).first()
+    if existing_order:
+        # Redirect to the existing order or display a message
+        messages.info(request, "An order for this booking already exists.")
+        return redirect(reverse('checkout_success', args=[existing_order.order_number]))
+
     if request.method == 'POST':
         # Store form data in a dictionary to validate later
         form_data = {
@@ -61,10 +71,11 @@ def checkout(request, booking_id, start_date, end_date):  # Add start_date and e
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid  # Store the Stripe PaymentIntent ID for reference
             order.total_cost = booking.total_cost  # Set the total cost from the booking
-            order.save()  # Save the order to the database
-            
-            # Redirect to a success page after checkout is completed
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            try:
+                order.save()  # Save the order to the database
+            except IntegrityError:
+                messages.error(request, "An order for this booking already exists.")
+                return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             # If the form is not valid, return an error message
             messages.error(request, 'There was an error with your form. Please double check your information.')
@@ -79,6 +90,29 @@ def checkout(request, booking_id, start_date, end_date):  # Add start_date and e
             currency=settings.STRIPE_CURRENCY,
         )
 
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.default_phone_number,
+                    'country': profile.default_country,
+                    'postcode': profile.default_postcode,
+                    'town_or_city': profile.default_town_or_city,
+                    'street_address1': profile.default_street_address1,
+                    'street_address2': profile.default_street_address2,
+                    'county': profile.default_county,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
+
+    if not stripe_public_key:
+        messages.warning(request, 'Stripe public key is missing. \
+            Did you forget to set it in your environment?')
+
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
@@ -91,3 +125,80 @@ def checkout(request, booking_id, start_date, end_date):  # Add start_date and e
     }
 
     return render(request, template, context)
+
+def checkout_success(request, order_number):
+    """
+    Handle successful checkouts
+    """
+    save_info = request.session.get('save_info')
+    order = get_object_or_404(Order, order_number=order_number)
+
+    profile = UserProfile.objects.get(user=request.user)
+    # Attach the user's profile to the order
+    order.user_profile = profile
+    order.save()
+
+    # Save the user's info
+    if save_info:
+        profile_data = {
+            'default_phone_number': order.phone_number,
+            'default_country': order.country,
+            'default_postcode': order.postcode,
+            'default_town_or_city': order.town_or_city,
+            'default_street_address1': order.street_address1,
+            'default_street_address2': order.street_address2,
+            'default_county': order.county,
+        }
+        user_profile_form = UserProfileForm(profile_data, instance=profile)
+        if user_profile_form.is_valid():
+            user_profile_form.save()
+
+    messages.success(request, f'Order successfully processed! \
+        Your order number is {order_number}. A confirmation \
+        email will be sent to {order.email}.')
+
+
+    template = 'checkout/checkout_success.html'
+    context = {
+        'order': order,
+    }
+
+    return render(request, template, context)
+
+
+@csrf_exempt
+def webhook(request):
+    # Retrieve the event by verifying the webhook signature
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    event = None
+    
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, settings.STRIPE_WH_SECRET
+        )
+    except ValueError as e:
+        # Invalid payload
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(status=400)
+
+    # Set up a Stripe webhook handler
+    wh_handler = StripeWH_Handler(request)
+
+    # Map webhook events to relevant handler functions
+    event_map = {
+        'payment_intent.succeeded': wh_handler.handle_payment_intent_succeeded,
+        'payment_intent.payment_failed': wh_handler.handle_payment_intent_payment_failed,
+    }
+
+    # Get the event type from Stripe
+    event_type = event['type']
+
+    # If there's a handler for the event, get it from the event map, else use the generic one
+    event_handler = event_map.get(event_type, wh_handler.handle_event)
+
+    # Call the event handler
+    response = event_handler(event)
+    return response
