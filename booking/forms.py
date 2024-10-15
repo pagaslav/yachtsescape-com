@@ -27,7 +27,6 @@ class BookingForm(forms.ModelForm):
                 if start_date > end_date:
                     raise ValidationError("End date must be after the start date.")
                 
-                # Сохраняем даты в cleaned_data, чтобы они были доступны в представлении
                 self.cleaned_data['start_date'] = start_date
                 self.cleaned_data['end_date'] = end_date
             except ValueError:
