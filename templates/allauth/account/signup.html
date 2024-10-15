@@ -7,7 +7,7 @@
 {% load i18n %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+<link rel="stylesheet" href="{% static 'css/allauth.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -34,89 +34,143 @@ Sign Up
 <div class="container mt-4">
     <!-- Introductory text with link to login -->
     <p class="text-center text-muted mb-4">
-        {% trans "Already have an account? Then please" %} 
+        {% trans "Already have an account? Then please" %}
         <a href="{% url 'account_login' %}" class="text-primary font-weight-bold align-top">{% trans "sign in" %}</a>.
     </p>
 
     <!-- Signup form -->
     <form method="POST" action="{% url 'account_signup' %}">
         {% csrf_token %}
-        
+
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8 col-md-10 col-12">
                     <!-- Form fields with customized Bootstrap classes -->
                     <div class="mb-3">
                         <label for="{{ form.username.id_for_label }}" class="form-label fw-bold">
-                            <i class="fas fa-user"></i> {% trans "Username" %}
+                            <i class="fas fa-user"></i> Username <span class="text-danger">*</span>
                         </label>
                         {{ form.username|add_class:"form-control" }}
                     </div>
                     <div class="mb-3">
+                        <label for="{{ form.first_name.id_for_label }}" class="form-label fw-bold">
+                            <i class="fas fa-user"></i> First Name <span class="text-danger">*</span>
+                        </label>
+                        {{ form.first_name|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.last_name.id_for_label }}" class="form-label fw-bold">
+                            <i class="fas fa-user"></i> Last Name <span class="text-danger">*</span>
+                        </label>
+                        {{ form.last_name|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
                         <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">
-                            <i class="fas fa-envelope"></i> {% trans "Email Address" %}
+                            <i class="fas fa-envelope"></i> Email Address <span class="text-danger">*</span>
                         </label>
                         {{ form.email|add_class:"form-control" }}
                     </div>
                     <div class="mb-3">
-                        <label for="{{ form.email2.id_for_label }}" class="form-label fw-bold">
-                            <i class="fas fa-envelope"></i> {% trans "Confirm Email Address" %}
-                        </label>
-                        {{ form.email2|add_class:"form-control" }}
-                    </div>
-                    <div class="mb-3">
                         <label for="{{ form.password1.id_for_label }}" class="form-label fw-bold">
-                            <i class="fas fa-lock"></i> {% trans "Password" %}
+                            <i class="fas fa-lock"></i> Password <span class="text-danger">*</span>
                         </label>
                         {{ form.password1|add_class:"form-control" }}
                     </div>
                     <div class="mb-3">
                         <label for="{{ form.password2.id_for_label }}" class="form-label fw-bold">
-                            <i class="fas fa-lock"></i> {% trans "Confirm Password" %}
+                            <i class="fas fa-lock"></i> Confirm Password <span class="text-danger">*</span>
                         </label>
                         {{ form.password2|add_class:"form-control" }}
+                    </div>
+                    <!-- New fields -->
+                    <div class="mb-3">
+                        <label for="{{ form.phone_number.id_for_label }}" class="form-label fw-bold">
+                            <i class="fas fa-phone"></i> Phone Number
+                        </label>
+                        {{ form.phone_number|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.street_address1.id_for_label }}" class="form-label fw-bold">
+                            <i class="fas fa-map-marker-alt"></i> Street Address 1 <span class="text-danger">*</span>
+                        </label>
+                        {{ form.street_address1|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.street_address2.id_for_label }}" class="form-label fw-bold">
+                            <i class="fas fa-map-marker-alt"></i> Street Address 2
+                        </label>
+                        {{ form.street_address2|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.town_city.id_for_label }}" class="form-label fw-bold">
+                            <i class="fas fa-city"></i> Town or City <span class="text-danger">*</span>
+                        </label>
+                        {{ form.town_city|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.county_state.id_for_label }}" class="form-label fw-bold">
+                            <i class="fas fa-map-signs"></i> County, State or Locality
+                        </label>
+                        {{ form.county_state|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.postal_code.id_for_label }}" class="form-label fw-bold">
+                            <i class="fas fa-mail-bulk"></i> Postal Code
+                        </label>
+                        {{ form.postal_code|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.country.id_for_label }}" class="form-label fw-bold">
+                            <i class="fas fa-flag"></i> Country <span class="text-danger">*</span>
+                        </label>
+                        {{ form.country|add_class:"form-control" }}
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Submit button with enhanced styling -->
-        <div class="container text-center mt-3">
+        <div class="container text-center mt-3 mb-3">
             <button type="submit" class="btn btn-primary header-main-btn py-2 px-4">
                 <i class="fas fa-user-plus me-2"></i>{% trans "Sign Up" %}
             </button>
+        </div>
+        <div class="text-muted mb-3 text-center">
+            <small><i class="fas fa-asterisk text-danger"></i> Fields marked with an asterisk are required.</small>
         </div>
     </form>
 </div>
 
 {% if form.errors %}
-    <!-- Toasts container for displaying errors at the top center -->
-    <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1055;">
-        <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-            <div class="d-flex">
-                <div class="toast-body">
-                    <strong>{% trans "Form Errors:" %}</strong>
-                    <ul>
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <li>{{ field.label }}: {{ error }}</li>
-                            {% endfor %}
-                        {% endfor %}
-                        {% for error in form.non_field_errors %}
-                            <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+<!-- Toasts container for displaying errors at the top center -->
+<div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1055;">
+    <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-autohide="false">
+        <div class="d-flex">
+            <div class="toast-body">
+                <strong>{% trans "Form Errors:" %}</strong>
+                <ul>
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>{{ field.label }}: {{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
             </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var toastEl = document.querySelector('.toast');
-            var toast = new bootstrap.Toast(toastEl);
-            toast.show();
-        });
-    </script>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var toastEl = document.querySelector('.toast');
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
+    });
+</script>
 {% endif %}
 {% endblock %}
