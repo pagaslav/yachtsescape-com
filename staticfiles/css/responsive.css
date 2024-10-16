@@ -77,7 +77,7 @@
   }
 
   #footer-logo img {
-        width: 100px;
+        max-width: 150px;
         height: auto;
     }
 
