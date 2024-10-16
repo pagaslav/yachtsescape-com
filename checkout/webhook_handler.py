@@ -98,6 +98,7 @@ class StripeWH_Handler:
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | ERROR: Booking not found',
                 status=500)
+        
     def handle_checkout_session_async_payment_failed(self, event):
         """Handles the checkout.session.async_payment_failed webhook from Stripe."""
         session = event.data.object
