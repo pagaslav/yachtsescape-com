@@ -56,8 +56,8 @@ def booking_create(request):
                         payment_method_types=['card'],
                         line_items=line_items,
                         mode='payment',
-                        success_url=f"{settings.MYSITE_DOMAIN}/booking/booking_success/{booking.id}/",
-                        cancel_url=f"{settings.MYSITE_DOMAIN}/yachts/yacht/{yacht.id}/",
+                        success_url=f"https://{settings.MYSITE_DOMAIN}/booking/booking_success/{booking.id}/",
+                        cancel_url=f"https://{settings.MYSITE_DOMAIN}/yachts/yacht/{yacht.id}/",
                         client_reference_id=booking.id  # Pass the booking ID here
                     )
 
