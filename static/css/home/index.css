@@ -342,6 +342,12 @@
     height: 2rem;
 }
 
+@media (max-width: 991.98px) {
+    .tablet-mobile-none {
+        display: none !important;
+    }
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -357,5 +363,14 @@
     }
     .yacht-price, .contact-info, .call-to-action {
         font-size: 1rem;
+    }
+    .search-form-container {
+    position: relative;
+    margin-top: 0px; 
+    z-index: 1;
+    }
+
+    .info-section {
+    display: none;
     }
 }

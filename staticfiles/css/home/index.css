@@ -342,6 +342,13 @@
     height: 2rem;
 }
 
+@media (max-width: 991.98px) {
+    div.hero-index-content.tablet-mobile-none {
+        display: none !important;
+    }
+}
+
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

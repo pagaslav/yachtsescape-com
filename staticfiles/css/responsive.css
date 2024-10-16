@@ -75,6 +75,12 @@
   .normal-logo {
     max-width: 80px;
   }
+
+  #footer-logo img {
+        width: 100px;
+        height: auto;
+    }
+
   /* Reduce padding for nav links on small screens */
   .navbar-nav .nav-link {
     padding: 0px 0 !important;

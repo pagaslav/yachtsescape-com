@@ -14,7 +14,7 @@ Home - Yachtsescape
 
 {% block content %}
 <!-- Hero Section -->
-<div class="hero-index-content">
+<div id="" class="hero-index-content tablet-mobile-none">
     <h1 class="hero-title">Welcome to Yachtsescape</h1>
     <a href="{% url 'about' %}" class="hero-link">Explore More</a>
 </div>
@@ -61,7 +61,8 @@ Home - Yachtsescape
 
                     <!-- Search Button -->
                     <div class="col-md-3 text-center">
-                        <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center">Search</button>
+                        <button type="submit"
+                            class="btn btn-primary w-100 d-flex align-items-center justify-content-center">Search</button>
                     </div>
                 </div>
             </form>
@@ -74,15 +75,17 @@ Home - Yachtsescape
         <!-- Text Section -->
         <div class="col-lg-6">
             <h2>Providing a large fleet of Boats for a perfect and dreamy experience</h2>
-            <p>We offer a wide selection of premium boats and yachts to ensure your journey on the water is
-                unforgettable. From stunning cruise paths to top-notch service, we strive to make every experience
-                unique.</p>
-            <ul class="list-unstyled list-arrow">
-                <li>&nbsp;Stunning Cruise Paths You Follow</li>
-                <li>&nbsp;Premium Boats & Yachts</li>
-                <li>&nbsp;Our Professional Approach</li>
-                <li>&nbsp;Quality Service Guaranteed</li>
-            </ul>
+            <div class="info-section">
+                <p>We offer a wide selection of premium boats and yachts to ensure your journey on the water is
+                    unforgettable. From stunning cruise paths to top-notch service, we strive to make every experience
+                    unique.</p>
+                <ul class="list-unstyled list-arrow">
+                    <li>&nbsp;Stunning Cruise Paths You Follow</li>
+                    <li>&nbsp;Premium Boats & Yachts</li>
+                    <li>&nbsp;Our Professional Approach</li>
+                    <li>&nbsp;Quality Service Guaranteed</li>
+                </ul>
+            </div>
             <!-- First Signature Section -->
             <div class="signature mt-4">
                 <img src="{% static 'images/signature-john.png' %}" alt="John's Signature" class="signature-img">
@@ -162,7 +165,8 @@ Home - Yachtsescape
                         <li class="list-inline-item detail-item"><i class="fas fa-utensils"></i> Fully Equipped Kitchen
                         </li>
                     </ul>
-                    <a href="{% url 'yacht_detail' yacht.id %}" class="btn btn-primary w-100 d-flex align-items-center justify-content-center">View Details</a>
+                    <a href="{% url 'yacht_detail' yacht.id %}"
+                        class="btn btn-primary w-100 d-flex align-items-center justify-content-center">View Details</a>
                 </div>
             </div>
         </div>
@@ -179,7 +183,8 @@ Home - Yachtsescape
         {% if deal_yacht %}
         <div class="col-md-4 text-center">
             <img src="{{ deal_yacht.card_image.url }}" alt="{{ deal_yacht.name }}" class="deal-image img-fluid">
-            <a href="{% url 'yacht_detail' deal_yacht.id %}" class="btn btn-primary w-100 mt-2 align-items-center justify-content-center d-flex">View Details</a>
+            <a href="{% url 'yacht_detail' deal_yacht.id %}"
+                class="btn btn-primary w-100 mt-2 align-items-center justify-content-center d-flex">View Details</a>
         </div>
         <div class="col-md-8">
             <div class="deal-content">
@@ -187,7 +192,8 @@ Home - Yachtsescape
                 <h2 class="yacht-name">{{ deal_yacht.name }}</h2>
                 <p class="yacht-price">Rent for ${{ deal_yacht.price_per_day }} / day</p>
                 <p class="yacht-description">
-                    Location: {{ deal_yacht.country }}, {{ deal_yacht.location }} | Type: {{ deal_yacht.type }} {{ deal_yacht.year }} | 
+                    Location: {{ deal_yacht.country }}, {{ deal_yacht.location }} | Type: {{ deal_yacht.type }} {{
+                    deal_yacht.year }} |
                     Guests: {{ deal_yacht.capacity }}
                 </p>
                 <hr class="deal-divider">
@@ -212,36 +218,44 @@ Home - Yachtsescape
         <!-- Testimonial 1 -->
         <div class="carousel-item active">
             <div class="testimonial text-center">
-                <img src="{% static 'images/testimonial1.webp' %}" class="rounded-circle testimonial-img" alt="Testimonial 1">
+                <img src="{% static 'images/testimonial1.webp' %}" class="rounded-circle testimonial-img"
+                    alt="Testimonial 1">
                 <h5 class="testimonial-name">John Doe</h5>
-                <p class="testimonial-text">“The best yacht experience I've ever had! The staff was incredible and the view was unbeatable.”</p>
+                <p class="testimonial-text">“The best yacht experience I've ever had! The staff was incredible and the
+                    view was unbeatable.”</p>
             </div>
         </div>
-        
+
         <!-- Testimonial 2 -->
         <div class="carousel-item">
             <div class="testimonial text-center">
-                <img src="{% static 'images/testimonial2.webp' %}" class="rounded-circle testimonial-img" alt="Testimonial 2">
+                <img src="{% static 'images/testimonial2.webp' %}" class="rounded-circle testimonial-img"
+                    alt="Testimonial 2">
                 <h5 class="testimonial-name">Jane Smith</h5>
-                <p class="testimonial-text">“Unforgettable experience! From the booking process to the trip itself, everything was flawless.”</p>
+                <p class="testimonial-text">“Unforgettable experience! From the booking process to the trip itself,
+                    everything was flawless.”</p>
             </div>
         </div>
-        
+
         <!-- Testimonial 3 -->
         <div class="carousel-item">
             <div class="testimonial text-center">
-                <img src="{% static 'images/testimonial3.webp' %}" class="rounded-circle testimonial-img" alt="Testimonial 3">
+                <img src="{% static 'images/testimonial3.webp' %}" class="rounded-circle testimonial-img"
+                    alt="Testimonial 3">
                 <h5 class="testimonial-name">Tom & Martha</h5>
-                <p class="testimonial-text">“Perfect for a relaxing day out on the water. We enjoyed every moment and highly recommend it.”</p>
+                <p class="testimonial-text">“Perfect for a relaxing day out on the water. We enjoyed every moment and
+                    highly recommend it.”</p>
             </div>
         </div>
-        
+
         <!-- Testimonial 4 -->
         <div class="carousel-item">
             <div class="testimonial text-center">
-                <img src="{% static 'images/testimonial4.webp' %}" class="rounded-circle testimonial-img" alt="Testimonial 4">
+                <img src="{% static 'images/testimonial4.webp' %}" class="rounded-circle testimonial-img"
+                    alt="Testimonial 4">
                 <h5 class="testimonial-name">Emily Fisher</h5>
-                <p class="testimonial-text">“Amazing fishing trip! I caught so many fish and had a wonderful time. Can't wait to go again!”</p>
+                <p class="testimonial-text">“Amazing fishing trip! I caught so many fish and had a wonderful time. Can't
+                    wait to go again!”</p>
             </div>
         </div>
     </div>
