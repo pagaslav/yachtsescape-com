@@ -18,14 +18,14 @@ class Order(models.Model):
     )
     
     # Order contact information
-    full_name = models.CharField(max_length=50, null=False, blank=False)
-    email = models.EmailField(max_length=254, null=False, blank=False)
-    phone_number = models.CharField(max_length=20, null=False, blank=False)
-    street_address1 = models.CharField(max_length=80, null=False, blank=False)
+    full_name = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(max_length=254, null=True, blank=True)
+    phone_number = models.CharField(max_length=20, null=True, blank=True)
+    street_address1 = models.CharField(max_length=80, null=True, blank=True)
     street_address2 = models.CharField(max_length=80, blank=True, null=True)
-    town_or_city = models.CharField(max_length=40, null=False, blank=False)
+    town_or_city = models.CharField(max_length=40, null=True, blank=True)
     postcode = models.CharField(max_length=20, blank=True, null=True)
-    country = CountryField(blank_label='Country *', null=False, blank=False)
+    country = CountryField(blank_label='Country *', null=True, blank=True)
     county = models.CharField(max_length=80, blank=True, null=True)
     
     # Payment and order tracking information

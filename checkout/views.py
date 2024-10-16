@@ -12,7 +12,6 @@ from profiles.forms import UserProfileForm
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
 import stripe
-stripe.api_version = "2024-06-20"
 
 # View to handle caching of checkout data for Stripe
 @require_POST
@@ -185,7 +184,7 @@ def checkout_success(request, order_number):
 
 
 @csrf_exempt
-def webhook(request):
+def stripe_webhook(request):
     # Retrieve the event by verifying the webhook signature
     payload = request.body
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']

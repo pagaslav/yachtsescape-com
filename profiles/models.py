@@ -1,36 +1,19 @@
-from django.db import models
+# profiles/models.py
+
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django_countries.fields import CountryField
+from django.db import models
 
 class UserProfile(models.Model):
-    """
-    A user profile model for maintaining default
-    delivery information, order history, and personal preferences
-    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    default_phone_number = models.CharField(max_length=20, null=True, blank=True)
-    default_street_address1 = models.CharField(max_length=80, null=True, blank=True)
-    default_street_address2 = models.CharField(max_length=80, null=True, blank=True)
-    default_town_or_city = models.CharField(max_length=40, null=True, blank=True)
-    default_county = models.CharField(max_length=80, null=True, blank=True)
-    default_postcode = models.CharField(max_length=20, null=True, blank=True)
-    default_country = CountryField(blank_label='Country', null=True, blank=True)
-    
-    # Additional fields for client preferences
-    additional_comments = models.TextField(null=True, blank=True, help_text="Additional comments or requests from the client.")
-    preferences = models.TextField(null=True, blank=True, help_text="Client's preferences regarding the yacht rental.")
+    first_name = models.CharField(max_length=30, blank=True, null=True)
+    last_name = models.CharField(max_length=30, blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    street_address1 = models.CharField(max_length=255, blank=True, null=True)
+    street_address2 = models.CharField(max_length=255, blank=True, null=True)
+    town_city = models.CharField(max_length=50, blank=True, null=True)
+    county_state = models.CharField(max_length=50, blank=True, null=True)
+    postal_code = models.CharField(max_length=20, blank=True, null=True)
+    country = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
-        return self.user.username
-
-@receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
-    """
-    Create or update the user profile
-    """
-    if created:
-        UserProfile.objects.create(user=instance)
-    # Existing users: just save the profile
-    instance.userprofile.save()
+        return f"{self.user.username}'s Profile"
