@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       minDate: "today",
       dateFormat: "Y-m-d",
       disable: disabledDates, // Use the array of disabled dates directly
-      onChange: function (selectedDates, dateStr, instance) {
+      onChange: function (selectedDates) {
         if (selectedDates.length === 2) {
           // Store the selected date range globally
           selectedDateRange = [selectedDates[0], selectedDates[1]]
@@ -122,46 +122,47 @@ document.addEventListener("DOMContentLoaded", async function () {
     return cookieValue
   }
 
-  window.handleFormSubmit = function (event) {
+  function handleFormSubmit(event) {
     event.preventDefault() // Prevent default form submission
-
-    // Log yacht ID and date range
-    console.log("Yacht ID:", yachtId)
 
     if (dateRange.length === 2) {
       console.log("Date Range:", `${dateRange[0]} to ${dateRange[1]}`)
 
-      // Construct the data to send
       const formData = new FormData()
       formData.append("yacht", yachtId)
       formData.append("date_range", `${dateRange[0]} to ${dateRange[1]}`)
 
-      // Send a POST request using Fetch API
+      // Send a POST request
       fetch("/booking/booking/create/", {
-        // Replace with your actual URL
         method: "POST",
         body: formData,
         headers: {
-          "X-CSRFToken": getCSRFToken(), // Ensure you include CSRF token for security
+          "X-CSRFToken": getCSRFToken(),
         },
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+          }
+          return response.json()
+        })
         .then((data) => {
           console.log("Success:", data)
           if (data.success) {
-            // If the booking was successful, redirect to the provided URL
-            window.location.href = data.redirect_url // Redirect to the checkout page
+            window.location.href = data.redirect_url
           } else {
-            // Handle errors by logging or showing a message to the user
-            console.error("Error:", data.message || "An error occurred.")
-            alert(data.message || "An error occurred.") // Optional: Show an alert
+            alert(data.message || "An error occurred.")
           }
         })
         .catch((error) => {
           console.error("Error:", error)
+          alert("An error occurred during booking.")
         })
     } else {
-      console.log("No valid date range selected")
+      alert("No valid date range selected.")
     }
   }
+
+  // Attach handleFormSubmit globally
+  window.handleFormSubmit = handleFormSubmit
 })

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block title %}
+    Booking Confirmation
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col text-center">
+                <hr>
+                <h2 class="logo-font mb-4">Thank You</h2>
+                <hr>
+                <p>Your booking details are below. A confirmation email will be sent to <strong>{{ profiles.user.email }}</strong>.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-8 mx-auto">
+                <div class="order-confirmation-wrapper p-3 border">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <small class="text-muted">Booking Information:</small>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-12 col-md-6">
+                            <p class="text-black font-weight-bold">Booking ID</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-md-right">
+                            <p>{{ booking.id }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-12 col-md-6">
+                            <p class="text-black font-weight-bold">Booking Date</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-md-right">
+                            <p>{{ booking.created_at|date:"F j, Y" }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <small class="text-muted">Yacht Details:</small>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-12 col-md-6">
+                            <p class="text-black font-weight-bold">Yacht</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-md-right">
+                            <p>{{ booking.yacht.name }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-12 col-md-6">
+                            <p class="text-black font-weight-bold">Dates</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-md-right">
+                            <p>{{ booking.start_date }} - {{ booking.end_date }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <small class="text-muted">Contact Information:</small>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-12 col-md-6">
+                            <p class="text-black font-weight-bold">Full Name</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-md-right">
+                            <p>{{ profiles.full_name }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-12 col-md-6">
+                            <p class="text-black font-weight-bold">Email</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-md-right">
+                            <p>{{ profiles.user.email }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-12 col-md-6">
+                            <p class="text-black font-weight-bold">Phone Number</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-md-right">
+                            <p>{{ profiles.phone_number }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <small class="text-muted">Payment Information:</small>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-12 col-md-6">
+                            <p class="text-black font-weight-bold">Total Cost</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-md-right">
+                            <p>${{ booking.total_cost|floatformat:2 }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4 text-center">
+            <div class="col">
+                <a href="{% url 'yacht_list' %}" class="btn btn-black rounded-0">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    View More Yachts
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

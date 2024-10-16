@@ -1,20 +1,20 @@
 <!-- booking/templates/booking/booking-form.html -->
 
-{% extends 'base.html' %}  <!-- Расширяем базовый шаблон, чтобы сохранить общий стиль -->
+{% extends 'base.html' %}  
 
 {% block title %}
-Booking Form  <!-- Заголовок страницы -->
+Booking Form 
 {% endblock %}
 
 {% block content %}
-<h2>Booking Form</h2>  <!-- Заголовок формы -->
+<h2>Booking Form</h2>
 
-<!-- Форма для бронирования -->
+
 <form method="POST">
-    {% csrf_token %}  <!-- Защита от CSRF атак -->
-    {{ form.as_p }}  <!-- Отображение полей формы, каждое поле в <p> -->
+    {% csrf_token %} 
+    {{ form.as_p }} 
+
     
-    <!-- Кнопка для отправки формы -->
     <button type="submit" class="btn btn-primary">Submit Booking</button>
 </form>
 {% endblock %}

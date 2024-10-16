@@ -7,6 +7,7 @@ from .models import Yacht
 from booking.models import Booking
 from booking.forms import BookingForm  # Import the booking form
 from datetime import datetime
+from django.conf import settings
 
 # View to display a list of yachts
 def yacht_list(request):
@@ -154,6 +155,7 @@ def yacht_detail(request, yacht_id):
         'yacht': yacht,
         'booked_dates': booked_dates,
         'form': form,  # Pass the form to the context
+        'stripe_public_key': settings.STRIPE_PUBLIC_KEY,  # Pass Stripe public key to the context
     }
 
     return render(request, 'yachts/yacht_detail.html', context)

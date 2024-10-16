@@ -69,12 +69,14 @@ Our Fleet - {{ yacht.name }} details
             {% csrf_token %}
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <label for="dateRange" class="form-label">Select Dates</label>
+                    <label for="dateRange" class="form-label"></label>
                     <input type="text" id="dateRange" name="date_range" class="form-control" placeholder="Select dates"
                         required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary" onclick="handleFormSubmit(event)">Book Now</button>
+            <div class="text-center">
+                <button type="button" class="btn btn-primary mb-4" onclick="handleFormSubmit(event)">Book Now</button>
+            </div>
         </form>
     {% else %}
         <!-- Message for non-authenticated users -->
@@ -87,4 +89,8 @@ Our Fleet - {{ yacht.name }} details
 
 {% block extra_js %}
 <script src="{% static 'js/yachts.js' %}"></script>
+<script>
+    const stripePublicKey = "{{ stripe_public_key }}";
+</script>
+<!-- <script src="{% static 'js/stripe_checkout.js' %}"></script> -->
 {% endblock %}
