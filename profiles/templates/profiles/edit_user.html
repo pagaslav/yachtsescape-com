@@ -1,0 +1,77 @@
+<!-- templates/edit_user.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Edit User Profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        <!-- User Information -->
+        <h3>User Information</h3>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+        </div>
+
+        <!-- Profile Information -->
+        <h3>Profile Information</h3>
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ profile.first_name }}">
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ profile.last_name }}">
+        </div>
+        <div class="mb-3">
+            <label for="phone_number" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ profile.phone_number }}">
+        </div>
+        <div class="mb-3">
+            <label for="street_address1" class="form-label">Street Address 1</label>
+            <input type="text" class="form-control" id="street_address1" name="street_address1" value="{{ profile.street_address1 }}">
+        </div>
+        <div class="mb-3">
+            <label for="street_address2" class="form-label">Street Address 2</label>
+            <input type="text" class="form-control" id="street_address2" name="street_address2" value="{{ profile.street_address2 }}">
+        </div>
+        <div class="mb-3">
+            <label for="town_city" class="form-label">Town/City</label>
+            <input type="text" class="form-control" id="town_city" name="town_city" value="{{ profile.town_city }}">
+        </div>
+        <div class="mb-3">
+            <label for="county_state" class="form-label">County/State</label>
+            <input type="text" class="form-control" id="county_state" name="county_state" value="{{ profile.county_state }}">
+        </div>
+        <div class="mb-3">
+            <label for="postal_code" class="form-label">Postal Code</label>
+            <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ profile.postal_code }}">
+        </div>
+        <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" class="form-control" id="country" name="country" value="{{ profile.country }}">
+        </div>
+
+        <!-- Password Change Section -->
+        <h3>Change Password</h3>
+        <div class="mb-3">
+            <label for="current_password" class="form-label">Current Password</label>
+            <input type="password" class="form-control" id="current_password" name="current_password" required>
+        </div>
+        <div class="mb-3">
+            <label for="new_password" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="new_password" name="new_password" required>
+        </div>
+        <div class="mb-3">
+            <label for="confirm_password" class="form-label">Confirm New Password</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

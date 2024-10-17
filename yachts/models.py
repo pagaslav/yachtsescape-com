@@ -103,7 +103,6 @@ class Yacht(models.Model):
         try:
             logger.debug(f"Attempting to save yacht: {self.name}")  # Log the attempt to save
             super().save(*args, **kwargs)  # Save the model instance
-            logger.info(f"Image uploaded successfully: {self.image.url}")  # Log successful upload
         except Exception as e:
             logger.error(f"Error uploading image: {e}")  # Log the error for debugging
             raise  # Raise the exception to prevent silent failure
@@ -112,11 +111,20 @@ class Yacht(models.Model):
         """
         Delete the yacht instance from the database and remove the image from S3 storage if it exists.
         """
-        if self.card_image:  # Ensure card_image exists before trying to delete it
-            storage = S3Boto3Storage()
-            storage.delete(self.card_image.name)  # Delete the image from S3 storage
-            logger.info(f"Image deleted from S3: {self.card_image.name}")  # Log successful deletion
-        super().delete(*args, **kwargs)  # Delete the model instance
+        # Check if card_image is set and has a name
+        if self.card_image and self.card_image.name:
+            try:
+                # Use the storage attribute directly from the field
+                storage = self.card_image.storage  
+                storage.delete(self.card_image.name)  # Delete the image from S3 storage
+                logger.info(f"Image deleted from S3: {self.card_image.name}")  # Log successful deletion
+            except Exception as e:
+                logger.error(f"Error deleting image from S3: {e}")  # Log the error
+        else:
+            logger.warning("No card image to delete or image name is not set.")
+
+        super().delete(*args, **kwargs)  # Call the superclass delete method
+
 
     def __str__(self):
         """Return the name of the yacht as its string representation."""

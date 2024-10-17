@@ -33,18 +33,13 @@ Our Fleet - {{ yacht.name }} details
         <li><i class="fas fa-id-card"></i> <strong>ID:</strong> {{ yacht.id }}</li>
     </ul>
 
-    <div id="yachtGallery" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <!-- JavaScript will dynamically insert carousel items here -->
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#yachtGallery" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#yachtGallery" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+    <!-- Display yacht image or single image based on availability -->
+    <div id="yachtGallery">
+        {% if yacht.detail_image %}
+            <img src="{{ yacht.detail_image.url }}" class="d-block w-100" alt="{{ yacht.name }}">
+        {% else %}
+            <p>No image available for this yacht.</p>
+        {% endif %}
     </div>
 
     <ul class="yacht-attributes-row mt-3">
@@ -92,5 +87,4 @@ Our Fleet - {{ yacht.name }} details
 <script>
     const stripePublicKey = "{{ stripe_public_key }}";
 </script>
-<!-- <script src="{% static 'js/stripe_checkout.js' %}"></script> -->
 {% endblock %}

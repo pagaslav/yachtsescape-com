@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Edit Yacht
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit Yacht: {{ yacht.name }}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}  <!-- Using crispy forms for better styling -->
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{% url 'yachts_management' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

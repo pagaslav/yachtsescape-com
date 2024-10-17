@@ -13,7 +13,7 @@ Edit Profile - {{ user.username }}
     <h1>Edit Profile</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form|crispy }}
+        {{ form|crispy }}  <!-- Using Crispy Forms for better styling -->
         <button type="submit" class="btn btn-primary">Save changes</button>
     </form>
     <a href="{% url 'profile' %}" class="btn btn-secondary mt-3">Cancel</a>
