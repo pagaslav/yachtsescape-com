@@ -53,7 +53,8 @@ class StripeWH_Handler:
 
         # Retrieve the booking ID from metadata
         booking_id = intent.metadata.get('booking_id')
-        logger.debug(f"Retrieved booking_id: {booking_id}")
+        logger.error(f"Metadata received: {intent.metadata}")
+        logger.error(f"Retrieved booking_id: {booking_id}")
 
         # Check if booking_id is None
         if booking_id is None:
