@@ -11,7 +11,7 @@ from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
-from webhook_handler import StripeWH_Handler
+from .webhook_handler import StripeWH_Handler
 import stripe
 
 # View to handle caching of checkout data for Stripe
