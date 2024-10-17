@@ -27,6 +27,16 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'yachtsescape-a7b4e5d759f6.herokuapp.com']
 MYSITE_DOMAIN = 'yachtsescape-a7b4e5d759f6.herokuapp.com'
 
+# MYSITE_DOMAIN = '127.0.0.1:8000'
+
+# MYSITE_DOMAIN = 'http://localhost:8000'
+
+
+# if os.environ.get('DJANGO_ENV') == 'production':
+#     MYSITE_DOMAIN = 'yachtsescape-a7b4e5d759f6.herokuapp.com'
+# else:
+#     MYSITE_DOMAIN = '127.0.0.1:8000'
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',

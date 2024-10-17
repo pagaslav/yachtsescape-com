@@ -89,7 +89,7 @@
                             <li><a class="dropdown-item" href="#">Yachts Management</a></li>
                             {% endif %}
                             <!-- Profile and Logout for authenticated users -->
-                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
                             <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                         </ul>
                     </li>

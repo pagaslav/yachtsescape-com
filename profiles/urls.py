@@ -1,7 +1,9 @@
-# from django.urls import path
-# from .views import register, profile
+# profiles/urls.py
 
-# urlpatterns = [
-#     path('register/', register, name='register'),
-#     path('profile/', profile, name='profile'),
-# ]
+from django.urls import path
+from .views import profile, profile_edit
+
+urlpatterns = [
+    path('profile/', profile, name='profile'),
+    path('profile/edit/', profile_edit, name='profile_edit'),
+]
