@@ -8,6 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 from checkout.webhook_handler import StripeWH_Handler
 import stripe
 
+stripe.api_version = settings.STRIPE_API_VERSION 
+
 # Setup logging
 logger = logging.getLogger(__name__)
 

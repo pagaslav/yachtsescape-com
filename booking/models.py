@@ -62,5 +62,5 @@ class Booking(models.Model):
 
     def cancel_booking(self):
         self.status = 'cancelled'
-        self.save()
+        # self.save()
         super().save(update_fields=['status'])  # Save only the 'status' field

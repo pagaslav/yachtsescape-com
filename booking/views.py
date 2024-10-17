@@ -11,6 +11,7 @@ import stripe
 
 # Set the Stripe secret key for API access
 stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe.api_version = settings.STRIPE_API_VERSION 
 
 def booking_create(request):
     if request.method == 'POST':

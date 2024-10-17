@@ -247,6 +247,7 @@ STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 # STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 # STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 STRIPE_WH_SECRET = config('STRIPE_WH_SECRET')
+STRIPE_API_VERSION = "2024-06-20"
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -8,6 +8,9 @@ from django.template.loader import render_to_string
 from django.conf import settings
 from booking.models import Booking
 from django.utils.timezone import now
+import stripe
+
+stripe.api_version = settings.STRIPE_API_VERSION 
 
 # Setting up logging to track events and errors in the webhook handler
 logger = logging.getLogger(__name__)
