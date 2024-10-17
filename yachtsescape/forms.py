@@ -3,8 +3,18 @@ from django import forms
 from profiles.models import UserProfile
 
 class CustomSignupForm(SignupForm):
-    first_name = forms.CharField(max_length=30, label="First Name", required=True)
-    last_name = forms.CharField(max_length=30, label="Last Name", required=True)
+    first_name = forms.CharField(
+        max_length=30,
+        label="First Name",
+        required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Enter your first name'}),
+    )
+    last_name = forms.CharField(
+        max_length=30,
+        label="Last Name",
+        required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Enter your last name'}),
+    )
     phone_number = forms.CharField(
         max_length=15, required=False, label="Phone Number",
         widget=forms.TextInput(attrs={'placeholder': '07990347684'})

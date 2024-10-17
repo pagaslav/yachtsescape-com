@@ -25,7 +25,8 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'yachtsescape-a7b4e5d759f6.herokuapp.com']
-MYSITE_DOMAIN = 'yachtsescape-a7b4e5d759f6.herokuapp.com'
+
+# MYSITE_DOMAIN = 'yachtsescape-a7b4e5d759f6.herokuapp.com'
 
 # MYSITE_DOMAIN = '127.0.0.1:8000'
 

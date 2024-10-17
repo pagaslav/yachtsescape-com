@@ -92,3 +92,15 @@ a {
     justify-content: center;
     margin-top: 10px;
 }
+
+::placeholder {
+    color: #ced4da !important;
+    opacity: 0.5;
+    font-size: 0.85em;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #ced4da;
+    opacity: 0.5;
+}
