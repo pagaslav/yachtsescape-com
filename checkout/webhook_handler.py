@@ -51,20 +51,23 @@ class StripeWH_Handler:
 
     def handle_payment_intent_succeeded(self, event):
         """Handles the payment_intent.succeeded webhook from Stripe."""
-        intent = event.data.object
-        logger.info(f"Intent data: {json.dumps(intent, indent=2)}")
-
+        # intent = event.data.object
+        session = event.data.object
+        # logger.info(f"Intent data: {json.dumps(intent, indent=2)}")
+        logger.info(f"Intent data: {json.dumps(session, indent=2)}")
+        
         # Retrieve the booking ID from metadata
-        booking_id = intent.metadata.get('booking_id')
-        logger.error(f"Metadata received: {intent.metadata}")
+        booking_id = session.client_reference_id
+        # booking_id = intent.metadata.get('booking_id')
+        # logger.error(f"Metadata received: {intent.metadata}")
         logger.error(f"Retrieved booking_id: {booking_id}")
 
         # Check if booking_id is None
-        if booking_id is None:
-            logger.error("Booking ID is missing in the webhook metadata.")
-            return HttpResponse(
-                content=f'Webhook received: {event["type"]} | ERROR: Booking ID missing',
-                status=400)
+        # if booking_id is None:
+        #     logger.error("Booking ID is missing in the webhook metadata.")
+        #     return HttpResponse(
+        #         content=f'Webhook received: {event["type"]} | ERROR: Booking ID missing',
+        #         status=400)
 
         try:
             # Fetch the booking associated with this payment
