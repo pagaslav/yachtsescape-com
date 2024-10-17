@@ -93,13 +93,13 @@
             aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header justify-content-between">
                 <h5 class="offcanvas-title flex-grow-1 text-center" id="offcanvasNavbarLabel">Menu</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close navigation menu"></button>
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == '/' %}active{% endif %}"
-                            href="{% url 'home' %}">Home</a>
+                            href="{% url 'home' %}" aria-label="Homepage">Home</a>
                     </li>
 
                     <!-- Conditional Menu Based on User Authentication Status -->
@@ -194,7 +194,7 @@
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="bookNowModalLabel">Booking Form</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                                        aria-label="Close booking form"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form id="bookingForm" action="{% url 'yacht_list' %}" method="GET">
@@ -211,22 +211,23 @@
                                             <label for="capacity" class="form-label">Select Capacity</label>
                                             <select id="capacity" name="capacity" class="form-select">
                                                 <option value="">Any Capacity</option>
-                                                <option value="2-6">Up to 6</option>
-                                                <option value="6-8">6-8</option>
+                                                <option value="2-8">Up to 8</option>
                                                 <option value="8_plus">More than 8</option>
                                             </select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="startDate" class="form-label">Start Date</label>
                                             <input type="date" id="startDate" name="start_date" class="form-control"
-                                                required>
+                                                required aria-describedby="start-date-description">
+                                            <span id="start-date-description" class="visually-hidden">Select the start date for your yacht rental</span>
                                         </div>
                                         <div class="mb-3">
                                             <label for="endDate" class="form-label">End Date</label>
                                             <input type="date" id="endDate" name="end_date" class="form-control"
-                                                required>
+                                                required aria-describedby="end-date-description">
+                                            <span id="end-date-description" class="visually-hidden">Select the end date for your yacht rental</span>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Search</button>
+                                        <button type="submit" class="btn btn-primary" aria-label="Search for available yachts">Search</button>
                                     </form>
                                 </div>
                             </div>
