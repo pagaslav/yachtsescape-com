@@ -4,6 +4,10 @@ from django.db import models
 from django.contrib.auth.models import User  # Import the User model
 from yachts.models import Yacht  # Import the Yacht model
 from django.utils import timezone
+from django.db import transaction
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')  # Add user field
@@ -46,8 +50,15 @@ class Booking(models.Model):
         super().save(*args, **kwargs)
 
     def confirm_booking(self):
-        self.status = 'confirmed'
-        super().save(update_fields=['status'])  # Save only the 'status' field
+        try:
+            # Use an atomic transaction to ensure database consistency
+            with transaction.atomic():
+                self.status = 'confirmed'
+                # Save only the 'status' field to avoid recursion or unnecessary updates
+                super().save(update_fields=['status'])
+        except Exception as e:
+            logger.error(f"Error confirming booking {self.id}: {e}")
+            raise  # Re-raise the exception to handle it in the caller
 
     def cancel_booking(self):
         self.status = 'cancelled'
