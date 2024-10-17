@@ -53,12 +53,25 @@ class StripeWH_Handler:
 
         # Retrieve the booking ID from metadata
         booking_id = intent.metadata.get('booking_id')
+        logger.debug(f"Retrieved booking_id: {booking_id}")
+
+        # Check if booking_id is None
+        if booking_id is None:
+            logger.error("Booking ID is missing in the webhook metadata.")
+            return HttpResponse(
+                content=f'Webhook received: {event["type"]} | ERROR: Booking ID missing',
+                status=400)
 
         try:
             # Fetch the booking associated with this payment
             booking = Booking.objects.get(id=booking_id)
+            
+            # Confirm the booking
             booking.confirm_booking()  # Update status to confirmed
+            
+            # Send confirmation email
             self._send_confirmation_email(booking)
+            
             logger.info(f"Booking {booking_id} confirmed and email sent.")
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Booking confirmed',
@@ -67,6 +80,12 @@ class StripeWH_Handler:
             logger.error(f"Booking with ID {booking_id} not found.")
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | ERROR: Booking not found',
+                status=500)
+        except Exception as e:
+            # Log any other unexpected errors
+            logger.error(f"An error occurred while processing booking {booking_id}: {e}")
+            return HttpResponse(
+                content=f'Webhook received: {event["type"]} | ERROR: {str(e)}',
                 status=500)
 
     def handle_payment_intent_payment_failed(self, event):
