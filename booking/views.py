@@ -59,9 +59,9 @@ def booking_create(request):
                         success_url=f"https://{settings.MYSITE_DOMAIN}/booking/booking_success/{booking.id}/",
                         cancel_url=f"https://{settings.MYSITE_DOMAIN}/yachts/yacht/{yacht.id}/",
                         client_reference_id=booking.id,
-                          metadata={
-                                'booking_id': booking.id  # Add booking_id to the session metadata
-                            }  # Pass the booking ID here
+                        metadata={
+                            'booking_id': booking.id  # Add booking_id to the session metadata
+                        }  # Pass the booking ID here
                     )
 
                     # Redirect the user to the Stripe Checkout URL
