@@ -57,7 +57,7 @@ class StripeWH_Handler:
         logger.info(f"Intent data: {json.dumps(session, indent=2)}")
         
         # Retrieve the booking ID from metadata
-        booking_id = session.client_reference_id
+        booking_id = getattr(session, 'client_reference_id', None)
         # booking_id = intent.metadata.get('booking_id')
         # logger.error(f"Metadata received: {intent.metadata}")
         logger.error(f"Retrieved booking_id: {booking_id}")
