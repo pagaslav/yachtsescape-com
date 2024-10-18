@@ -263,7 +263,7 @@
 
 .modal,
 .zindex {
-    z-index: 3;
+    z-index: 9999;
 }
 
 .modal-content {
