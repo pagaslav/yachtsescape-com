@@ -1,7 +1,7 @@
 console.log("yachts.js loaded"); // Check if the file is loaded
 
 document.addEventListener("DOMContentLoaded", async function () {
-  const imageContainer = document.querySelector("#yachtGallery .carousel-inner"); 
+  const imageContainer = document.querySelector("#yachtGallery .carousel-inner"); // Select the carousel inner container
   const bucketUrl = "https://yachtsescape.s3.eu-west-2.amazonaws.com/media/yachts/details/";
   const totalImages = 4; // Maximum number of images to display
   let selectedDateRange = []; // Store selected date range globally
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   async function fetchBookedDates() {
     try {
-      const response = await fetch("/bookings/");
+      const response = await fetch(`/yachts/yacht/${yachtId}/bookings/`);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }

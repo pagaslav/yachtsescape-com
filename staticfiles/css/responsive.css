@@ -25,13 +25,14 @@
     top: 100%;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 9999;
   }
 
   /* Ensure menu items are displayed vertically */
   .navbar-nav {
     display: flex;
     flex-direction: column !important;
+    /* z-index: 1050; */
   }
 
   /* Style individual nav links (menu items) */
