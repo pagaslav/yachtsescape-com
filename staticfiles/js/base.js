@@ -5,8 +5,8 @@ $(document).ready(function () {
 
   // Function to change the logo based on scroll position and window width
   function updateLogo() {
-    let windowWidth = $(window).width() // Get updated window width
-    let scrollTop = $(window).scrollTop() // Get current scroll position
+    let windowWidth = $(window).width() 
+    let scrollTop = $(window).scrollTop()
     let lightLogo = $("#logo").data("light-logo")
     let darkLogo = $("#logo").data("dark-logo")
     let smallLightLogo = $("#logo").data("small-light-logo")
@@ -16,19 +16,19 @@ $(document).ready(function () {
       // Change logo to dark version based on screen size
       if (windowWidth < 689) {
         console.log("Switching to small dark logo:", smallDarkLogo)
-        $("#logo").attr("src", smallDarkLogo) // Small dark logo for small screens
+        $("#logo").attr("src", smallDarkLogo) 
       } else {
         console.log("Switching to dark logo:", darkLogo)
-        $("#logo").attr("src", darkLogo) // Dark logo for larger screens
+        $("#logo").attr("src", darkLogo)
       }
     } else {
       // Change logo to light version based on screen size
       if (windowWidth < 689) {
         console.log("Switching to small light logo:", smallLightLogo)
-        $("#logo").attr("src", smallLightLogo) // Small light logo for small screens
+        $("#logo").attr("src", smallLightLogo) 
       } else {
         console.log("Switching to light logo:", lightLogo)
-        $("#logo").attr("src", lightLogo) // Light logo for larger screens
+        $("#logo").attr("src", lightLogo)
       }
     }
   }
@@ -74,9 +74,9 @@ $(document).ready(function () {
 
   // Handle resize events to update logo when screen size changes
   $(window).on("resize", function () {
-    updateLogo() // Only update the logo on resize
+    updateLogo()
   })
 
   // Run the function immediately if the page is already scrolled or resized
-  handleScroll() // Initial call to handle scrolling
+  handleScroll()
 })

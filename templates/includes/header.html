@@ -10,7 +10,6 @@
 
     <!-- Top bar -->
     <div class="d-flex justify-content-between align-items-center py-2 ms-3 me-3 header-top-bar" id="top-bar">
-
         <!-- Phone -->
         <div class="d-flex align-items-center flex-shrink-0 ms-3 header-top-item">
             <a href="tel:+447990278555" aria-label="Call us at +44 7990 278555" class="text-decoration-none text-white">
@@ -19,7 +18,6 @@
                 </span>
             </a>
         </div>
-
         <!-- Email -->
         <div class="d-flex align-items-center flex-shrink-0 ms-3 header-top-item" id="email-align">
             <a href="mailto:support@yachtsescape.com" class="email-link"
@@ -29,7 +27,6 @@
                 <span>Email: support@yachtsescape.com</span>
             </a>
         </div>
-
         <!-- Social Media -->
         <div class="d-flex align-items-center justify-content-end ms-auto">
             <ul class="list-inline mb-0">
@@ -93,13 +90,14 @@
             aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header justify-content-between">
                 <h5 class="offcanvas-title flex-grow-1 text-center" id="offcanvasNavbarLabel">Menu</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close navigation menu"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                    aria-label="Close navigation menu"></button>
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/' %}active{% endif %}"
-                            href="{% url 'home' %}" aria-label="Homepage">Home</a>
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}"
+                            aria-label="Homepage">Home</a>
                     </li>
 
                     <!-- Conditional Menu Based on User Authentication Status -->
@@ -185,56 +183,61 @@
                     <!-- "Book Now" button -->
                     <button class="btn btn-sm header-main-btn" data-bs-toggle="modal" data-bs-target="#bookNowModal"
                         aria-label="Book your yacht now">Book Now</button>
-
-                    <!-- Book Now Modal -->
-                    <div class="modal fade" id="bookNowModal" tabindex="-1" aria-labelledby="bookNowModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="bookNowModalLabel">Booking Form</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close booking form"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form id="bookingForm" action="{% url 'yacht_list' %}" method="GET">
-                                        <div class="mb-3">
-                                            <label for="boatType" class="form-label">Select Boat Type</label>
-                                            <select id="boatType" name="type" class="form-select">
-                                                <option value="">Any Type</option>
-                                                <option value="celebrations">Celebrations</option>
-                                                <option value="fishing">Fishing</option>
-                                                <option value="leisure">Leisure</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="capacity" class="form-label">Select Capacity</label>
-                                            <select id="capacity" name="capacity" class="form-select">
-                                                <option value="">Any Capacity</option>
-                                                <option value="2-8">Up to 8</option>
-                                                <option value="8_plus">More than 8</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="startDate" class="form-label">Start Date</label>
-                                            <input type="date" id="startDate" name="start_date" class="form-control"
-                                                required aria-describedby="start-date-description">
-                                            <span id="start-date-description" class="visually-hidden">Select the start date for your yacht rental</span>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="endDate" class="form-label">End Date</label>
-                                            <input type="date" id="endDate" name="end_date" class="form-control"
-                                                required aria-describedby="end-date-description">
-                                            <span id="end-date-description" class="visually-hidden">Select the end date for your yacht rental</span>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary" aria-label="Search for available yachts">Search</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </ul>
             </div>
         </div>
     </div>
 </header>
+
+<!-- Book Now Modal -->
+<div class="modal fade" id="bookNowModal" tabindex="-1"
+    aria-labelledby="bookNowModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center w-100" id="bookNowModalLabel">Booking Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close booking form"></button>
+            </div>
+            <div class="modal-body zindex">
+                <form id="bookingForm" action="{% url 'yacht_list' %}" method="GET">
+                    <div class="mb-3">
+                        <label for="boatType" class="form-label">Select Boat Type</label>
+                        <select id="boatType" name="type" class="form-select">
+                            <option value="">Any Type</option>
+                            <option value="celebrations">Celebrations</option>
+                            <option value="fishing">Fishing</option>
+                            <option value="leisure">Leisure</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="capacity" class="form-label">Select Capacity</label>
+                        <select id="capacity" name="capacity" class="form-select">
+                            <option value="">Any Capacity</option>
+                            <option value="2-8">Up to 8</option>
+                            <option value="8_plus">More than 8</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="startDate" class="form-label">Start Date</label>
+                        <input type="date" id="startDate" name="start_date" class="form-control"
+                            required aria-describedby="start-date-description">
+                        <span id="start-date-description" class="visually-hidden">Select the start
+                            date for your yacht rental</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="endDate" class="form-label">End Date</label>
+                        <input type="date" id="endDate" name="end_date" class="form-control"
+                            required aria-describedby="end-date-description">
+                        <span id="end-date-description" class="visually-hidden">Select the end date
+                            for your yacht rental</span>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="header-main-btn"
+                            aria-label="Search for available yachts">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

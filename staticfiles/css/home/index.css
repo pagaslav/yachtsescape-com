@@ -6,7 +6,6 @@
   transform: translate(-50%, -50%);
   text-align: center;
   text-transform: uppercase;
-  font-weight: bold;
   z-index: 1;
   color: white !important; 
 }
@@ -34,14 +33,14 @@
     padding: 10px 16px;
     font-size: 1rem;
     white-space: nowrap;
-    margin-top: 28px; /* Lower the button */
-    border-radius: 0; /* Remove rounding */
+    margin-top: 28px; 
+    border-radius: 0; 
     background-color: #088cdc !important;
     color: #fff;
 }
 
 .search-form-container .btn:hover {
-    background-color: #006bb3;
+    background-color: #006bb3 !important;
 }
 
 .search-form-container .form-select {
@@ -181,14 +180,14 @@
 }
 
 .detail-item {
-    display: flex; /* Align icon and text in a row */
+    display: flex; 
     align-items: center;
     font-size: 0.9rem;
     color: #6c757d;
 }
 
 .yacht-details i {
-    margin-right: 5px; /* Spacing between icon and text */
+    margin-right: 5px; 
 }
 
 /* Positioning and styling for the rating stars overlay */

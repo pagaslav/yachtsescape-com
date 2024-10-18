@@ -29,7 +29,7 @@
     background-position: center;
     background-repeat: no-repeat;
     height: 40vh;
-    z-index: 1;
+    z-index: 2;
 }
 
 .hero-content {
@@ -40,7 +40,7 @@
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
-  z-index: 1;
+  z-index: 2 !important;
   color: white !important; 
 }
 
@@ -48,7 +48,7 @@
   font-size: 3rem;
   margin-bottom: 20px;
   color: white !important;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* Top bar with contact info and social media icons */
@@ -225,7 +225,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
+    z-index: 999;
     padding: 10px 0;
     transition: background-color 0.3s ease, padding 0.3s ease;
 }
@@ -252,23 +252,27 @@
 }
 
 .modal-backdrop {
-    z-index: 1040;
+    z-index: 3;
     display: none !important;
 }
 
-.modal {
-    z-index: 1050;
+.modal,
+.zindex {
+    z-index: 3;
 }
 
 .modal-content {
     z-index: 1050;
-    border-radius: 8px; /* Пример настройки закругления углов */
+    border-radius: 8px; 
+    z-index: 3 !important;
 }
 
 .modal-header {
-    background-color: #f8f9fa; /* Пример цвета заголовка */
+    background-color: #f8f9fa; 
+    z-index: 3 !important;
 }
 
 .modal-body {
-    padding: 20px; /* Пример отступов внутри модального окна */
+    padding: 20px;
+    z-index: 3 !important;
 }

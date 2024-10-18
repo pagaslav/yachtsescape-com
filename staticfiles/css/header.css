@@ -33,27 +33,28 @@
 }
 
 .hero-content {
-  position: absolute;
+  position: relative !important;
   top: 26%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
-  z-index: 1;
+  z-index: 2;
   color: white !important; 
 }
 
 .hero-title {
+  position: relative !important;
   font-size: 3rem;
   margin-bottom: 20px;
   color: white !important;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* Top bar with contact info and social media icons */
 .header-top-bar {
-    z-index: 3;
+    z-index: 2;
     padding: 0 45px;
     background-color: transparent;
     color: #fff;
@@ -62,12 +63,13 @@
 
 /* Specific items inside top bar */
 .header-top-item {
-    z-index: 4;
+    z-index: 2;
     color: #fff;
     font-size: 14px;
     display: flex;
     margin-right: 35px;
     position: relative;
+    align-items: center;
 }
 
 /* Styling the email link */
@@ -87,16 +89,11 @@
     color: #088cdc !important;
 }
 
-.header-top-item {
-    display: flex;
-    align-items: center;
-}
-
 /* Phone icon styling */
 .header-top-item i {
     color: #fff;
     margin-right: 8px;
-    z-index: 4;
+    z-index: 2;
     position: relative;
 }
 
@@ -117,7 +114,7 @@
 .list-inline-item a,
 .email-link,
 .header-top-item i {
-    z-index: 4;
+    z-index: 2;
     position: relative;
 }
 
@@ -137,7 +134,7 @@
 .normal-logo {
     max-width: 180px;
     height: auto;
-    z-index: 20;
+    z-index: 2;
     display: inline-block;
     position: relative;
     top: 0;
@@ -225,7 +222,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
+    z-index: 10;
     padding: 10px 0;
     transition: background-color 0.3s ease, padding 0.3s ease;
 }
@@ -252,23 +249,24 @@
 }
 
 .modal-backdrop {
-    z-index: 1040;
+    z-index: 1050 !important;
     display: none !important;
 }
 
 .modal {
-    z-index: 1050;
+    z-index: 1050 !important;
 }
 
 .modal-content {
-    z-index: 1050;
-    border-radius: 8px; /* Пример настройки закругления углов */
+    z-index: 1050 !important;
+    border-radius: 8px;
 }
 
 .modal-header {
-    background-color: #f8f9fa; /* Пример цвета заголовка */
+    background-color: #f8f9fa;
 }
 
 .modal-body {
-    padding: 20px; /* Пример отступов внутри модального окна */
+    padding: 20px;
+    z-index: 1050 !important;
 }

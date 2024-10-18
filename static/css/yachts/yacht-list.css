@@ -51,6 +51,16 @@
     margin-right: 5px;
 }
 
+.yacht-card {
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.yacht-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
 /* Positioning and styling for the rating stars overlay */
 .rating-overlay {
     position: absolute;
@@ -100,6 +110,10 @@
     margin-right: 5px;
 }
 
+.card-title {
+    font-size: 1.25rem !important;
+}
+
 /* Additional styling for card text */
 .card-text {
     margin-bottom: 0.5rem;
@@ -110,11 +124,8 @@
 /* Container for yacht attributes */
 .yacht-attributes-row {
     display: flex;
-    /* Use flexbox for horizontal layout */
     justify-content: space-between;
-    /* Space out items evenly */
     align-items: center;
-    /* Align items vertically in the center */
     margin-bottom: 20px;
     list-style: none;
     padding: 0;
@@ -125,53 +136,43 @@
 /* Style each attribute item */
 .yacht-attributes-row li {
     display: flex;
-    /* Make each item a flex container */
     align-items: center;
-    /* Center icons and text vertically */
 }
 
 /* Style the icon within each item */
 .yacht-attributes-row li i {
     margin-right: 6px;
-    /* Add spacing between icon and text */
 }
 
 /* Specific color for each icon */
 .yacht-attributes-row li:nth-child(1) i {
     color: #007bff;
-    /* Blue for Type */
 }
 
 .yacht-attributes-row li:nth-child(2) i {
     color: #ffd700;
-    /* Yellow for Rating */
 }
 
 .yacht-attributes-row li:nth-child(3) i {
     color: #007bff;
-    /* Blue for ID */
 }
 
 /* Styling for the date list container */
 .date-list {
     display: flex;
     flex-wrap: wrap;
-    /* Allow items to wrap to the next line */
     justify-content: center;
     list-style: none;
     padding: 0;
     margin-top: 1rem;
     font-size: 1rem;
     color: #6c757d;
-    /* Default text color */
 }
 
 /* Styling for individual date items */
 .date-list li {
     display: flex;
-    /* Align icon and text horizontally */
     align-items: center;
-    /* Vertically center icon and text */
     justify-content: center;
     margin: 8px;
     padding: 8px 12px;
@@ -185,29 +186,24 @@
 /* Styling for the calendar icon */
 .date-list li i {
     margin-right: 6px;
-    /* Add space between icon and text */
 }
 
 /* Center the 'No booked dates' message */
 .no-dates {
     width: 100%;
-    /* Takes up the full width */
     text-align: center;
     color: #6c757d;
-    /* Light gray color for text */
     font-weight: bold;
 }
 
 .no-dates i {
     color: #dc3545;
-    /* Red color for the 'No dates' icon */
 }
 
 /* Responsive layout for different number of dates */
 .date-list li:nth-child(1),
 .date-list li:nth-child(2) {
     flex: 1 1 100%;
-    /* Full width when there's only one or two items */
 }
 
 .date-list li:nth-child(1):only-child,
@@ -219,7 +215,6 @@
 .date-list li:nth-child(3n+2),
 .date-list li:nth-child(3n+3) {
     flex: 1 1 33%;
-    /* Three items on one row */
 }
 
 .date-list li:nth-child(4n+1),
@@ -227,49 +222,63 @@
 .date-list li:nth-child(4n+3),
 .date-list li:nth-child(4n+4) {
     flex: 1 1 25%;
-    /* Four items on one row */
 }
 
 /* Centered and responsive form styling */
 #bookingForm {
     width: 100%;
-    /* Full width by default */
     max-width: 600px;
-    /* Limit max width on larger screens */
     margin: 0 auto;
-    /* Center the form horizontally */
     padding: 0 15px;
-    /* Padding for smaller screens */
 }
 
+/* Styles for the custom dropdown menu, including background, borders, item padding, hover effects, and dividers */
+.custom-dropdown-menu {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+.dropdown-item {
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+.dropdown-divider {
+    height: 1px;
+    margin: 0.5rem 0;
+    background-color: #e9ecef;
+}
+
+.custom-dropdown-btn:hover {
+    border: 1px solid black;
+}
 
 @media (min-width: 992px) {
     #bookingForm {
         width: 60%;
-        /* Even narrower on large screens */
     }
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
-    /* .header-short {
-        height: 25vh;
-        z-index: 1;
-    } */
-
-    /* .hero-title {
-        position: relative;
-        font-size: 26px;
-        margin-bottom: -15px;
-    } */
-
     .card-img-top {
         height: 180px;
     }
 
     #bookingForm {
         width: 80%;
-        /* Slightly narrower on medium screens */
+    }
+    @media (max-width: 767.98px) {
+        .capacity-dropdown {
+            display: none !important; 
+        }
     }
 }
