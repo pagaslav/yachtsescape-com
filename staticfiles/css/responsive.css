@@ -1,18 +1,22 @@
 /* Styles for screens smaller than 992px */
 @media (max-width: 991.98px) {
+
   /* Hide top bar for screens smaller than 992px */
   .header-top-bar {
     display: none !important;
   }
+
   /* Reduce header height to 40vh for mobile and tablet screens */
   .header {
     height: 40vh;
     min-height: auto !important;
   }
+
   /* Remove border around the burger menu button */
   .navbar-toggler {
     border: none;
   }
+
   /* Style the collapsed navbar menu (for mobile and tablet) */
   .navbar-collapse {
     background-color: rgba(255, 255, 255, 0.95);
@@ -21,13 +25,15 @@
     top: 100%;
     left: 0;
     right: 0;
-    z-index: 1060;
+    z-index: 1000;
   }
+
   /* Ensure menu items are displayed vertically */
   .navbar-nav {
     display: flex;
     flex-direction: column !important;
   }
+
   /* Style individual nav links (menu items) */
   .navbar-nav .nav-link {
     color: #444 !important;
@@ -36,10 +42,12 @@
     text-align: center;
     border-bottom: 1px solid #444;
   }
+
   /* Reduce margin between menu items */
   .navbar-nav .nav-item {
     margin-bottom: 0px !important;
   }
+
   /* Style the "Book Now" button for mobile/tablet view */
   .header-main-btn {
     width: 100%;
@@ -51,41 +59,45 @@
     font-size: 16px;
     border: none;
   }
+
   /* Change button color on hover */
   .header-main-btn:hover {
     background-color: #006bb3;
   }
-  footer .footer-list-inline {
-        width: 80%;
-        justify-content: center;
-        gap: 25px;
-        margin: 0 auto;
-    }
 
-    footer .footer-list-inline-item a {
-        font-size: 28px; /* Slightly smaller icons for mobile */
-    }
+  footer .footer-list-inline {
+    width: 80%;
+    justify-content: center;
+    gap: 25px;
+    margin: 0 auto;
+  }
+
+  footer .footer-list-inline-item a {
+    font-size: 28px;
+  }
 }
 
-/* Additional styles for very small screens (below 689px) */
+/* Additional styles for small screens (below 689px) */
 @media (max-width: 688.98px) {
   .header {
     height: 10vh !important;
   }
+
   .normal-logo {
     max-width: 80px;
   }
 
   #footer-logo img {
-        max-width: 150px;
-        height: auto;
-    }
+    max-width: 150px;
+    height: auto;
+  }
 
   /* Reduce padding for nav links on small screens */
   .navbar-nav .nav-link {
     padding: 0px 0 !important;
     border-bottom: 1px solid #333;
   }
+
   /* Ensure the "Book Now" button is full width and styled appropriately */
   .header-main-btn {
     width: 100%;

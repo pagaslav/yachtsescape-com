@@ -7,7 +7,6 @@ footer {
     bottom: 0;
 }
 
-
 footer h5 {
     text-transform: uppercase;
     font-size: 18px;
@@ -34,7 +33,8 @@ footer ul li a:hover {
     color: #088cdc !important;
 }
 
-footer p, footer a {
+footer p,
+footer a {
     color: #fff;
 }
 
@@ -51,17 +51,16 @@ footer .footer-list-inline {
     padding-left: 0;
     list-style: none;
     display: flex;
-    justify-content: space-between; /* Equal space between icons */
-    width: 70%;
+    justify-content: space-between;
 }
 
 footer .footer-list-inline-item {
-    margin-right: 0; /* Remove extra right margin */
+    margin-right: 0;
 }
 
 footer .footer-list-inline-item a {
     color: #fff;
-    font-size: 32px; /* Increase icon size */
+    font-size: 32px;
     transition: color 0.3s ease;
 }
 

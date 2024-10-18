@@ -1,30 +1,30 @@
 /* Center the content on the background image */
 .hero-index-content {
-  position: absolute;
-  top:39%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  text-transform: uppercase;
-  z-index: 1;
-  color: white !important; 
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    text-transform: uppercase;
+    z-index: 1;
+    color: white !important;
 }
 
 .hero-link {
-  font-size: 1.5rem;
-  color: #ffffff !important;
-  text-decoration: none;
-  background-color: #088cdc;
-  padding: 10px 20px;
+    font-size: 1.5rem;
+    color: #ffffff !important;
+    text-decoration: none;
+    background-color: #088cdc;
+    padding: 10px 20px;
 }
 
 .hero-link:hover {
-  background-color: #006bb3;
+    background-color: #006bb3;
 }
 
 .search-form-container {
     position: relative;
-    margin-top: -60px; 
+    margin-top: -60px;
     z-index: 2;
 }
 
@@ -33,8 +33,8 @@
     padding: 10px 16px;
     font-size: 1rem;
     white-space: nowrap;
-    margin-top: 28px; 
-    border-radius: 0; 
+    margin-top: 28px;
+    border-radius: 0;
     background-color: #088cdc !important;
     color: #fff;
 }
@@ -57,9 +57,9 @@
     justify-content: space-between;
 }
 
-.search-form-container .col-md-3, 
+.search-form-container .col-md-3,
 .search-form-container .col-md-4 {
-    padding: 0 10px; /* Adds some space between inputs */
+    padding: 0 10px;
 }
 
 .search-form-container .col-md-3.text-center {
@@ -114,17 +114,17 @@
 /* Style for arrow bullets */
 .list-unstyled li {
     position: relative;
-    padding-left: 20px; /* Space for the arrow */
+    padding-left: 20px;
     font-size: 18px;
     color: #333;
 }
 
 .list-arrow li::before {
-    content: "→"; /* Arrow character */
+    content: "→";
     position: absolute;
     left: 0;
-    color: #088cdc; /* Customize color of the arrow */
-    font-size: 20px; /* Customize arrow size */
+    color: #088cdc;
+    font-size: 20px;
 }
 
 .fa-ic-home {
@@ -172,22 +172,22 @@
 /* Grid Layout for Yacht Details */
 .yacht-details {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
-    gap: 5px; /* Spacing between items */
-    list-style: none; /* Remove list bullets */
-    padding: 0; /* Remove default padding */
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    list-style: none;
+    padding: 0;
     margin-top: 1rem;
 }
 
 .detail-item {
-    display: flex; 
+    display: flex;
     align-items: center;
     font-size: 0.9rem;
     color: #6c757d;
 }
 
 .yacht-details i {
-    margin-right: 5px; 
+    margin-right: 5px;
 }
 
 /* Positioning and styling for the rating stars overlay */
@@ -195,7 +195,7 @@
     position: absolute;
     top: 8px;
     right: 8px;
-    background: rgba(255, 255, 255, 0.8); /* Light background for visibility */
+    background: rgba(255, 255, 255, 0.8);
     padding: 3px 8px;
     border-radius: 5px;
     display: flex;
@@ -204,11 +204,11 @@
 
 /* Style for the rating stars */
 .rating-overlay .fa-star {
-    color: #ddd; /* Light gray color for empty stars */
+    color: #ddd;
 }
 
 .rating-overlay .fa-star.filled {
-    color: #ffd700; /* Gold color for filled stars */
+    color: #ffd700;
 }
 
 /* Container for price and location */
@@ -253,9 +253,9 @@
 
 /* Adjust image size for prominence */
 .deal-image {
-    height: 300px; /* Taller than standard card size for emphasis */
+    height: 300px;
     object-fit: cover;
-    border-radius: 8px; /* Consistent rounding for all corners */
+    border-radius: 8px;
 }
 
 /* Centering and styling the deal content */
@@ -315,7 +315,7 @@
 }
 
 .testimonial-img {
-    width: 150px; /* Увеличенный размер изображения */
+    width: 150px;
     height: 150px;
     object-fit: cover;
     margin-bottom: 15px;
@@ -336,7 +336,7 @@
 /* Carousel control icons styling */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    filter: invert(100%); /* Белый цвет для стрелок */
+    filter: invert(100%);
     width: 2rem;
     height: 2rem;
 }
@@ -347,29 +347,34 @@
     }
 }
 
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .deal-image {
-        height: 200px; /* Adjust for smaller screens */
+        height: 200px;
     }
+
     .deal-content {
         padding: 10px;
         text-align: center;
     }
+
     .yacht-name {
         font-size: 2rem;
     }
-    .yacht-price, .contact-info, .call-to-action {
+
+    .yacht-price,
+    .contact-info,
+    .call-to-action {
         font-size: 1rem;
     }
+
     .search-form-container {
-    position: relative;
-    margin-top: 0px; 
-    z-index: 1;
+        position: relative;
+        margin-top: 0px;
+        z-index: 1;
     }
 
     .info-section {
-    display: none;
+        display: none;
     }
 }

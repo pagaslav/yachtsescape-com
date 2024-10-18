@@ -3,7 +3,13 @@
 {% load crispy_forms_tags %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/yachts/yacht-list.css' %}">
+    <!-- Flatpickr v4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <link rel="stylesheet" href="{% static 'css/yachts/yacht-list.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -111,9 +117,12 @@ Our Fleet - {{ yacht.name }} details
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/yachts.js' %}"></script>
-<script>
-    const stripePublicKey = "{{ stripe_public_key }}";
-</script>
-<!-- <script src="{% static 'js/stripe_checkout.js' %}"></script> -->
+    <!-- Flatpickr v4 -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="{% static 'js/yachts.js' %}"></script>
+
+    <script>
+        const stripePublicKey = "{{ stripe_public_key }}";
+    </script>
 {% endblock %}
