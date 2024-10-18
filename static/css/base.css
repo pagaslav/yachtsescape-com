@@ -113,3 +113,8 @@ textarea::placeholder {
   white-space: nowrap;
   border: 0;
 }
+
+.header {
+    position: relative;
+    z-index: 10;
+}

@@ -74,13 +74,23 @@ Sign Up
                         <label for="{{ form.password1.id_for_label }}" class="form-label fw-bold">
                             <i class="fas fa-lock"></i> Password <span class="text-danger">*</span>
                         </label>
-                        {{ form.password1|add_class:"form-control" }}
+                        <div class="input-group">
+                            {{ form.password1|add_class:"form-control" }}
+                            <span class="input-group-text password-toggle">
+                                <i id="password-icon-register" class="fa-regular fa-eye"></i>
+                            </span>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="{{ form.password2.id_for_label }}" class="form-label fw-bold">
                             <i class="fas fa-lock"></i> Confirm Password <span class="text-danger">*</span>
                         </label>
-                        {{ form.password2|add_class:"form-control" }}
+                        <div class="input-group">
+                            {{ form.password2|add_class:"form-control" }}
+                            <span class="input-group-text password-toggle">
+                                <i id="confirm-password-icon-register" class="fa-regular fa-eye"></i>
+                            </span>
+                        </div>
                     </div>
                     <!-- New fields -->
                     <div class="mb-3">

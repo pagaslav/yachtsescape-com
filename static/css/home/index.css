@@ -6,7 +6,7 @@
     transform: translate(-50%, -50%);
     text-align: center;
     text-transform: uppercase;
-    z-index: 1;
+    z-index: 10;
     color: white !important;
 }
 
@@ -25,7 +25,7 @@
 .search-form-container {
     position: relative;
     margin-top: -60px;
-    z-index: 2;
+    z-index: 10;
 }
 
 .search-form-container .btn {
@@ -78,6 +78,7 @@
 .search-form-container form {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 3;
 }
 
 /* Flag Frame for Image */
@@ -345,6 +346,11 @@
     .tablet-mobile-none {
         display: none !important;
     }
+        .search-form-container {
+        position: relative;
+        margin-top: 0px;
+        z-index: 1;
+    }
 }
 
 /* Responsive adjustments */
@@ -366,12 +372,6 @@
     .contact-info,
     .call-to-action {
         font-size: 1rem;
-    }
-
-    .search-form-container {
-        position: relative;
-        margin-top: 0px;
-        z-index: 1;
     }
 
     .info-section {

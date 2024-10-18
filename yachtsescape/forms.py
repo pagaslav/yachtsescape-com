@@ -43,15 +43,36 @@ class CustomSignupForm(SignupForm):
         max_length=50, required=True, label="Country",
         widget=forms.TextInput(attrs={'placeholder': 'Country'})
     )
+    
+    # Add custom password fields
+    password1 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'id': 'password1'}),
+        min_length=8,
+        required=True,
+        help_text="Password must contain at least 8 characters, including UPPERCASE letters and numbers.",
+    )
+    password2 = forms.CharField(
+        label="Confirm Password",
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password', 'id': 'password2'}),
+        required=True,
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get("password1")
+        password2 = cleaned_data.get("password2")
+
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Passwords do not match.")
+
+        return cleaned_data
 
     def save(self, request):
-        # Save the user first
         user = super(CustomSignupForm, self).save(request)
 
-        # Print statements for debugging purposes
         print("User created:", user)
 
-        # Directly create or update the UserProfile instance associated with the user
         profile, created = UserProfile.objects.get_or_create(user=user)
         profile.first_name = self.cleaned_data.get('first_name')
         profile.last_name = self.cleaned_data.get('last_name')

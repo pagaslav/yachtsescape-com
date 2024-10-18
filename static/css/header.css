@@ -239,6 +239,11 @@
     color: #088cdc;
 }
 
+.offcanvas {
+    position: fixed;
+    z-index: 2000 !important;
+}
+
 .offcanvas-header {
     display: flex;
     justify-content: center !important;
