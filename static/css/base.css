@@ -8,7 +8,6 @@
 
 /* General styles */
 
-/* Reset default margin, padding, and border for all elements */
 * {
   margin: 0;
   padding: 0;
@@ -46,73 +45,71 @@ a {
 }
 
 .container {
-    margin-top: 30px; /* Top margin for spacing */
+  margin-top: 20px;
 }
 
 /* Styling for the breadcrumb navigation */
 .breadcrumb {
-    background-color: transparent;
-    padding: 0;
-    margin-bottom: 0;
-    color: #ffffff;
-    display: inline-block;
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 0;
+  color: #ffffff;
+  display: inline-block;
 }
 
-/* White arrow divider between breadcrumb items */
-.breadcrumb-item + .breadcrumb-item::before {
-    color: #ffffff;
+.breadcrumb-item+.breadcrumb-item::before {
+  color: #ffffff;
 }
 
-/* White text color for breadcrumb links */
 .breadcrumb-item a {
-    color: #ffffff;
-    text-decoration: none;
-    display: inline-block;
-    vertical-align: middle;
-    line-height: normal;
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 
-.breadcrumb-item, .breadcrumb-item a {
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 1.5; /* Убедись, что это значение соответствует общей высоте текста */
+.breadcrumb-item,
+.breadcrumb-item a {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.5;
 }
 
-/* White color for the active breadcrumb item */
 .breadcrumb-item.active {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .breadcrumb-item a:hover {
-    text-decoration: underline; /* Add underline only on hover */
+  text-decoration: underline;
 }
 
 .breadcrumb-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 ::placeholder {
-    color: #ced4da !important;
-    opacity: 0.5;
-    font-size: 0.85em;
+  color: #ced4da !important;
+  opacity: 0.5;
+  font-size: 0.85em;
 }
 
 input::placeholder,
 textarea::placeholder {
-    color: #ced4da;
-    opacity: 0.5;
+  color: #ced4da;
+  opacity: 0.5;
 }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
