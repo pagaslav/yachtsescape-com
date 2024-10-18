@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   async function fetchBookedDates() {
     try {
-      const response = await fetch("/bookings/");
+      const response = await fetch(`/yachts/yacht/${yachtId}/bookings/`);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }

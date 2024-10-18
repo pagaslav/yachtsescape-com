@@ -59,17 +59,17 @@ def yacht_list(request):
     return render(request, 'yachts/yacht-list.html', {'yachts': yachts})
 
 def yacht_booking_dates(request, yacht_id):
+    # Get the yacht object or return a 404 if not found
     yacht = get_object_or_404(Yacht, id=yacht_id)
-    bookings = Booking.objects.filter(yacht=yacht).values('start_date', 'end_date')
+    
+    # Filter bookings for the specific yacht that have a confirmed status
+    bookings = Booking.objects.filter(yacht=yacht, status='confirmed').values('start_date', 'end_date')
 
-    # Create a list of booked dates to pass to the template
+    # Create a list of booked dates to pass as JSON response
     booked_dates = []
     for booking in bookings:
         start_date = booking['start_date']
         end_date = booking['end_date']
-        
-        # Check if start_date and end_date are datetime.date objects
-        print(f"Start Date Type: {type(start_date)}, End Date Type: {type(end_date)}")
         
         # Convert to string if they are datetime.date objects
         if isinstance(start_date, datetime):
@@ -93,7 +93,9 @@ def yacht_booking_dates(request, yacht_id):
 # View to display yacht details and handle booking form submission
 def yacht_detail(request, yacht_id):
     yacht = get_object_or_404(Yacht, id=yacht_id)
-    bookings = Booking.objects.filter(yacht=yacht).values('start_date', 'end_date')
+    
+    # Retrieve bookings for the yacht with confirmed status
+    bookings = Booking.objects.filter(yacht=yacht, status='confirmed').values('start_date', 'end_date')
 
     # Create a list of booked dates to pass to the template
     booked_dates = []
@@ -119,6 +121,7 @@ def yacht_detail(request, yacht_id):
             'start': start_date_str,
             'end': end_date_str
         })
+
     print("Booked Dates List:", booked_dates)
 
     if request.method == 'POST':
@@ -151,7 +154,6 @@ def yacht_detail(request, yacht_id):
     }
 
     return render(request, 'yachts/yacht_detail.html', context)
-
 
 # View to return yacht images as JSON
 class YachtImageView(View):
