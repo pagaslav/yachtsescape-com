@@ -296,8 +296,12 @@ The navigation panel of Yachtsescape rental website is designed to provide a use
 #### Navbar
 The Navbar is composed of two main parts: the **Top Bar** and the **Main Navigation**.
 
+
+
 ##### Top Bar
 The **Top Bar** provides quick access to essential contact information and social media links:
+
+![Desktop Navigation](docs/images/navigation/nav-desctop.webp)
 
 - **Phone and Email**: 
   - Users can quickly dial the phone number or email YachtsEscape with one click from the top bar.
@@ -309,6 +313,8 @@ The **Top Bar** provides quick access to essential contact information and socia
 ##### Main Navigation
 The **Main Navigation** is designed to be responsive and intuitive:
 
+![Desktop Navigation after Scrolling](docs/images/navigation/nav-desctop-scroll.webp)
+
 - **Brand Logo**: 
   - The logo is positioned on the left side of the navbar, dynamically changing based on scrolling. When the user scrolls past 50px, the logo transitions from light to dark (or small versions on mobile), thanks to the custom JavaScript code in `base.js`.
 
@@ -317,19 +323,34 @@ The **Main Navigation** is designed to be responsive and intuitive:
   
 - **Dynamic Menu Based on User Status**:
   - If the user is authenticated, an account dropdown is displayed with links to profile for all users and management pages for admin users.
+
+![Desktop Dropdown Menu (1)](docs/images/navigation/nav-desctop-drop-1.webp)
+
   - If the user is not authenticated, a **Sign In** button appears instead.
+
+![Desktop Navigation with Sign In](docs/images/navigation/nav-desctop-signin.webp)
 
 - **Yacht Fleet Menu**: 
   - The **Our Fleet** section is a dropdown that categorizes yachts by type (Leisure, Fishing, Celebrations), allowing users to filter yachts according to their preferences.
 
+![Desktop Dropdown Menu (2)](docs/images/navigation/nav-desctop-drop-2.webp)
+
 - **Book Now Button**: 
   - A prominent **Book Now** button is available, leading to a modal with a booking form. This form allows users to filter yachts by type, capacity, and availability using intuitive date pickers.
+
+![Desktop Navigation with Book Now Button](docs/images/navigation/nav-desctop-book-now.webp)
 
 ##### Layout and Responsiveness
 
 - The **Main Navigation** and **Top Bar** are designed to collapse elegantly on smaller screens, with all elements accessible via the off-canvas sidebar.
-  
+
+![Tablet Navigation](docs/images/navigation/nav-tablet.webp)
+![Mobile Navigation](docs/images/navigation/nav-mobile.webp)
+
 - The **Logo**, **Menu Items**, and **Book Now** button are designed to shift layout based on screen size, ensuring a consistent and responsive experience for users on all devices.
+
+![Tablet Navigation with Menu](docs/images/navigation/nav-tablet-menu.webp)
+![Mobile Navigation with Menu](docs/images/navigation/nav-mobile-menu.webp)
 
 The navigation ensures quick access to essential services and an intuitive flow, enhancing the user journey across the site.
 
