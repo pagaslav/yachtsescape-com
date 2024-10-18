@@ -234,66 +234,104 @@ The color palette for YachtsEscape was chosen to give the site a clean, professi
 
 ### Typography
 
-Our website utilises a combination of modern and visually appealing fonts to enhance readability and user experience. We have integrated two main fonts, “Bebas Neue” and “Oswald”, which are imported from Google Fonts. These fonts are selected to create a clean and professional look, making the content easily digestible for our users.
+The primary font used throughout the site is [**Lato**](https://fonts.google.com/specimen/Lato), a Google Font, chosen for its clean and modern look, ensuring readability across all devices. It comes in various weights (100, 300, 400, 700, 900) to give flexibility in styling headings, body text, and other elements.
 
-#### Font Usage:
+![Lato Google Font](docs/images/ux/lato-google.webp)
 
-##### Bebas Neue:
+For icons, I use [**Font Awesome**](https://fontawesome.com/), which adds clarity and visual appeal to buttons, social media links, and navigation elements.
 
-- **Logo**: The site logo, defined under the .logo-setup and .navbar-brand classes, uses Bebas Neue to create a distinct and bold appearance.
+### YachtsEscape Logo
 
-- **Headings**: Main headings, such as the welcome title on the index page (.welcome-title), utilise Bebas Neue to make a strong visual impact.
+The **YachtsEscape** logo features a sleek, modern design with a minimalist illustration of a yacht, combined with bold typography. The yacht symbol uses a clean blue (#088cdc) color, which represents the ocean, aligning with the overall maritime theme of the website. The bold black text beside the yacht adds a professional touch, making the brand name stand out clearly.
 
-##### Oswald:
+There are two variations of the logo:
 
-- **Body Text**: The primary font for body text is Oswald. This includes the general text across the site, defined in the body tag. The font settings ensure a clean and readable design with font-weight: 300 and font-size: 17px.
-- **Subtitles and Minor Headings**: Subtitles and minor headings, such as the welcome subtitle (.welcome-subtitle) and welcome text (.welcome-text), also use Oswald. These elements are styled with specific font sizes and transformations to maintain a cohesive look.
-- **Forms and Buttons**: Text within forms and buttons, such as those on the login and signup pages, use Oswald to ensure readability and consistency throughout the user interface.
+- **Light Version**: This version is used against dark backgrounds, such as in the initial state of the header and in the footer of the website.
+- **Dark Version**: This version appears against lighter backgrounds, such as when the user scrolls down and the header becomes fixed on a white background.
 
-[**Font Awesome**](https://fontawesome.com/) icons were used throughout the site. These are useful for making buttons, input fields, and links clear for the user.
+![YachtsEscape Dark Logo](docs/images/ux/logo-dark.png)
+![YachtsEscape Light Logo](docs/images/ux/logo-light.webp)
 
-By using these fonts strategically, we aim to provide a cohesive and visually appealing user experience that enhances both readability and the overall aesthetic of the website.
+The logo dynamically changes between these versions based on the user's scroll position and screen width, enhancing the website's aesthetic and functionality.
 
-### The Knee surgery Logo
-The logo for The Knee Surgery clinic is designed to be both professional and approachable, reflecting the clinic’s commitment to high-quality care and patient comfort.
+Below is the JavaScript code that switches between the light and dark versions of the logo as the user interacts with the page:
+
+```javascript, static/js/base.js
+// Function to change the logo based on scroll position and window width
+function updateLogo() {
+    let windowWidth = $(window).width();
+    let scrollTop = $(window).scrollTop();
+    let lightLogo = $("#logo").data("light-logo");
+    let darkLogo = $("#logo").data("dark-logo");
+    let smallLightLogo = $("#logo").data("small-light-logo");
+    let smallDarkLogo = $("#logo").data("small-dark-logo");
+
+    if (scrollTop > scrollTrigger) {
+        // Change logo to dark version based on screen size
+        if (windowWidth < 689) {
+            console.log("Switching to small dark logo:", smallDarkLogo);
+            $("#logo").attr("src", smallDarkLogo);
+        } else {
+            console.log("Switching to dark logo:", darkLogo);
+            $("#logo").attr("src", darkLogo);
+        }
+    } else {
+        // Change logo to light version based on screen size
+        if (windowWidth < 689) {
+            console.log("Switching to small light logo:", smallLightLogo);
+            $("#logo").attr("src", smallLightLogo);
+        } else {
+            console.log("Switching to light logo:", lightLogo);
+            $("#logo").attr("src", lightLogo);
+        }
+    }
+}
+```
 
 ## Features
 
 ### Navigation
-The navigation panel of The Knee Surgery clinic website is designed to provide a user-friendly and intuitive browsing experience.
+The navigation panel of Yachtsescape rental website is designed to provide a user-friendly and intuitive browsing experience.
 
 #### Navbar
-The Navbar section is designed with both aesthetics and functionality in mind. Below is a detailed breakdown of its features:
+The Navbar is composed of two main parts: the **Top Bar** and the **Main Navigation**.
 
-##### Additional Features
+##### Top Bar
+The **Top Bar** provides quick access to essential contact information and social media links:
 
-- **Clock and Date Display**: 
-  - Above the navigation panel, you will find a clock and date display. This helps users keep track of the current time while browsing the site.
+- **Phone and Email**: 
+  - Users can quickly dial the phone number or email YachtsEscape with one click from the top bar.
+  - These contact options are visible on all screen sizes, ensuring accessibility.
+  
+- **Social Media Links**: 
+  - Links to Twitter, Facebook, Instagram, and YouTube are available, each opening in a new window. The icons are styled using FontAwesome and aligned on the right of the top bar for convenience.
 
-- **Future Search Bar**: 
-  - As the website grows, a search bar will be added above the navigation panel. This will allow users to search for various information on the site. 
-  - Although we planned to include this feature in the current project, we ran out of time.
+##### Main Navigation
+The **Main Navigation** is designed to be responsive and intuitive:
 
-##### Navigation Panel
+- **Brand Logo**: 
+  - The logo is positioned on the left side of the navbar, dynamically changing based on scrolling. When the user scrolls past 50px, the logo transitions from light to dark (or small versions on mobile), thanks to the custom JavaScript code in `base.js`.
 
-- **Position and Behavior**: 
-  - The navigation panel is located at the top of the page.
-  - For design reasons, it does not remain fixed during scrolling.
-  - As you scroll down, a back-to-top arrow appears in the bottom right corner. This arrow remains dynamically positioned as you scroll, allowing easy navigation back to the top of the page.
+- **Menu Behavior**: 
+  - The menu adapts responsively, converting into an off-canvas (sidebar) menu on smaller devices. The menu's hamburger icon becomes visible on mobile devices, ensuring the navigation is accessible across screen sizes.
+  
+- **Dynamic Menu Based on User Status**:
+  - If the user is authenticated, an account dropdown is displayed with links to profile for all users and management pages for admin users.
+  - If the user is not authenticated, a **Sign In** button appears instead.
+
+- **Yacht Fleet Menu**: 
+  - The **Our Fleet** section is a dropdown that categorizes yachts by type (Leisure, Fishing, Celebrations), allowing users to filter yachts according to their preferences.
+
+- **Book Now Button**: 
+  - A prominent **Book Now** button is available, leading to a modal with a booking form. This form allows users to filter yachts by type, capacity, and availability using intuitive date pickers.
 
 ##### Layout and Responsiveness
 
-- **Logo Placement**: 
-  - The logo is situated on the left side of the navigation panel.
+- The **Main Navigation** and **Top Bar** are designed to collapse elegantly on smaller screens, with all elements accessible via the off-canvas sidebar.
+  
+- The **Logo**, **Menu Items**, and **Book Now** button are designed to shift layout based on screen size, ensuring a consistent and responsive experience for users on all devices.
 
-- **Menu Items**: 
-  - The menu items, which change based on user authentication status, are located on the right side of the panel.
-  - As the screen size decreases, the menu items and the logo first move towards the center. Eventually, the menu items transform into a hamburger menu, thanks to Bootstrap classes.
-
-##### Menu Item Descriptions
-
-- **Intuitive Labels**: 
-  - The pages linked by the menu items are self-explanatory based on their labels.
+The navigation ensures quick access to essential services and an intuitive flow, enhancing the user journey across the site.
 
 ##### Desktop View:
 
