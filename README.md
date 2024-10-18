@@ -358,18 +358,6 @@ The navigation ensures quick access to essential services and an intuitive flow,
 
 ![Desktop View](documentation/navbar/desktop-navbar.webp)
 
-##### Responsive Design:
-
-##### Tablet View:
-
-![Tablet View](documentation/navbar/tablet-close-navbar.webp)
-![Tablet View](documentation/navbar/tablet-open-navbar.webp)
-
-##### Mobile View:
-
-![Mobile View](documentation/navbar/mob-close-navbar.webp)
-![Mobile View](documentation/navbar/mob-open-navbar.webp)
-
 ### Footer
 
 The footer section of our website is designed to provide essential information and easy access to our social media channels. Below is a detailed description of its features and layout across different devices:
