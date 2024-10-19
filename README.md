@@ -358,6 +358,10 @@ The navigation ensures quick access to essential services and an intuitive flow,
 
 ![Desktop View](documentation/navbar/desktop-navbar.webp)
 
+
+<details>
+  <summary>Нажми, чтобы раскрыть, это инф с прошлого проекта, еще не адаптирована</summary>
+
 ### Footer
 
 The footer section of our website is designed to provide essential information and easy access to our social media channels. Below is a detailed description of its features and layout across different devices:
@@ -909,118 +913,77 @@ The **403 Forbidden** page is shown when a user attempts to access a page or res
 - **User Interaction:** Users are immediately informed about the permission issue and are not left wondering why they cannot access the page.
 - **Navigation:** The page encourages users to return to the homepage, providing a positive direction instead of a dead end.
 
+</details>
+
 ## Database Design
 
-The project uses MongoDB for its database, structured to handle various aspects such as user management, appointments, and medical records. MongoDB's flexible schema is ideal for managing dynamic medical data.
+The project uses a relational database with several key tables to handle user profiles, yacht details, bookings, and reviews. This design ensures a clear relationship between users, yachts, and bookings, facilitating the management of yacht rentals.
 
-### Collections
+### Tables
 
-#### Users Collection
+#### UserProfile Table
 
-This collection stores the details of all users registered in the system. By default, all users are patients upon registration. An admin can change a user's role to either doctor or admin.
+This table stores additional information about users registered in the system.
 
-| Field      | Type     | Description                           |
-|------------|----------|---------------------------------------|
-| `_id`      | ObjectId | Unique identifier for each user       |
-| `name`     | String   | Name of the user                      |
-| `gender`   | String   | Gender of the user                    |
-| `dob`      | Date     | Date of birth                         |
-| `phone`    | String   | Contact number                        |
-| `email`    | String   | Email address                         |
-| `password` | String   | Hashed password                       |
-| `role`     | String   | Role of the user (`patient` or `admin`) |
+| Field             | Type       | Description                                           |
+|-------------------|------------|-------------------------------------------------------|
+| `id`              | SERIAL     | Primary key                                           |
+| `user_id`         | INTEGER    | Foreign key referencing the User model                |
+| `first_name`      | VARCHAR(30)| Optional first name of the user                       |
+| `last_name`       | VARCHAR(30)| Optional last name of the user                        |
+| `phone_number`    | VARCHAR(15)| Optional contact number                               |
+| `street_address1` | VARCHAR(255)| Optional first line of the user's address             |
+| `street_address2` | VARCHAR(255)| Optional second line of the user's address            |
+| `town_city`       | VARCHAR(50)| Optional city or town                                 |
+| `county_state`    | VARCHAR(50)| Optional state or county                              |
+| `postal_code`     | VARCHAR(20)| Optional postal or ZIP code                           |
+| `country`         | VARCHAR(50)| Optional country                                      |
 
-#### Doctors Collection
+#### Yacht Table
 
-This collection stores the details of all doctors registered in the system.
+This table stores information about the yachts available for booking.
 
-| Field            | Type     | Description                              |
-|------------------|----------|------------------------------------------|
-| `_id`            | ObjectId | Unique identifier for each doctor        |
-| `name`           | String   | Name of the doctor                       |
-| `role`           | String   | Role of the user (`doctor`)              |
-| `specialty`      | String   | Medical specialty                        |
-| `description`    | String   | Description of the doctor's expertise    |
-| `additional_info`| String   | Additional information about the doctor  |
-| `image`          | String   | Image name                               |
-| `password`       | String   | Hashed password                          |
-| `email`          | String   | Email address                            |
-| `dob`            | Date     | Date of birth                            |
-| `gender`         | String   | Gender of the doctor                     |
-| `phone`          | String   | Contact number                           |
+| Field            | Type        | Description                                           |
+|------------------|-------------|-------------------------------------------------------|
+| `id`             | SERIAL      | Primary key                                           |
+| `name`           | VARCHAR(100)| Name of the yacht                                     |
+| `type`           | VARCHAR(50) | Type of the yacht (e.g., motor, sailing)              |
+| `location`       | VARCHAR(100)| Location where the yacht is available                 |
+| `capacity`       | INTEGER     | Maximum number of people the yacht can accommodate     |
+| `price_per_day`  | DECIMAL(10,2)| Daily rental price of the yacht                      |
+| `description`    | TEXT        | Detailed description of the yacht                     |
 
-#### Appointments Collection
+#### Booking Table
 
-Stores appointment requests and schedules.
+This table stores information about user bookings.
 
-| Field                 | Type       | Description                                              |
-|-----------------------|------------|----------------------------------------------------------|
-| `_id`                 | ObjectId   | Unique identifier for each appointment                   |
-| `patient_id`          | ObjectId   | Reference to the patient                                 |
-| `reason`              | String     | Reason for the appointment                               |
-| `status`              | String     | Status of the appointment (`pending`, `assigned`, `scheduled`) |
-| `assigned_doctor_id`  | ObjectId   | Reference to the assigned doctor                         |
-| `date_requested`      | Date       | Date when the appointment was requested                  |
-| `appointment_datetime`| Date       | Scheduled date and time for the appointment              |
-| `doctor_email`        | String     | Email address of the doctor                              |
-| `doctor_name`         | String     | Name of the doctor                                       |
+| Field              | Type        | Description                                           |
+|--------------------|-------------|-------------------------------------------------------|
+| `id`               | SERIAL      | Primary key                                           |
+| `user_id`          | INTEGER     | Foreign key referencing the User model                |
+| `yacht_id`         | INTEGER     | Foreign key referencing the Yacht model               |
+| `start_date`       | DATE        | The start date of the booking                         |
+| `end_date`         | DATE        | The end date of the booking                           |
+| `total_price`      | DECIMAL(10,2)| Total cost calculated based on the booking period     |
 
-#### Medical Records Collection
+#### Review Table
 
-Stores medical records associated with patients.
+This table allows users to leave reviews for yachts.
 
-| Field        | Type       | Description                           |
-|--------------|------------|---------------------------------------|
-| `_id`        | ObjectId   | Unique identifier for each record     |
-| `patient_id` | ObjectId   | Reference to the patient              |
-| `doctor_id`  | ObjectId   | Reference to the doctor               |
-| `description`| String     | Description of the medical condition  |
-| `treatment`  | String     | Treatment provided                    |
-| `date`       | Date       | Date of the record                    |
+| Field            | Type         | Description                                           |
+|------------------|--------------|-------------------------------------------------------|
+| `id`             | SERIAL       | Primary key                                           |
+| `user_id`        | INTEGER      | Foreign key referencing the User model                |
+| `content`        | TEXT         | Text content of the review                            |
+| `rating`         | INTEGER      | Rating provided by the user                           |
+| `created_at`     | TIMESTAMP    | Timestamp of when the review was created              |
 
-#### Medical Record Files Collection
+### Relationships
 
-Stores files associated with medical records.
-
-| Field        | Type       | Description                           |
-|--------------|------------|---------------------------------------|
-| `_id`        | ObjectId   | Unique identifier for each file       |
-| `record_id`  | ObjectId   | Reference to the medical record       |
-| `file_id`    | String     | Cloudinary file ID                    |
-| `file_url`   | String     | URL to access the file                |
-| `file_name`  | String     | Name of the file                      |
-| `uploaded_at`| Date       | Date when the file was uploaded       |
-
-#### User Files Collection
-
-Stores files uploaded by patients and admins.
-
-| Field        | Type       | Description                           |
-|--------------|------------|---------------------------------------|
-| `_id`        | ObjectId   | Unique identifier for each file       |
-| `user_id`    | ObjectId   | Reference to the user                 |
-| `file_id`    | String     | Cloudinary file ID                    |
-| `file_url`   | String     | URL to access the file                |
-| `file_name`  | String     | Name of the file                      |
-| `file_type`  | String     | Type of file (e.g., medical record)   |
-| `uploaded_at`| Date       | Date when the file was uploaded       |
-
-### Reason for Separate File Collections
-
-Separate collections for user-uploaded files and doctor-uploaded files in medical records help in:
-
-1. **Organizational Clarity**: Better organization and management of data by clearly separating user and doctor files.
-2. **Access Control**: Different access permissions can be applied to user files and medical record files.
-3. **Audit and Tracking**: Improved tracking and auditing of file uploads by users and doctors.
-4. **Data Integrity**: Ensures that medical records remain consistent and are not accidentally altered by user uploads.
-
-### User Roles and Registration
-
-- **Patients**: All users are registered as patients by default.
-- **Admins**: Admins can be assigned by directly modifying their role in the database.
-- **Doctors**: Doctors can be assigned by either modifying their role directly in the database or by an admin through the web interface when adding a new doctor.
-
-This database design allows for efficient management of user data, medical records, appointments, and associated files, providing a comprehensive structure for the application.
+- **UserProfile**: Extends the User model to store additional personal information.
+- **Yacht**: Represents yachts available for booking.
+- **Booking**: Connects users with yachts and stores booking details, including dates and total cost.
+- **Review**: Allows users to leave reviews on yachts they have rented.
 
 ### Entity Relationship Diagram
 
