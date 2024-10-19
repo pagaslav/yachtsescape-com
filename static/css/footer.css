@@ -51,11 +51,16 @@ footer .footer-list-inline {
     padding-left: 0;
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 50px; 
+}
+
+footer .footer-list-inline li:first-child {
+    margin-right: auto;
 }
 
 footer .footer-list-inline-item {
-    margin-right: 0;
+    margin-right: 0 !important;
 }
 
 footer .footer-list-inline-item a {

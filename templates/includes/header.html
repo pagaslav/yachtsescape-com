@@ -181,8 +181,8 @@
                     </li>
 
                     <!-- "Book Now" button -->
-                    <button class="btn btn-sm header-main-btn" data-bs-toggle="modal" data-bs-target="#bookNowModal"
-                        aria-label="Book your yacht now">Book Now</button>
+                    <button class="btn btn-sm header-main-btn d-none d-md-block" data-bs-toggle="modal"
+                        data-bs-target="#bookNowModal" aria-label="Book your yacht now">Book Now</button>
                 </ul>
             </div>
         </div>
@@ -190,8 +190,7 @@
 </header>
 
 <!-- Book Now Modal -->
-<div class="modal fade" id="bookNowModal" tabindex="-1"
-    aria-labelledby="bookNowModalLabel" aria-hidden="true">
+<div class="modal fade" id="bookNowModal" tabindex="-1" aria-labelledby="bookNowModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -220,15 +219,15 @@
                     </div>
                     <div class="mb-3">
                         <label for="startDate" class="form-label">Start Date</label>
-                        <input type="date" id="startDate" name="start_date" class="form-control"
-                            required aria-describedby="start-date-description">
+                        <input type="date" id="startDate" name="start_date" class="form-control" required
+                            aria-describedby="start-date-description">
                         <span id="start-date-description" class="visually-hidden">Select the start
                             date for your yacht rental</span>
                     </div>
                     <div class="mb-3">
                         <label for="endDate" class="form-label">End Date</label>
-                        <input type="date" id="endDate" name="end_date" class="form-control"
-                            required aria-describedby="end-date-description">
+                        <input type="date" id="endDate" name="end_date" class="form-control" required
+                            aria-describedby="end-date-description">
                         <span id="end-date-description" class="visually-hidden">Select the end date
                             for your yacht rental</span>
                     </div>

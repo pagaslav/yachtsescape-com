@@ -130,7 +130,7 @@ Home - Yachtsescape
     <h2 class="text-center mb-4">FEATURED YACHTS</h2>
     <div class="row">
         {% for yacht in yachts %}
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 mb- featured-yacht">
             <article class="card yacht-card h-100 shadow-sm" aria-labelledby="yacht-card-{{ yacht.id }}">
                 <div class="position-relative">
                     <img src="{{ yacht.card_image.url }}" class="card-img-top" alt="Image of {{ yacht.name }} yacht in {{ yacht.location }}">

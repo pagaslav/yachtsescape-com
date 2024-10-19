@@ -2,20 +2,33 @@
 
 <!-- Footer section -->
 <footer class="bg-dark">
-    <div class="container py-5">
+    <div class="container py-1">
         <div class="row">
             <!-- Logo section -->
-            <div class="col-lg-4 text-center mb-5">
+            <div class="col-lg-4 text-center">
                 <a href="{% url 'home' %}" id="footer-logo" aria-label="Homepage" class="normal-logo">
-                    <img src="{% static 'images/logo-light.png' %}" alt="YachtsEscape - Yachts Rental Logo" class="img-fluid" />
+                    <img src="{% static 'images/logo-light.png' %}" alt="YachtsEscape - Yachts Rental Logo"
+                        class="img-fluid" />
                 </a>
             </div>
 
             <!-- Navigation links section -->
             <div class="col-lg-4 text-center mb-lg-0">
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white">Our Fleet</a></li>
+                    <li><a href="{% url 'home' %}" aria-label="Homepage">Home</a></li>
+                    <!-- Conditional Menu Based on User Authentication Status -->
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' %}" role="menuitem" aria-label="View My Profile" class="text-white">My
+                            Profile</a>My
+                        Profile</a>
+                    </li>
+                    {% else %}
+                    <li><a href="{% url 'account_login' %}" aria-label="Log In Page" class="text-white">Sing In</a>
+                    </li>
+                    <li><a href="{% url 'yacht_list' %}" role="menuitem" aria-label="View all yachts"
+                            class="text-white">Our Fleet</a></li>
                     <li><a href="{% url 'about' %}" class="text-white">About Us</a></li>
+                    {% endif %}
                 </ul>
             </div>
 
@@ -39,7 +52,7 @@
                 </p>
 
                 <!-- Social icons -->
-                <ul class="footer-list-inline mt-3">
+                <ul class="footer-list-inline mt-2">
                     <li class="footer-list-inline-item">
                         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-white"
                             aria-label="Visit our Instagram page (opens in new window)"
@@ -77,15 +90,23 @@
         </div>
 
         <!-- Copyright section -->
-        <div class="row mt-1">
+        <div class="row">
             <div class="col-12 text-center">
-                <p class="mb-0 text-white">
+                <p class="text-white">
                     &copy; 2024 <a href="https://www.linkedin.com/in/artem-bryzh-43109a176/" target="_blank"
                         rel="noopener noreferrer" class="text-white text-decoration-none email-link"
-                        aria-label="Visit Artem Bryzh's LinkedIn profile (opens in new window)">Artem Bryzh</a>. All
+                        aria-label="Visit Artem Bryzh's LinkedIn profile (opens in new window)">Artem Bryzh.</a> All
                     rights reserved.
                 </p>
             </div>
         </div>
     </div>
 </footer>
+
+{% block extra_js %}
+<script>
+    // Pass the static URLs from Django template into JavaScript variables
+    const smallLogoUrl = "{% static 'images/logo-light-small.png' %}";
+    const largeLogoUrl = "{% static 'images/logo-light.png' %}";
+</script>
+{% endblock %}

@@ -1,3 +1,5 @@
+# booking/views.py
+
 from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
 from django.http import JsonResponse
 from django.urls import reverse
