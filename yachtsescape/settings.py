@@ -28,16 +28,6 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'yachtsescape-a7b4e5d759f6.herokuapp.
 
 MYSITE_DOMAIN = 'yachtsescape-a7b4e5d759f6.herokuapp.com'
 
-# MYSITE_DOMAIN = '127.0.0.1:8000'
-
-# MYSITE_DOMAIN = 'http://localhost:8000'
-
-
-# if os.environ.get('DJANGO_ENV') == 'production':
-#     MYSITE_DOMAIN = 'yachtsescape-a7b4e5d759f6.herokuapp.com'
-# else:
-#     MYSITE_DOMAIN = '127.0.0.1:8000'
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -62,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -179,22 +170,15 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Path where static files will be collected
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
-# Use Whitenoise to serve static files
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+if DEBUG:
+    WHITENOISE_MAX_AGE = 0
+    WHITENOISE_ENABLE_BROTLI = False
+else:
+    WHITENOISE_MAX_AGE = 31536000
+    WHITENOISE_ENABLE_BROTLI = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -216,16 +200,8 @@ if USE_AWS:
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     AWS_QUERYSTRING_AUTH = False
 
-    # Static and media files
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    STATICFILES_LOCATION = 'static'
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
     MEDIAFILES_LOCATION = 'media'
-
-    # Override static and media URLs in production
-    # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    # MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-    STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
     MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/'
 else:
     MEDIA_URL = '/media/'
@@ -248,11 +224,8 @@ else:
     
 # Stripe
 STRIPE_CURRENCY = 'usd'
-# STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
-# STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
-# STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 STRIPE_WH_SECRET = config('STRIPE_WH_SECRET')
 STRIPE_API_VERSION = "2024-06-20"
 
