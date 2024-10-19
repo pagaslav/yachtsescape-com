@@ -8,6 +8,11 @@ View the live site [here](https://yachtsescape-a7b4e5d759f6.herokuapp.com/)
 
 Welcome to YachtsEscape, your premier destination for discovering and booking luxury yacht rentals. Our platform is designed to provide users with an effortless experience, from searching for the perfect yacht to securing your booking. Whether you're planning a tranquil getaway or an adventurous voyage, YachtsEscape.com offers a wide selection of yachts to suit every preference.
 
+
+## Mindmap of YachtsEscape.com
+
+![Mindmap of YachtsEscape.com](docs/images/wireframes/mindmap.webp)
+
 ## Project Goals
 
 The primary goal of YachtsEscape.com is to make yacht rentals accessible and straightforward for both users and administrators. Our objectives include:
@@ -987,24 +992,29 @@ This table allows users to leave reviews for yachts.
 
 ### Entity Relationship Diagram
 
-![ERD My DB](documentation/erd-mongodb.webp)
+#### Custom Entity Relationship Diagram
+![ERD My DB](docs/images/db/erd-custom.webp)
+
+#### Custom Entity Relationship Diagram
+![ERD My DB](docs/images/db/erd-mermmaid.webp)
 
 ## Technologies Used
 
+- [Python](https://www.python.org/)  is used as the back-end programming language.
+- [Django](https://www.djangoproject.com/) is the Python framework used for the site.
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) was used as the foundation of the site.
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/css) - was used to add the styles and layout of the site.
 - [Bootstrap](https://getbootstrap.com/docs/5.3) was employed to integrate its styles, facilitating rapid development and
 consistent styling across the pages.
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) was employed to implement dynamic interactions on the site, enabling real-time user feedback and interactive features without needing to reload the page.
 - [jQuery](https://jquery.com/) used for user interaction on the site.
-- [Python](https://www.python.org/)  is used as the back-end programming language.
-- [Flask](https://flask.palletsprojects.com/en/3.0.x/) is the Python framework used for the site.
-- [MongoDB](https://www.mongodb.com/) is the non-relational database management I chose to use for storing data.
+- [PostgreSQL](https://www.postgresql.org/) is the relational database management system I chose to use for storing data.
 - [VSCode](https://code.visualstudio.com/) was used as the main tool to write and edit code.
 - [Git](https://git-scm.com/) was used for the version control of the website.
 - [GitHub](https://github.com/) was used to host the code of the website.
 - [Heroku](https://dashboard.heroku.com/apps)  is hosting the deployed back-end site.
-- [Cloudinary](https://cloudinary.com/) used for online static file storage.
+<!-- - [Cloudinary](https://cloudinary.com/) used for online static file storage. -->
+- [AWS S3](https://aws.amazon.com/s3/) is used for online media file storage.
 - [Balsamiq](https://balsamiq.com/) was used to make wireframes for the website.
 - [Adobe Photoshop](https://www.adobe.com/uk/products/photoshop.html) was used to make and resize images for the website and the
 README file.
