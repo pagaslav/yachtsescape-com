@@ -1,3 +1,7 @@
+"""
+yachtsescape/settings.py
+"""
+
 import os
 from pathlib import Path
 import dj_database_url
@@ -9,7 +13,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Media files settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -113,9 +116,6 @@ WSGI_APPLICATION = 'yachtsescape.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
@@ -127,7 +127,6 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -172,6 +171,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # WhiteNoise static files storage
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Additional directories for static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 if DEBUG:
     WHITENOISE_MAX_AGE = 0
     WHITENOISE_ENABLE_BROTLI = False
@@ -206,7 +210,8 @@ else:
     MEDIA_URL = '/media/'
     STATIC_URL = '/static/'
 
-    LOGGING = {
+# Logging configuration
+LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
