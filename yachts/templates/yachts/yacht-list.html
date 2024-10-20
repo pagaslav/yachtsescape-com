@@ -1,5 +1,3 @@
-<!-- yachts/templates/yachts/yacht-list.html -->
-
 {% extends 'base.html' %}
 {% load static %}
 
@@ -79,8 +77,13 @@ Our Fleet
             </ul>
         </div>
     </section>
-   
-
+    <h2 class="text-center mt-4">{{ filters_title }}</h2>
+    <!-- Message if no yachts are available -->
+    {% if message %}
+    <div class="alert alert-warning text-center mt-4">
+        {{ message }}
+    </div>
+    {% else %}
     <!-- Yacht card section -->
     <section class="row mt-5">
         {% for yacht in yachts %}
@@ -134,5 +137,6 @@ Our Fleet
         </div>
         {% endfor %}
     </section>
+    {% endif %}
 </div>
 {% endblock %}
