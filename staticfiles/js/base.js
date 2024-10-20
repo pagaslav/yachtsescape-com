@@ -81,55 +81,84 @@ $(document).ready(function () {
   handleScroll()
 
   // Password validation functions
+  const passwordField = document.querySelector(
+    "#{{ form.password1.id_for_label }}"
+  )
+  const confirmPasswordField = document.querySelector(
+    "#{{ form.password2.id_for_label }}"
+  )
+  const confirmPasswordError = document.getElementById("confirmPasswordError")
+  const lengthRequirement = document.getElementById("lengthRequirement")
+  const uppercaseRequirement = document.getElementById("uppercaseRequirement")
+  const numberRequirement = document.getElementById("numberRequirement")
+
+  lengthRequirement.classList.add("text-red")
+  uppercaseRequirement.classList.add("text-red")
+  numberRequirement.classList.add("text-red")
+
   function validatePassword() {
-    const password = $("#password1").val()
-    const confirmPassword = $("#password2").val()
-    const lengthCheck = $("#length-register")
-    const uppercaseCheck = $("#uppercase-register")
-    const numberCheck = $("#number-register")
+    const password = passwordField.value
+    let isValid = true
 
-    // Check length
+    lengthRequirement.classList.remove("text-gray")
+    uppercaseRequirement.classList.remove("text-gray")
+    numberRequirement.classList.remove("text-gray")
+
     if (password.length >= 8) {
-      lengthCheck.removeClass("neutral").addClass("valid")
+      lengthRequirement.classList.remove("text-red")
+      lengthRequirement.classList.add("text-gray")
     } else {
-      lengthCheck.removeClass("valid").addClass("neutral")
+      lengthRequirement.classList.add("text-red")
     }
 
-    // Check for uppercase letter
     if (/[A-Z]/.test(password)) {
-      uppercaseCheck.removeClass("neutral").addClass("valid")
+      uppercaseRequirement.classList.remove("text-red")
+      uppercaseRequirement.classList.add("text-gray")
     } else {
-      uppercaseCheck.removeClass("valid").addClass("neutral")
+      uppercaseRequirement.classList.add("text-red")
     }
 
-    // Check for number
     if (/\d/.test(password)) {
-      numberCheck.removeClass("neutral").addClass("valid")
+      numberRequirement.classList.remove("text-red")
+      numberRequirement.classList.add("text-gray")
     } else {
-      numberCheck.removeClass("valid").addClass("neutral")
+      numberRequirement.classList.add("text-red")
     }
 
-    // Confirm password match
-    if (password !== confirmPassword) {
-      $("#password2").get(0).setCustomValidity("Passwords do not match.")
+    isValid =
+      password.length >= 8 && /[A-Z]/.test(password) && /\d/.test(password)
+    if (isValid) {
+      passwordField.classList.remove("is-invalid")
     } else {
-      $("#password2").get(0).setCustomValidity("")
+      passwordField.classList.add("is-invalid")
     }
   }
 
-  // Add input event listeners to password fields
-  $("#password1, #password2").on("input", validatePassword)
+  function validateConfirmPassword() {
+    const password = passwordField.value
+    const confirmPassword = confirmPasswordField.value
 
-  // Toggle password visibility
-  $(".password-toggle").on("click", function () {
-    const passwordField = $(this).siblings("input")
-    const icon = $(this).find("i")
-    if (passwordField.attr("type") === "password") {
-      passwordField.attr("type", "text")
-      icon.removeClass("fa-eye").addClass("fa-eye-slash")
+    if (password !== confirmPassword) {
+      confirmPasswordError.innerText = "Passwords do not match."
+      confirmPasswordField.classList.add("is-invalid")
     } else {
-      passwordField.attr("type", "password")
-      icon.removeClass("fa-eye-slash").addClass("fa-eye")
+      confirmPasswordError.innerText = ""
+      confirmPasswordField.classList.remove("is-invalid")
+    }
+  }
+
+  passwordField.addEventListener("input", validatePassword)
+  confirmPasswordField.addEventListener("input", validateConfirmPassword)
+
+  const form = document.querySelector("form")
+  form.addEventListener("submit", function (event) {
+    validatePassword()
+    validateConfirmPassword()
+    if (
+      passwordField.classList.contains("is-invalid") ||
+      confirmPasswordField.classList.contains("is-invalid")
+    ) {
+      event.preventDefault() // Prevent form submission if validation fails
     }
   })
 })

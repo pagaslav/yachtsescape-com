@@ -33,7 +33,7 @@ class StripeWH_Handler:
         intent = event.data.object
         session = event.data.object
         logger.info(f"Intent data: {json.dumps(intent, indent=2)}")
-        logger.info(f"Intent data: {json.dumps(session, indent=2)}")
+        logger.info(f"Session data: {json.dumps(session, indent=2)}")
         
         # Retrieve the booking ID from metadata
         booking_id = getattr(session, 'client_reference_id', None)
@@ -56,7 +56,7 @@ class StripeWH_Handler:
             booking.confirm_booking()  # Update status to confirmed
             
             # Send confirmation email
-            # self._send_confirmation_email(booking)
+            self._send_confirmation_email(booking)
             
             logger.info(f"Booking {booking_id} confirmed and email sent.")
             return HttpResponse(
@@ -93,7 +93,7 @@ class StripeWH_Handler:
             # Fetch the booking associated with this payment
             booking = Booking.objects.get(id=booking_id)
             booking.confirm_booking()  # Update status to confirmed
-            # self._send_confirmation_email(booking)
+            self._send_confirmation_email(booking)
             logger.info(f"Booking {booking_id} confirmed and email sent.")
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Booking confirmed',
@@ -125,3 +125,28 @@ class StripeWH_Handler:
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | ERROR: Booking not found',
                 status=500)
+
+    def _send_confirmation_email(self, booking):
+        """Sends a confirmation email after booking is confirmed."""
+        profiles = booking.user.userprofile
+
+        context = {
+            'booking': booking,
+            'profiles': profiles,
+        }
+
+        subject = f"Booking Confirmation - {booking.id}"
+        email_html_message = render_to_string('booking/booking_confirmation_email.html', context)
+
+        recipient_email = profiles.user.email
+
+        send_mail(
+            subject,
+            '',
+            settings.DEFAULT_FROM_EMAIL,
+            [recipient_email],
+            fail_silently=False,
+            html_message=email_html_message,
+        )
+
+        logger.info(f"Confirmation email sent to {recipient_email}")

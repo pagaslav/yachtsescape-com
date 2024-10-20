@@ -1,4 +1,15 @@
-/* Styles for screens smaller than 992px */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .featured-yacht:nth-child(1) {
+    display: none;
+  }
+
+  .featured-yacht {
+    width: 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
 @media (max-width: 991.98px) {
 
   /* Hide top bar for screens smaller than 992px */
@@ -66,6 +77,14 @@
     background-color: #006bb3;
   }
 
+  footer {
+    padding: 10px 0 !important;
+  }
+
+  #footer-logo img {
+        display: none;
+    }
+
   footer .footer-list-inline {
     width: 80%;
     justify-content: center;
@@ -75,6 +94,14 @@
 
   footer .footer-list-inline-item a {
     font-size: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .featured-yacht {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
 

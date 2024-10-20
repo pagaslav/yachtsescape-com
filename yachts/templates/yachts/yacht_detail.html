@@ -82,12 +82,12 @@ Our Fleet - {{ yacht.name }} details
         <li><i class="fas fa-dollar-sign"></i> <strong>Price per day:</strong> ${{ yacht.price_per_day }}</li>
     </ul>
 
-    <h2>Booked Dates</h2>
+    <h2>Booked Dates:</h2>
     <ul class="date-list">
         {% for date in booked_dates %}
         <li><i class="fas fa-calendar-alt"></i> From {{ date.start }} to {{ date.end }}</li>
         {% empty %}
-        <li class="no-dates"><i class="fas fa-calendar-times"></i> No booked dates</li>
+        <li class="no-dates"><i class="fas fa-calendar-times"></i> No booked dates yet</li>
         {% endfor %}
     </ul>
 

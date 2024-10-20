@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 10px;
+        }
+        .header h1 {
+            color: #088cdc;
+        }
+        .content {
+            font-size: 16px;
+            color: #333;
+        }
+        .content p {
+            margin-bottom: 20px;
+        }
+        .booking-info, .yacht-details, .contact-info, .payment-info {
+            margin-bottom: 20px;
+        }
+        .booking-info h3, .yacht-details h3, .contact-info h3, .payment-info h3 {
+            color: #088cdc;
+            margin-bottom: 10px;
+        }
+        .booking-info p, .yacht-details p, .contact-info p, .payment-info p {
+            font-size: 14px;
+            color: #555;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #088cdc;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>YachtsEscape Booking Confirmation</h1>
+        </div>
+
+        <!-- Introduction -->
+        <div class="content">
+            <p>Dear {{ profiles.full_name }},</p>
+            <p>Thank you for choosing YachtsEscape for your upcoming yacht adventure! We are thrilled to confirm your booking. Below are the details of your reservation:</p>
+        </div>
+
+        <!-- Booking Information -->
+        <div class="booking-info">
+            <h3>Booking Information</h3>
+            <p><strong>Booking ID:</strong> {{ booking.id }}</p>
+            <p><strong>Booking Date:</strong> {{ booking.created_at|date:"F j, Y" }}</p>
+        </div>
+
+        <!-- Yacht Details -->
+        <div class="yacht-details">
+            <h3>Yacht Details</h3>
+            <p><strong>Yacht Name:</strong> {{ booking.yacht.name }}</p>
+            <p><strong>Yacht Rental Dates:</strong> {{ booking.start_date }} - {{ booking.end_date }}</p>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p><strong>Full Name:</strong> {{ profiles.full_name }}</p>
+            <p><strong>Email Address:</strong> {{ profiles.user.email }}</p>
+            <p><strong>Phone Number:</strong> {{ profiles.phone_number }}</p>
+        </div>
+
+        <!-- Payment Information -->
+        <div class="payment-info">
+            <h3>Payment Information</h3>
+            <p><strong>Total Cost:</strong> ${{ booking.total_cost|floatformat:2 }}</p>
+        </div>
+
+        <!-- Farewell Message -->
+        <div class="content">
+            <p>If you have any questions or need further assistance, feel free to contact us at any time. We're here to make sure your experience is smooth and enjoyable.</p>
+            <p>We can't wait to welcome you aboard!</p>
+            <p>Best regards,<br>The YachtsEscape Team</p>
+        </div>
+
+        <!-- Button to View More Yachts -->
+        <div class="text-center">
+            <a href="{% url 'yacht_list' %}" class="btn">View More Yachts</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>YachtsEscape Ltd. | 123 Ocean Drive, Cardiff, Wales, CF10 1AA, United Kingdom</p>
+        </div>
+    </div>
+</body>
+</html>
