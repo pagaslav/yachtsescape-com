@@ -98,21 +98,24 @@ About Us
             <div id="collapseWhyUs" class="accordion-collapse collapse" aria-labelledby="headingWhyUs"
                 data-bs-parent="#aboutAccordion">
                 <div class="accordion-body">
-                    <!-- Content for Why Choose Us -->
-                    Why Choose Us? Well, we like to think we’re not just your average yacht rental company. We offer
+                    Why Choose Us? Well, we like to think we&rsquo;re not just your average yacht rental company. We
+                    offer
                     services that go above and beyond, all while keeping a smile on our faces (and hopefully yours
                     too!).
 
-                    Our team is passionate about making your experience unforgettable, whether it’s finding the perfect
+                    Our team is passionate about making your experience unforgettable, whether it&rsquo;s finding the
+                    perfect
                     yacht for your needs or ensuring you have the best crew on board. We believe that customer
-                    satisfaction isn’t just a buzzword—it’s our mission.
+                    satisfaction isn&rsquo;t just a buzzword&mdash;it&rsquo;s our mission.
 
                     Plus, we know all the best spots to anchor, the tastiest local eats, and the secret beaches that
                     make for fantastic Instagram shots. So, if you want to avoid the usual tourist traps and sail like a
-                    local, you’ve come to the right place!
+                    local, you&rsquo;ve come to the right place!
 
-                    Let’s be honest, you could choose anyone to help with your yacht adventures, but with us, you get a
-                    crew that’s genuinely excited to share their love for the sea. Ready to set sail? We’re just a click
+                    Let&rsquo;s be honest, you could choose anyone to help with your yacht adventures, but with us, you
+                    get a
+                    crew that&rsquo;s genuinely excited to share their love for the sea. Ready to set sail? We&rsquo;re
+                    just a click
                     away!
                 </div>
             </div>
@@ -157,10 +160,9 @@ About Us
     </div>
 
     <!-- Comment form section -->
-    <h2 class="mt-5">Leave a Comment</h2>
-    <div class="registration-warning">
-        Only registered users can leave comments.
-    </div>
+    <h2 class="mt-5">Leave a Feedback </h2>
+    {% if user.is_authenticated %}
+    <!-- Comment form for authenticated users -->
     <div class="comment-form">
         <form method="post">
             {% csrf_token %}
@@ -186,9 +188,18 @@ About Us
             <button type="submit" class="btn btn-primary mb-3 header-main-btn">Submit</button>
         </form>
     </div>
+    {% else %}
+    <!-- Warning for unauthenticated users -->
+    <div class="registration-warning">
+        Only registered users can leave comments.
+    </div>
+    <!-- Sign In button -->
+    <button class="mb-3 mt-3">
+        <a href="{% url 'account_login' %}" class="feedback-btn">Sign In</a>
+    </button>
+    {% endif %}
 
     <!-- Displaying reviews -->
-    <!-- <h2 class="mt-4">User Reviews</h2> -->
     <div class="reviews">
         {% for review in reviews %}
         <div class="card mb-3">
@@ -203,16 +214,6 @@ About Us
                     <div class="helpful-section text-center">
                         <span class="text-muted small">{{ review.created_at|date:"d F Y, H:i" }}</span>
                     </div>
-
-
-                    <!-- Helpful button in the center -->
-                    <!-- <div class="helpful-section text-center">
-                        <button class="btn btn-sm btn-outline-success mark-helpful" data-id="{{ review.id }}"
-                            aria-label="Mark as Helpful">
-                            <i class="fas fa-thumbs-up"></i>
-                            <span class="helpful-count">{{ review.helpful_count }}</span> users found this helpful
-                        </button>
-                    </div> -->
 
                     <!-- Rating section on the right with text and stars -->
                     <div class="d-flex align-items-center">
@@ -234,81 +235,80 @@ About Us
         </div>
         {% endfor %}
     </div>
-</div>
 
-<!-- Modal for enlarged image of our team -->
-<div class="modal fade" id="teamModal" tabindex="-1" aria-labelledby="teamModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="teamModalLabel">Our Team</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img src="{% static 'images/yachtsescape-team.webp' %}" alt="Our Team" class="img-fluid">
+    <!-- Modal for enlarged image of our team -->
+    <div class="modal fade" id="teamModal" tabindex="-1" aria-labelledby="teamModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="teamModalLabel">Our Team</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{% static 'images/yachtsescape-team.webp' %}" alt="Our Team" class="img-fluid">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modals for enlarged diploma images -->
-<div class="modal fade" id="diplomaModal1" tabindex="-1" aria-labelledby="diplomaModal1Label" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="diplomaModal1Label">Diploma 1</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img src="{% static 'images/diploma1.webp' %}" alt="Diploma 1" class="img-fluid">
+    <!-- Modals for enlarged diploma images -->
+    <div class="modal fade" id="diplomaModal1" tabindex="-1" aria-labelledby="diplomaModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="diplomaModal1Label">Diploma 1</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{% static 'images/diploma1.webp' %}" alt="Diploma 1" class="img-fluid">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="diplomaModal2" tabindex="-1" aria-labelledby="diplomaModal2Label" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="diplomaModal2Label">Diploma 2</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img src="{% static 'images/diploma2.jpg' %}" alt="Diploma 2" class="img-fluid">
+    <div class="modal fade" id="diplomaModal2" tabindex="-1" aria-labelledby="diplomaModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="diplomaModal2Label">Diploma 2</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{% static 'images/diploma2.jpg' %}" alt="Diploma 2" class="img-fluid">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="diplomaModal3" tabindex="-1" aria-labelledby="diplomaModal3Label" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="diplomaModal3Label">Diploma 3</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img src="{% static 'images/diploma3.jpg' %}" alt="Diploma 3" class="img-fluid">
+    <div class="modal fade" id="diplomaModal3" tabindex="-1" aria-labelledby="diplomaModal3Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="diplomaModal3Label">Diploma 3</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{% static 'images/diploma3.jpg' %}" alt="Diploma 3" class="img-fluid">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="diplomaModal4" tabindex="-1" aria-labelledby="diplomaModal4Label" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="diplomaModal4Label">Diploma 4</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img src="{% static 'images/diploma4.jpg' %}" alt="Diploma 4" class="img-fluid">
+    <div class="modal fade" id="diplomaModal4" tabindex="-1" aria-labelledby="diplomaModal4Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="diplomaModal4Label">Diploma 4</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{% static 'images/diploma4.jpg' %}" alt="Diploma 4" class="img-fluid">
+                </div>
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
 
-{% block extra_js %}
-<script src="{% static 'js/about.js' %}"></script>
-{% endblock %}
+    {% block extra_js %}
+    <script src="{% static 'js/about.js' %}"></script>
+    {% endblock %}
