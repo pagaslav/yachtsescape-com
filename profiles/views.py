@@ -1,5 +1,3 @@
-# profiles/views.py
-
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
@@ -16,6 +14,7 @@ def is_admin(user):
     return user.is_superuser or user.is_staff
 
 def profile(request):
+    """Display user profile."""
     if request.user.is_authenticated:
         user_profile = get_object_or_404(UserProfile, user=request.user)
         confirmed_bookings = Booking.objects.filter(user=request.user, status='confirmed')
@@ -29,25 +28,28 @@ def profile(request):
         return render(request, 'profiles/login_required.html')  
 
 def profile_edit(request):
+    """Edit user profile."""
     user_profile = get_object_or_404(UserProfile, user=request.user)
     
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=user_profile)
         if form.is_valid():
             form.save()
-            return redirect('profile')  
+            return redirect('profile')
+    else:
         form = UserProfileForm(instance=user_profile)
 
     return render(request, 'profiles/profile_edit.html', {'form': form})
 
 @user_passes_test(is_admin)
 def yachts_management(request):
+    """Manage yachts."""
     yachts = Yacht.objects.all()  
     return render(request, 'profiles/yachts_management.html', {'yachts': yachts})
 
 @user_passes_test(is_admin)
 def add_yacht(request):
-    """View to create a new yacht."""
+    """Add a new yacht."""
     if request.method == 'POST':
         form = YachtForm(request.POST, request.FILES) 
         if form.is_valid():
@@ -61,6 +63,7 @@ def add_yacht(request):
 
 @user_passes_test(is_admin)
 def edit_yacht(request, yacht_id):
+    """Edit an existing yacht."""
     yacht = get_object_or_404(Yacht, id=yacht_id)
     
     if request.method == 'POST':
@@ -76,12 +79,11 @@ def edit_yacht(request, yacht_id):
 
 @user_passes_test(is_admin)
 def delete_yacht(request, yacht_id):
-    """View to delete a yacht."""
+    """Delete a yacht."""
     yacht = get_object_or_404(Yacht, id=yacht_id)
 
     if request.method == 'POST':
         try:
-            # Delete the yacht's associated image if it exists
             if yacht.card_image: 
                 image_name = yacht.card_image.name
                 if image_name: 
@@ -92,27 +94,25 @@ def delete_yacht(request, yacht_id):
             messages.error(request, f'Error deleting yacht: {str(e)}')
         return redirect('yachts_management') 
 
-    # If it's not a POST request, just redirect
     return redirect('yachts_management')
 
 @user_passes_test(is_admin)
 def users_management(request):
-    """View to manage users."""
+    """Manage users."""
     users = User.objects.all() 
     return render(request, 'profiles/users_management.html', {'users': users})
 
 @user_passes_test(is_admin)
 def edit_user(request, user_id):
+    """Edit user details."""
     user = get_object_or_404(User, pk=user_id)
-    profile = get_object_or_404(UserProfile, user=user)
+    profile, created = UserProfile.objects.get_or_create(user=user)
 
     if request.method == 'POST':
-        # Update user information
         user.username = request.POST.get('username')
         user.email = request.POST.get('email')
         user.save()
 
-        # Update profile information
         profile.first_name = request.POST.get('first_name')
         profile.last_name = request.POST.get('last_name')
         profile.phone_number = request.POST.get('phone_number')
@@ -124,7 +124,6 @@ def edit_user(request, user_id):
         profile.country = request.POST.get('country')
         profile.save()
 
-        # Handle password change
         current_password = request.POST.get('current_password')
         new_password = request.POST.get('new_password')
         confirm_password = request.POST.get('confirm_password')
@@ -135,18 +134,11 @@ def edit_user(request, user_id):
                 user.save()
                 update_session_auth_hash(request, user)
                 messages.success(request, 'Password changed successfully.')
-
-                # Check if the user is an admin or not to redirect appropriately
-                if request.user.is_superuser or request.user.is_staff:
-                    return redirect('home')
-                else:
-                    return redirect('profile')
-
+                return redirect('users_management')
             else:
                 messages.error(request, 'Current password is incorrect.')
-        else:
-            if new_password != confirm_password:
-                messages.error(request, 'New passwords do not match.')
+        elif new_password and new_password != confirm_password:
+            messages.error(request, 'New passwords do not match.')
 
         messages.success(request, 'Profile updated successfully.')
         return redirect('users_management')
@@ -155,7 +147,7 @@ def edit_user(request, user_id):
 
 @user_passes_test(is_admin)
 def delete_user(request, user_id):
-    """View to delete a user."""
+    """Delete a user."""
     user = get_object_or_404(User, id=user_id)
 
     if request.method == 'POST':

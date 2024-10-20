@@ -1,18 +1,86 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block title %}
-Edit Yacht
+Edit Yacht - {{ yacht.name }}
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2>Edit Yacht: {{ yacht.name }}</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|crispy }}  <!-- Using crispy forms for better styling -->
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-        <a href="{% url 'yachts_management' %}" class="btn btn-secondary">Cancel</a>
-    </form>
+<div class="container text-center">
+    <div class="hero-content">
+    <h1 class="hero-title">Edit {{ yacht.name }}</h1>
+        <div class="breadcrumb-container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'home' %}" aria-label="Go to homepage">Home</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'profile' %}" aria-label="Go to My Profile">My Profile</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'yachts_management' %}" aria-label="Go to Yachts Management">Yachts Management</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Yacht</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12 col-md-6 mx-auto">
+            <form method="post" enctype="multipart/form-data" class="p-4 shadow-sm rounded" aria-label="Edit Yacht Form">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-center mt-3">
+                    <!-- Save Changes Button triggers modal -->
+                    <button type="button" class="base-btn add-btn me-3" data-bs-toggle="modal" data-bs-target="#confirmSaveModal" aria-label="Open save changes confirmation">
+                        <i class="fas fa-save" aria-hidden="true"></i>&nbsp;<span>Save Changes</span>
+                    </button>
+                    <a href="{% url 'yachts_management' %}" class="base-btn align-baseline delete-btn" aria-label="Cancel changes and return to Yachts Management">
+                        <i class="fas fa-times-circle" aria-hidden="true"></i>&nbsp;<span>Cancel</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-{% endblock %}
+
+<!-- Modal for Save Changes Confirmation -->
+<div class="modal fade" id="confirmSaveModal" tabindex="-1" aria-labelledby="confirmSaveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title justify-content-center text-center w-100" id="confirmSaveModalLabel" aria-label="Save Changes Confirmation Modal Title">Confirm Save Changes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Are you sure you want to save changes to<br>the yacht "<span id="yacht-name">{{ yacht.name }}</span>"?</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <form method="post" aria-label="Confirm Save Changes Form">
+                    {% csrf_token %}
+                    <button type="submit" class="base-btn add-btn me-3" aria-label="Confirm Save Changes">
+                        <i class="fas fa-check" aria-hidden="true"></i>&nbsp;<span>Yes, Save Changes</span>
+                    </button>
+                    <button type="button" class="base-btn" data-bs-dismiss="modal" aria-label="Cancel Save Changes">
+                        <i class="fas fa-times" aria-hidden="true"></i>&nbsp;<span>Cancel</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let confirmSaveModal = document.getElementById('confirmSaveModal');
+        confirmSaveModal.addEventListener('show.bs.modal', function (event) {
+            // Optional: Additional logic before showing the modal
+        });
+    });
+</script>
+{% endblock extra_js %}

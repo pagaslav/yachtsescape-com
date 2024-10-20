@@ -1,77 +1,130 @@
-<!-- templates/edit_user.html -->
 {% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Edit User Profile
+{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>Edit User Profile</h2>
-    <form method="post">
-        {% csrf_token %}
-        <!-- User Information -->
-        <h3>User Information</h3>
-        <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+<div class="container text-center">
+    <div class="hero-content">
+        <h1 class="hero-title">Edit {{ user.username }} Profile</h1>
+        <div class="breadcrumb-container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'home' %}" aria-label="Go to homepage">Home</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'profile' %}" aria-label="Go to My Profile">My Profile</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'users_management' %}" aria-label="Go to Users Management">Users Management</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit {{ user.username }} Profile</li>
+                </ol>
+            </nav>
         </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+    </div>   
+    <div class="row mt-4">
+        <div class="col-12 col-md-6 mx-auto">
+            <form method="post" class="p-4 shadow-sm rounded" aria-label="Edit User Profile Form">
+                {% csrf_token %}
+                
+                <!-- User Information -->
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ profile.first_name }}">
+                </div>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ profile.last_name }}">
+                </div>
+                <div class="mb-3">
+                    <label for="phone_number" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ profile.phone_number }}">
+                </div>
+                <div class="mb-3">
+                    <label for="street_address1" class="form-label">Street Address 1</label>
+                    <input type="text" class="form-control" id="street_address1" name="street_address1" value="{{ profile.street_address1 }}">
+                </div>
+                <div class="mb-3">
+                    <label for="street_address2" class="form-label">Street Address 2</label>
+                    <input type="text" class="form-control" id="street_address2" name="street_address2" value="{{ profile.street_address2 }}">
+                </div>
+                <div class="mb-3">
+                    <label for="town_city" class="form-label">Town/City</label>
+                    <input type="text" class="form-control" id="town_city" name="town_city" value="{{ profile.town_city }}">
+                </div>
+                <div class="mb-3">
+                    <label for="county_state" class="form-label">County/State</label>
+                    <input type="text" class="form-control" id="county_state" name="county_state" value="{{ profile.county_state }}">
+                </div>
+                <div class="mb-3">
+                    <label for="postal_code" class="form-label">Postal Code</label>
+                    <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ profile.postal_code }}">
+                </div>
+                <div class="mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="country" name="country" value="{{ profile.country }}">
+                </div>
+                <div class="text-center mt-3">
+                    <!-- Save Changes Button triggers modal -->
+                    <button type="button" class="base-btn add-btn me-3" data-bs-toggle="modal" data-bs-target="#confirmSaveModal" aria-label="Open save changes confirmation">
+                        <i class="fas fa-save" aria-hidden="true"></i>&nbsp;<span>Save Changes</span>
+                    </button>
+                    <a href="{% url 'users_management' %}" class="base-btn align-baseline delete-btn" aria-label="Cancel changes and return to Users Management">
+                        <i class="fas fa-times-circle" aria-hidden="true"></i>&nbsp;<span>Cancel</span>
+                    </a>
+                </div>
+            </form>
         </div>
-
-        <!-- Profile Information -->
-        <h3>Profile Information</h3>
-        <div class="mb-3">
-            <label for="first_name" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ profile.first_name }}">
-        </div>
-        <div class="mb-3">
-            <label for="last_name" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ profile.last_name }}">
-        </div>
-        <div class="mb-3">
-            <label for="phone_number" class="form-label">Phone Number</label>
-            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ profile.phone_number }}">
-        </div>
-        <div class="mb-3">
-            <label for="street_address1" class="form-label">Street Address 1</label>
-            <input type="text" class="form-control" id="street_address1" name="street_address1" value="{{ profile.street_address1 }}">
-        </div>
-        <div class="mb-3">
-            <label for="street_address2" class="form-label">Street Address 2</label>
-            <input type="text" class="form-control" id="street_address2" name="street_address2" value="{{ profile.street_address2 }}">
-        </div>
-        <div class="mb-3">
-            <label for="town_city" class="form-label">Town/City</label>
-            <input type="text" class="form-control" id="town_city" name="town_city" value="{{ profile.town_city }}">
-        </div>
-        <div class="mb-3">
-            <label for="county_state" class="form-label">County/State</label>
-            <input type="text" class="form-control" id="county_state" name="county_state" value="{{ profile.county_state }}">
-        </div>
-        <div class="mb-3">
-            <label for="postal_code" class="form-label">Postal Code</label>
-            <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ profile.postal_code }}">
-        </div>
-        <div class="mb-3">
-            <label for="country" class="form-label">Country</label>
-            <input type="text" class="form-control" id="country" name="country" value="{{ profile.country }}">
-        </div>
-
-        <!-- Password Change Section -->
-        <h3>Change Password</h3>
-        <div class="mb-3">
-            <label for="current_password" class="form-label">Current Password</label>
-            <input type="password" class="form-control" id="current_password" name="current_password" required>
-        </div>
-        <div class="mb-3">
-            <label for="new_password" class="form-label">New Password</label>
-            <input type="password" class="form-control" id="new_password" name="new_password" required>
-        </div>
-        <div class="mb-3">
-            <label for="confirm_password" class="form-label">Confirm New Password</label>
-            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </form>
+    </div>
 </div>
-{% endblock %}
+
+<!-- Modal for Save Changes Confirmation -->
+<div class="modal fade" id="confirmSaveModal" tabindex="-1" aria-labelledby="confirmSaveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title justify-content-center text-center w-100" id="confirmSaveModalLabel" aria-label="Save Changes Confirmation Modal Title">Confirm Save Changes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Are you sure you want to save changes to<br>the user profile "<span id="user-name">{{ user.username }}</span>"?</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <form method="post" aria-label="Confirm Save Changes Form">
+                    {% csrf_token %}
+                    <button type="submit" class="base-btn add-btn me-3" aria-label="Confirm Save Changes">
+                        <i class="fas fa-check" aria-hidden="true"></i>&nbsp;<span>Yes, Save Changes</span>
+                    </button>
+                    <button type="button" class="base-btn" data-bs-dismiss="modal" aria-label="Cancel Save Changes">
+                        <i class="fas fa-times" aria-hidden="true"></i>&nbsp;<span>Cancel</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let confirmSaveModal = document.getElementById('confirmSaveModal');
+        confirmSaveModal.addEventListener('show.bs.modal', function (event) {
+            // Optional: Additional logic before showing the modal
+        });
+    });
+</script>
+{% endblock extra_js %}
