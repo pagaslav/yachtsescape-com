@@ -111,19 +111,13 @@ def yacht_detail(request, yacht_id):
     yacht = get_object_or_404(Yacht, id=yacht_id)
     bookings = Booking.objects.filter(
         yacht=yacht, status='confirmed'
-    ).values('start_date', 'end_date')
+    ).order_by('start_date').values('start_date', 'end_date')
     booked_dates = []
     for booking in bookings:
         start_date = booking['start_date']
         end_date = booking['end_date']
-        if isinstance(start_date, datetime):
-            start_date_str = start_date.strftime('%Y-%m-%d')
-        else:
-            start_date_str = start_date
-        if isinstance(end_date, datetime):
-            end_date_str = end_date.strftime('%Y-%m-%d')
-        else:
-            end_date_str = end_date
+        start_date_str = start_date.strftime('%Y-%m-%d') if isinstance(start_date, datetime) else start_date
+        end_date_str = end_date.strftime('%Y-%m-%d') if isinstance(end_date, datetime) else end_date
         booked_dates.append({'start': start_date_str, 'end': end_date_str})
 
     if request.method == 'POST':
@@ -134,12 +128,9 @@ def yacht_detail(request, yacht_id):
             booking.user = request.user
             date_range = form.cleaned_data['date_range']
             start_date_str, end_date_str = date_range.split(" to ")
-            booking.start_date = datetime.strptime(
-                start_date_str, '%Y-%m-%d'
-            ).date()
-            booking.end_date = datetime.strptime(
-                end_date_str, '%Y-%m-%d'
-            ).date()
+            booking.start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
+            booking.end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
+
             booking.save()
     else:
         form = BookingForm()

@@ -39,32 +39,22 @@ Our Fleet - {{ yacht.name }} details
         <li><i class="fas fa-id-card"></i> <strong>ID:</strong> {{ yacht.id }}</li>
     </ul>
 
+    <!-- Yacht image carousel -->
     <div id="yachtGallery" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div id="yachtGallery" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    {% if yacht.detail_image %}
-                        <div class="carousel-item active">
-                            <img src="{{ yacht.detail_image.url }}" class="d-block w-100" alt="{{ yacht.name }}">
-                        </div>
-                    {% endif %}
-                    {% for image in yacht.get_detail_images %}
-                        {% if image != yacht.detail_image.url %}
-                            <div class="carousel-item">
-                                <img src="{{ image }}" class="d-block w-100" alt="{{ yacht.name }}">
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+            {% if yacht.detail_image %}
+                <div class="carousel-item active">
+                    <img src="{{ yacht.detail_image.url }}" class="d-block w-100" alt="{{ yacht.name }}">
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#yachtGallery" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#yachtGallery" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+            {% endif %}
+            {% for image in yacht.get_detail_images %}
+                {% if image != yacht.detail_image.url %}
+                    <div class="carousel-item">
+                        <img src="{{ image }}" class="d-block w-100" alt="{{ yacht.name }}">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#yachtGallery" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -75,6 +65,12 @@ Our Fleet - {{ yacht.name }} details
         </button>
     </div>
     
+    <!-- Passing image data via a data attribute -->
+    <div id="image-data" data-images='[
+        {% for image in yacht.get_detail_images %}
+            "{{ image }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ]'></div>
 
     <ul class="yacht-attributes-row mt-3">
         <li><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> {{ yacht.location }}</li>
@@ -84,7 +80,7 @@ Our Fleet - {{ yacht.name }} details
 
     <h2>Booked Dates:</h2>
     <ul class="date-list">
-        {% for date in booked_dates %}
+        {% for date in booked_dates|dictsort:"start" %}
         <li><i class="fas fa-calendar-alt"></i> From {{ date.start }} to {{ date.end }}</li>
         {% empty %}
         <li class="no-dates"><i class="fas fa-calendar-times"></i> No booked dates yet</li>
@@ -119,6 +115,40 @@ Our Fleet - {{ yacht.name }} details
 {% block extra_js %}
     <!-- Flatpickr v4 -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- JavaScript for processing images from the data attribute -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const imageDataElement = document.getElementById("image-data");
+        
+        // Check if the element exists
+        if (!imageDataElement) {
+            console.error("Element with id 'image-data' not found.");
+            return;
+        }
+        
+        // Get images from the data attribute
+        const images = JSON.parse(imageDataElement.dataset.images); 
+        console.log("Images array:", images);
+
+        // Find the carousel container
+        const imageContainer = document.querySelector("#yachtGallery .carousel-inner");
+
+        // Check if the carousel container exists
+        if (!imageContainer) {
+            console.error("Carousel container not found.");
+            return;
+        }
+
+        // Create carousel items for each image
+        images.forEach((imageUrl, index) => {
+            const carouselItem = document.createElement("div");
+            carouselItem.className = `carousel-item ${index === 0 ? "active" : ""}`;
+            carouselItem.innerHTML = `<img src="${imageUrl}" class="d-block w-100" alt="Yacht Image ${index + 1}">`;
+            imageContainer.appendChild(carouselItem);
+        });
+    });
+    </script>
 
     <script src="{% static 'js/yachts.js' %}"></script>
 

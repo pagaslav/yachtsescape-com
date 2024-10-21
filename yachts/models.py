@@ -1,13 +1,9 @@
-# yachts/models.py
-
 from django.db import models
-from django.conf import settings
-from storages.backends.s3boto3 import S3Boto3Storage
-import logging
 import os
-import boto3  # Ensure you import boto3
+from cloudinary.models import CloudinaryField
+from django.conf import settings
+import logging
 
-# Setting up logging for error tracking
 logger = logging.getLogger(__name__)
 
 class Yacht(models.Model):
@@ -16,116 +12,72 @@ class Yacht(models.Model):
         ('France', 'France'),
         ('Spain', 'Spain'),
     ]
-    # Name of the yacht
-    name = models.CharField(max_length=100)  
-    # ID for inventory management
+    name = models.CharField(max_length=100)
     id = models.AutoField(primary_key=True)
-    # Type of yacht (e.g., sailing, motor)
     type = models.CharField(max_length=50, default='default_type')
-    # Detailed description of the yacht
     description = models.TextField()
-    # Country where the yacht is available
     country = models.CharField(max_length=50, choices=COUNTRY_CHOICES, default='Turkey')
-    # Location where the yacht is available
     location = models.CharField(max_length=100)
-    # Maximum number of people the yacht can accommodate
     capacity = models.IntegerField()
-    # Price per day for renting the yacht
     price_per_day = models.DecimalField(max_digits=8, decimal_places=2)
-    # Optional rating for the yacht
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    # Availability status of the yacht
     available = models.BooleanField(default=True)
-    # URL for an external image of the yacht
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-    # Uploaded image of the yacht for the listing
-    card_image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
-    # Uploaded images of the yacht for the details
-    detail_image = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
-    # External URL for the detail image, if needed
+
+    # Используем разные поля в зависимости от значения DEBUG
+    if settings.DEBUG:
+        # Для локальной разработки используем ImageField
+        card_image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
+        detail_image = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
+    else:
+        # В продакшн используем CloudinaryField
+        card_image = CloudinaryField('image', folder='yachts/cards', null=True, blank=True)
+        detail_image = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
+
     detail_image_url = models.URLField(max_length=1024, null=True, blank=True)
 
-    def get_files_from_s3(self, folder_path):
-        """Fetches all files from the specified S3 folder."""
-        s3_client = boto3.client('s3')
-        response = s3_client.list_objects_v2(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Prefix=folder_path)
-        files = []
-        if 'Contents' in response:
-            for obj in response['Contents']:
-                files.append(obj['Key'])
-        return files
-
     def get_card_images(self):
-        """Returns a list of URLs to the card images of the yacht."""
         card_images = []
-        folder_path = os.path.join(settings.MEDIA_ROOT, 'yachts/cards')
-        
-        # Check local directory for images
-        if os.path.exists(folder_path) and os.path.isdir(folder_path):
-            for filename in os.listdir(folder_path):
-                if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
-                    card_images.append(f"/media/yachts/cards/{filename}")
+        if self.card_image:
+            logger.debug(f"Card image URL: {self.card_image.url}")
+            card_images.append(self.card_image.url)
         else:
-            logger.warning("Card images folder does not exist.")
-
+            logger.warning("No card image available for this yacht.")
         return card_images
 
     def get_detail_images(self):
+        """Retrieve all images stored in the 'media/yachts/details/{yacht_id}' directory."""
         detail_images = []
+        yacht_directory = os.path.join(settings.MEDIA_ROOT, 'yachts', 'details', str(self.id))
+
+        # Check if the directory exists
+        if os.path.exists(yacht_directory):
+            # List all files in the directory
+            for image_file in os.listdir(yacht_directory):
+                # Construct the URL for each image file
+                image_url = os.path.join(settings.MEDIA_URL, 'yachts', 'details', str(self.id), image_file)
+                detail_images.append(image_url)
+                logger.debug(f"Detail image URL: {image_url}")
+        else:
+            logger.warning(f"Yacht images directory not found for yacht {self.id}: {yacht_directory}")
         
-        if self.detail_image:
-            detail_images.append(self.detail_image.url)
-
-        if self.detail_image_url:
-            detail_images.append(self.detail_image_url)
-
-        folder_path = f'yachts/details/{self.id}/'
-        s3_client = boto3.client('s3')
-        try:
-            response = s3_client.list_objects_v2(
-                Bucket=settings.AWS_STORAGE_BUCKET_NAME,
-                Prefix=folder_path
-            )
-            if 'Contents' in response:
-                for obj in response['Contents']:
-                    image_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{obj['Key']}"
-                    detail_images.append(image_url)
-        except Exception as e:
-            logger.error(f"Error fetching images from S3: {e}")
-
         return detail_images
 
     def save(self, *args, **kwargs):
-        """
-        Save the yacht instance to the database.
-        Logs the image upload status.
-        """
         try:
-            logger.debug(f"Attempting to save yacht: {self.name}")  # Log the attempt to save
-            super().save(*args, **kwargs)  # Save the model instance
+            logger.debug(f"Attempting to save yacht: {self.name}")
+            super().save(*args, **kwargs)
         except Exception as e:
-            logger.error(f"Error uploading image: {e}")  # Log the error for debugging
-            raise  # Raise the exception to prevent silent failure
+            logger.error(f"Error uploading image: {e}")
+            raise
 
     def delete(self, *args, **kwargs):
-        """
-        Delete the yacht instance from the database and remove the image from S3 storage if it exists.
-        """
-        # Check if card_image is set and has a name
-        if self.card_image and self.card_image.name:
-            try:
-                # Use the storage attribute directly from the field
-                storage = self.card_image.storage  
-                storage.delete(self.card_image.name)  # Delete the image from S3 storage
-                logger.info(f"Image deleted from S3: {self.card_image.name}")  # Log successful deletion
-            except Exception as e:
-                logger.error(f"Error deleting image from S3: {e}")  # Log the error
-        else:
-            logger.warning("No card image to delete or image name is not set.")
-
-        super().delete(*args, **kwargs)  # Call the superclass delete method
-
+        try:
+            logger.info(f"Attempting to delete yacht: {self.name}")
+            super().delete(*args, **kwargs)
+        except Exception as e:
+            logger.error(f"Error deleting yacht: {e}")
+            raise
 
     def __str__(self):
-        """Return the name of the yacht as its string representation."""
-        return self.name  # String representation of the model
+        return self.name

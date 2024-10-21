@@ -118,3 +118,67 @@ textarea::placeholder {
     position: relative;
     z-index: 10;
 }
+
+.base-btn {
+    display: inline-flex;
+    background-color: #088cdc;
+    color: #fff;
+    border-radius: 0;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    border: none;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none !important;
+    padding: 0 20px;
+    height: 40px !important;
+    width: auto;
+    cursor: pointer;
+}
+.base-btn:hover {
+    background-color: #006bb3;
+}
+
+/* Base styles for all buttons */
+.base-btn {
+    display: inline-flex;
+    color: #fff;
+    border-radius: 0;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    border: none;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none !important;
+    padding: 0 20px;
+    height: 40px !important;
+    width: auto;
+    cursor: pointer;
+}
+
+.add-btn {
+    background-color: #28a745;
+}
+.add-btn:hover {
+    background-color: #218838;
+}
+
+.edit-btn {
+    background-color: #6c757d;
+}
+.edit-btn:hover {
+    background-color: #5a6268;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+.delete-btn:hover {
+    background-color: #c82333;
+}
