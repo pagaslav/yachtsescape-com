@@ -1,6 +1,4 @@
-""" yachts/views.py """
-
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.views import View
 from .models import Yacht
@@ -12,24 +10,27 @@ from django.conf import settings
 def yacht_list(request):
     """ Returns a list of yachts based on search and filter criteria """
     yachts = Yacht.objects.all()
-
     filters = []
 
+    # Apply boat type filter
     boat_type = request.GET.get('type')
     if boat_type:
         yachts = yachts.filter(type__iexact=boat_type)
         filters.append(f"Boat type: {boat_type}")
 
+    # Apply country filter
     country = request.GET.get('country')
     if country:
         yachts = yachts.filter(country=country)
         filters.append(f"Country: {country}")
 
+    # Apply location filter
     location = request.GET.get('location')
     if location:
         yachts = yachts.filter(location__icontains=location)
         filters.append(f"Location: {location}")
 
+    # Sorting options
     sort_options = {
         'price_low': 'price_per_day',
         'price_high': '-price_per_day',
@@ -50,6 +51,7 @@ def yacht_list(request):
         yachts = yachts.order_by(sort_options[sort])
         filters.append(f"Sorted by: {sort_names.get(sort, 'Unknown sort option')}")
 
+    # Capacity filter
     capacity_filter = {
         '2-8': {'capacity__lte': 8},
         '8_plus': {'capacity__gt': 8},
@@ -59,6 +61,7 @@ def yacht_list(request):
         yachts = yachts.filter(**capacity_filter[capacity])
         filters.append(f"Capacity: {capacity}")
 
+    # Date availability filter
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
     if start_date and end_date:
@@ -68,14 +71,7 @@ def yacht_list(request):
         )
         filters.append(f"Available between: {start_date} and {end_date}")
 
-    if not yachts:
-        message = (
-            "Unfortunately, there are no yachts available for your "
-            "search criteria."
-        )
-    else:
-        message = None
-
+    message = None if yachts else "Unfortunately, there are no yachts available for your search criteria."
     filters_title = ", ".join(filters) if filters else "All yachts"
 
     return render(request, 'yachts/yacht-list.html', {
@@ -94,14 +90,8 @@ def yacht_booking_dates(request, yacht_id):
     for booking in bookings:
         start_date = booking['start_date']
         end_date = booking['end_date']
-        if isinstance(start_date, datetime):
-            start_date_str = start_date.strftime('%Y-%m-%d')
-        else:
-            start_date_str = start_date
-        if isinstance(end_date, datetime):
-            end_date_str = end_date.strftime('%Y-%m-%d')
-        else:
-            end_date_str = end_date
+        start_date_str = start_date.strftime('%Y-%m-%d') if isinstance(start_date, datetime) else start_date
+        end_date_str = end_date.strftime('%Y-%m-%d') if isinstance(end_date, datetime) else end_date
         booked_dates.append({'start': start_date_str, 'end': end_date_str})
 
     return JsonResponse({'booked_dates': booked_dates})
@@ -112,6 +102,7 @@ def yacht_detail(request, yacht_id):
     bookings = Booking.objects.filter(
         yacht=yacht, status='confirmed'
     ).order_by('start_date').values('start_date', 'end_date')
+
     booked_dates = []
     for booking in bookings:
         start_date = booking['start_date']
@@ -130,7 +121,6 @@ def yacht_detail(request, yacht_id):
             start_date_str, end_date_str = date_range.split(" to ")
             booking.start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
             booking.end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
-
             booking.save()
     else:
         form = BookingForm()
@@ -148,5 +138,5 @@ class YachtImageView(View):
     """ Provides a JSON response with the images for a specific yacht """
     def get(self, request, yacht_id):
         yacht = get_object_or_404(Yacht, id=yacht_id)
-        images = yacht.get_detail_images()
+        images = [image.url for image in yacht.get_detail_images()]
         return JsonResponse(images, safe=False)

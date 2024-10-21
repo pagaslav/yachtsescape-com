@@ -8,7 +8,6 @@ Add New Yacht
 
 {% block content %}
 <div class="container text-center mt-4">
-    <!-- Title Section -->
     <div class="hero-content">
         <h1 class="hero-title" aria-label="Page Title: Add New Yacht">Add New Yacht</h1>
         <div class="breadcrumb-container">
@@ -22,15 +21,34 @@ Add New Yacht
         </div>
     </div>
 
-    <!-- Yacht Form -->
     <div class="row mt-4">
         <div class="col-12 col-md-6 mx-auto">
             <form id="addYachtForm" method="POST" enctype="multipart/form-data" class="p-4 shadow-sm rounded" aria-label="Add New Yacht Form">
                 {% csrf_token %}
-                {{ form|crispy }}  <!-- Render the form using crispy forms for better styling -->
+                {{ form|crispy }}  <!-- Автоматически рендерим форму без изображений -->
+
+                <!-- Поля для загрузки изображений -->
+                <div class="mb-3">
+                    <label for="card_image" class="form-label">Card Image</label>
+                    <input type="file" class="form-control" id="card_image" name="card_image">
+                </div>
+
+                <div class="mb-3">
+                    <label for="detail_image1" class="form-label">Detail Image 1</label>
+                    <input type="file" class="form-control" id="detail_image1" name="detail_image1">
+                </div>
+
+                <div class="mb-3">
+                    <label for="detail_image2" class="form-label">Detail Image 2</label>
+                    <input type="file" class="form-control" id="detail_image2" name="detail_image2">
+                </div>
+
+                <div class="mb-3">
+                    <label for="detail_image3" class="form-label">Detail Image 3</label>
+                    <input type="file" class="form-control" id="detail_image3" name="detail_image3">
+                </div>
 
                 <div class="text-center mt-3">
-                    <!-- Add Yacht Button triggers modal -->
                     <button type="button" class="base-btn add-btn me-3" data-bs-toggle="modal" data-bs-target="#confirmAddModal" aria-label="Open add yacht confirmation">
                         <i class="fas fa-plus-circle" aria-hidden="true"></i>&nbsp;<span>Add Yacht</span>
                     </button>
@@ -43,7 +61,6 @@ Add New Yacht
     </div>
 </div>
 
-<!-- Modal for Add Yacht Confirmation -->
 <div class="modal fade" id="confirmAddModal" tabindex="-1" aria-labelledby="confirmAddModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -55,7 +72,6 @@ Add New Yacht
                 <p>Are you sure you want to add this yacht?</p>
             </div>
             <div class="modal-footer justify-content-center">
-                <!-- Submit the main form via modal -->
                 <button type="submit" form="addYachtForm" class="base-btn add-btn me-3" aria-label="Confirm adding yacht">
                     <i class="fas fa-check" aria-hidden="true"></i>&nbsp;<span>Yes, Add Yacht</span>
                 </button>

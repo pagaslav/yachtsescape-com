@@ -11,7 +11,6 @@ Our Fleet
 
 {% block content %}
 <div class="container">
-    <!-- Title section in the header -->
     <div class="hero-content">
         <h1 class="hero-title">Our Fleet</h1>
         <div class="breadcrumb-container">
@@ -47,7 +46,7 @@ Our Fleet
             </ul>
         </div>
 
-        <!-- Capacity filter in the center -->
+        <!-- Capacity filter -->
         <div class="dropdown mx-3 capacity-dropdown">
             <button class="btn dropdown-toggle custom-dropdown-btn" type="button" id="capacityDropdown"
                 data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Select capacity">
@@ -77,7 +76,9 @@ Our Fleet
             </ul>
         </div>
     </section>
+
     <h2 class="text-center mt-4">{{ filters_title }}</h2>
+
     <!-- Message if no yachts are available -->
     {% if message %}
     <div class="alert alert-warning text-center mt-4">
@@ -97,40 +98,32 @@ Our Fleet
                     <!-- Display placeholder image if no yacht image is available -->
                     <img src="{% static 'images/default-yacht.png' %}" class="card-img-top" alt="Placeholder image for yacht named {{ yacht.name }}">
                     {% endif %}
-
                     <!-- Rating overlay in the top-right corner -->
                     <div class="rating-overlay" aria-hidden="true">
                         {% for i in "12345" %}
-                        {% if forloop.counter <= yacht.rating|default:0 %} <i class="fas fa-star filled"></i>
-                            {% else %}
+                        {% if forloop.counter <= yacht.rating|default:0 %} 
+                            <i class="fas fa-star filled"></i>
+                        {% else %}
                             <i class="fas fa-star"></i>
-                            {% endif %}
-                            {% endfor %}
+                        {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <!-- Yacht name -->
                     <h2 class="card-title">{{ yacht.name }}</h2>
-
-                    <!-- Yacht price and Yacht location -->
                     <div class="price-location">
-                        <p class="card-price">
-                            ${{ yacht.price_per_day }} <span class="text-muted">Per Day</span>
-                        </p>
+                        <p class="card-price">${{ yacht.price_per_day }} <span class="text-muted">Per Day</span></p>
                         <p class="location">
                             <i class="fas fa-map-marker-alt" aria-hidden="true"></i> {{ yacht.location }}
                         </p>
                     </div>
-                    <!-- Yacht details -->
                     <ul class="list-inline yacht-details">
                         <li class="list-inline-item detail-item"><i class="fas fa-users" aria-hidden="true"></i> {{ yacht.capacity }} Guests</li>
                         <li class="list-inline-item detail-item"><i class="fas fa-bed" aria-hidden="true"></i> 2 Master Bedroom</li>
                         <li class="list-inline-item detail-item"><i class="fas fa-ruler-combined" aria-hidden="true"></i> 44 Feet</li>
                         <li class="list-inline-item detail-item"><i class="fas fa-utensils" aria-hidden="true"></i> Fully Equipped Kitchen</li>
                     </ul>
-
-                    <!-- Button to read more -->
                     <a href="{% url 'yacht_detail' yacht.id %}" class="btn btn-primary w-100" aria-label="View details for {{ yacht.name }}">VIEW DETAILS</a>
                 </div>
             </div>

@@ -1,5 +1,3 @@
-# profiles/forms.py
-
 from django import forms
 from .models import UserProfile
 from yachts.models import Yacht
@@ -31,8 +29,4 @@ class YachtForm(forms.ModelForm):
             'capacity',
             'price_per_day',
             'rating',
-            'image_url',
-            'card_image',
-            'detail_image',
-            'detail_image_url',
         ]

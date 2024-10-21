@@ -1,7 +1,3 @@
-"""
-profiles/views.py
-"""
-
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
@@ -9,16 +5,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import UserProfile
 from .forms import UserProfileForm, YachtForm
 from booking.models import Booking 
-from yachts.models import Yacht 
+from yachts.models import Yacht
 from django.core.files.storage import default_storage
 from django.contrib.auth.decorators import user_passes_test
 
 def is_admin(user):
-    """Check if the user is admin or superuser."""
     return user.is_superuser or user.is_staff
 
 def profile(request):
-    """Display user profile."""
     if request.user.is_authenticated:
         user_profile = get_object_or_404(UserProfile, user=request.user)
         confirmed_bookings = Booking.objects.filter(user=request.user, status='confirmed')
@@ -32,7 +26,6 @@ def profile(request):
         return render(request, 'profiles/login_required.html')  
 
 def profile_edit(request):
-    """Edit user profile."""
     user_profile = get_object_or_404(UserProfile, user=request.user)
     
     if request.method == 'POST':
@@ -47,31 +40,26 @@ def profile_edit(request):
 
 @user_passes_test(is_admin)
 def yachts_management(request):
-    """Manage yachts."""
     yachts = Yacht.objects.all()  
     return render(request, 'profiles/yachts_management.html', {'yachts': yachts})
 
 @user_passes_test(is_admin)
 def add_yacht(request):
-    """Add a new yacht."""
-    # Initialize the form
     form = YachtForm(request.POST or None, request.FILES or None) 
 
     if request.method == 'POST':
-        if form.is_valid():  # Validate the form
-            form.save() 
+        if form.is_valid():
+            form.save()
             messages.success(request, 'Yacht created successfully!')
             return redirect('yachts_management')
         else:
-            # If the form is not valid, print errors to console and show them in the template
-            print(form.errors)  # Log the errors for debugging purposes
+            print(form.errors)
             messages.error(request, 'The Yacht could not be created because the data didn\'t validate.')
 
     return render(request, 'profiles/add_yacht.html', {'form': form})
 
 @user_passes_test(is_admin)
 def edit_yacht(request, yacht_id):
-    """Edit an existing yacht."""
     yacht = get_object_or_404(Yacht, id=yacht_id)
     
     if request.method == 'POST':
@@ -87,15 +75,16 @@ def edit_yacht(request, yacht_id):
 
 @user_passes_test(is_admin)
 def delete_yacht(request, yacht_id):
-    """Delete a yacht."""
     yacht = get_object_or_404(Yacht, id=yacht_id)
 
     if request.method == 'POST':
         try:
+            # Удаление карточного изображения, если оно существует
             if yacht.card_image: 
                 image_name = yacht.card_image.name
                 if image_name: 
                     default_storage.delete(image_name) 
+            # Удаление яхты
             yacht.delete() 
             messages.success(request, 'Yacht deleted successfully!')
         except Exception as e:
@@ -106,13 +95,11 @@ def delete_yacht(request, yacht_id):
 
 @user_passes_test(is_admin)
 def users_management(request):
-    """Manage users."""
     users = User.objects.all() 
     return render(request, 'profiles/users_management.html', {'users': users})
 
 @user_passes_test(is_admin)
 def edit_user(request, user_id):
-    """Edit user details without requiring password change unless provided."""
     user = get_object_or_404(User, pk=user_id)
     profile, created = UserProfile.objects.get_or_create(user=user)
 
@@ -123,12 +110,10 @@ def edit_user(request, user_id):
             messages.error(request, 'Username cannot be empty.')
             return redirect('edit_user', user_id=user.id)
 
-        # Save the user details
         user.username = username
         user.email = request.POST.get('email')
         user.save()
 
-        # Save the user profile details
         profile.first_name = request.POST.get('first_name')
         profile.last_name = request.POST.get('last_name')
         profile.phone_number = request.POST.get('phone_number')
@@ -140,7 +125,6 @@ def edit_user(request, user_id):
         profile.country = request.POST.get('country')
         profile.save()
 
-        # Password logic (if needed)
         new_password = request.POST.get('new_password')
         confirm_password = request.POST.get('confirm_password')
 
@@ -159,7 +143,6 @@ def edit_user(request, user_id):
 
 @user_passes_test(is_admin)
 def delete_user(request, user_id):
-    """Delete a user."""
     user = get_object_or_404(User, id=user_id)
 
     if request.method == 'POST':
