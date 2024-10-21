@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render, redirect, get_object_or_404
@@ -7,7 +8,7 @@ from .forms import UserProfileForm, YachtForm
 from booking.models import Booking
 from yachts.models import Yacht
 from django.core.files.storage import default_storage
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from cloudinary.uploader import destroy
 
 def is_admin(user):
@@ -27,6 +28,15 @@ def profile(request):
         messages.error(request, 'You must be logged in to view your profile.')
         return redirect('account_login')
 
+from django.core.mail import send_mail
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import UserProfile
+from .forms import UserProfileForm
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+
+@login_required
 def profile_edit(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
     
@@ -34,7 +44,29 @@ def profile_edit(request):
         form = UserProfileForm(request.POST, instance=user_profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profile updated successfully!')
+            
+            subject = f'Profile Update Confirmation for {request.user.username}'
+            message = (
+                f'Hello {request.user.username},\n\n'
+                'Your profile has been updated successfully.\n\n'
+                'Here are the updated details:\n'
+                f'First Name: {user_profile.first_name}\n'
+                f'Last Name: {user_profile.last_name}\n'
+                f'Email: {request.user.email}\n'
+                f'Phone: {user_profile.phone_number}\n'
+                f'Address: {user_profile.street_address1}, {user_profile.street_address2}, '
+                f'{user_profile.town_city}, {user_profile.county_state}, {user_profile.postal_code}, {user_profile.country}\n\n'
+                'If you did not make these changes, please contact support immediately.'
+            )
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [request.user.email],
+                fail_silently=False,
+            )
+            
+            messages.success(request, f'Profile updated successfully, and a confirmation email has been sent to {request.user.email}!')
             return redirect('profile')
         else:
             messages.error(request, 'There was an error updating your profile. Please check the form and try again.')
@@ -117,7 +149,7 @@ def edit_user(request, user_id):
         username = request.POST.get('username')
         
         if not username:
-            messages.error(request, 'Username cannot be empty.')
+            messages.error(request, f'Username for {user.username} cannot be empty.')
             return redirect('edit_user', user_id=user.id)
 
         user.username = username
@@ -142,11 +174,11 @@ def edit_user(request, user_id):
             user.set_password(new_password)
             user.save()
             update_session_auth_hash(request, user)
-            messages.success(request, 'Password changed successfully.')
+            messages.success(request, f'Password for {user.username} changed successfully.')
         elif new_password and new_password != confirm_password:
-            messages.error(request, 'New passwords do not match.')
+            messages.error(request, f'New passwords for {user.username} do not match.')
 
-        messages.success(request, 'Profile updated successfully.')
+        messages.success(request, f'Profile for {user.username} updated successfully.')
         return redirect('users_management')
 
     return render(request, 'profiles/edit_user.html', {'user': user, 'profile': profile})
@@ -156,8 +188,9 @@ def delete_user(request, user_id):
     user = get_object_or_404(User, id=user_id)
 
     if request.method == 'POST':
+        username = user.username
         user.delete()
-        messages.success(request, 'User deleted successfully!')
+        messages.success(request, f'User "{username}" deleted successfully!')
         return redirect('users_management')
 
     return redirect('users_management')
