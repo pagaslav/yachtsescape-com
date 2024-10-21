@@ -10,6 +10,9 @@
     <script src="https://js.stripe.com/v3/"></script>
 
     <link rel="stylesheet" href="{% static 'css/yachts/yacht-list.css' %}">
+
+    <!-- Lightbox CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block title %}
@@ -39,38 +42,18 @@ Our Fleet - {{ yacht.name }} details
         <li><i class="fas fa-id-card"></i> <strong>ID:</strong> {{ yacht.id }}</li>
     </ul>
 
-    <!-- Yacht image carousel -->
-    <div id="yachtGallery" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            {% if yacht.detail_image %}
-                <div class="carousel-item active">
-                    <img src="{{ yacht.detail_image.url }}" class="d-block w-100" alt="{{ yacht.name }}">
-                </div>
-            {% endif %}
-            {% for image in yacht.get_detail_images %}
-                {% if image != yacht.detail_image.url %}
-                    <div class="carousel-item">
-                        <img src="{{ image }}" class="d-block w-100" alt="{{ yacht.name }}">
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#yachtGallery" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#yachtGallery" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+    <!-- Lightbox gallery without conditionals -->
+    <div class="yacht-gallery">
+        <a href="{{ yacht.detail_image1.url }}" data-lightbox="yacht-gallery" data-title="{{ yacht.name }}">
+            <img src="{{ yacht.detail_image1.url }}" class="gallery-thumb" alt="{{ yacht.name }}">
+        </a>
+        <a href="{{ yacht.detail_image2.url }}" data-lightbox="yacht-gallery" data-title="{{ yacht.name }}">
+            <img src="{{ yacht.detail_image2.url }}" class="gallery-thumb" alt="{{ yacht.name }}">
+        </a>
+        <a href="{{ yacht.detail_image3.url }}" data-lightbox="yacht-gallery" data-title="{{ yacht.name }}">
+            <img src="{{ yacht.detail_image3.url }}" class="gallery-thumb" alt="{{ yacht.name }}">
+        </a>
     </div>
-    
-    <!-- Passing image data via a data attribute -->
-    <div id="image-data" data-images='[
-        {% for image in yacht.get_detail_images %}
-            "{{ image }}"{% if not forloop.last %},{% endif %}
-        {% endfor %}
-    ]'></div>
 
     <ul class="yacht-attributes-row mt-3">
         <li><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> {{ yacht.location }}</li>
@@ -116,39 +99,8 @@ Our Fleet - {{ yacht.name }} details
     <!-- Flatpickr v4 -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-    <!-- JavaScript for processing images from the data attribute -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const imageDataElement = document.getElementById("image-data");
-        
-        // Check if the element exists
-        if (!imageDataElement) {
-            console.error("Element with id 'image-data' not found.");
-            return;
-        }
-        
-        // Get images from the data attribute
-        const images = JSON.parse(imageDataElement.dataset.images); 
-        console.log("Images array:", images);
-
-        // Find the carousel container
-        const imageContainer = document.querySelector("#yachtGallery .carousel-inner");
-
-        // Check if the carousel container exists
-        if (!imageContainer) {
-            console.error("Carousel container not found.");
-            return;
-        }
-
-        // Create carousel items for each image
-        images.forEach((imageUrl, index) => {
-            const carouselItem = document.createElement("div");
-            carouselItem.className = `carousel-item ${index === 0 ? "active" : ""}`;
-            carouselItem.innerHTML = `<img src="${imageUrl}" class="d-block w-100" alt="Yacht Image ${index + 1}">`;
-            imageContainer.appendChild(carouselItem);
-        });
-    });
-    </script>
+    <!-- Lightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
     <script src="{% static 'js/yachts.js' %}"></script>
 

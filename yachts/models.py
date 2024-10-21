@@ -1,8 +1,6 @@
 from django.db import models
-import os
-from cloudinary.models import CloudinaryField
-from django.conf import settings
 import logging
+from cloudinary.models import CloudinaryField
 
 logger = logging.getLogger(__name__)
 
@@ -22,16 +20,10 @@ class Yacht(models.Model):
     price_per_day = models.DecimalField(max_digits=8, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
 
-    if settings.DEBUG:
-        card_image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
-        detail_image1 = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
-        detail_image2 = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
-        detail_image3 = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
-    else:
-        card_image = CloudinaryField('image', folder='yachts/cards', null=True, blank=True)
-        detail_image1 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
-        detail_image2 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
-        detail_image3 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
+    card_image = CloudinaryField('image', folder='yachts/cards', null=True, blank=True)
+    detail_image1 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
+    detail_image2 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
+    detail_image3 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
 
     def get_card_images(self):
         card_images = []

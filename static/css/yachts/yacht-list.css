@@ -262,6 +262,24 @@
     border: 1px solid black;
 }
 
+.yacht-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.gallery-thumb {
+    width: 450px;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-thumb:hover {
+    transform: scale(1.05);
+}
+
 @media (min-width: 992px) {
     #bookingForm {
         width: 60%;
@@ -276,9 +294,10 @@
     #bookingForm {
         width: 80%;
     }
+
     @media (max-width: 767.98px) {
         .capacity-dropdown {
-            display: none !important; 
+            display: none !important;
         }
     }
 }
