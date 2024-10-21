@@ -23,13 +23,10 @@ class Yacht(models.Model):
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
 
-    # Different fields based on DEBUG setting
     if settings.DEBUG:
-        # Local development uses ImageField
         card_image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
         detail_image = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
     else:
-        # Production uses CloudinaryField
         card_image = CloudinaryField('image', folder='yachts/cards', null=True, blank=True)
         detail_image = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
 
@@ -45,7 +42,6 @@ class Yacht(models.Model):
         return card_images
 
     def get_detail_images(self):
-        """Retrieve all images stored in the 'media/yachts/details/{yacht_id}' directory."""
         detail_images = []
         yacht_directory = os.path.join(settings.MEDIA_ROOT, 'yachts', 'details', str(self.id))
 
@@ -77,3 +73,10 @@ class Yacht(models.Model):
 
     def __str__(self):
         return self.name
+
+class YachtImage(models.Model):
+    yacht = models.ForeignKey(Yacht, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='yachts/images/')
+
+    def __str__(self):
+        return f"{self.yacht.name} - Image"
