@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import Yacht
 
 class YachtAdmin(admin.ModelAdmin):
-    list_display = ('name', 'id', 'type', 'description', 'country', 'location', 'capacity', 'price_per_day', 'rating', 'available', 'image_path')
+    list_display = ('name', 'id', 'type', 'description', 'country', 'location', 'capacity', 'price_per_day', 'rating', 'image_path')
 
     def image_path(self, obj):
         return obj.card_image.url if obj.card_image else "No image"

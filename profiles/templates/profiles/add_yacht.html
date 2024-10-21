@@ -2,11 +2,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Include your main CSS -->
-<link rel="stylesheet" href="{% static 'css/profile/profile.css' %}"> <!-- Include additional profile CSS -->
-{% endblock %}
-
 {% block title %}
 Add New Yacht
 {% endblock %}
@@ -30,7 +25,7 @@ Add New Yacht
     <!-- Yacht Form -->
     <div class="row mt-4">
         <div class="col-12 col-md-6 mx-auto">
-            <form method="POST" enctype="multipart/form-data" class="p-4 shadow-sm rounded" aria-label="Add New Yacht Form">
+            <form id="addYachtForm" method="POST" enctype="multipart/form-data" class="p-4 shadow-sm rounded" aria-label="Add New Yacht Form">
                 {% csrf_token %}
                 {{ form|crispy }}  <!-- Render the form using crispy forms for better styling -->
 
@@ -60,15 +55,13 @@ Add New Yacht
                 <p>Are you sure you want to add this yacht?</p>
             </div>
             <div class="modal-footer justify-content-center">
-                <form method="post" aria-label="Confirm Add Yacht Form">
-                    {% csrf_token %}
-                    <button type="submit" class="base-btn add-btn me-3" aria-label="Confirm adding yacht">
-                        <i class="fas fa-check" aria-hidden="true"></i>&nbsp;<span>Yes, Add Yacht</span>
-                    </button>
-                    <button type="button" class="base-btn" data-bs-dismiss="modal" aria-label="Cancel yacht addition">
-                        <i class="fas fa-times" aria-hidden="true"></i>&nbsp;<span>Cancel</span>
-                    </button>
-                </form>
+                <!-- Submit the main form via modal -->
+                <button type="submit" form="addYachtForm" class="base-btn add-btn me-3" aria-label="Confirm adding yacht">
+                    <i class="fas fa-check" aria-hidden="true"></i>&nbsp;<span>Yes, Add Yacht</span>
+                </button>
+                <button type="button" class="base-btn" data-bs-dismiss="modal" aria-label="Cancel yacht addition">
+                    <i class="fas fa-times" aria-hidden="true"></i>&nbsp;<span>Cancel</span>
+                </button>
             </div>
         </div>
     </div>

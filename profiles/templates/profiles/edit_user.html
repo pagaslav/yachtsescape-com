@@ -26,16 +26,17 @@ Edit User Profile
                 </ol>
             </nav>
         </div>
-    </div>   
+    </div>
     <div class="row mt-4">
         <div class="col-12 col-md-6 mx-auto">
-            <form method="post" class="p-4 shadow-sm rounded" aria-label="Edit User Profile Form">
+            <!-- Main edit form -->
+            <form id="editUserForm" method="post" class="p-4 shadow-sm rounded" aria-label="Edit User Profile Form">
                 {% csrf_token %}
-                
+
                 <!-- User Information -->
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+                    <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
@@ -78,7 +79,7 @@ Edit User Profile
                     <input type="text" class="form-control" id="country" name="country" value="{{ profile.country }}">
                 </div>
                 <div class="text-center mt-3">
-                    <!-- Save Changes Button triggers modal -->
+                    <!-- Button to open modal window -->
                     <button type="button" class="base-btn add-btn me-3" data-bs-toggle="modal" data-bs-target="#confirmSaveModal" aria-label="Open save changes confirmation">
                         <i class="fas fa-save" aria-hidden="true"></i>&nbsp;<span>Save Changes</span>
                     </button>
@@ -103,19 +104,18 @@ Edit User Profile
                 <p>Are you sure you want to save changes to<br>the user profile "<span id="user-name">{{ user.username }}</span>"?</p>
             </div>
             <div class="modal-footer justify-content-center">
-                <form method="post" aria-label="Confirm Save Changes Form">
-                    {% csrf_token %}
-                    <button type="submit" class="base-btn add-btn me-3" aria-label="Confirm Save Changes">
-                        <i class="fas fa-check" aria-hidden="true"></i>&nbsp;<span>Yes, Save Changes</span>
-                    </button>
-                    <button type="button" class="base-btn" data-bs-dismiss="modal" aria-label="Cancel Save Changes">
-                        <i class="fas fa-times" aria-hidden="true"></i>&nbsp;<span>Cancel</span>
-                    </button>
-                </form>
+                <!-- Submit the main form through modal -->
+                <button type="submit" form="editUserForm" class="base-btn add-btn me-3" aria-label="Confirm Save Changes">
+                    <i class="fas fa-check" aria-hidden="true"></i>&nbsp;<span>Yes, Save Changes</span>
+                </button>
+                <button type="button" class="base-btn" data-bs-dismiss="modal" aria-label="Cancel Save Changes">
+                    <i class="fas fa-times" aria-hidden="true"></i>&nbsp;<span>Cancel</span>
+                </button>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock content %}
 
 {% block extra_js %}
@@ -123,7 +123,7 @@ Edit User Profile
     document.addEventListener('DOMContentLoaded', function () {
         let confirmSaveModal = document.getElementById('confirmSaveModal');
         confirmSaveModal.addEventListener('show.bs.modal', function (event) {
-            // Optional: Additional logic before showing the modal
+            // Additional logic before the modal opens (if necessary)
         });
     });
 </script>

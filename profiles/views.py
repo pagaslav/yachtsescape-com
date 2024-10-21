@@ -1,3 +1,7 @@
+"""
+profiles/views.py
+"""
+
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
@@ -50,15 +54,19 @@ def yachts_management(request):
 @user_passes_test(is_admin)
 def add_yacht(request):
     """Add a new yacht."""
+    # Initialize the form
+    form = YachtForm(request.POST or None, request.FILES or None) 
+
     if request.method == 'POST':
-        form = YachtForm(request.POST, request.FILES) 
-        if form.is_valid():
+        if form.is_valid():  # Validate the form
             form.save() 
             messages.success(request, 'Yacht created successfully!')
-            return redirect('yachts_management') 
-    else:
-        form = YachtForm()
-    
+            return redirect('yachts_management')
+        else:
+            # If the form is not valid, print errors to console and show them in the template
+            print(form.errors)  # Log the errors for debugging purposes
+            messages.error(request, 'The Yacht could not be created because the data didn\'t validate.')
+
     return render(request, 'profiles/add_yacht.html', {'form': form})
 
 @user_passes_test(is_admin)
@@ -104,15 +112,23 @@ def users_management(request):
 
 @user_passes_test(is_admin)
 def edit_user(request, user_id):
-    """Edit user details."""
+    """Edit user details without requiring password change unless provided."""
     user = get_object_or_404(User, pk=user_id)
     profile, created = UserProfile.objects.get_or_create(user=user)
 
     if request.method == 'POST':
-        user.username = request.POST.get('username')
+        username = request.POST.get('username')
+        
+        if not username:
+            messages.error(request, 'Username cannot be empty.')
+            return redirect('edit_user', user_id=user.id)
+
+        # Save the user details
+        user.username = username
         user.email = request.POST.get('email')
         user.save()
 
+        # Save the user profile details
         profile.first_name = request.POST.get('first_name')
         profile.last_name = request.POST.get('last_name')
         profile.phone_number = request.POST.get('phone_number')
@@ -124,19 +140,15 @@ def edit_user(request, user_id):
         profile.country = request.POST.get('country')
         profile.save()
 
-        current_password = request.POST.get('current_password')
+        # Password logic (if needed)
         new_password = request.POST.get('new_password')
         confirm_password = request.POST.get('confirm_password')
 
         if new_password and new_password == confirm_password:
-            if user.check_password(current_password):
-                user.set_password(new_password)
-                user.save()
-                update_session_auth_hash(request, user)
-                messages.success(request, 'Password changed successfully.')
-                return redirect('users_management')
-            else:
-                messages.error(request, 'Current password is incorrect.')
+            user.set_password(new_password)
+            user.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Password changed successfully.')
         elif new_password and new_password != confirm_password:
             messages.error(request, 'New passwords do not match.')
 

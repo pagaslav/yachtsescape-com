@@ -13,19 +13,15 @@ $(document).ready(function () {
     if (scrollTop > scrollTrigger) {
       // Change logo to dark version based on screen size
       if (windowWidth < 689) {
-        console.log("Switching to small dark logo:", smallDarkLogo);
         $("#logo").attr("src", smallDarkLogo);
       } else {
-        console.log("Switching to dark logo:", darkLogo);
         $("#logo").attr("src", darkLogo);
       }
     } else {
       // Change logo to light version based on screen size
       if (windowWidth < 689) {
-        console.log("Switching to small light logo:", smallLightLogo);
         $("#logo").attr("src", smallLightLogo);
       } else {
-        console.log("Switching to light logo:", lightLogo);
         $("#logo").attr("src", lightLogo);
       }
     }

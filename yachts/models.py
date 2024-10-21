@@ -21,16 +21,15 @@ class Yacht(models.Model):
     capacity = models.IntegerField()
     price_per_day = models.DecimalField(max_digits=8, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    available = models.BooleanField(default=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
 
-    # Используем разные поля в зависимости от значения DEBUG
+    # Different fields based on DEBUG setting
     if settings.DEBUG:
-        # Для локальной разработки используем ImageField
+        # Local development uses ImageField
         card_image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
         detail_image = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
     else:
-        # В продакшн используем CloudinaryField
+        # Production uses CloudinaryField
         card_image = CloudinaryField('image', folder='yachts/cards', null=True, blank=True)
         detail_image = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
 
@@ -50,11 +49,8 @@ class Yacht(models.Model):
         detail_images = []
         yacht_directory = os.path.join(settings.MEDIA_ROOT, 'yachts', 'details', str(self.id))
 
-        # Check if the directory exists
         if os.path.exists(yacht_directory):
-            # List all files in the directory
             for image_file in os.listdir(yacht_directory):
-                # Construct the URL for each image file
                 image_url = os.path.join(settings.MEDIA_URL, 'yachts', 'details', str(self.id), image_file)
                 detail_images.append(image_url)
                 logger.debug(f"Detail image URL: {image_url}")

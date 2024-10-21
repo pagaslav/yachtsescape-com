@@ -31,7 +31,6 @@ class YachtForm(forms.ModelForm):
             'capacity',
             'price_per_day',
             'rating',
-            'available',
             'image_url',
             'card_image',
             'detail_image',
