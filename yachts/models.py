@@ -21,16 +21,17 @@ class Yacht(models.Model):
     capacity = models.IntegerField()
     price_per_day = models.DecimalField(max_digits=8, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
 
     if settings.DEBUG:
         card_image = models.ImageField(upload_to='yachts/cards/', null=True, blank=True)
-        detail_image = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
+        detail_image1 = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
+        detail_image2 = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
+        detail_image3 = models.ImageField(upload_to='yachts/details/', null=True, blank=True)
     else:
         card_image = CloudinaryField('image', folder='yachts/cards', null=True, blank=True)
-        detail_image = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
-
-    detail_image_url = models.URLField(max_length=1024, null=True, blank=True)
+        detail_image1 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
+        detail_image2 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
+        detail_image3 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
 
     def get_card_images(self):
         card_images = []
@@ -42,17 +43,9 @@ class Yacht(models.Model):
         return card_images
 
     def get_detail_images(self):
-        detail_images = []
-        yacht_directory = os.path.join(settings.MEDIA_ROOT, 'yachts', 'details', str(self.id))
-
-        if os.path.exists(yacht_directory):
-            for image_file in os.listdir(yacht_directory):
-                image_url = os.path.join(settings.MEDIA_URL, 'yachts', 'details', str(self.id), image_file)
-                detail_images.append(image_url)
-                logger.debug(f"Detail image URL: {image_url}")
-        else:
-            logger.warning(f"Yacht images directory not found for yacht {self.id}: {yacht_directory}")
-        
+        detail_images = [image.url for image in [self.detail_image1, self.detail_image2, self.detail_image3] if image]
+        if not detail_images:
+            logger.warning("No detail images available for this yacht.")
         return detail_images
 
     def save(self, *args, **kwargs):
@@ -73,10 +66,3 @@ class Yacht(models.Model):
 
     def __str__(self):
         return self.name
-
-class YachtImage(models.Model):
-    yacht = models.ForeignKey(Yacht, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='yachts/images/')
-
-    def __str__(self):
-        return f"{self.yacht.name} - Image"

@@ -19,6 +19,9 @@ class UserProfileForm(forms.ModelForm):
             'country',
         ]
 
+from django import forms
+from yachts.models import Yacht
+
 class YachtForm(forms.ModelForm):
     class Meta:
         model = Yacht
@@ -31,8 +34,8 @@ class YachtForm(forms.ModelForm):
             'capacity',
             'price_per_day',
             'rating',
-            'image_url',
             'card_image',
-            'detail_image',
-            'detail_image_url',
+            'detail_image1',
+            'detail_image2',
+            'detail_image3',
         ]
