@@ -1,16 +1,5 @@
-console.log("yachts.js loaded") // Confirm the file is loaded
-
 document.addEventListener("DOMContentLoaded", async function () {
   console.log("DOMContentLoaded event fired")
-  // Select the carousel inner container
-  const imageContainer = document.querySelector("#yachtGallery .carousel-inner")
-
-  // Check if the carousel container exists
-  if (!imageContainer) {
-    console.error("Carousel container not found.")
-    return // Stop further execution if the carousel is not found
-  }
-  console.log("Carousel container found successfully")
 
   let selectedDateRange = [] // Store selected date range globally
   let dateRange = [] // New array to store start and end dates
@@ -33,8 +22,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     return // Stop execution if yacht ID is not found
   }
   console.log("Yacht ID found:", yachtId)
-
-
 
   // Fetch booked dates
   async function fetchBookedDates() {

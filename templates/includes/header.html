@@ -111,27 +111,23 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="accountDropdownMenu" role="menu">
                             {% if user.is_superuser or user.is_staff %}
                             <li>
-                                <a class="dropdown-item" href="{% url 'yachts_management' %}" role="menuitem"
-                                    aria-label="Yachts Management">
+                                <a class="dropdown-item" href="{% url 'yachts_management' %}" role="menuitem" aria-label="Yachts Management">
                                     Yachts Management
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{% url 'users_management' %}" role="menuitem"
-                                    aria-label="User Management">
+                                <a class="dropdown-item" href="{% url 'users_management' %}" role="menuitem" aria-label="User Management">
                                     User Management
                                 </a>
                             </li>
                             {% endif %}
                             <li>
-                                <a class="dropdown-item" href="{% url 'profile' %}" role="menuitem"
-                                    aria-label="View My Profile">
+                                <a class="dropdown-item" href="{% url 'profile' %}" role="menuitem" aria-label="View My Profile">
                                     My Profile
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{% url 'account_logout' %}" role="menuitem"
-                                    aria-label="Sign Out">
+                                <a class="dropdown-item" href="{% url 'account_logout' %}" role="menuitem" aria-label="Sign Out">
                                     Sign Out
                                 </a>
                             </li>
@@ -148,16 +144,14 @@
 
                     <!-- Our Fleet section -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {% if '/yachts/' in request.path %}active{% endif %}"
-                            href="#" id="yachtTypeDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" aria-haspopup="true" aria-controls="yachtDropdownMenu">
+                        <a class="nav-link dropdown-toggle {% if '/yachts/' in request.path and not '/yachts_management/' in request.path %}active{% endif %}"
+                            href="#" id="yachtTypeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            aria-haspopup="true" aria-controls="yachtDropdownMenu">
                             Our Fleet
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="yachtTypeDropdown" id="yachtDropdownMenu"
-                            role="menu">
+                        <ul class="dropdown-menu" aria-labelledby="yachtTypeDropdown" id="yachtDropdownMenu" role="menu">
                             <li>
-                                <a class="dropdown-item" href="{% url 'yacht_list' %}" role="menuitem"
-                                    aria-label="View all yachts">All Yachts</a>
+                                <a class="dropdown-item" href="{% url 'yacht_list' %}" role="menuitem" aria-label="View all yachts">All Yachts</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{% url 'yacht_list' %}?type=Leisure" role="menuitem"

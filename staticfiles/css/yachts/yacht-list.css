@@ -224,7 +224,6 @@
     flex: 1 1 25%;
 }
 
-/* Centered and responsive form styling */
 #bookingForm {
     width: 100%;
     max-width: 600px;
@@ -232,7 +231,6 @@
     padding: 0 15px;
 }
 
-/* Styles for the custom dropdown menu, including background, borders, item padding, hover effects, and dividers */
 .custom-dropdown-menu {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -280,6 +278,18 @@
     transform: scale(1.05);
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+    .yacht-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .list-inline-item {
+        display: block;
+        margin-bottom: 0px;
+    }
+}
+
 @media (min-width: 992px) {
     #bookingForm {
         width: 60%;
@@ -293,6 +303,36 @@
 
     #bookingForm {
         width: 80%;
+    }
+
+    .yacht-attributes-row {
+        display: block;
+        text-align: center;
+    }
+
+    .yacht-attributes-row li {
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+
+    .yacht-gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .yacht-gallery a {
+        margin-bottom: 10px;
+    }
+
+    .yacht-gallery img {
+        width: 100%;
+        height: auto;
+    }
+
+    .yacht-attributes-row li {
+        display: block;
+        width: 100%;
     }
 
     @media (max-width: 767.98px) {

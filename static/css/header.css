@@ -8,13 +8,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 10;
+    z-index: 1;
 }
 
 /* Background image for header */
 .header {
     position: relative;
-    z-index: 20;
     background-image: url('/static/images/home-bg.webp');
     background-size: cover;
     background-position: center;
@@ -41,7 +40,7 @@
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
-  z-index: 15 !important;
+  z-index: 2 !important;
   color: white !important; 
 }
 
@@ -49,12 +48,12 @@
   font-size: 3rem;
   margin-bottom: 20px;
   color: white !important;
-  z-index: 15;
+  z-index: 2;
 }
 
 /* Top bar with contact info and social media icons */
 .header-top-bar {
-    z-index: 15;
+    z-index: 2;
     padding: 0 45px;
     background-color: transparent;
     color: #fff;
@@ -125,7 +124,7 @@
 /* Semi-transparent background and white separator line */
 .header-main {
     position: relative;
-    z-index: 20 !important;
+    z-index: 2;
     padding: 0 45px;
     background-color: transparent;
     display: flex;
@@ -152,13 +151,11 @@
     flex-direction: row;
     list-style: none;
     padding-left: 0;
-    z-index: 25 !important;
 }
 
 /* Spacing between menu items */
 .navbar-nav .nav-item {
     margin-right: 10px;
-    z-index: 25 !important;
 }
 
 .navbar-nav .nav-link {
@@ -167,13 +164,11 @@
     text-transform: uppercase;
     transition: color 0.3s ease;
     line-height: 80px;
-    z-index: 25 !important;
 }
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
     color: #088cdc !important;
-    z-index: 25 !important;
 }
 
 /* "Book Now" button */
@@ -202,30 +197,26 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    z-index: 25 !important;
 }
 
 .navbar-nav {
     display: flex;
     align-items: center;
-    z-index: 25 !important;
 }
 
 
 .navbar-nav .dropdown-item:hover {
     background-color: #088cdc;
     color: #fff;
-    z-index: 25 !important;
 }
 
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-    z-index: 25 !important;
 }
 
 .navbar-toggler {
     border: none;
-    z-index: 25 !important;
+    z-index: 2;
 }
 
 .fixed-menu {
@@ -251,7 +242,7 @@
 
 .offcanvas {
     position: fixed;
-    z-index: 25 !important;
+    z-index: 2000 !important;
 }
 
 .offcanvas-header {
@@ -260,7 +251,6 @@
     align-items: center !important;
     border-bottom: 1px solid #eaeaea;
     padding: 10px 15px;
-    z-index: 25 !important;
 }
 
 .dropdown-menu {
@@ -268,17 +258,13 @@
 }
 
 .modal-backdrop {
-    z-index: 1040;
+    z-index: 3;
     display: none !important;
 }
 
-/* .modal,
+.modal,
 .zindex {
     z-index: 9999;
-} */
-
-.modal {
-    z-index: 1050;
 }
 
 .modal-content {

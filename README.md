@@ -953,9 +953,9 @@ This table allows users to leave reviews for yachts.
 </details>
 
 <details>
-<summary>Edit Profile Page</summary>
+<summary>Profile Page</summary>
 
-![Edit Profile Page](documentation/pages/responsiv/profil-patient-page-responsive.webp)
+![Profile Page](documentation/pages/responsiv/profil-patient-page-responsive.webp)
 </details>
 
 <details>
@@ -979,7 +979,7 @@ This table allows users to leave reviews for yachts.
 <details>
 <summary>Edit Yacht Page</summary>
 
-![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
+![Edit Yacht Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 
 <details>
@@ -991,25 +991,13 @@ This table allows users to leave reviews for yachts.
 <details>
 <summary>Edit Users Profile Page</summary>
 
-![UEdit Users Profile Page](documentation/pages/responsiv/all-users-page-responsive.webp)
+![Edit Users Profile Page](documentation/pages/responsiv/all-users-page-responsive.webp)
 </details>
 
 <details>
 <summary> 404 Page</summary>
 
 ![404 Page](documentation/pages/responsiv/404-page-responsive.webp)
-</details>
-
-<details>
-<summary> 403 Page</summary>
-
-![403 Page](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary> 500 Page</summary>
-
-![500 Page](documentation/pages/responsiv/403-page-responsive.webp)
 </details>
 
 ### Validator testing

@@ -20,7 +20,6 @@
     background-repeat: no-repeat;
     height: 70vh;
     min-height: 400px;
-     z-index: 1
 }
 
 .header-short {
@@ -41,16 +40,8 @@
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
-  z-index: 2;
+  z-index: 2 !important;
   color: white !important; 
-}
-
-#main-nav.fixed-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 11000; /* Высокий z-index для фиксированного элемента */
 }
 
 .hero-title {
@@ -62,7 +53,7 @@
 
 /* Top bar with contact info and social media icons */
 .header-top-bar {
-    z-index: 3;
+    z-index: 2;
     padding: 0 45px;
     background-color: transparent;
     color: #fff;
@@ -225,6 +216,7 @@
 
 .navbar-toggler {
     border: none;
+    z-index: 2;
 }
 
 .fixed-menu {

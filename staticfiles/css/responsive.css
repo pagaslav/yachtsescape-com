@@ -17,13 +17,20 @@
     display: none !important;
   }
 
-  /* Reduce header height to 40vh for mobile and tablet screens */
-  .header {
-    height: 40vh;
+  .hero-content,
+  .hero-title,
+  .breadcrumb-container {
+    display: none !important;
+  }
+
+
+  .header,
+  .header-short {
+    height: 10vh !important;
     min-height: auto !important;
   }
 
-  /* Remove border around the burger menu button */
+
   .navbar-toggler {
     border: none;
   }

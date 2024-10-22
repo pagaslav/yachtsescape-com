@@ -115,6 +115,11 @@ textarea::placeholder {
   border: 0;
 }
 
+.header {
+    position: relative;
+    z-index: 10;
+}
+
 .base-btn {
     display: inline-flex;
     background-color: #088cdc;
@@ -136,6 +141,26 @@ textarea::placeholder {
 }
 .base-btn:hover {
     background-color: #006bb3;
+}
+
+/* Base styles for all buttons */
+.base-btn {
+    display: inline-flex;
+    color: #fff;
+    border-radius: 0;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    border: none;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none !important;
+    padding: 0 20px;
+    height: 40px !important;
+    width: auto;
+    cursor: pointer;
 }
 
 .add-btn {
