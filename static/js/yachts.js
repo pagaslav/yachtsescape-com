@@ -1,17 +1,5 @@
-console.log("yachts.js loaded") // Confirm the file is loaded
-
 document.addEventListener("DOMContentLoaded", async function () {
   console.log("DOMContentLoaded event fired")
-
-  // Select the carousel inner container
-  const imageContainer = document.querySelector("#yachtGallery .carousel-inner")
-
-  // Check if the carousel container exists
-  if (!imageContainer) {
-    console.error("Carousel container not found.")
-    return // Stop further execution if the carousel is not found
-  }
-  console.log("Carousel container found successfully")
 
   let selectedDateRange = [] // Store selected date range globally
   let dateRange = [] // New array to store start and end dates
@@ -34,33 +22,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     return // Stop execution if yacht ID is not found
   }
   console.log("Yacht ID found:", yachtId)
-
-  // Get the image data from the data attribute as JSON
-  const imageDataElement = document.getElementById("image-data")
-
-  if (!imageDataElement) {
-    console.error("Element with id 'image-data' not found.")
-    return // Stop execution if image data element is not found
-  }
-
-  let images
-  try {
-    images = JSON.parse(imageDataElement.dataset.images) // Extract the images array
-    console.log("Images array:", images)
-  } catch (error) {
-    console.error("Error parsing JSON for images:", error)
-    return
-  }
-
-  // Create carousel items for each image
-  images.forEach((imageUrl, index) => {
-    const carouselItem = document.createElement("div")
-    carouselItem.className = `carousel-item ${index === 0 ? "active" : ""}`
-    carouselItem.innerHTML = `<img src="${imageUrl}" class="d-block w-100" alt="Yacht ${yachtId} Image ${
-      index + 1
-      }">`
-    imageContainer.appendChild(carouselItem)
-  })
 
   // Fetch booked dates
   async function fetchBookedDates() {

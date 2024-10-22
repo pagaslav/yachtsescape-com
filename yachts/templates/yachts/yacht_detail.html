@@ -13,6 +13,7 @@
 
     <!-- Lightbox CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+
 {% endblock %}
 
 {% block title %}
@@ -106,5 +107,13 @@ Our Fleet - {{ yacht.name }} details
 
     <script>
         const stripePublicKey = "{{ stripe_public_key }}";
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        });
+    });
     </script>
 {% endblock %}

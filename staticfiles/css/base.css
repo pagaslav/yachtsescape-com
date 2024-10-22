@@ -26,6 +26,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 main {
@@ -91,14 +92,14 @@ a {
 }
 
 ::placeholder {
-  color: #ced4da !important;
+  color: #868e96 !important;
   opacity: 0.5;
   font-size: 0.85em;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #ced4da;
+  color: #868e96;
   opacity: 0.5;
 }
 

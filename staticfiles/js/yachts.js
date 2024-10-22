@@ -1,10 +1,22 @@
-console.log("yachts.js loaded") // Check if the file is loaded
+console.log("yachts.js loaded") // Confirm the file is loaded
 
 document.addEventListener("DOMContentLoaded", async function () {
-  const imageContainer = document.querySelector("#yachtGallery .carousel-inner") // Select the carousel inner container
+  console.log("DOMContentLoaded event fired")
+  // Select the carousel inner container
+  const imageContainer = document.querySelector("#yachtGallery .carousel-inner")
+
+  // Check if the carousel container exists
+  if (!imageContainer) {
+    console.error("Carousel container not found.")
+    return // Stop further execution if the carousel is not found
+  }
+  console.log("Carousel container found successfully")
+
   let selectedDateRange = [] // Store selected date range globally
   let dateRange = [] // New array to store start and end dates
   const dateRangeInput = document.querySelector("#dateRange")
+
+  // Initialize yacht ID variable
   let yachtId = null
   const listItems = document.querySelectorAll("li")
 
@@ -15,25 +27,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   })
 
+  // Check if yacht ID was found
   if (!yachtId) {
     console.error("Yacht ID not found.")
-    return // Stop execution if yachtId is not found
+    return // Stop execution if yacht ID is not found
   }
+  console.log("Yacht ID found:", yachtId)
 
-  // Получаем массив изображений из data-атрибута
-  const imageDataElement = document.getElementById("image-data")
-  const images = imageDataElement.dataset.images.split(",") // Извлекаем массив изображений из data-атрибута
 
-  // Создаем элементы карусели для каждого изображения
-  images.forEach((imageUrl, index) => {
-    const carouselItem = document.createElement("div")
-    carouselItem.className = `carousel-item ${index === 0 ? "active" : ""}`
-    carouselItem.innerHTML = `<img src="${imageUrl}" class="d-block w-100" alt="Yacht ${yachtId} Image ${
-      index + 1
-    }">`
-    imageContainer.appendChild(carouselItem)
-  })
 
+  // Fetch booked dates
   async function fetchBookedDates() {
     try {
       const response = await fetch(`/yachts/yacht/${yachtId}/bookings/`)
@@ -48,8 +51,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
+  // Generate a list of dates to disable for booking
   function getDisabledDates(bookedDates) {
-    // Generate a list of dates to disable
     const disabledDates = []
 
     bookedDates.forEach((dateRange) => {
@@ -58,15 +61,16 @@ document.addEventListener("DOMContentLoaded", async function () {
       let currentDate = new Date(startDate)
 
       while (currentDate <= endDate) {
-        disabledDates.push(currentDate.toISOString().split("T")[0]) // Convert to YYYY-MM-DD
-        currentDate.setDate(currentDate.getDate() + 1) // Increment date
+        disabledDates.push(currentDate.toISOString().split("T")[0]) // Convert to YYYY-MM-DD format
+        currentDate.setDate(currentDate.getDate() + 1) // Increment the date
       }
     })
 
     return disabledDates
   }
 
-  console.log("Yacht ID:", yachtId) // Log the yacht ID to check if it was found
+  // Log yacht ID to ensure it's found correctly
+  console.log("Yacht ID:", yachtId)
 
   // Fetch booked dates and initialize Flatpickr
   const bookedDates = await fetchBookedDates()
@@ -88,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           const startDate = new Date(selectedDates[0])
           const endDate = new Date(selectedDates[1])
 
-          // Convert to local date format
+          // Convert dates to local format
           dateRange = [
             `${startDate.getFullYear()}-${String(
               startDate.getMonth() + 1
@@ -106,13 +110,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     })
   }
 
+  // Fetch CSRF token for form submission
   function getCSRFToken() {
     let cookieValue = null
     if (document.cookie && document.cookie !== "") {
       const cookies = document.cookie.split("; ")
       for (let i = 0; i < cookies.length; i++) {
         const cookie = cookies[i].trim()
-        // Check if this cookie string begins with the CSRF token name
         if (cookie.startsWith("csrftoken=")) {
           cookieValue = decodeURIComponent(
             cookie.substring("csrftoken=".length)
@@ -124,6 +128,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     return cookieValue
   }
 
+  // Handle form submission for booking
   function handleFormSubmit(event) {
     event.preventDefault() // Prevent default form submission
 
@@ -134,7 +139,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       formData.append("yacht", yachtId)
       formData.append("date_range", `${dateRange[0]} to ${dateRange[1]}`)
 
-      // Send a POST request
+      // Send a POST request for booking
       fetch("/booking/booking/create/", {
         method: "POST",
         body: formData,
@@ -157,7 +162,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           }
         })
         .catch((error) => {
-          console.error("Error:", error)
+          console.error("Error during booking:", error)
           alert("An error occurred during booking.")
         })
     } else {
@@ -165,6 +170,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
-  // Attach handleFormSubmit globally
+  // Attach form submission handler globally
   window.handleFormSubmit = handleFormSubmit
 })

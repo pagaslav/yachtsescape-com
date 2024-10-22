@@ -224,7 +224,6 @@
     flex: 1 1 25%;
 }
 
-/* Centered and responsive form styling */
 #bookingForm {
     width: 100%;
     max-width: 600px;
@@ -232,7 +231,6 @@
     padding: 0 15px;
 }
 
-/* Styles for the custom dropdown menu, including background, borders, item padding, hover effects, and dividers */
 .custom-dropdown-menu {
     background-color: #fff;
     border: 1px solid #ccc;

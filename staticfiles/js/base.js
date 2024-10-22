@@ -1,7 +1,6 @@
 $(document).ready(function () {
   let scrollTrigger = 50;
 
-  // Function to change the logo based on scroll position and window width
   function updateLogo() {
     let windowWidth = $(window).width();
     let scrollTop = $(window).scrollTop();
@@ -11,21 +10,15 @@ $(document).ready(function () {
     let smallDarkLogo = $("#logo").data("small-dark-logo");
 
     if (scrollTop > scrollTrigger) {
-      // Change logo to dark version based on screen size
       if (windowWidth < 689) {
-        console.log("Switching to small dark logo:", smallDarkLogo);
         $("#logo").attr("src", smallDarkLogo);
       } else {
-        console.log("Switching to dark logo:", darkLogo);
         $("#logo").attr("src", darkLogo);
       }
     } else {
-      // Change logo to light version based on screen size
       if (windowWidth < 689) {
-        console.log("Switching to small light logo:", smallLightLogo);
         $("#logo").attr("src", smallLightLogo);
       } else {
-        console.log("Switching to light logo:", lightLogo);
         $("#logo").attr("src", lightLogo);
       }
     }

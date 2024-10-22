@@ -39,3 +39,9 @@ class YachtForm(forms.ModelForm):
             'detail_image2',
             'detail_image3',
         ]
+        labels = {
+            'card_image': 'Add Yacht Card Image',
+            'detail_image1': 'Add First Detail Image',
+            'detail_image2': 'Add Second Detail Image',
+            'detail_image3': 'Add Third Detail Image',
+}
