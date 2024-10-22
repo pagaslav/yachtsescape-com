@@ -745,7 +745,7 @@ Yacht deletion is handled through the **Yacht Management** page.
 
 The **User Management** page allows administrators to manage user accounts.
 
-![User Management Page](docs/images/features/yacht-detail-user.webp)
+![User Management Page](docs/images/features/user-management.webp)
 
 - **User List**: Displays a list of users with options to edit or delete each user.
 - **Edit and Delete**: Admins can manage user accounts with modal confirmations for each action. After a user is edited or deleted, the admin is redirected to the management page with a success message.
@@ -886,34 +886,31 @@ This table allows users to leave reviews for yachts.
 
 ## Technologies Used
 
-- [Python](https://www.python.org/)  is used as the back-end programming language.
-- [Django](https://www.djangoproject.com/) is the Python framework used for the site.
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) was used as the foundation of the site.
-- [CSS](https://developer.mozilla.org/en-US/docs/Web/css) - was used to add the styles and layout of the site.
-- [Bootstrap](https://getbootstrap.com/docs/5.3) was employed to integrate its styles, facilitating rapid development and
-consistent styling across the pages.
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) was employed to implement dynamic interactions on the site, enabling real-time user feedback and interactive features without needing to reload the page.
-- [jQuery](https://jquery.com/) used for user interaction on the site.
-- [![PostgreSQL by Code Institute](https://img.shields.io/badge/PostgreSQL_by_Code_Institute-grey?logo=okta&logoColor=F05223)](https://dbs.ci-dbs.net) used as the Postgres database from Code Institute.
-- [VSCode](https://code.visualstudio.com/) was used as the main tool to write and edit code.
-- [Git](https://git-scm.com/) was used for the version control of the website.
-- [GitHub](https://github.com/) was used to host the code of the website.
-- [Heroku](https://dashboard.heroku.com/apps)  is hosting the deployed back-end site.
+- [![Python](https://img.shields.io/badge/Python-grey?logo=python&logoColor=3776AB)](https://www.python.org/) is used as the back-end programming language.
+- [![Django](https://img.shields.io/badge/Django-grey?logo=django&logoColor=092E20)](https://www.djangoproject.com/) is the Python framework used for the site.
+- [![HTML](https://img.shields.io/badge/HTML-grey?logo=html5&logoColor=E34F26)](https://developer.mozilla.org/en-US/docs/Web/HTML) was used as the foundation of the site.
+- [![CSS](https://img.shields.io/badge/CSS-grey?logo=css3&logoColor=1572B6)](https://developer.mozilla.org/en-US/docs/Web/CSS) was used to add styles and layout to the site.
+- [![Bootstrap](https://img.shields.io/badge/Bootstrap-grey?logo=bootstrap&logoColor=7952B3)](https://getbootstrap.com/docs/5.3) was employed to integrate its styles, facilitating rapid development and consistent styling across the pages.
+- [![JavaScript](https://img.shields.io/badge/JavaScript-grey?logo=javascript&logoColor=F7DF1E)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) was employed to implement dynamic interactions on the site.
+- [![jQuery](https://img.shields.io/badge/jQuery-grey?logo=jquery&logoColor=0769AD)](https://jquery.com/) was used for user interaction on the site.
+- [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-grey?logo=postgresql&logoColor=4169E1)](https://dbs.ci-dbs.net) was used as the Postgres database from Code Institute.
+- [![VSCode](https://img.shields.io/badge/VSCode-grey?logo=visual-studio-code&logoColor=007ACC)](https://code.visualstudio.com/) was used as the main tool to write and edit code.
+- [![Git](https://img.shields.io/badge/Git-grey?logo=git&logoColor=F05032)](https://git-scm.com/) was used for the version control of the website.
+- [![GitHub](https://img.shields.io/badge/GitHub-grey?logo=github&logoColor=181717)](https://github.com/) was used to host the code of the website.
+- [![Heroku](https://img.shields.io/badge/Heroku-grey?logo=heroku&logoColor=430098)](https://dashboard.heroku.com/apps) is hosting the deployed back-end site.
 - [![WhiteNoise](https://img.shields.io/badge/WhiteNoise-grey?logo=python&logoColor=FFFFFF)](https://whitenoise.readthedocs.io) used for serving static files with Heroku.
 - [![Cloudinary](https://img.shields.io/badge/Cloudinary-grey?logo=cloudinary&logoColor=3448C5)](https://cloudinary.com) used for online media file storage.
 - [![Stripe](https://img.shields.io/badge/Stripe-grey?logo=stripe&logoColor=008CDD)](https://stripe.com) used for online secure payments of ecommerce products/services.
 - [![Gmail API](https://img.shields.io/badge/Gmail_API-grey?logo=gmail&logoColor=EA4335)](https://mail.google.com) used for sending emails in my application.
-- [Balsamiq](https://balsamiq.com/) was used to make wireframes for the website.
-- [Adobe Photoshop](https://www.adobe.com/uk/products/photoshop.html) was used to make and resize images for the website and the
-README file.
-- [ICO Converter](https://www.icoconverter.com/) - for the favicon.
-- [Chrome Developer Tools](https://developer.chrome.com/docs/devtools/) - was used to debug, to test responsiveness and generate Lighthouse reports.
-- [Google Fonts](https://fonts.google.com/) - to import the site font.
-- [Font Awesome](https://fontawesome.com/) - for all the site icons.
-- [W3C HTML Validator](https://validator.w3.org/) - to test HTML code.
-- [W3C CSS Validator](https://jigsaw.w3.org/css-validator) - to test the CSS code.
-- [JSHint](https://jshint.com/) is a tool used to detect errors and potential problems in JavaScript code.
-
+- [![Balsamiq](https://img.shields.io/badge/Balsamiq-grey?logo=balsamiq&logoColor=E64646)](https://balsamiq.com/) was used to make wireframes for the website.
+- [![Adobe Photoshop](https://img.shields.io/badge/Adobe_Photoshop-grey?logo=adobe-photoshop&logoColor=31A8FF)](https://www.adobe.com/uk/products/photoshop.html) was used to create and resize images for the website and the README file.
+- [![ICO Converter](https://img.shields.io/badge/ICO_Converter-grey)](https://www.icoconverter.com/) was used to generate the favicon.
+- [![Chrome Developer Tools](https://img.shields.io/badge/Chrome_Developer_Tools-grey?logo=google-chrome&logoColor=4285F4)](https://developer.chrome.com/docs/devtools/) was used to debug, test responsiveness, and generate Lighthouse reports.
+- [![Google Fonts](https://img.shields.io/badge/Google_Fonts-grey?logo=google-fonts&logoColor=4285F4)](https://fonts.google.com/) was used to import fonts for the site.
+- [![Font Awesome](https://img.shields.io/badge/Font_Awesome-grey?logo=font-awesome&logoColor=339AF0)](https://fontawesome.com/) was used for all the site icons.
+- [![W3C HTML Validator](https://img.shields.io/badge/W3C_HTML_Validator-grey?logo=w3c&logoColor=005A9C)](https://validator.w3.org/) was used to validate the HTML code.
+- [![W3C CSS Validator](https://img.shields.io/badge/W3C_CSS_Validator-grey?logo=w3c&logoColor=005A9C)](https://jigsaw.w3.org/css-validator) was used to validate the CSS code.
+- [![JSHint](https://img.shields.io/badge/JSHint-grey?logo=javascript&logoColor=F7DF1E)](https://jshint.com/) was used to detect errors and potential problems in JavaScript code.
 
 ## Testing
 

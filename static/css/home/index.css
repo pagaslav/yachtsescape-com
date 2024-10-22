@@ -6,7 +6,7 @@
     transform: translate(-50%, -50%);
     text-align: center;
     text-transform: uppercase;
-    z-index: 10;
+    z-index: 15 !important;
     color: white !important;
 }
 
@@ -16,10 +16,12 @@
     text-decoration: none;
     background-color: #088cdc;
     padding: 10px 20px;
+    z-index: 15;
 }
 
 .hero-link:hover {
     background-color: #006bb3;
+    z-index: 15;
 }
 
 .search-form-container {
