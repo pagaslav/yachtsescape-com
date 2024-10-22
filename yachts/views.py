@@ -36,6 +36,7 @@ def yacht_list(request):
         'price_high': '-price_per_day',
         'rating_low': 'rating',
         'rating_high': '-rating',
+        'type_az': 'Type: A to Z'
     }
 
     sort_names = {
