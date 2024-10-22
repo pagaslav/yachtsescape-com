@@ -543,440 +543,267 @@ If the credentials are valid, the user is logged in; otherwise, an error message
 ### Sign Up Page
 The sign-up page allows new users to create an account on The Knee Surgery website. The form includes client-side validation using JavaScript to ensure the password meets the criteria and matches the confirmation password. The backend handles additional validation, password hashing, and user creation.
 
-![Sign Up Page](documentation/pages/signup-page-full.webp)
-
-The page includes the following features:
+### Sign Up Page
 
-1. **Full Name Input**: Users enter their full name in a floating label input field.
-2. **Gender Selection**: Users select their gender from a dropdown list.
-3. **Date of Birth Input**: Users enter their date of birth in a floating label input field.
-4. **Phone Number Input**: Users enter their phone number, which must be between 9 to 11 digits. JavaScript handles input changes to show or hide a sample text.
-5. **Email Input**: Users enter their email address in a floating label input field.
-6. **Password Input**: Users create a password with requirements displayed below the input field. The password must be at least 8 characters long, contain an uppercase letter, and a number. JavaScript validates the password in real-time. Gray check marks turn green as each requirement is met.
+![Sign Up Page](docs/images/features/signup.webp)
 
-![All marks are neutral](documentation/pages/signup-page-password-1.webp)
+The **YachtsEscape** Sign Up page allows new users to create an account. The page includes the following features:
 
-![One mark is green](documentation/pages/signup-page-password-2.webp)
+1. **Username, First Name, Last Name**: 
+   - Input fields for entering a username, first name, and last name.
 
-![Two marks are green](documentation/pages/signup-page-password-3.webp)
+2. **Email Input**: 
+   - Field for entering an email address.
 
-![All marks are green](documentation/pages/signup-page-password-4.webp)
+3. **Password and Confirm Password**: 
+   - Password fields with real-time validation.
+   - A list of password requirements (minimum 8 characters, at least one uppercase letter, and one number) is displayed under the password field.
+   - **Interactive Password Validation**: 
+     - As the user types, the password requirements change color from red to gray, indicating which rules have been met.
+![Sign Up Page 1](docs/images/features/pass-req-js.webp)
 
-7. **Confirm Password Input**: Users confirm their password. JavaScript ensures that both password fields match. Each password field includes a Font Awesome eye icon that toggles password visibility when clicked.
+     - Clicking the eye icon allows the user to toggle password visibility for easier input.
 
-![Visibility](documentation/pages/signup-page-password-5.webp)
+![Sign Up Page 2](docs/images/features/pass-e-js.webp)
 
-8. **Terms and Conditions Checkbox**: Users must agree to the terms and conditions. Clicking the link opens a modal with the terms for review.
+4. **Address Details**:
+   - Optional fields for entering street address, city, postal code, and country.
 
-![Terms and Conditions](documentation/pages/signup-page-terms.webp)
-
-Users must agree to the terms and conditions. Without checking this box, users cannot complete the registration.
+5. **Phone Number**: 
+   - Optional phone number input field.
 
-![Terms and Conditions agree](documentation/pages/signup-page-terms-checkbox.webp)
+6. **Sign Up Button**: 
+   - Submits the form to create an account.
 
-On the backend, the following occurs:
+7. **Sign In and Home Links**: 
+   - A link to sign in if the user already has an account and a link to return to the homepage.
 
-- **Email Validation**: The backend checks if the email is already registered.
-- **Password Validation**: The backend ensures the passwords match and meet the requirements.
-- **Password Hashing**: The password is hashed using `generate_password_hash`.
-- **User Creation**: A new user record is created and saved in the database.
-- **Session Handling**: The user's email is added to the session to log them in automatically.
+The form includes validation for required fields and password strength, ensuring that users meet the necessary criteria before submitting. Errors are displayed clearly if any fields are not filled out correctly.
 
-### Privacy Policy Page
-The Privacy Policy page provides detailed information about how The Knee Surgery website collects, uses, and protects user data. It is a crucial component for informing users about their privacy rights and the measures taken to safeguard their information. 
+### Our Fleet Page
 
-<details>
-<summary>See Privacy policy Page</summary>
+![Sign Up Page 2](docs/images/features/our-fleet.webp)
 
-![Privacy Policy Page](documentation/pages/policy-page-full.webp)
-</details><br>
-  
-The policy includes sections on:
 
-- **Data Collection**: Explains what personal data is collected, such as email addresses, names, phone numbers, and usage data.
-- **Usage of Data**: Describes how the collected data is used to provide and improve services.
-- **Cookies and Tracking**: Details the use of cookies and other tracking technologies to enhance user experience.
-- **Data Sharing**: Outlines conditions under which user data may be shared with third parties.
-- **Data Security**: Ensures the protection of personal data, though it acknowledges no method is 100% secure.
-- **Children’s Privacy**: States the service does not address users under 13 and the measures taken if such data is inadvertently collected.
-- **External Links**: Advises users to review privacy policies of linked websites not operated by The Knee Surgery.
-- **Policy Changes**: Notifies users that the Privacy Policy may be updated and the process for informing users of changes.
+The **Our Fleet** page on **YachtsEscape** allows users to browse through available yachts and filter them by location, capacity, and price. Below is a breakdown of its key features:
 
-This Privacy Policy was generated and adapted using the [Privacy Policy Generator](https://www.termsfeed.com/privacy-policy-generator/).
+1. **Title and Breadcrumb Navigation**:
+   - A clear title "Our Fleet" is displayed at the top.
+   - Breadcrumbs help users navigate back to the homepage or other sections.
 
-### Our Doctors Page
-The "Our Doctors" page features images and brief information about our doctors, including their specialties and experience. This page dynamically updates with new doctors added by the admin through a for loop, ensuring the latest information is always displayed.
+2. **Filters**:
+   - **Location Filter**: A dropdown menu allows users to filter yachts by location (e.g., Turkey, France, Spain).
+   - **Capacity Filter**: Another dropdown helps users select yachts based on the number of guests they can accommodate (e.g., up to 8 guests, more than 8 guests).
+   - **Sort Options**: Users can sort yachts by price (low to high or high to low) and by rating (low to high or high to low).
 
-![Our Doctors Page](documentation/pages/our-doctors-page-full.webp)
+3. **Yacht Listings**:
+   - Each yacht is displayed in a card format with the following information:
+     - **Yacht Image**: A high-quality image of the yacht (or a placeholder if an image is not available).
+     - **Rating**: A 5-star rating system overlaid in the top-right corner of the yacht image.
+     - **Yacht Name**: The name of the yacht is prominently displayed.
+     - **Price**: The price per day in USD is shown beneath the name.
+     - **Location, Capacity, and Amenities**: A list of key details such as the yacht's location, guest capacity, number of bedrooms, and available kitchen equipment.
+     - **View Details Button**: A button labeled "VIEW DETAILS" directs users to the individual yacht's detail page.
 
-The page layout includes:
+4. **No Yacht Available Message**:
+   - If no yachts match the selected filters, a message is displayed informing the user that no yachts are available.
 
-- **Doctor Image**: Displays the doctor's image if available; otherwise, a default image is shown.
-- **Doctor Information**: Presents the doctor's name, specialty, description, and additional information.
+This page provides a clean and user-friendly experience, allowing customers to easily filter and find the perfect yacht for their needs.
 
-The page structure is generated automatically from the database entries using the following template code snippet:
+### Yacht Detail Page
 
-      ```html
-      {% for doctor in doctors %}
-      <div class="col-12">
-        <div class="card mb-3">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img
-                src="{{
-                  url_for('static', filename=get_image_path(doctor.image)) 
-                  if doctor.image else
-                  url_for('static', filename='images/default-doctor.webp') 
-                }}"
-                class="img-fluid rounded-start"
-                alt="{{ doctor.name }}">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h3 class="card-title">{{ doctor.name }}</h3>
-                <p class="card-text">{{ doctor.specialty }}</p>
-                <p class="card-text">{{ doctor.description }}</p>
-                <p class="card-text-hide">{{ doctor.additional_info }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-      ```
+![Yacht Detail Page](docs/images/features/yacht-detail-user.webp)
 
-### About us Page
-The "About Us" page for The Knee Surgery website provides comprehensive information about the clinic, its history, and its commitment to providing high-quality orthopedic care.
+The **Yacht Detail** page on **YachtsEscape** provides all the necessary information about each yacht, including availability and booking options. Below are the key features of the page:
 
-- **Introduction**
-  - A welcoming message with a brief history and the clinic's dedication to patient satisfaction and medical excellence.
+1. **Yacht Information**:
+   - Each page displays detailed information about the yacht, such as type, capacity, location, and price.
+   - There is an image gallery where users can click on any photo to view it in a larger size, with navigation options to scroll through the photos. This enhances the user experience by allowing a closer look at the yacht.
 
-![About Us Page](documentation/pages/about-us-page-full.webp)
+2. **Booking Calendar**:
+   - **Booked Dates**: Dates that are already booked are fetched from the database and sorted chronologically using JavaScript, making the interface user-friendly.
 
-- **Carousel Section**
-  - A Bootstrap carousel showcasing four key areas of the clinic:
-    1. **Reception at Our Clinic**: Warm and inviting environment for patients.
-    2. **Our Hospital Corridor**: Modern and convenient clinic facilities.
-    3. **Operating Theatre**: Equipped with the latest medical technology.
-    4. **Hospital Room**: Comfortable and modern environment for patients.
+![Yacht Detail Calendar](docs/images/features/yacht-detail-calend.webp)
 
-For optimal viewing experience, different images are used for various screen sizes, ensuring clarity and quality on all devices.
+   - **Interactive Calendar**: When selecting dates, users are presented with an interactive calendar powered by Flatpickr. Booked and past dates are disabled for selection, ensuring only available dates can be chosen.
 
-**Detailed Descriptions**
-  - **Our Journey**: The history of the clinic and its growth over the past decade.
-  - **Our Commitment to Quality**: Focus on personalized treatment plans and understanding patient needs.
-  - **Patient Satisfaction**: Testimonials and the dedication of the staff to provide excellent care.
-  - **Continuous Improvement**: Ongoing training and certification programs for doctors.
-  - **Our Community**: Involvement in the local community through health fairs and educational seminars.
-  - **Looking to the Future**: Commitment to innovation and expanding services.
+3. **Conditional Logic for Booking**:
 
-As we continue to grow and evolve, we are excited to share that we have plans to enhance our “About Us” page further. In the near future, we aim to include testimonials from our patients, offering firsthand accounts of their experiences and the positive impact our clinic has had on their lives. These testimonials will provide valuable insights and reinforce the trust and satisfaction our patients feel.
+![Yacht Detail Logout](docs/images/features/yacht-detail-logout.webp)
 
-Additionally, we will be showcasing our certifications and achievements in the medical field. By highlighting the qualifications and accolades of our dedicated team, we aim to demonstrate our commitment to excellence and continuous improvement. These additions will give visitors a more comprehensive understanding of our clinic’s dedication to providing exceptional orthopedic care.
+   - If the user is not logged in, the date selection fields and the "Book Now" button are hidden. Instead, a message prompts the user to log in or register an account to proceed with the booking.
 
-### Profile Page
+4. **Booking Form**:
+   - Users can select available dates and fill out the booking form.
+   - Clicking the **Book Now** button redirects users to a payment page powered by Stripe, where they can complete their booking securely.
 
-#### Patient Profile Page
+5. **Yacht Image Gallery**:
 
-The patient profile page on our website offers a comprehensive view of the patient's personal information, medical records, and appointment management. Here is an overview of what the patient can do and see on this page:
+![Yacht Detail Gallery](docs/images/features/yacht-detail-galer.webp)
 
-![Patient Profile Page](documentation/pages/profile-patient-page.webp)
+   - Clicking on any image opens it in a larger format, and users can scroll through the gallery. This feature improves the visual experience and allows for detailed viewing of the yacht.
 
-##### Key Sections:
+This page allows users to easily access yacht information, check availability, and make bookings. The integration of a calendar and image gallery, along with secure Stripe payments, ensures a seamless user experience. If a user is not authenticated, they are prompted to log in or create an account before accessing booking options.
 
-1. **User Information**
-   - **Name:** Displays the patient's name, with an option to edit.
-   - **Role:** Shows the user's role as a patient.
-   - **Phone:** Shows the patient's phone number, with an option to edit.
-   - **Email:** Displays the patient's email, with an option to edit.
-   - **Gender:** Shows the patient's gender.
-   - **Date of Birth:** Displays the patient's date of birth.
+### About Us Page
 
-2. **Change Password**
-   - Patients can change their password by providing the current password and setting a new one, ensuring it meets security requirements.
+![About Us Page](docs/images/features/about.webp)
 
-3. **Medical Records**
-   - **List of Medical Records:** Displays detailed information about the patient's medical history, including descriptions, treatments, dates, and the attending doctor's details.
-   - **Download and Delete Files:** Patients can view, download, and delete their uploaded files related to their medical records.
+The **About Us** page on **YachtsEscape** provides insight into the company, its team, history, and why customers should choose them. Below are the key sections:
 
-4. **Scheduled Appointments**
-   - **View Scheduled Appointments:** Displays the list of upcoming appointments with doctors, including the doctor's name, reason for the visit, and scheduled date and time.
+1. **Welcome Section**:
+   - The page begins with a brief introduction about **YachtsEscape**, highlighting their mission to offer unique and unforgettable yacht experiences.
 
-5. **Requested Appointments**
-   - **List of Appointment Requests:** Shows the appointments that the patient has requested, including the reason and current status of each request.
+2. **Our Team**:
+   - An accordion section showcases the team, including a group photo and a description of the team's dedication to finding the best yachts for clients.
+   - The team excels at providing professional service, ensuring every yacht rental is a memorable experience.
 
-6. **Request an Appointment**
-   - **Form to Request Appointments:** Allows patients to request new appointments by providing the reason for the visit.
+3. **Our History**:
+   - This section details **YachtsEscape's** journey since 2010, emphasizing the growth of their fleet and the commitment to delivering personalized yacht experiences.
 
-This page is designed to be user-friendly, providing patients with easy access to their medical information and appointment management tools.
+4. **Why Choose Us**:
+   - This accordion item explains how **YachtsEscape** offers exceptional service and insider knowledge, helping customers discover hidden gems and avoid tourist traps during their yacht adventures.
 
-#### Admin Profile Page
+5. **Our Achievements**:
+   - Features images of diplomas and awards that can be enlarged by clicking on them.
 
-The admin profile page on our website is designed to provide a comprehensive set of tools for managing user information, medical records, and appointments. Here's a breakdown of the key features and functionalities available to administrators:
+6. **Credentials**:
+   - Displays British credentials including the company's address and banking details, adding a professional touch to their reputation.
 
-![Admin Profile Page](documentation/pages/profile-admin-page.webp)
+7. **Feedback Section**:
 
-##### Key Sections:
+![About Us Page 1](docs/images/features/about-feed-signin.webp)
 
-1. **User Information**
-   - **Name:** Displays the admin's name with an option to edit.
-   - **Role:** Shows the user's role as an admin, with the ability to edit.
-   - **Phone:** Displays the admin's phone number, which can be edited.
-   - **Email:** Shows the admin's email address, with an option to update it.
-Administrators have enhanced privileges within the system. They can edit any information in their own profile or in any profile they view without needing to input the current password.
+   - Authenticated users can leave comments and rate their experience, while unauthenticated users are prompted to sign in or register.
 
-2. **Change Password**
-   - Admins can securely change their password by entering the current password and setting a new one, ensuring it meets security requirements.
+![About Us Page 2](docs/images/features/about-feed-sub.webp)
 
-3. **Appointment Requests**
-   - **List of Appointment Requests:** Displays all pending appointment requests from patients, including the patient's name and the reason for the appointment.
-   - **Assign Doctor:** Allows admins to assign doctors to specific appointment requests, facilitating efficient scheduling and management.
+This page helps build trust by providing customers with detailed information about the team, history, and achievements of **YachtsEscape**, along with a user-friendly layout and interactive elements.
 
-4. **Admin-Specific Actions**
-   - **View All Users:** A button that navigates to a page where admins can view and manage all users and doctors in the system.
-   - **Add a New Doctor:** A button that links to a form where admins can add new doctors, expanding the clinic's team.
+#### Profile Page
 
-5. **Uploaded Files**
-   - **Manage Files:** Admins can view, download, and delete uploaded files related to patient records, ensuring all relevant documents are easily accessible.
-   - **Upload Documents:** Provides a form for uploading new documents, with options to categorize the file type (e.g., medical record, analysis, profile picture, or other).
+The **Profile Page** allows users to view their personal details and past bookings.
 
-The admin profile page is designed to give administrators full control over the system, ensuring efficient management of user information, medical records, and appointments. This comprehensive toolset helps maintain the high standards of care and service at our clinic.
+![Profile Page](docs/images/features/profile.webp)
 
-#### Doctor Profile Page
+- **User Information**: Displays the user's username, email, phone number, and address.
+- **Profile Actions**: Users can edit their profile or log out using accessible buttons.
+- **Confirmed Bookings**: Shows a list of confirmed bookings with details such as yacht name (linked to the yacht detail page), start and end dates, total cost, and booking status. Each action requires user confirmation through a modal window.
 
-The doctor profile page on our website is designed to provide doctors with the tools and information they need to manage their patient interactions, appointments, and medical records efficiently. Here's a detailed overview of the key features and functionalities available to doctors:
+#### Edit Profile Page
 
-![Doctor Profile Page](documentation/pages/profile-doctor-page.webp)
+The **Edit Profile Page** lets users update their personal information.
 
-##### Key Sections:
+![Edit Profile Page](docs/images/features/edit-profi.webp)
 
-1. **User Information**
-   - **Name:** Displays the doctor's name with an option to edit.
-   - **Role:** Shows the user's role as a doctor.
-   - **Phone:** Displays the doctor's phone number, which can be edited.
-   - **Email:** Shows the doctor's email address, with an option to update it.
-   - **Specialty:** Displays the doctor's specialty, which can be updated to reflect their expertise.
+- **Form Fields**: Editable fields for username, email, and address.
+- **Save Changes**: Changes are confirmed through a modal window before being saved.
 
-2. **Change Password**
-   - Doctors can securely change their password by entering the current password and setting a new one, ensuring it meets security requirements.
+![Save Confirmation](docs/images/features/profile-save-confirm.webp)
 
-3. **Assigned Patients**
-   - **List of Assigned Patients:** Displays all patients assigned to the doctor, including patient names, reasons for appointments, and symptoms.
-   - **Accept and Schedule Appointments:** Allows doctors to accept and schedule appointments, providing fields for the appointment date and time.
-   - **Medical Records:** Doctors can view and access the medical records of their assigned patients, ensuring they have all the necessary information for consultations.
+- **Cancel Option**: Users can cancel their edits and return to their profile page.
 
-4. **Medical Records Management**
-   - **View Medical Records:** Provides detailed information about patients' medical records, including descriptions, treatments, and dates.
-   - **Add Medical Record:** Doctors can add new medical records for their patients, documenting treatments, descriptions, and dates.
+#### Yacht Management (Admin Only)
 
-The doctor profile page is designed to give doctors full control over their interactions with patients, ensuring efficient management of patient information, medical records, and appointments. This comprehensive toolset helps maintain the high standards of care and service at our clinic.
+The **Yacht Management** page allows administrators to manage yacht listings.
 
-### Appointment Request and Scheduling Workflow on Profile Page
-This section describes the complete workflow for requesting and scheduling an appointment within the Knee Surgery application. It details the steps from a patient requesting an appointment to a doctor scheduling it, including the roles of the patient, admin, and doctor.
+![Yacht Management Page](docs/images/features/yachts-management.webp)
 
-#### Step-by-Step Process:
+- **Yacht List**: A table showing all yachts with options to edit or delete each yacht.
+- **Add Yacht**: Admins can add new yachts through a button that leads to the **Add Yacht** page.
+- **Confirmation Modals**: Actions like editing and deleting yachts are confirmed through modal windows.
 
-1. **Patient Requests an Appointment:**
-   - **Action:** The patient fills out the "Request an Appointment" form, specifying the reason for the appointment.
+#### Add Yacht Page
 
-   ![Request an Appointment](documentation/pages/appointment/request-patient-1.webp)
+The **Add Yacht Page** allows admins to add new yachts to the system.
 
-   - **Interface:** The patient clicks the "Request Appointment" button.
+![Add Yacht Page](docs/images/features/add-yacht.webp)
 
-   ![Click the button](documentation/pages/appointment/request-patient-2.webp)
+- **Yacht Form**: A form for adding yacht details, including name, type, and images.
+- **Add Yacht Confirmation**: Admins must confirm the addition of a new yacht via a modal window before the yacht is saved.
 
-2. **Page Reload and Confirmation:**
-   - **Action:** Upon clicking the button, the page reloads.
-   - **Interface:** The requested appointment appears in the patient's profile under the "Requested Appointments" section.
+#### Edit Yacht Page
 
-   ![Requested Appointments](documentation/pages/appointment/requested-patient.webp)
+The **Edit Yacht Page** allows admins to update yacht information.
 
-3. **Database Update:**
-   - **Action:** The appointment request is added to the `theknee_surgery.appointments` collection in MongoDB.
-   - **Details:** The new appointment entry includes a status of `pending`.
+![Edit Yacht Page](docs/images/features/edit-yacht.webp)
 
-   ![MongoDB status of `pending`](documentation/pages/appointment/request-mongo-1.webp)
+- **Yacht Form**: Editable fields for yacht details, such as name and type.
+- **Save Changes**: Changes must be confirmed through a modal window before being applied.
+- **Cancel Option**: Admins can cancel the edit and return to the yacht management page.
 
-4. **Admin Views Appointment Request:**
-   - **Action:** In the admin profile, the new appointment request is visible under the "Appointment Requests" section.
-   - **Interface:** The request includes the patient's name, reason for the appointment, and an option to assign a doctor.
+#### Delete Yacht (Admin Only)
 
-   ![Appointment Requests for admin](documentation/pages/appointment/request-admin.webp)
+Yacht deletion is handled through the **Yacht Management** page.
 
-5. **Admin Assigns a Doctor:**
-   - **Action:** The admin selects a doctor from a dropdown menu and clicks the "Assign Doctor" button.
+![Delete Yacht Confirmation](docs/images/features/profile-del-y-confirm.webp)
 
-   ![Assigns a Doctor](documentation/pages/appointment/assign-admin.webp)
+- Admins can trigger the deletion process using a delete button next to each yacht in the list.
+- A confirmation modal appears, and upon confirmation, the yacht is removed.
 
-   - **Database Update:** The status of the appointment in MongoDB changes from `pending` to `assigned`.
+#### User Management (Admin Only)
 
-   ![MongoDB status of `assigned`](documentation/pages/appointment/assign-mongo.webp)
+The **User Management** page allows administrators to manage user accounts.
 
-   - **Interface:** The appointment request is removed from the admin's "Appointment Requests" section and appears in the assigned doctor's profile under the "Assigned Patients" section.
+![User Management Page](docs/images/features/yacht-detail-user.webp)
 
-   ![Assigned Patients for doctor](documentation/pages/appointment/assigned-doctor-1.webp)
+- **User List**: Displays a list of users with options to edit or delete each user.
+- **Edit and Delete**: Admins can manage user accounts with modal confirmations for each action. After a user is edited or deleted, the admin is redirected to the management page with a success message.
 
-6. **Doctor Schedules the Appointment:**
-   - **Action:** The doctor selects a date and time for the appointment and clicks the "Accept and Schedule" button.
+#### Edit User Page
 
-   ![Accept and Schedule](documentation/pages/appointment/assigned-doctor-2.webp)
+The **Edit User Page** allows admins to update a user's personal information.
 
-   - **Database Update:** The status of the appointment in MongoDB changes to `scheduled`.
+![Edit User Page](docs/images/features/edit-user-profi.webp)
 
-   ![MongoDB status of `scheduled`](documentation/pages/appointment/sheduled-mongo.webp)
+- **Form Fields**: Editable fields for username, email, and address.
+- **Save Changes**: Admins must confirm changes through a modal before they are saved.
+- **Cancel Option**: Admins can cancel the changes and return to the user management page.
 
-7. **Updated Views for Doctor and Patient:**
-   - **Doctor's Profile:**
-   - **Interface:** The scheduled appointment remains in the "Assigned Patients" section.
+#### Delete User (Admin Only)
 
-   ![Assigned Patients](documentation/pages/appointment/assigned-doctor-3.webp)
+User deletion is handled through the **User Management** page.
 
-   - **Patient's Profile:**
-   - **Interface:** The appointment is moved from the "Requested Appointments" section to the "Scheduled Appointments" section with the assigned date and time.
+![Delete User Confirmation](docs/images/features/profile-del-user-confirm.webp)
 
-   ![Scheduled Appointments](documentation/pages/appointment/sheduled-patient.webp)
+- Admins can delete a user by triggering a modal window for confirmation.
+- After the user is deleted, the admin is redirected to the management page with a notification of successful deletion.
 
-### Database Collection:
+### Error Pages
 
-- **Collection:** `theknee_surgery.appointments`
-  - **Fields:**
-    - `patient_id`: Reference to the patient requesting the appointment.
-    - `doctor_id`: Reference to the doctor assigned to the appointment.
-    - `reason`: Reason for the appointment.
-    - `status`: Status of the appointment (`pending`, `assigned`, `scheduled`).
-    - `appointment_datetime`: Date and time when the appointment is scheduled (added during the scheduling step).
+![Error Pages](docs/images/errors/404-403-400-500.webp)
 
-### Workflow Summary:
+The **YachtsEscape** website includes four custom error pages to handle common HTTP errors in a user-friendly way. Each error page maintains the same design structure, ensuring consistency and ease of navigation across the site.
 
-1. **Patient Action:** Requests an appointment.
-2. **System Action:** Adds request to database with status `pending`.
-3. **Admin Action:** Assigns a doctor, changing status to `assigned`.
-4. **Doctor Action:** Schedules the appointment, changing status to `scheduled`.
-5. **Patient and Doctor Views:** Updated to reflect the current status and details of the appointment.
+#### 404 - Page Not Found
 
-This workflow ensures a seamless process for managing appointment requests, assignments, and scheduling within the Knee Surgery application.
+- **Message**: "404 - Page Not Found"
+- **Description**: This error page appears when the requested page cannot be found.
+- **Call to Action**: A button labeled "Go to Home" directs users back to the homepage.
 
+#### 403 - Forbidden
 
-### All Users Page
-The "All Users" page is an administrative tool that provides a detailed overview of all users registered on the website. This page is accessible exclusively to administrators and serves as a central hub for user management. Below is a detailed description of the features and functionalities available on the All Users page:
+- **Message**: "403 - Forbidden"
+- **Description**: This page is displayed when the user attempts to access a resource they do not have permission to view.
+- **Call to Action**: A "Go to Home" button allows users to return to the homepage.
 
-![All Users Page](documentation/pages/admin-users-page.webp)
+#### 500 - Internal Server Error
 
-#### Key Features:
+- **Message**: "500 - Internal Server Error"
+- **Description**: This error page indicates that something went wrong on the server side. The page suggests trying again later.
+- **Call to Action**: A "Go to Home" button is provided for user convenience.
 
-1. **User List Overview:**
-   - **Sorted Display:** The page displays all users in a sorted order, starting with administrators, followed by doctors, and then patients. This helps in quickly identifying and managing users based on their roles.
-   - **User Information:** Each entry includes the user's full name and role, with a link to view their profile for more detailed information.
+#### 400 - Bad Request
 
-2. **Flash Messages:**
-   - **Notifications:** The page includes a section for flash messages to notify the admin of the success or failure of various actions, such as password resets or user deletions.
+- **Message**: "400 - Bad Request"
+- **Description**: This error page shows up when the server cannot process the request due to a malformed syntax.
+- **Call to Action**: Users are prompted to click "Go to Home" to return to the homepage.
 
-3. **User Actions:**
-   - **Reset Password:** Administrators can reset a user's password by generating a new random password, which is hashed and updated in the database. The new password is displayed to the admin for further communication to the user. This feature is particularly useful if a user forgets their password and requests access recovery.
-   - **Delete User:** Administrators have the ability to delete any user from the system. This action requires confirmation to prevent accidental deletions.
+Each error page features:
+- A consistent layout with the **YachtsEscape** branding, including the logo, navigation menu, and social media links.
+- A footer with contact information and links to key sections such as "Home," "Our Fleet," and "About Us."
 
-#### User Management Workflow:
-
-- **Accessing the Page:** The "All Users" page is linked from the admin's profile page, making it easily accessible for user management tasks.
-- **Viewing Profiles:** Admins can click on a user's name to view their detailed profile, which provides more context and information about the user.
-- **Performing Actions:** Admins can reset passwords or delete users directly from the All Users page, with appropriate confirmation prompts to ensure deliberate actions.
-
-### Add Doctor Page
-The "Add Doctor" page is a crucial tool for administrators to manage the medical staff at The Knee Surgery clinic. This page is exclusively accessible through the admin's profile and allows the admin to add new doctors to the database. Once added, these doctors are automatically displayed on the "Our Doctors" page.
-
-![Add Doctor Page](documentation/pages/add-doctor-page.webp)
-
-1. **Bootstrap Form:**
-   - **User-Friendly Design:** The page features a Bootstrap form designed to be intuitive and user-friendly, ensuring that admins can quickly and easily add new doctors.
-
-2. **Form Fields:**
-   - **Full Name:** A required input field for the doctor's full name.
-   - **Specialty:** A required input field for the doctor's specialty.
-   - **Description:** A required textarea for a brief description of the doctor's role and activities.
-   - **Additional Information:** An optional textarea for more detailed information about the doctor. This section is hidden on screens smaller than 600 pixels to ensure a clean and responsive design.
-   - **Email:** A required input field for the doctor's email address.
-   - **Password:** A required input field for setting the doctor's password.
-
-3. **Backend Integration:**
-   - **Form Submission:** When the form is submitted, the backend processes the input data. This includes validating the entries, hashing the password for security, and generating an image name based on the doctor's full name.
-   - **Database Update:** The new doctor's information is saved to the MongoDB database, and the doctor is immediately added to the "Our Doctors" page.
-
-4. **Security and Permissions:**
-   - **Admin-Only Access:** The page and its functionalities are restricted to users with admin privileges. Non-admin users attempting to access the page are redirected with a permission error message.
-
-### Medical Records Page
-The Medical Record page is a comprehensive tool designed for doctors and admin users to manage and update patient medical records efficiently. This page provides a detailed view of the patient's medical history and allows for the upload and management of associated documents.
-
-![Medical Record Page](documentation/pages/medical-record-page.webp)
-
-#### Key Features:
-
-1. **Flash Messages:**
-   - **User Notifications:** At the top of the page, flash messages are displayed to inform users about the success or failure of their actions, such as updates or deletions.
-
-2. **Medical Record Details:**
-   - **Patient Information:** The patient's name is displayed in a read-only format.
-   - **Record Date:** An input field for the date of the medical record.
-   - **Description:** A textarea for the description of the medical record, pre-filled with existing data.
-   - **Treatment:** A textarea for the treatment details, pre-filled with existing data.
-   - **Update Button:** If the logged-in user is either the doctor assigned to the record or an admin, they can update the medical record.
-
-3. **Uploaded Files Section:**
-   - **List of Files:** Displays all files uploaded related to the medical record. Each file has a download link and a delete button.
-   - **Delete Functionality:** Admins and the assigned doctor can delete any file associated with the medical record.
-
-4. **Upload Document Section:**
-   - **File Upload:** Allows users to upload new documents related to the medical record.
-   - **Form Submission:** The form supports file uploads and sends the data to the backend for processing and storage.
-
-#### Page Workflow:
-
-- **Viewing Medical Records:** The page displays detailed information about a patient's medical history, including dates, descriptions, and treatments.
-- **Uploading Files:** Users can upload new documents, such as test results or additional notes, to be associated with the medical record.
-- **Updating Records:** Authorized users can update the medical record's details to reflect new information or changes in treatment.
-- **Managing Files:** Users can view, download, or delete files that have been uploaded to the medical record.
-
-### 404 Page
-The **404 Page Not Found** is a user-friendly error page that is displayed when a user attempts to access a page that does not exist on the website. This page aims to inform users clearly and provide them with an easy way to navigate back to the homepage.
-
-![404 Page](documentation/pages/404-page.webp)
-
-#### Key Features:
-
-1. **Title:**
-   - **Page Title and subtitle:** The title of the page and subtitle is "404 The page you are looking for does not exist." making it immediately clear what the issue is.
-
-2. **Content:**
-   - **Error Code:** The page prominently displays the error code "404" in a large font size to catch the user's attention.
-   - **Message:** A simple message informs the user that the page they are looking for does not exist.
-   - **Navigation Button:** A button is provided to take the user back to the homepage, encouraging them to continue browsing the site.
-
-#### Page Workflow:
-
-- **User Interaction:** When a user lands on this page, they are informed of the error and given a clear option to return to the homepage.
-- **Navigation:** The primary call-to-action is to direct the user back to a familiar place where they can continue their navigation without frustration.
-
-### 403 Page
-The **403 Forbidden** page is shown when a user attempts to access a page or resource they do not have permission to view. This could be due to various reasons, such as insufficient user privileges or restricted content.
-
-![403 Page](documentation/pages/403-page.webp)
-
-#### Key Features:
-
-1. **Title:**
-   - **Page Title and subtitle:** The title and subtitle of the page is "403 You do not have permission to access this page." clearly indicating the nature of the access issue.
-
-2. **Content:**
-   - **Error Code:** The error code "403" is displayed prominently in a large font size.
-   - **Message:** A straightforward message informs the user that they do not have permission to access the requested page.
-   - **Navigation Button:** A button is provided to return the user to the homepage, guiding them away from the restricted area.
-
-#### Page Workflow:
-
-- **User Interaction:** Users are immediately informed about the permission issue and are not left wondering why they cannot access the page.
-- **Navigation:** The page encourages users to return to the homepage, providing a positive direction instead of a dead end.
-
-</details>
+These error pages ensure users can easily find their way back to the main content of the site, even if they encounter an issue.
 
 ## Database Design
 
