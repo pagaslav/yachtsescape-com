@@ -1,7 +1,6 @@
-# booking/admin.py
+""" booking/admin.py """
 
 from django.contrib import admin
-from .models import Booking  # Импортируйте модель Booking
+from .models import Booking
 
-# Зарегистрируйте модель Booking в админке
 admin.site.register(Booking)

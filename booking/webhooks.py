@@ -1,4 +1,4 @@
-# checkout/webhooks.py
+""" checkout/webhooks.py """
 
 import logging
 from django.conf import settings
@@ -8,16 +8,16 @@ from django.views.decorators.csrf import csrf_exempt
 from booking.webhook_handler import StripeWH_Handler
 import stripe
 
-stripe.api_version = settings.STRIPE_API_VERSION 
+# Set the Stripe API version
+stripe.api_version = settings.STRIPE_API_VERSION
 
-# Setup logging
 logger = logging.getLogger(__name__)
+
 
 @require_POST
 @csrf_exempt
 def webhook(request):
-    """Listen for webhooks from Stripe"""
-    # Setup
+    """Listen for webhooks from Stripe."""
     wh_secret = settings.STRIPE_WH_SECRET
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -27,39 +27,38 @@ def webhook(request):
     event = None
 
     try:
+        # Verify the event by checking its signature
         event = stripe.Webhook.construct_event(payload, sig_header, wh_secret)
         logger.info(f"Received Stripe event: {event['type']}")
     except ValueError:
-        # Invalid payload
+        # Handle invalid payload
         logger.error("Invalid payload")
         return HttpResponse(status=400)
     except stripe.error.SignatureVerificationError:
-        # Invalid signature
+        # Handle invalid signature
         logger.error("Invalid signature")
         return HttpResponse(status=400)
     except Exception as e:
-        # Unknown error
+        # Handle any unknown errors
         logger.error(f"Unknown error occurred: {e}")
         return HttpResponse(status=400)
 
     # Set up a webhook handler
     handler = StripeWH_Handler(request)
 
-    # Map webhook events to relevant handler functions
     event_map = {
-        'payment_intent.succeeded': handler.handle_payment_intent_succeeded,
-        'payment_intent.payment_failed': handler.handle_payment_intent_payment_failed,
-        'checkout.session.completed': handler.handle_checkout_session_completed,
-        # 'checkout.session.async_payment_failed': handler.handle_checkout_session_async_payment_failed,
+        'payment_intent.succeeded':
+            handler.handle_payment_intent_succeeded,
+        'payment_intent.payment_failed':
+            handler.handle_payment_intent_payment_failed,
+        'checkout.session.completed':
+            handler.handle_checkout_session_completed,
     }
 
     # Get the webhook type from Stripe
     event_type = event['type']
 
-    # If there's a handler for it, get it from the event map
-    # Use the generic one by default
     event_handler = event_map.get(event_type, handler.handle_event)
 
-    # Call the event handler with the event
     response = event_handler(event)
     return response

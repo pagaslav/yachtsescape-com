@@ -167,8 +167,7 @@ Home - Yachtsescape
                         </p>
                     </div>
                     <ul class="list-inline yacht-details" aria-label="Yacht details for {{ yacht.name }}">
-                        <li class="list-inline-item detail-item"><i class="fas fa-users" aria-hidden="true"></i> {{
-                            yacht.capacity }} Guests</li>
+                        <li class="list-inline-item detail-item"><i class="fas fa-users" aria-hidden="true"></i> {{ yacht.capacity }} Guests</li>
                         <li class="list-inline-item detail-item"><i class="fas fa-bed" aria-hidden="true"></i> 2 Master
                             Bedroom</li>
                         <li class="list-inline-item detail-item"><i class="fas fa-ruler-combined"
@@ -211,8 +210,9 @@ Home - Yachtsescape
                 <h3 class="yacht-name">{{ deal_yacht.name }}</h3>
                 <p class="yacht-price">Rent for ${{ deal_yacht.price_per_day }} / day</p>
                 <p class="yacht-description">
-                    Location: {{ deal_yacht.country }}, {{ deal_yacht.location }} | Type: {{ deal_yacht.type }} {{
-                    deal_yacht.year }} |
+                    Location: {{ deal_yacht.country }}, {{ deal_yacht.location }} | 
+                    Type: {{ deal_yacht.type }} 
+                    {{ deal_yacht.year }} |
                     Guests: {{ deal_yacht.capacity }}
                 </p>
                 <hr class="deal-divider">

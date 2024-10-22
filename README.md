@@ -228,12 +228,6 @@ To start the Django application, follow these steps:
 ![About Us Page](docs/images/wireframes/about-page.png)
 </details>
 
-<!-- <details>
-<summary>Privacy Policy Page</summary>
-
-![Privacy Policy Page](documentation/wireframes/privacy-polisy-page.webp)
-</details> -->
-
 <details>
 <summary>Profile Page</summary>
 
@@ -328,19 +322,15 @@ function updateLogo() {
     if (scrollTop > scrollTrigger) {
         // Change logo to dark version based on screen size
         if (windowWidth < 689) {
-            console.log("Switching to small dark logo:", smallDarkLogo);
             $("#logo").attr("src", smallDarkLogo);
         } else {
-            console.log("Switching to dark logo:", darkLogo);
             $("#logo").attr("src", darkLogo);
         }
     } else {
         // Change logo to light version based on screen size
         if (windowWidth < 689) {
-            console.log("Switching to small light logo:", smallLightLogo);
             $("#logo").attr("src", smallLightLogo);
         } else {
-            console.log("Switching to light logo:", lightLogo);
             $("#logo").attr("src", lightLogo);
         }
     }
@@ -354,8 +344,6 @@ The navigation panel of Yachtsescape rental website is designed to provide a use
 
 #### Navbar
 The Navbar is composed of two main parts: the **Top Bar** and the **Main Navigation**.
-
-
 
 ##### Top Bar
 The **Top Bar** provides quick access to essential contact information and social media links:
@@ -394,8 +382,8 @@ The **Main Navigation** is designed to be responsive and intuitive:
 
 ![Desktop Dropdown Menu (2)](docs/images/navigation/nav-desctop-drop-2.webp)
 
-- **Book Now Button**: 
-  - A prominent **Book Now** button is available, leading to a modal with a booking form. This form allows users to filter yachts by type, capacity, and availability using intuitive date pickers.
+- **Filter Yachts Button**: 
+  - A prominent **Book Now** button is available, leading to a modal with a filter form. This form allows users to filter yachts by type, capacity, and availability using intuitive date pickers.
 
 ![Desktop Navigation with Book Now Button](docs/images/navigation/nav-desctop-book-now.webp)
 
@@ -406,131 +394,151 @@ The **Main Navigation** is designed to be responsive and intuitive:
 ![Tablet Navigation](docs/images/navigation/nav-tablet.webp)
 ![Mobile Navigation](docs/images/navigation/nav-mobile.webp)
 
-- The **Logo**, **Menu Items**, and **Book Now** button are designed to shift layout based on screen size, ensuring a consistent and responsive experience for users on all devices.
+- The **Logo**, **Menu Items**, and **Filter Yachts** button are designed to shift layout based on screen size, ensuring a consistent and responsive experience for users on all devices.
 
 ![Tablet Navigation with Menu](docs/images/navigation/nav-tablet-menu.webp)
 ![Mobile Navigation with Menu](docs/images/navigation/nav-mobile-menu.webp)
 
 The navigation ensures quick access to essential services and an intuitive flow, enhancing the user journey across the site.
 
-
-<details>
-  <summary>Нажми, чтобы раскрыть, это инф с прошлого проекта, еще не адаптирована</summary>
-
 ### Footer
 
-The footer section of our website is designed to provide essential information and easy access to our social media channels. Below is a detailed description of its features and layout across different devices:
+The footer section of **YachtsEscape** provides essential information, including contact details and easy access to our social media channels. Here's a breakdown of its layout and functionality across different devices:
 
 ##### Desktop View:
 
-![Desktop View](documentation/footer/footer-desktop.webp)
+![Desktop View](docs/images/footer/footer-desk.webp)
 
 - **Logo and Company Name**: 
-  - Located on the left side of the footer, the company logo and name, "THE KNEE SURGERY," are prominently displayed.
+  - Positioned on the left side of the footer, the **YachtsEscape** logo is displayed prominently to enhance brand visibility.
+
+- **Navigation Links**:
+  - Located centrally, visitors can find key navigation links such as:
+    - Home
+    - My Profile (if logged in)
+    - Our Fleet
+    - About Us
 
 - **Contact Information**: 
-  - In the center, visitors can find our contact details:
-    - **Address**: 456 Side Street, Cardiff, CF19 6FY
-    - **Email**: theknee.surgery@gmail.com
+  - On the right, contact details include:
+    - **Phone**: +44 7990 278555
+    - **Email**: support@yachtsescape.com
+    - **Address**: 123 Marina Blvd, Mediterranean Coast
 
-- **Social Media Icons**: 
-  - To the right, icons for Instagram, Facebook, Twitter, and YouTube are displayed, providing quick links to our social media profiles.
+- **Social Media Icons**:
+  - Social media icons for Instagram, Facebook, Twitter, and YouTube provide quick access to our profiles.
 
-- **Copyright and Privacy Policy**:
-  - At the bottom, it states: "© 2024 Artem Bryzh. All rights reserved." 
-  - A link to the Privacy Policy is also provided.
-
-##### Responsive Design:
+- **Copyright**:
+  - The footer includes a copyright notice: "© 2024 Artem Bryzh. All rights reserved." 
+  - A link to the LinkedIn profile of the site creator is also provided.
 
 ##### Tablet View:
 
-![Tablet View](documentation/footer/footer-tablet.webp)
+![Tablet View](docs/images/footer/footer-tablet.webp)
 
-- **Logo and Company Name**: 
-  - Located centrally.
+- **Logo and Navigation Links**:
+  - The logo and navigation links are centrally aligned for a balanced layout.
 
 - **Contact Information**:
-  - Positioned centrally with the same details as the desktop view.
+  - Positioned similarly to the desktop version, but more compact.
 
 - **Social Media Icons**:
-  - Aligned below the contact information, allowing easy access.
-
-- **Back to Top Arrow**:
-  - A convenient back-to-top arrow is present, aiding navigation.
+  - Icons are displayed below the contact information, allowing easy access on medium-sized screens.
 
 ##### Mobile View:
 
-![Mobile View](documentation/footer/footer-mob.webp)
+![Mobile View](docs/images/footer/footer-mobile.webp)
 
-- **Logo and Company Name**: 
-  - The company logo and name remain at the top, positioned centrally, ensuring brand visibility.
+- **Logo**: 
+  - The **YachtsEscape** logo is centrally placed at the top for brand recognition.
+
+- **Navigation Links**: 
+  - Displayed in a simplified vertical layout for easier navigation.
 
 - **Contact Information**: 
-  - Centrally aligned for easy reading.
+  - Aligned centrally, with the same phone, email, and address details.
 
-- **Social Media Icons**: 
-  - Arranged below the contact information in a horizontal layout.
+- **Social Media Icons**:
+  - Arranged horizontally, ensuring users can easily find and interact with them on smaller screens.
 
-- **Back to Top Arrow**:
-  - Located at the bottom right corner, this arrow aids in easy navigation back to the top of the page.
-
-The footer is designed to be responsive and user-friendly across all devices, ensuring that visitors can easily find contact information and access our social media channels, no matter the device they are using.
+The footer is fully responsive and designed to provide a seamless experience across all device types, ensuring users can quickly find essential information and stay connected through social media.
 
 ### Home Page
-Welcome to The Knee Surgery homepage, designed with user experience and functionality in mind. Here’s a breakdown of its features:
 
-![Home Page](documentation/pages/home-page-full.webp)
+![Home Page](docs/images/features/index.webp)
 
-- **Introduction Section**: 
-  - Contains a brief overview of our commitment to knee surgery and patient care.
-  - Includes two prominent buttons for easy navigation: "Our Doctors" and "About Us"
+The home page of **YachtsEscape** is designed to provide a seamless and informative experience for users looking to rent yachts. Below is a detailed description of its sections and features:
 
-- **Future Interactive Image**: 
-  - A placeholder image that will be interactive in future updates, enhancing user engagement and providing more information visually.
+#### Introduction Section:
+- **Hero Section**: 
+  - Includes a welcome message and a prominent button labeled "Explore More" that links to the "About Us" page.
+  - The background features a large, visually appealing image, creating an immersive experience for users.
 
-- **Comprehensive List of Services**:
-  - **Initial Consultation and Diagnosis**: Personalized assessment plans.
-  - **Arthroscopic Surgery**: Minimally invasive procedures.
-  - **Knee Replacement**: Advanced techniques and implants.
-  - **Ligament Reconstruction**: Restoring knee stability.
-  - **Physical Therapy and Rehabilitation**: Customized exercise programs.
-  - **Injection Procedures**: Non-surgical pain management options.
+#### Search Form Section:
+- **Search for Yachts**: 
+  - A form allowing users to filter yachts by boat type, capacity, and location, making it easy to find the right yacht.
+  - Includes dropdown menus for:
+    - Boat type (Celebrations, Fishing, Leisure)
+    - Capacity (Up to 8, More than 8)
+    - Location (Turkey, France, Spain)
 
-### Log In Page
-The Log In page allows users to access their accounts on The Knee Surgery website. The page includes the following features:
+#### Featured Services Section:
+- **Introduction to Services**: 
+  - Highlights the company's commitment to providing a premium fleet of yachts.
+  - Features a list of benefits, such as:
+    - Stunning Cruise Paths
+    - Premium Boats & Yachts
+    - Professional Approach
+    - Quality Service
 
-![Log In Page](documentation/pages/login-page-full.webp)
+#### Core Benefits:
+- **Icons Representing Three Key Benefits**:
+  - **Priceless Experience**: Luxury and relaxation through premium services.
+  - **Custom Packages**: Tailored packages to meet diverse needs.
+  - **People-Oriented Service**: Customer satisfaction is a top priority.
 
-1. **Email Input**: Users enter their email address in a floating label input field.
-2. **Password Input**: Users enter their password in a floating label input field.
-3. **Remember Me Checkbox**: Users can choose to stay logged in for 30 days.
-4. **Sign In Button**: Submits the form to log in the user.
-5. **Sign Up Link**: Redirects new users to the sign-up page.
-6. **Forgot Password**: Provides the administrator's email for password reset assistance.
+#### Featured Yachts:
+- **Featured Yachts Section**: 
+  - Displays a selection of featured yachts with images, names, prices, and locations.
+  - Includes a "View Details" button for each yacht, allowing users to learn more about individual yachts.
 
-When the "Sign In" button is clicked, the user's credentials are validated on the backend. If the credentials are correct, the user is logged in; otherwise, a flash message indicates incorrect email or password.
+#### Deal of the Week:
+- **Exclusive Offer**: 
+  - Features a "Deal of the Week" yacht with a limited-time offer, encouraging users to take advantage of the special price.
+  - Provides key details such as location, type, capacity, and price.
 
-![Log In Incorrect](documentation/pages/login-page-incorrect.webp)
+#### Testimonials:
+- **Customer Reviews**: 
+  - A carousel featuring testimonials from satisfied customers who share their experiences with **YachtsEscape**.
+  - Each testimonial includes a photo of the customer and a short review.
 
-The "Remember Me" checkbox is processed on the backend. The backend code uses Flask session management to keep the user logged in if the checkbox is selected.
+The home page provides an inviting and user-friendly interface that highlights the best of **YachtsEscape's** offerings, guiding users through the yacht rental process with ease.
 
-      ```python
-      from flask import session
+### Sign In Page
 
-      # Session configuration
-      app.config["SESSION_PERMANENT"] = False  # Session is not permanent by default
-      app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=30)
+![Sign In Page](docs/images/features/signin.webp)
 
-      if existing_user:
-              # Set session to be permanent if remember me is checked
-              if remember:
-                  # This sets the session to use the permanent lifetime
-                  session.permanent = True
-                  # Set session lifetime to 30 days
-                  app.permanent_session_lifetime = timedelta(days=30)
-      ```
+The **YachtsEscape** Sign In page allows users to log into their accounts quickly and easily. It includes the following features:
 
-Clicking on the administrator’s email opens the mail program with the “To” field filled out. 
+1. **Username Input**: 
+   - Field for entering the username.
+
+2. **Password Input**: 
+   - Field for entering the password.
+
+3. **Sign In Button**: 
+   - Submits the form to log the user in.
+
+4. **Home Button**: 
+   - Returns the user to the homepage without logging in.
+
+5. **Forgot Password Link**: 
+   - Provides a link to reset the password.
+
+6. **Sign Up Prompt**: 
+   - A link to sign up for new users.
+
+If the credentials are valid, the user is logged in; otherwise, an error message is displayed. The page is simple and responsive, ensuring easy access on any device.
 
 ### Sign Up Page
 The sign-up page allows new users to create an account on The Knee Surgery website. The form includes client-side validation using JavaScript to ensure the password meets the criteria and matches the confirmation password. The backend handles additional validation, password hashing, and user creation.
@@ -980,19 +988,20 @@ The project uses a relational database with several key tables to handle user pr
 
 This table stores additional information about users registered in the system.
 
-| Field             | Type       | Description                                           |
-|-------------------|------------|-------------------------------------------------------|
-| `id`              | SERIAL     | Primary key                                           |
-| `user_id`         | INTEGER    | Foreign key referencing the User model                |
-| `first_name`      | VARCHAR(30)| Optional first name of the user                       |
-| `last_name`       | VARCHAR(30)| Optional last name of the user                        |
-| `phone_number`    | VARCHAR(15)| Optional contact number                               |
-| `street_address1` | VARCHAR(255)| Optional first line of the user's address             |
-| `street_address2` | VARCHAR(255)| Optional second line of the user's address            |
-| `town_city`       | VARCHAR(50)| Optional city or town                                 |
-| `county_state`    | VARCHAR(50)| Optional state or county                              |
-| `postal_code`     | VARCHAR(20)| Optional postal or ZIP code                           |
-| `country`         | VARCHAR(50)| Optional country                                      |
+| Field             | Type           | Description                                           |
+|-------------------|----------------|-------------------------------------------------------|
+| `id`              | SERIAL         | Primary key                                           |
+| `user_id`         | INTEGER        | Foreign key referencing the User model                |
+| `first_name`      | VARCHAR(30)    | First name of the user (required)                     |
+| `last_name`       | VARCHAR(30)    | Last name of the user (required)                      |
+| `email`           | VARCHAR(254)   | Email address of the user (required)                  |
+| `phone_number`    | VARCHAR(15)    | Optional contact number                               |
+| `street_address1` | VARCHAR(255)   | First line of the user's address (required)           |
+| `street_address2` | VARCHAR(255)   | Optional second line of the user's address            |
+| `town_city`       | VARCHAR(50)    | City or town (required)                               |
+| `county_state`    | VARCHAR(50)    | Optional state or county                              |
+| `postal_code`     | VARCHAR(20)    | Optional postal or ZIP code                           |
+| `country`         | VARCHAR(50)    | Country (required)                                    |
 
 #### Yacht Table
 
@@ -1189,175 +1198,154 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 
 <summary>manage.py, no errors</summary>
 
-![manage.py](documentation/validator/ci-python-liner.webp)
+![manage.py](docs/images/pylinter/managepy.webp)
 </details>
 
 <details>
 
 <summary>yachtsescape/settings.py, no errors</summary>
 
-![yachtsescape/settings.py](documentation/validator/ci-python-liner.webp)
+![yachtsescape/settings.py](docs/images/pylinter/settings.webp)
 </details>
 
 <details>
 
 <summary>yachtsescape/forms.py, no errors</summary>
 
-![yachtsescape/forms.py](documentation/validator/ci-python-liner.webp)
+![yachtsescape/forms.py](docs/images/pylinter/formpy.webp)
 </details>
 
 <details>
 
 <summary>yachtsescape/urls.py, no errors</summary>
 
-![yachtsescape/urls.py](documentation/validator/ci-python-liner.webp)
-</details>
-
-<details>
-
-<summary>yachtsescape/wsgi.py, no errors</summary>
-
-![yachtsescape/wsgi.py](documentation/validator/ci-python-liner.webp)
-</details>
-
-<details>
-
-<summary>yachtsescape/asgi.py, no errors</summary>
-
-![yachtsescape/asgi.py](documentation/validator/ci-python-liner.webp)
+![yachtsescape/urls.py](docs/images/pylinter/urlspy.webp)
 </details>
 
 <details>
 
 <summary>yachts/admin.py, no errors</summary>
 
-![yachts/admin.py](documentation/validator/ci-python-liner.webp)
+![yachts/admin.py](docs/images/pylinter/yacht-admin.webp)
 </details>
 
 <details>
 
 <summary>yachts/models.py, no errors</summary>
 
-![yachts/models.py](documentation/validator/ci-python-liner.webp)
+![yachts/models.py](docs/images/pylinter/yacht-model.webp)
 </details>
 
 <details>
 
 <summary>yachts/urls.py, no errors</summary>
 
-![yachts/urls.py](documentation/validator/ci-python-liner.webp)
+![yachts/urls.py](docs/images/pylinter/yacht-url.webp)
 </details>
 
 <details>
 
 <summary>yachts/views.py, no errors</summary>
 
-![yachts/views.py](documentation/validator/ci-python-liner.webp)
+![yachts/views.py](docs/images/pylinter/yacht-veiw.webp)
 </details>
 
 <details>
 
 <summary>profiles/admin.py, no errors</summary>
 
-![profiles/admin.py](documentation/validator/ci-python-liner.webp)
+![profiles/admin.py](docs/images/pylinter/profi-admin.webp)
 </details>
 
 <details>
 
 <summary>profiles/forms.py, no errors</summary>
 
-![profiles/forms.py](documentation/validator/ci-python-liner.webp)
+![profiles/forms.py](docs/images/pylinter/profi-form.webp)
 </details>
 
 <details>
 
 <summary>profiles/models.py, no errors</summary>
 
-![profiles/models.py](documentation/validator/ci-python-liner.webp)
+![profiles/models.py](docs/images/pylinter/profi-model.webp)
 </details>
 
 <details>
 
 <summary>profiles/urls.py, no errors</summary>
 
-![profiles/urls.py](documentation/validator/ci-python-liner.webp)
+![profiles/urls.py](docs/images/pylinter/profi-url.webp)
 </details>
 
 <details>
 
 <summary>profiles/views.py, no errors</summary>
 
-![profiles/views.py](documentation/validator/ci-python-liner.webp)
-</details>
-
-<details>
-
-<summary>home/urls.py, no errors</summary>
-
-![home/urls.py](documentation/validator/ci-python-liner.webp)
+![profiles/views.py](docs/images/pylinter/profi-veiw.webp)
 </details>
 
 <details>
 
 <summary>home/views.py, no errors</summary>
 
-![home/views.py](documentation/validator/ci-python-liner.webp)
+![home/views.py](docs/images/pylinter/home-veiw.webp)
 </details>
 
 <details>
 
 <summary>booking/admin.py, no errors</summary>
 
-![booking/admin.py](documentation/validator/ci-python-liner.webp)
+![booking/admin.py](docs/images/pylinter/book-admin.webp)
 </details>
 
 <details>
 
 <summary>booking/apps.py, no errors</summary>
 
-![booking/apps.py](documentation/validator/ci-python-liner.webp)
+![booking/apps.py](docs/images/pylinter/book-app.webp)
 </details>
 
 <details>
 
 <summary>booking/forms.py, no errors</summary>
 
-![booking/forms.py](documentation/validator/ci-python-liner.webp)
+![booking/forms.py](docs/images/pylinter/book-form.webp)
 </details>
 
 <details>
 
 <summary>booking/models.py, no errors</summary>
 
-![booking/models.py](documentation/validator/ci-python-liner.webp)
+![booking/models.py](docs/images/pylinter/book-model.webp)
 </details>
 
 <details>
 
 <summary>booking/urls.py, no errors</summary>
 
-![booking/urls.py](documentation/validator/ci-python-liner.webp)
+![booking/urls.py](docs/images/pylinter/book-url.webp)
 </details>
 
 <details>
 
 <summary>booking/views.py, no errors</summary>
 
-![booking/views.py](documentation/validator/ci-python-liner.webp)
+![booking/views.py](docs/images/pylinter/book-veiw.webp)
 </details>
 
 <details>
 
 <summary>booking/webhook_handler.py, no errors</summary>
 
-![booking/webhook_handler.py](documentation/validator/ci-python-liner.webp)
+![booking/webhook_handler.py](docs/images/pylinter/webhook-nadler.webp)
 </details>
 
 <details>
 
 <summary>booking/webhooks.py, no errors</summary>
 
-![booking/webhooks.py](documentation/validator/ci-python-liner.webp)
+![booking/webhooks.py](docs/images/pylinter/webhooks.webp)
 </details>
 
 #### HTML
