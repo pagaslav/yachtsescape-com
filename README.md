@@ -8,6 +8,54 @@ View the live site [here](https://yachtsescape-a7b4e5d759f6.herokuapp.com/)
 
 Welcome to YachtsEscape, your premier destination for discovering and booking luxury yacht rentals. Our platform is designed to provide users with an effortless experience, from searching for the perfect yacht to securing your booking. Whether you're planning a tranquil getaway or an adventurous voyage, YachtsEscape.com offers a wide selection of yachts to suit every preference.
 
+## UX
+
+The website was designed to be both visually appealing and easy to navigate. Users can quickly browse through a wide selection of yachts and find the one that fits their needs. The focus is on providing a seamless experience, allowing users to book yachts without any hassle. The website's layout is simple and intuitive, ensuring that users can understand and use it effortlessly. Special deals and offers are highlighted to encourage users to make bookings and become repeat customers. The site is also built with scalability in mind, making it adaptable for future growth and allowing the management team to handle different roles efficiently.
+
+## Target Audience
+
+This website is designed for people who are looking to rent yachts for various occasions, such as leisure trips, celebrations, or fishing adventures. It aims to attract both casual users who are booking for the first time, and loyal customers who enjoy regular yacht trips. We make it easy to search for yachts by type, location, and capacity, ensuring that users can find the perfect fit for their needs. The website also offers special deals and a smooth booking process, making yacht rentals accessible and hassle-free for everyone.
+
+## Business Model
+
+The business model is B2C, meaning that the company focuses on offering yacht rentals directly to customers. It emphasizes individual transactions, allowing customers to browse, select, and book yachts easily.
+
+### Revenue Streams
+
+The primary revenue stream for **YachtsEscape** comes from yacht rentals. Additional revenue is generated through premium services, such as luxury packages or extended rental periods, and potential partnerships with yacht owners for exclusive listings.
+
+### Customer Acquisition Strategy
+
+**YachtsEscape** attracts customers through targeted online marketing campaigns, search engine optimization (SEO), and partnerships with travel agencies. Additionally, repeat customers are encouraged to use the platform through loyalty programs and special discounts.
+
+### Partnerships
+
+The platform builds strategic partnerships with yacht clubs, marina operators, and event planners to offer customers an all-inclusive experience. These partnerships allow the platform to expand its range of yachts and provide unique packages for special occasions.
+
+### A Persona Summary of the Customer
+
+**YachtsEscape** caters to individuals looking for yacht rentals for various purposes, including leisure, celebrations, or fishing trips. The typical customer is someone 18 or older, seeking a unique experience on the water. The platform is designed with user-friendliness in mind, making it easy for customers to find the right yacht based on their needs, compare options, and receive excellent service throughout the process. Customers value the clear yacht descriptions, high-quality images, and simple booking process.
+
+### A Persona Summary of the Company Personnel
+
+**YachtsEscape** aims to support small and large companies interested in offering yacht rentals. As the platform scales, it includes features for personnel to manage listings, bookings, and customer service effectively. Admins and managers can oversee everything from adding new yachts, updating details, and handling bookings to managing customer inquiries and ensuring smooth operations.
+
+### Value Proposition
+
+**YachtsEscape** offers a curated selection of yachts for every occasion, from intimate family trips to large-scale celebrations. The platform’s ease of use, combined with its extensive yacht options and top-tier customer service, ensures that customers have a premium experience from start to finish.
+
+### Key Metrics
+
+The platform focuses on key metrics such as:
+- Number of bookings per month
+- Customer satisfaction ratings
+- Repeat customer rate
+- Yacht availability and maintenance levels
+- Time spent on the platform by users
+
+### Growth Plan
+
+The future growth plan includes expanding the range of yachts available to cover more regions and offering new features like yacht-related experiences (e.g., guided tours or fishing expeditions). The platform will also invest in improving its user interface, ensuring a seamless experience for mobile users.
 
 ## Mindmap of YachtsEscape.com
 
@@ -35,36 +83,42 @@ Our mission is to create a platform that not only simplifies the yacht rental pr
 
 ## User Stories
 
-### First Time Visitor Goals:
+### First Time Visitor
 
-1. As a first-time visitor, I want to quickly grasp what **YachtsEscape.com** is all about so that I can start exploring yacht rental options without feeling lost.
-2. When I first visit the site, I’m looking for a straightforward way to search for available yachts by location and date. It’s important that the process is easy and intuitive so that I can find the perfect yacht without any hassle.
-3. I want to dive into detailed information about each yacht, including photos, specifications, and reviews, so I can confidently choose the one that best suits my needs.
-4. I’m curious about the company itself—its background, guarantees, and customer service approach—because knowing more about who I’m dealing with makes me feel more secure in my decision.
-5. I need to easily find the company’s contact information and location. Whether I have a question or need to visit, I want this information to be readily accessible.
+| Issue ID | User Story |
+|----------|------------|
+| #1       | As a First Time Visitor, I want to quickly understand what YachtsEscape is, so that I can start exploring yacht rental options without feeling lost. |
+| #2       | As a First Time Visitor, I want to easily search for available yachts by location and date, so that I can find the perfect yacht without any hassle. |
+| #3       | As a First Time Visitor, I want detailed information about each yacht, including photos, specifications, and reviews, so that I can make an informed decision. |
+| #4       | As a First Time Visitor, I want to learn more about the company, so that I can feel confident in renting a yacht from them. |
+| #5       | As a First Time Visitor, I want to easily find the company's contact information, so that I can reach out with any questions. |
 
-### Returning Visitor Goals:
+### Returning Visitor
 
-1. As a returning visitor, I want to log back in and pick up where I left off, whether it’s continuing my search, reviewing yachts I’ve already looked at, or finalizing a booking.
-2. It’s important to me that I can quickly rebook a yacht I’ve rented before. I don’t want to start the search from scratch every time I visit.
-3. I want to manage my wishlist easily—keeping track of yachts I’m interested in and getting alerts if their availability or price changes.
-4. Staying updated is key for me. I want to subscribe to updates about new yacht listings and special offers so that I don’t miss out on something exciting.
+| Issue ID | User Story |
+|----------|------------|
+| #6       | As a Returning Visitor, I want to log back in and pick up where I left off, so that I can continue my yacht search or finalize a booking. |
+| #7       | As a Returning Visitor, I want to quickly rebook a yacht I’ve rented before, so that I don’t have to search for it again. |
+| #8       | As a Returning Visitor, I want to manage my wishlist easily, so that I can keep track of yachts I’m interested in. |
+| #9       | As a Returning Visitor, I want to subscribe to updates about new yacht listings and special offers, so that I can stay informed. |
 
-### Registered User Goals:
+### Registered User
 
-1. As a registered user, I appreciate getting notifications about new yachts, discounts, and promotions, so I can stay ahead of the curve and book the best deals.
-2. I want to be able to manage my account settings and preferences without any hassle, ensuring that everything is tailored to what I’m looking for.
-3. Having quick access to my booking history is important. It’s helpful to review past rentals or quickly rebook a yacht I enjoyed.
+| Issue ID | User Story |
+|----------|------------|
+| #10      | As a Registered User, I want to receive notifications about new yachts, discounts, and promotions, so that I can stay ahead of the best deals. |
+| #11      | As a Registered User, I want to manage my account settings and preferences easily, so that I can tailor the experience to my needs. |
+| #12      | As a Registered User, I want to quickly access my booking history, so that I can review past rentals or rebook a favorite yacht. |
 
-### Admin Goals:
+### Admin
 
-As the site admin, I’m responsible for making sure everything runs smoothly:
-
-1. I need to keep the yacht listings up to date, adding new ones and editing or removing outdated information to ensure users always see accurate options.
-2. Managing user accounts is a big part of my job. I need to be able to view, edit, and, if necessary, delete user profiles to maintain the platform’s integrity.
-3. I oversee all bookings—viewing, modifying, or canceling them as needed to help users and keep things organized.
-4. Tracking and managing payments is crucial. I make sure all transactions are processed correctly and address any payment issues that arise.
-5. To understand how well the platform is performing, I generate reports on user activity, bookings, and payments, which helps me make informed decisions about future improvements.
+| Issue ID | User Story |
+|----------|------------|
+| #13      | As an Admin, I want to keep the yacht listings up to date, so that users always see accurate and available options. |
+| #14      | As an Admin, I want to manage user accounts, so that I can maintain the integrity of the platform. |
+| #15      | As an Admin, I want to manage all bookings, so that I can help users and keep everything organized. |
+| #16      | As an Admin, I want to track and manage payments, so that I can ensure all transactions are processed correctly. |
+| #17      | As an Admin, I want to generate reports on user activity, bookings, and payments, so that I can make informed decisions about future improvements. |
 
 ## MoSCoW Prioritization
 
@@ -358,10 +412,6 @@ The **Main Navigation** is designed to be responsive and intuitive:
 ![Mobile Navigation with Menu](docs/images/navigation/nav-mobile-menu.webp)
 
 The navigation ensures quick access to essential services and an intuitive flow, enhancing the user journey across the site.
-
-##### Desktop View:
-
-![Desktop View](documentation/navbar/desktop-navbar.webp)
 
 
 <details>
@@ -1008,13 +1058,15 @@ This table allows users to leave reviews for yachts.
 consistent styling across the pages.
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) was employed to implement dynamic interactions on the site, enabling real-time user feedback and interactive features without needing to reload the page.
 - [jQuery](https://jquery.com/) used for user interaction on the site.
-- [PostgreSQL](https://www.postgresql.org/) is the relational database management system I chose to use for storing data.
+- [![PostgreSQL by Code Institute](https://img.shields.io/badge/PostgreSQL_by_Code_Institute-grey?logo=okta&logoColor=F05223)](https://dbs.ci-dbs.net) used as the Postgres database from Code Institute.
 - [VSCode](https://code.visualstudio.com/) was used as the main tool to write and edit code.
 - [Git](https://git-scm.com/) was used for the version control of the website.
 - [GitHub](https://github.com/) was used to host the code of the website.
 - [Heroku](https://dashboard.heroku.com/apps)  is hosting the deployed back-end site.
-<!-- - [Cloudinary](https://cloudinary.com/) used for online static file storage. -->
-- [AWS S3](https://aws.amazon.com/s3/) is used for online media file storage.
+- [![WhiteNoise](https://img.shields.io/badge/WhiteNoise-grey?logo=python&logoColor=FFFFFF)](https://whitenoise.readthedocs.io) used for serving static files with Heroku.
+- [![Cloudinary](https://img.shields.io/badge/Cloudinary-grey?logo=cloudinary&logoColor=3448C5)](https://cloudinary.com) used for online media file storage.
+- [![Stripe](https://img.shields.io/badge/Stripe-grey?logo=stripe&logoColor=008CDD)](https://stripe.com) used for online secure payments of ecommerce products/services.
+- [![Gmail API](https://img.shields.io/badge/Gmail_API-grey?logo=gmail&logoColor=EA4335)](https://mail.google.com) used for sending emails in my application.
 - [Balsamiq](https://balsamiq.com/) was used to make wireframes for the website.
 - [Adobe Photoshop](https://www.adobe.com/uk/products/photoshop.html) was used to make and resize images for the website and the
 README file.
@@ -1025,6 +1077,7 @@ README file.
 - [W3C HTML Validator](https://validator.w3.org/) - to test HTML code.
 - [W3C CSS Validator](https://jigsaw.w3.org/css-validator) - to test the CSS code.
 - [JSHint](https://jshint.com/) is a tool used to detect errors and potential problems in JavaScript code.
+
 
 ## Testing
 
@@ -1046,16 +1099,18 @@ README file.
 <summary>Sign Up Page</summary>
 
 ![Sign Up Page](documentation/pages/responsiv/signup-page-responsive.webp)
-
-With the opened Modal window:
-
-![Sign Up Page with Modal](documentation/pages/responsiv/signup-1-page-responsive.webp)
 </details>
 
 <details>
-<summary>Our Doctors Page</summary>
+<summary>Our Fleet</summary>
 
-![Our Doctors Page](documentation/pages/responsiv/doctors-page-responsive.webp)
+![Our Fleet](documentation/pages/responsiv/doctors-page-responsive.webp)
+</details>
+
+<details>
+<summary> Yacht Detail Page</summary>
+
+![Yacht Detail Page](documentation/pages/responsiv/medical-record-page-responsive.webp)
 </details>
 
 <details>
@@ -1065,43 +1120,45 @@ With the opened Modal window:
 </details>
 
 <details>
-<summary>Privacy Policy Page</summary>
+<summary>Edit Profile Page</summary>
 
-![Privacy Policy Page](documentation/pages/responsiv/privacy-page-responsive.webp)
+![Edit Profile Page](documentation/pages/responsiv/profil-patient-page-responsive.webp)
 </details>
 
 <details>
-<summary>Profile Page</summary>
+<summary>Edit Profile Page</summary>
 
-Patient
-
-![Profile Page Patient](documentation/pages/responsiv/profil-patient-page-responsive.webp)
-
-Admin
-
-![Profile Page Admin](documentation/pages/responsiv/profil-admin-page-responsive.webp)
-
-Doctor
-
-![Profile Page Doctor](documentation/pages/responsiv/profil-doctor-page-responsive.webp)
+![Edit Profile Page](documentation/pages/responsiv/profil-patient-page-responsive.webp)
 </details>
 
 <details>
-<summary>Add Doctor Page</summary>
+<summary>Yachts Management Page</summary>
 
-![Add Doctor Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
+![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 
 <details>
-<summary>All Users Page</summary>
+<summary>Add Yacht Page</summary>
 
-![All Users Page](documentation/pages/responsiv/all-users-page-responsive.webp)
+![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 
 <details>
-<summary> Medical Records Page</summary>
+<summary>Edit Yacht Page</summary>
 
-![Medical Records Page](documentation/pages/responsiv/medical-record-page-responsive.webp)
+![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
+</details>
+
+<details>
+<summary>Users Management Page</summary>
+
+![Users Management Page](documentation/pages/responsiv/all-users-page-responsive.webp)
+</details>
+
+<details>
+<summary>Edit Users Profile Page</summary>
+
+![UEdit Users Profile Page](documentation/pages/responsiv/all-users-page-responsive.webp)
 </details>
 
 <details>
@@ -1116,17 +1173,191 @@ Doctor
 ![403 Page](documentation/pages/responsiv/403-page-responsive.webp)
 </details>
 
+<details>
+<summary> 500 Page</summary>
+
+![500 Page](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
 ### Validator testing
 
 #### Python
 
-I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com/) to validate my Python file - app.py.
+I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com/) to validate my Python files.
 
 <details>
 
-<summary> All clear, no errors found. See the screenshot</summary>
+<summary>manage.py, no errors</summary>
 
-![404 Page](documentation/validator/ci-python-liner.webp)
+![manage.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>yachtsescape/settings.py, no errors</summary>
+
+![yachtsescape/settings.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>yachtsescape/forms.py, no errors</summary>
+
+![yachtsescape/forms.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>yachtsescape/urls.py, no errors</summary>
+
+![yachtsescape/urls.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>yachtsescape/wsgi.py, no errors</summary>
+
+![yachtsescape/wsgi.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>yachtsescape/asgi.py, no errors</summary>
+
+![yachtsescape/asgi.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>yachts/admin.py, no errors</summary>
+
+![yachts/admin.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>yachts/models.py, no errors</summary>
+
+![yachts/models.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>yachts/urls.py, no errors</summary>
+
+![yachts/urls.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>yachts/views.py, no errors</summary>
+
+![yachts/views.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>profiles/admin.py, no errors</summary>
+
+![profiles/admin.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>profiles/forms.py, no errors</summary>
+
+![profiles/forms.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>profiles/models.py, no errors</summary>
+
+![profiles/models.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>profiles/urls.py, no errors</summary>
+
+![profiles/urls.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>profiles/views.py, no errors</summary>
+
+![profiles/views.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>home/urls.py, no errors</summary>
+
+![home/urls.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>home/views.py, no errors</summary>
+
+![home/views.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>booking/admin.py, no errors</summary>
+
+![booking/admin.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>booking/apps.py, no errors</summary>
+
+![booking/apps.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>booking/forms.py, no errors</summary>
+
+![booking/forms.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>booking/models.py, no errors</summary>
+
+![booking/models.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>booking/urls.py, no errors</summary>
+
+![booking/urls.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>booking/views.py, no errors</summary>
+
+![booking/views.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>booking/webhook_handler.py, no errors</summary>
+
+![booking/webhook_handler.py](documentation/validator/ci-python-liner.webp)
+</details>
+
+<details>
+
+<summary>booking/webhooks.py, no errors</summary>
+
+![booking/webhooks.py](documentation/validator/ci-python-liner.webp)
 </details>
 
 #### HTML
@@ -1135,95 +1366,207 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org/) to v
 <details>
 <summary>Home Page, no errors</summary>
 
-![Home Page](documentation/validator/home-page-valid.webp)
+![Home Page](documentation/pages/responsiv/home-page-responsive.webp)
 </details>
 
 <details>
 <summary>Log in Page, no errors</summary>
 
-![Log in Page](documentation/validator/login-page-valid.webp)
+![Log in Page](documentation/pages/responsiv/login-page-responsive.webp)
 </details>
 
 <details>
-<summary>Sign Up Pag, no errorse</summary>
+<summary>Sign Up Page, no errors</summary>
 
-![Sign Up Page](documentation/validator/signup-page-valid.webp)
-
+![Sign Up Page](documentation/pages/responsiv/signup-page-responsive.webp)
 </details>
 
 <details>
-<summary>Our Doctors Page, no errors</summary>
+<summary>Our Fleet, no errors</summary>
 
-![Our Doctors Page](documentation/validator/doctors-page-valid.webp)
+![Our Fleet](documentation/pages/responsiv/doctors-page-responsive.webp)
+</details>
+
+<details>
+<summary> Yacht Detail Page, no errors</summary>
+
+![Yacht Detail Page](documentation/pages/responsiv/medical-record-page-responsive.webp)
 </details>
 
 <details>
 <summary>About Us Page, no errors</summary>
 
-![About Us Page](documentation/validator/about-page-valid.webp)
+![About Us Page](documentation/pages/responsiv/about-page-responsive.webp)
 </details>
 
 <details>
-<summary>Privacy Policy Page, no errors</summary>
+<summary>Edit Profile Page, no errors</summary>
 
-![Privacy Policy Page](documentation/validator/policy-page-valid.webp)
+![Edit Profile Page](documentation/pages/responsiv/profil-patient-page-responsive.webp)
 </details>
 
 <details>
-<summary>Profile Page, no errors</summary>
+<summary>Edit Profile Page, no errors</summary>
 
-Patient
-
-![Profile Page Patient](documentation/validator/profile-patient-page-valid.webp)
-
-Admin
-
-![Profile Page Admin](documentation/validator/profile-admin-page-valid.webp)
-
-Doctor
-
-![Profile Page Doctor](documentation/validator/profile-doctor-page-valid.webp)
+![Edit Profile Page](documentation/pages/responsiv/profil-patient-page-responsive.webp)
 </details>
 
 <details>
-<summary>Add Doctor Page, no errors</summary>
+<summary>Yachts Management Page, no errors</summary>
 
-![Add Doctor Page](documentation/validator/add-doctor-page-valid.webp)
+![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 
 <details>
-<summary>All Users Page, no errors</summary>
+<summary>Add Yacht Page, no errors</summary>
 
-![All Users Page](documentation/validator/all-users-page-valid.webp)
+![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 
 <details>
-<summary> Medical Records Page, no errors</summary>
+<summary>Edit Yacht Page, no errors</summary>
 
-![Medical Records Page](documentation/validator/medical-records-page-valid.webp)
+![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
+</details>
+
+<details>
+<summary>Users Management Page, no errors</summary>
+
+![Users Management Page](documentation/pages/responsiv/all-users-page-responsive.webp)
+</details>
+
+<details>
+<summary>Edit Users Profile Page, no errors</summary>
+
+![UEdit Users Profile Page](documentation/pages/responsiv/all-users-page-responsive.webp)
 </details>
 
 <details>
 <summary> 404 Page, no errors</summary>
 
-![404 Page](documentation/validator/404-page-valid.webp)
+![404 Page](documentation/pages/responsiv/404-page-responsive.webp)
 </details>
 
 <details>
 <summary> 403 Page, no errors</summary>
 
-![403 Page](documentation/validator/403-page-valid.webp)
+![403 Page](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> 500 Page, no errors</summary>
+
+![500 Page](documentation/pages/responsiv/403-page-responsive.webp)
 </details>
 
 #### CSS
 I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/) to validate my CSS code.
 
-![CSS Validation](documentation/validator/css.webp)
+<details>
+<summary> static/css/responsive.css, no errors</summary>
+
+![static/css/responsive.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> static/css/header.css, no errors</summary>
+
+![static/css/header.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> static/css/footer.css, no errors</summary>
+
+![static/css/footer.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> static/css/base.css, no errors</summary>
+
+![static/css/base.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> static/css/allauth.css, no errors</summary>
+
+![static/css/allauth.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary>static/css/yachts/yacht-list.css, no errors</summary>
+
+![static/css/yachts/yacht-list.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary>static/css/home/index.csse, no errors</summary>
+
+![static/css/home/index.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> static/css/about/about.css, no errors</summary>
+
+![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
 
 #### JavaScript
 I have used the recommended [JShint Validator](https://jshint.com/) to validate my JS file.
 
-![JS Validation](documentation/validator/js-valid.webp)
+<details>
+<summary> static/css/about/about.css, no errors</summary>
+
+![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> static/css/about/about.css, no errors</summary>
+
+![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> static/css/about/about.css, no errors</summary>
+
+![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> static/css/about/about.css, no errors</summary>
+
+![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> static/css/about/about.css, no errors</summary>
+
+![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> static/css/about/about.css, no errors</summary>
+
+![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary> static/css/about/about.css, no errors</summary>
+
+![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+
+<details>
+<summary>static/js/yachts.js, no errors</summary>
+
+![static/js/yachts.js](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
+<details>
+<summary>static/js/base.js, no errors</summary>
+
+![static/js/base.js](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
 
 ### LightHouse report
 
@@ -1232,12 +1575,12 @@ I have used the recommended [JShint Validator](https://jshint.com/) to validate 
 <details>
 <summary>Desktop</summary>
 
-![Home Page Desktop](documentation/lighthouse/index-d.webp)
+![Home Page Desktop](documentation/pages/responsiv/home-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Home Page Mobile](documentation/lighthouse/index-m.webp)
+![Home Page Mobile](documentation/pages/responsiv/home-page-responsive.webp)
 </details>
 
 #### Log in Page
@@ -1245,12 +1588,12 @@ I have used the recommended [JShint Validator](https://jshint.com/) to validate 
 <details>
 <summary>Desktop</summary>
 
-![Log in Page Desktop](documentation/lighthouse/login-d.webp)
+![Log in Page Desktop](documentation/pages/responsiv/login-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Log in Page Mobile](documentation/lighthouse/login-m.webp)
+![Log in Page Mobile](documentation/pages/responsiv/login-page-responsive.webp)
 </details>
 
 #### Sign Up Page
@@ -1258,25 +1601,38 @@ I have used the recommended [JShint Validator](https://jshint.com/) to validate 
 <details>
 <summary>Desktop</summary>
 
-![Sign Up Page Desktop](documentation/lighthouse/signup-d.webp)
+![Sign Up Page Desktop](documentation/pages/responsiv/signup-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Sign Up Page Mobile](documentation/lighthouse/signup-d.webp)
+![Sign Up Page Mobile](documentation/pages/responsiv/signup-page-responsive.webp)
 </details>
 
-#### Our Doctors Page
+#### Our Fleet
 
 <details>
 <summary>Desktop</summary>
 
-![Our Doctors Page Desktop](documentation/lighthouse/doctors-d.webp)
+![Our Fleet Desktop](documentation/pages/responsiv/doctors-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Our Doctors Page Mobile](documentation/lighthouse/doctors-m.webp)
+![Our Fleet Mobile](documentation/pages/responsiv/doctors-page-responsive.webp)
+</details>
+
+#### Yacht Detail Page
+
+<details>
+<summary>Desktop</summary>
+
+![Yacht Detail Page Desktop](documentation/pages/responsiv/medical-record-page-responsive.webp)
+</details>
+<details>
+<summary>Mobile</summary>
+
+![Yacht Detail Page Mobile](documentation/pages/responsiv/medical-record-page-responsive.webp)
 </details>
 
 #### About Us Page
@@ -1284,105 +1640,90 @@ I have used the recommended [JShint Validator](https://jshint.com/) to validate 
 <details>
 <summary>Desktop</summary>
 
-![About Us Page Desktop](documentation/lighthouse/about-d.webp)
+![About Us Page Desktop](documentation/pages/responsiv/about-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![About Us Page Mobile](documentation/lighthouse/about-m.webp)
+![About Us Page Mobile](documentation/pages/responsiv/about-page-responsive.webp)
 </details>
 
-#### Privacy Policy Page
+#### Edit Profile Page
 
 <details>
 <summary>Desktop</summary>
 
-![Privacy Policy Page Desktop](documentation/lighthouse/policy-d.webp)
+![Edit Profile Page Desktop](documentation/pages/responsiv/profil-patient-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Privacy Policy Page Mobile](documentation/lighthouse/policy-m.webp)
+![Edit Profile Page Mobile](documentation/pages/responsiv/profil-patient-page-responsive.webp)
 </details>
 
-#### Profile Page
-
-##### Patient's Profile Page
+#### Yachts Management Page
 
 <details>
 <summary>Desktop</summary>
 
-![Patient Profile Page Desktop](documentation/lighthouse/profile-patient-d.webp)
+![Yachts Management Page Desktop](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Patient Profile Page Mobile](documentation/lighthouse/profile-patient-m.webp)
+![Yachts Management Page Mobile](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 
-##### Admin's Profile Page
+#### Add Yacht Page
 
 <details>
 <summary>Desktop</summary>
 
-![Admin Profile Page Desktop](documentation/lighthouse/profile-admin-d.webp)
+![Add Yacht Page Desktop](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Admin Profile Page Mobile](documentation/lighthouse/profile-admin-m.webp)
+![Add Yacht Page Mobile](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 
-##### Doctor's Profile Page
+#### Edit Yacht Page
 
 <details>
 <summary>Desktop</summary>
 
-![Doctor Profile Page Desktop](documentation/lighthouse/profile-doc-d.webp)
+![Edit Yacht Page Desktop](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Doctor Profile Page Mobile](documentation/lighthouse/profile-doc-m.webp)
+![Edit Yacht Page Mobile](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 
-#### Add Doctor Page
+#### Users Management Page
 
 <details>
 <summary>Desktop</summary>
 
-![Add Doctor Page Desktop](documentation/lighthouse/add-doc-d.webp)
+![Users Management Page Desktop](documentation/pages/responsiv/all-users-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Add Doctor Page Mobile](documentation/lighthouse/add-doc-m.webp)
+![Users Management Page Mobile](documentation/pages/responsiv/all-users-page-responsive.webp)
 </details>
 
-#### All Users Page
+#### Edit Users Profile Page
 
 <details>
 <summary>Desktop</summary>
 
-![All Users Page Desktop](documentation/lighthouse/all-users-d.webp)
+![Edit Users Profile Page Desktop](documentation/pages/responsiv/all-users-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![All Users Page Mobile](documentation/lighthouse/all-users-m.webp)
-</details>
-
-#### Medical Records Page
-
-<details>
-<summary>Desktop</summary>
-
-![Medical Records Page Desktop](documentation/lighthouse/med-rec-d.webp)
-</details>
-<details>
-<summary>Mobile</summary>
-
-![Medical Records Page Mobile](documentation/lighthouse/med-rec-m.webp)
+![Edit Users Profile Page Mobile](documentation/pages/responsiv/all-users-page-responsive.webp)
 </details>
 
 #### 404 Page
@@ -1390,12 +1731,12 @@ I have used the recommended [JShint Validator](https://jshint.com/) to validate 
 <details>
 <summary>Desktop</summary>
 
-![404 Page Desktop](documentation/lighthouse/404-d.webp)
+![404 Page Desktop](documentation/pages/responsiv/404-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![404 Page Mobile](documentation/lighthouse/404-m.webp)
+![404 Page Mobile](documentation/pages/responsiv/404-page-responsive.webp)
 </details>
 
 #### 403 Page
@@ -1403,13 +1744,27 @@ I have used the recommended [JShint Validator](https://jshint.com/) to validate 
 <details>
 <summary>Desktop</summary>
 
-![403 Page Desktop](documentation/lighthouse/index-d.webp)
+![403 Page Desktop](documentation/pages/responsiv/403-page-responsive.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![403 Page Mobile](documentation/lighthouse/index-m.webp)
+![403 Page Mobile](documentation/pages/responsiv/403-page-responsive.webp)
 </details>
+
+#### 500 Page
+
+<details>
+<summary>Desktop</summary>
+
+![500 Page Desktop](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+<details>
+<summary>Mobile</summary>
+
+![500 Page Mobile](documentation/pages/responsiv/403-page-responsive.webp)
+</details>
+
 
 ### Compatibility
 In order to confirm the correct functionality, responsiveness, and
@@ -1455,7 +1810,7 @@ For manual testing documentation, please continue to [TEST_SUITE_MANUAL.md](TEST
 
 ### Bugs
 
-#### SSL
+#### SSL !!!!!Й!!!!!!!!!!!!!!"!"!"!"!"!"!""!!"!"!"!!!!!!!!!!!!!!!!!!
 
 **SSL Certificate Verification Failed When Connecting to MongoDB:** Encountered an SSL certificate verification error (SSL: CERTIFICATE_VERIFY_FAILED) when trying to connect to MongoDB.
 
@@ -1587,194 +1942,278 @@ git cz
 ```
 
 ## Deployment
-The live site is deployed with Heroku; it can be accessed [here](https://theknee-surgery-f5b49706e9d6.herokuapp.com/).
 
-### MongoDB Non-Relational Database
+The live deployed application can be found deployed on [Heroku](https://yachtsescape-a7b4e5d759f6.herokuapp.com/).
 
-This project uses [MongoDB](https://www.mongodb.com/) for the Non-Relational Database.
+### PostgreSQL Database
 
-To obtain your own MongoDB Database URI, sign-up on their site, then follow these steps:
+This project uses a [Code Institute PostgreSQL Database](https://dbs.ci-dbs.net).
 
-#### Database Setup
+To obtain my own Postgres Database from Code Institute, I followed these steps:
 
-1. The database in MongoDB should be named `insert-your-database-name-here`.
-2. The necessary collection(s) for this database should be named `insert-your-collection-names-here`.
+- Signed-in to the CI LMS using my email address.
+- An email was sent to me with my new Postgres Database.
 
-#### Connecting to MongoDB
+> [!CAUTION]  
+> - PostgreSQL databases by Code Institute are only available to CI Students.
+> - You must acquire your own PostgreSQL database through some other method
+> if you plan to clone/fork this repository.
+> - Code Institute students are allowed a maximum of 8 databases.
+> - Databases are subject to deletion after 18 months.
 
-1. Click on the name of the Cluster created for the project.
-2. Click the `Connect` button.
-3. Select `Connect Your Application`.
-4. Copy the connection string, replace `<password>` with your actual password, and remove the angle brackets.
+### Stripe API
 
-### Deployment to Heroku
+This project uses [Stripe](https://stripe.com) to handle the ecommerce payments.
 
-1. **Create a New App**
-   - Log into your Heroku Dashboard.
-   - Click `New` in the top-right corner and select `Create new app`.
-   - Enter a unique app name, select a region (EU or USA), and click `Create App`.
+Once you've created a Stripe account and logged-in, follow these series of steps to get your project connected.
 
-2. **Set Environment Variables**
-   - Go to the `Settings` tab of your new app.
-   - Click `Reveal Config Vars` and set the following variables:
+- From your Stripe dashboard, click to expand the "Get your test API keys".
+- You'll have two keys here:
+  - `STRIPE_PUBLIC_KEY` = Publishable Key (starts with **pk**)
+  - `STRIPE_SECRET_KEY` = Secret Key (starts with **sk**)
 
-   | Key                      | Value                  |
-   | ------------------------ | ---------------------- |
-   | IP                       | 0.0.0.0                |
-   | PORT                     | 5000                   |
-   | SECRET_KEY               | your_secret_key        |
-   | MONGO_URI                | your_mongo_uri         |
-   | MONGO_DBNAME             | your_mongo_dbname      |
-   | CLOUDINARY_CLOUD_NAME    | your_cloudinary_cloud_name |
-   | CLOUDINARY_API_KEY       | your_cloudinary_api_key |
-   | CLOUDINARY_API_SECRET    | your_cloudinary_api_secret |
+As a backup, in case users prematurely close the purchase-order page during payment, we can include Stripe Webhooks.
 
-**Heroku requires three additional files for deployment**:
+- From your Stripe dashboard, click **Developers**, and select **Webhooks**.
+- From there, click **Add Endpoint**.
+  - `https://yachtsescape-a7b4e5d759f6.herokuapp.com/booking/wh/`
+I have selected three events:  
+- `checkout.session.completed`  
+- `payment_intent.payment_failed`  
+- `payment_intent.succeeded`
+- Click **Add Endpoint** to complete the process.
+- You'll have a new key here:
+  - `STRIPE_WH_SECRET` = Signing Secret (Wehbook) Key (starts with **wh**)
 
-- `requirements.txt`
-- `Procfile`
-- `runtime.txt`
+### Gmail API
 
-3. **Prepare Files for Heroku**
+This project uses [Gmail](https://mail.google.com) to handle sending emails to users for account verification and purchase order confirmations.
 
-   - Create a `Procfile`:
+Once you've created a Gmail (Google) account and logged-in, follow these series of steps to get your project connected.
 
-     ```sh
-     echo web: python app.py > Procfile
-     ```
+- Click on the **Account Settings** (cog icon) in the top-right corner of Gmail.
+- Click on the **Accounts and Import** tab.
+- Within the section called "Change account settings", click on the link for **Other Google Account settings**.
+- From this new page, select **Security** on the left.
+- Select **2-Step Verification** to turn it on. (verify your password and account)
+- Once verified, select **Turn On** for 2FA.
+- Navigate back to the **Security** page, and you'll see a new option called **App passwords**.
+- This might prompt you once again to confirm your password and account.
+- Select **Mail** for the app type.
+- Select **Other (Custom name)** for the device type.
+  - Any custom name, such as "Django" or scrub-savers
+- You'll be provided with a 16-character password (API key).
+  - Save this somewhere locally, as you cannot access this key again later!
+  - `EMAIL_HOST_PASS` = user's 16-character API key
+  - `EMAIL_HOST_USER` = user's own personal Gmail email address
 
-     Replace `app.py` with the name of your main Flask app file.
+### Cloudinary API
+This project uses [cloudinary](https://cloudinary.com/) to host media files. 
 
-4. **Install Project Requirements**
+1. Create a Cloudinary Account
 
-   - Ensure all required packages are listed in `requirements.txt`:
+2. Sign up for a Cloudinary account. During registration, select Programmable Media and Files as your intended use.
+Set Up Cloudinary in env.py
 
-     ```sh
-     pip3 freeze --local > requirements.txt
-     ```
+3. After registration, copy your Cloudinary URL and add it to your env.py file:
+  `os.environ.setdefault("CLOUDINARY_URL", "YOUR_CLOUDINARY_URL")`
+- Later, transfer this to your Heroku config variables. 
+4. In Heroku, add the environment variable:
 
-
-5. **Deploying to Heroku**
-
-   **Option 1: Automatic Deployment**
-
-   - From your Heroku app dashboard, select the option for Automatic Deployment and follow the instructions.
-
-   **Option 2: Manual Deployment via Terminal**
-
-   - Log in to Heroku:
-
-     ```sh
-     heroku login -i
-     ```
-
-   - Set the Heroku remote repository:
-
-     ```sh
-     heroku git:remote -a your_app_name
-     ```
-
-   - Deploy your code:
-
-     ```sh
-     git push heroku main
-     ```
-
-Your project should now be connected and deployed to Heroku.
-
-### Integrating Cloudinary for File Upload and Deletion
-
-To add file upload and deletion functionality, we used Cloudinary. Among other services like Google and Amazon, Cloudinary stood out as the simplest to integrate.
-
-#### Obtaining Cloudinary API and Integrating with Flask
-
-##### 1. Sign Up and Get API Credentials
-- **Sign Up** at [Cloudinary](https://cloudinary.com) and verify your email.
-- **Log In** to your Cloudinary account.
-- **Find Your API Credentials** (Cloud name, API Key, and API Secret) in the dashboard.
-
-##### 2. Install Cloudinary Python SDK
-- Run the following command to install:
-  ```sh
-  pip3 install cloudinary
+  `DISABLE_COLLECTSTATIC=1`
+5. Install the necessary Cloudinary packages:
+  `pip install cloudinary==1.41.0 dj3-cloudinary-storage==0.0.6`
+6. Add the following to the INSTALLED_APPS list in the correct order in your settings.py:
+  ```python
+  INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
+  ]
   ```
 
-#### 3. Add Your Cloudinary API Key to Your `env.py`
 
-    ```python
-    os.environ.setdefault("CLOUDINARY_URL", "cloudinary://<api_key>:<api_secret>@<cloud_name>")
-    ```
+7. Make sure to import Cloudinary at the top of your settings.py:
 
-#### 4. Configure Cloudinary in Your Python Application
+`import cloudinary`
 
-Use the `CLOUDINARY_URL` stored in your `env.py` file to configure Cloudinary in your Python application.
+8. Add cloudinary configuration at the bottom of your static files declation in settings.py:
 
-      ```python
-      if os.path.exists("env.py"):
-          import env
-      app.config["CLOUDINARY_URL"] = os.environ.get("CLOUDINARY_URL")
-      ```
+`cloudinary.config(secure=True, )`
 
-#### 5. Configure Cloudinary in Your Python Application
+### Django WhiteNoise
+This project uses [Django WhiteNoise](https://whitenoise.readthedocs.io/en/stable/django.html) to serve static files
+1. Install Whitenoise using pip:
 
-      ```python
-      @app.route('/upload', methods=['POST'])
-      def upload_file():
-        file = request.files["file"]
-        result = cloudinary.uploader.upload(file)
-        file_url = result['secure_url']
-      ```
+`pip install whitenoise`
+
+2. Add Whitenoise to the top of your middleware stack, right after the SecurityMiddleware:
+
+```python
+MIDDLEWARE = [
+  'django.middleware.security.SecurityMiddleware',
+  'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line
+  ...
+]
+```
+
+3. Ensure you have the following static file settings in your settings.py:
+
+```python
+# Static file settings
+STATIC_URL = '/static/'
+
+# Location where static files are collected
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+```
+
+4. Run the following command to collect all static files into the STATIC_ROOT directory:
+
+`python manage.py collectstatic`
+
+### Heroku Deployment
+
+This project uses [Heroku](https://www.heroku.com), a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+
+Deployment steps are as follows, after account setup:
+
+- Select **New** in the top-right corner of your Heroku Dashboard, and select **Create new app** from the dropdown menu.
+- Your app name must be unique, and then choose a region closest to you (EU or USA), and finally, select **Create App**.
+- From the new app **Settings**, click **Reveal Config Vars**, and set your environment variables.
+
+> [!IMPORTANT]  
+> This is a sample only; you would replace the values with your own if cloning/forking my repository.
+
+| Key | Value |
+| --- | --- |
+| `DATABASE_URL` | user's own value |
+| `DISABLE_COLLECTSTATIC` | 1 (*this is temporary, and can be removed for the final deployment*) |
+| `EMAIL_HOST_PASS` | user's own value |
+| `EMAIL_HOST_USER` | user's own value |
+| `SECRET_KEY` | user's own value |
+| `STRIPE_PUBLIC_KEY` | user's own value |
+| `STRIPE_SECRET_KEY` | user's own value |
+| `STRIPE_WH_SECRET` | user's own value |
+| `CLOUDINARY_URL` | user's own value |
+
+
+
+Heroku needs three additional files in order to deploy properly.
+
+- requirements.txt
+- Procfile
+- runtime.txt
+
+You can install this project's **requirements** (where applicable) using:
+
+- `pip3 install -r requirements.txt`
+
+If you have your own packages that have been installed, then the requirements file needs updated using:
+
+- `pip3 freeze --local > requirements.txt`
+
+The **Procfile** can be created with the following command:
+
+- `echo web: gunicorn app_name.wsgi > Procfile`
+- *replace **app_name** with the name of your primary Django app name; the folder where settings.py is located*
+
+The **runtime.txt** file needs to know which Python version you're using:
+1. type: `python3 --version` in the terminal.
+2. in the **runtime.txt** file, add your Python version:
+  - `python-3.9.19`
+
+For Heroku deployment, follow these steps to connect your own GitHub repository to the newly created app:
+
+Either:
+
+- Select **Automatic Deployment** from the Heroku app.
+
+Or:
+
+- In the Terminal/CLI, connect to Heroku using this command: `heroku login -i`
+- Set the remote for Heroku: `heroku git:remote -a app_name` (replace *app_name* with your app name)
+- After performing the standard Git `add`, `commit`, and `push` to GitHub, you can now type:
+  - `git push heroku main`
+
+The project should now be connected and deployed to Heroku!
 
 ### Local Deployment
+
 This project can be cloned or forked in order to make a local copy on your own system.
 
-For either method, you will need to install any applicable packages found within the requirements.txt file.
+For either method, you will need to install any applicable packages found within the *requirements.txt* file.
 
-pip3 install -r requirements.txt
+- `pip3 install -r requirements.txt`.
 
-You will need to create a new file called env.py at the root-level, and include the same environment variables listed above from the Heroku deployment steps, plus a few extras.
+You will need to create a new file called `env.py` at the root-level,
+and include the same environment variables listed above from the Heroku deployment steps.
+
+> [!IMPORTANT]  
+> This is a sample only; you would replace the values with your own if cloning/forking my repository.
+
+Sample `env.py` file:
+
+```python
+import os
+
+
+os.environ.setdefault("DATABASE_URL", "user's own value")
+os.environ.setdefault("EMAIL_HOST_PASS", "user's own value")
+os.environ.setdefault("EMAIL_HOST_USER", "user's own value")
+os.environ.setdefault("SECRET_KEY", "user's own value")
+os.environ.setdefault("STRIPE_PUBLIC_KEY", "user's own value")
+os.environ.setdefault("STRIPE_SECRET_KEY", "user's own value")
+os.environ.setdefault("STRIPE_WH_SECRET", "user's own value")
+os.environ.setdefault("CLOUDINARY_URL", "user's own value")
+
+# local environment only (do not include these in production/deployment!)
+os.environ.setdefault("DEBUG", "True")
+os.envirpn.setdefault("DEVELOPNENT", "1")
+```
+
+Once the project is cloned or forked, in order to run it locally, you'll need to follow these steps:
+
+- Start the Django app: `python3 manage.py runserver`
+- Stop the app once it's loaded: `CTRL+C` or `⌘+C` (Mac)
+- Make any necessary migrations: `python3 manage.py makemigrations`
+- Migrate the data to the database: `python3 manage.py migrate`
+- Create a superuser: `python3 manage.py createsuperuser`
+- Load fixtures (if applicable): `python3 manage.py loaddata file-name.json` (repeat for each file)
+- Everything should be ready now, so run the Django app again: `python3 manage.py runserver`
+
+If you'd like to backup your database models, use the following command for each model you'd like to create a fixture for:
+
+- `python3 manage.py dumpdata your-model > your-model.json`
+- *repeat this action for each model you wish to backup*
 
 #### Cloning
 
 You can clone the repository by following these steps:
 
-- In the [GitHub repository](https://github.com/pagaslav/theknee-surgery), locate the Code button above the list of files and click it.
+1. Go to the [GitHub repository](https://github.com/pagaslav/yachtsescape-com) 
+2. Locate the Code button above the list of files and click it 
+3. Select if you prefer to clone using HTTPS, SSH, or GitHub CLI and click the copy button to copy the URL to your clipboard
+4. Open Git Bash or Terminal
+5. Change the current working directory to the one where you want the cloned directory
+6. In your IDE Terminal, type the following command to clone my repository:
+  - `git clone https://github.com/pagaslav/yachtsescape-com.git`
+7. Press Enter to create your local clone.
 
-- Select if you prefer to clone using HTTPS, SSH, or GitHub CLI and click the copy button to copy the URL to your clipboard.
+Alternatively, if using Gitpod, you can click below to create your own workspace using this repository.
 
-- Open Git shell or Terminal.
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/pagaslav/yachtsescape-com)
 
-- Change the current working directory to the one where you want the cloned directory.
-
-- In your IDE Terminal, type the following command to clone my repository:
-
-  - git clone https://github.com/pagaslav/theknee-surgery.git
-
-- Press Enter to create your local clone.
-
-#### Forking
-
-By forking the GitHub Repository, we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original owner's repository. You can fork this repository by using the following steps:
-
-- Log in to GitHub and locate the [GitHub repository](https://github.com/pagaslav/theknee-surgery).
-
-- At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
-
-- Once clicked, you should now have a copy of the original repository in your own GitHub account.
-
-There is no difference between the local version and the deployed version.
+Please note that in order to directly open the project in Gitpod, you need to have the browser extension installed.
+A tutorial on how to do that can be found [here](https://www.gitpod.io/docs/configure/user-settings/browser-extension).
 
 ## Credits
 
 ### Content
-
-#### Terms and Conditions
-
-The Terms and Conditions for this project were sourced from [TermsFeed](https://www.termsfeed.com/), a platform that provides templates and generators for legal documents. These terms were adapted to fit the specific needs of The Knee Surgery website, ensuring that they are relevant to the services provided and the target audience. This addition helps make the project more realistic and professional by outlining the legal guidelines and user responsibilities clearly.
-
-#### Privacy Policy
-
-The Privacy Policy was also generated using [TermsFeed](https://www.termsfeed.com/), ensuring comprehensive coverage of all necessary legal aspects related to user data and privacy. This policy was customized to align with the operations and data handling practices of The Knee Surgery website. Including a Privacy Policy enhances the authenticity of the project, demonstrating a commitment to user privacy and data protection, which is crucial for any real-world website.
 
 ### Images
 
@@ -1808,10 +2247,6 @@ The Privacy Policy was also generated using [TermsFeed](https://www.termsfeed.co
   
 - [Iuliia Konovalova](https://github.com/IuliiaKonovalova), my mentor, for her invaluable advice and guidance during our online meetings.
 
-- I am deeply grateful for the experience I had nine years ago when I severely injured my knee while skiing. Unable to walk without assistance for almost a year, the doctors' expertise saved my knee. Today, I am able to run, play sports, and even do a bit of jumping. This life-changing experience inspired me to create this website.
-
-- I also want to express my gratitude to my neighbor, a surgeon who specializes in knees and joints. Despite being one of the most remarkable people I've ever known, his practice does not have a website. My project is dedicated to him. After receiving my evaluation, I plan to offer this project to him, adapting it for his clinic. With some enhancements, which I simply did not have time to implement, this website will truly come to life.
-
 - [Stack Overflow](https://stackoverflow.com/): For being an indispensable resource for troubleshooting and problem-solving. The community's expertise and willingness to help have been critical to overcoming many technical challenges.
   
 - [Kevin Powell](https://www.youtube.com/user/KepowOb) for his amazing CSS tutorials.
@@ -1840,55 +2275,3 @@ Here are a few key improvements planned for the future:
 
 5. **And Much More**
   - Continuously add features and improvements as necessary, based on real-world use and feedback from the team and users. This ongoing development will ensure the platform remains relevant and effective in meeting its users' needs.
-
-
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome USER_NAME,
-
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
-
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
-
-## Gitpod Reminders
-
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
-
-`python3 -m http.server`
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
-
-### Connecting your Mongo database
-
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
-
-------

@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import UserProfile
 from .forms import UserProfileForm, YachtForm
 from booking.models import Booking
+from django.conf import settings
 from yachts.models import Yacht
 from django.core.files.storage import default_storage
 from django.contrib.auth.decorators import user_passes_test, login_required
