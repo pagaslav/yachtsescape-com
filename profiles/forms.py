@@ -1,10 +1,12 @@
-# profiles/forms.py
+""" profiles/forms.py """
 
 from django import forms
 from .models import UserProfile
 from yachts.models import Yacht
 
+
 class UserProfileForm(forms.ModelForm):
+
     class Meta:
         model = UserProfile
         fields = [
@@ -19,10 +21,9 @@ class UserProfileForm(forms.ModelForm):
             'country',
         ]
 
-from django import forms
-from yachts.models import Yacht
 
 class YachtForm(forms.ModelForm):
+
     class Meta:
         model = Yacht
         fields = [
@@ -44,4 +45,4 @@ class YachtForm(forms.ModelForm):
             'detail_image1': 'Add First Detail Image',
             'detail_image2': 'Add Second Detail Image',
             'detail_image3': 'Add Third Detail Image',
-}
+        }

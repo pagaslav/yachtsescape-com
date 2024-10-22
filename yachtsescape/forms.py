@@ -1,64 +1,107 @@
+""" yachtsescape/forms.py """
+
 from allauth.account.forms import SignupForm
 from django import forms
 from profiles.models import UserProfile
 
+
 class CustomSignupForm(SignupForm):
+    """ Custom signup form that extends allauth's SignupForm """
     first_name = forms.CharField(
         max_length=30,
         label="First Name",
         required=True,
-        widget=forms.TextInput(attrs={'placeholder': 'Enter your first name'}),
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Enter your first name'}
+        ),
     )
     last_name = forms.CharField(
         max_length=30,
         label="Last Name",
         required=True,
-        widget=forms.TextInput(attrs={'placeholder': 'Enter your last name'}),
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Enter your last name'}
+        ),
     )
     phone_number = forms.CharField(
-        max_length=15, required=False, label="Phone Number",
-        widget=forms.TextInput(attrs={'placeholder': '07990347684'})
+        max_length=15,
+        required=False,
+        label="Phone Number",
+        widget=forms.TextInput(
+            attrs={'placeholder': '07990347684'}
+        )
     )
     street_address1 = forms.CharField(
-        max_length=255, required=True, label="Street Address 1",
-        widget=forms.TextInput(attrs={'placeholder': 'Your current address'})
+        max_length=255,
+        required=True,
+        label="Street Address 1",
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Your current address'}
+        )
     )
     street_address2 = forms.CharField(
-        max_length=255, required=False, label="Street Address 2",
-        widget=forms.TextInput(attrs={'placeholder': 'Additional address info'})
+        max_length=255,
+        required=False,
+        label="Street Address 2",
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Additional address info'}
+        )
     )
     town_city = forms.CharField(
-        max_length=50, required=True, label="Town or City",
-        widget=forms.TextInput(attrs={'placeholder': 'Town or City'})
+        max_length=50,
+        required=True,
+        label="Town or City",
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Town or City'}
+        )
     )
     county_state = forms.CharField(
-        max_length=50, required=False, label="County, State or Locality",
-        widget=forms.TextInput(attrs={'placeholder': 'County or State'})
+        max_length=50,
+        required=False,
+        label="County, State or Locality",
+        widget=forms.TextInput(
+            attrs={'placeholder': 'County or State'}
+        )
     )
     postal_code = forms.CharField(
-        max_length=20, required=False, label="Postal Code",
-        widget=forms.TextInput(attrs={'placeholder': 'e.g., SW1A 1AA'})
+        max_length=20,
+        required=False,
+        label="Postal Code",
+        widget=forms.TextInput(
+            attrs={'placeholder': 'e.g., SW1A 1AA'}
+        )
     )
     country = forms.CharField(
-        max_length=50, required=True, label="Country",
-        widget=forms.TextInput(attrs={'placeholder': 'Country'})
+        max_length=50,
+        required=True,
+        label="Country",
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Country'}
+        )
     )
-    
-    # Add custom password fields
+
     password1 = forms.CharField(
         label="Password",
-        widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'id': 'password1'}),
+        widget=forms.PasswordInput(
+            attrs={'placeholder': 'Password', 'id': 'password1'}
+        ),
         min_length=8,
         required=True,
-        help_text="Password must contain at least 8 characters, including UPPERCASE letters and numbers.",
+        help_text=(
+            "Password must contain at least 8 characters, "
+            "including UPPERCASE letters and numbers."
+        ),
     )
     password2 = forms.CharField(
         label="Confirm Password",
-        widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password', 'id': 'password2'}),
+        widget=forms.PasswordInput(
+            attrs={'placeholder': 'Confirm Password', 'id': 'password2'}
+        ),
         required=True,
     )
 
     def clean(self):
+        """ Validates that the passwords match """
         cleaned_data = super().clean()
         password1 = cleaned_data.get("password1")
         password2 = cleaned_data.get("password2")
@@ -69,6 +112,7 @@ class CustomSignupForm(SignupForm):
         return cleaned_data
 
     def save(self, request):
+        """ Saves the user and creates their profile """
         user = super(CustomSignupForm, self).save(request)
 
         print("User created:", user)

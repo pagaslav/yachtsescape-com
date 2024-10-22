@@ -9,6 +9,7 @@ from booking.forms import BookingForm
 from datetime import datetime
 from django.conf import settings
 
+
 def yacht_list(request):
     """ Returns a list of yachts based on search and filter criteria """
     yachts = Yacht.objects.all()
@@ -36,7 +37,7 @@ def yacht_list(request):
         'rating_low': 'rating',
         'rating_high': '-rating',
     }
-    
+
     sort_names = {
         'price_low': 'Price: Low to High',
         'price_high': 'Price: High to Low',
@@ -48,7 +49,9 @@ def yacht_list(request):
     sort = request.GET.get('sort')
     if sort in sort_options:
         yachts = yachts.order_by(sort_options[sort])
-        filters.append(f"Sorted by: {sort_names.get(sort, 'Unknown sort option')}")
+        filters.append(
+            f"Sorted by: {sort_names.get(sort, 'Unknown sort option')}"
+        )
 
     capacity_filter = {
         '2-8': {'capacity__lte': 8},
@@ -84,6 +87,7 @@ def yacht_list(request):
         'filters_title': filters_title
     })
 
+
 def yacht_booking_dates(request, yacht_id):
     """ Returns the booked dates for a specific yacht """
     yacht = get_object_or_404(Yacht, id=yacht_id)
@@ -94,17 +98,20 @@ def yacht_booking_dates(request, yacht_id):
     for booking in bookings:
         start_date = booking['start_date']
         end_date = booking['end_date']
-        if isinstance(start_date, datetime):
-            start_date_str = start_date.strftime('%Y-%m-%d')
-        else:
-            start_date_str = start_date
-        if isinstance(end_date, datetime):
-            end_date_str = end_date.strftime('%Y-%m-%d')
-        else:
-            end_date_str = end_date
+        start_date_str = (
+            start_date.strftime('%Y-%m-%d')
+            if isinstance(start_date, datetime)
+            else start_date
+        )
+        end_date_str = (
+            end_date.strftime('%Y-%m-%d')
+            if isinstance(end_date, datetime)
+            else end_date
+        )
         booked_dates.append({'start': start_date_str, 'end': end_date_str})
 
     return JsonResponse({'booked_dates': booked_dates})
+
 
 def yacht_detail(request, yacht_id):
     """ Renders the details of a specific yacht along with its booking form """
@@ -116,8 +123,16 @@ def yacht_detail(request, yacht_id):
     for booking in bookings:
         start_date = booking['start_date']
         end_date = booking['end_date']
-        start_date_str = start_date.strftime('%Y-%m-%d') if isinstance(start_date, datetime) else start_date
-        end_date_str = end_date.strftime('%Y-%m-%d') if isinstance(end_date, datetime) else end_date
+        start_date_str = (
+            start_date.strftime('%Y-%m-%d')
+            if isinstance(start_date, datetime)
+            else start_date
+        )
+        end_date_str = (
+            end_date.strftime('%Y-%m-%d')
+            if isinstance(end_date, datetime)
+            else end_date
+        )
         booked_dates.append({'start': start_date_str, 'end': end_date_str})
 
     if request.method == 'POST':
@@ -128,8 +143,12 @@ def yacht_detail(request, yacht_id):
             booking.user = request.user
             date_range = form.cleaned_data['date_range']
             start_date_str, end_date_str = date_range.split(" to ")
-            booking.start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
-            booking.end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
+            booking.start_date = datetime.strptime(
+                start_date_str, '%Y-%m-%d'
+            ).date()
+            booking.end_date = datetime.strptime(
+                end_date_str, '%Y-%m-%d'
+            ).date()
 
             booking.save()
     else:
@@ -143,6 +162,7 @@ def yacht_detail(request, yacht_id):
     }
 
     return render(request, 'yachts/yacht_detail.html', context)
+
 
 class YachtImageView(View):
     """ Provides a JSON response with the images for a specific yacht """

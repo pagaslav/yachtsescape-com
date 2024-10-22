@@ -1,10 +1,13 @@
+"""
+yachts/models.py
+"""
+
 from django.db import models
-import logging
 from cloudinary.models import CloudinaryField
 
-logger = logging.getLogger(__name__)
 
 class Yacht(models.Model):
+    """ Model representing a Yacht with various attributes """
     COUNTRY_CHOICES = [
         ('Turkey', 'Turkey'),
         ('France', 'France'),
@@ -14,47 +17,52 @@ class Yacht(models.Model):
     id = models.AutoField(primary_key=True)
     type = models.CharField(max_length=50, default='default_type')
     description = models.TextField()
-    country = models.CharField(max_length=50, choices=COUNTRY_CHOICES, default='Turkey')
+    country = models.CharField(
+        max_length=50, choices=COUNTRY_CHOICES, default='Turkey'
+    )
     location = models.CharField(max_length=100)
     capacity = models.IntegerField()
     price_per_day = models.DecimalField(max_digits=8, decimal_places=2)
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    rating = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True
+    )
 
-    card_image = CloudinaryField('image', folder='yachts/cards', null=True, blank=True)
-    detail_image1 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
-    detail_image2 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
-    detail_image3 = CloudinaryField('image', folder='yachts/details', null=True, blank=True)
+    card_image = CloudinaryField(
+        'image', folder='yachts/cards', null=True, blank=True
+    )
+    detail_image1 = CloudinaryField(
+        'image', folder='yachts/details', null=True, blank=True
+    )
+    detail_image2 = CloudinaryField(
+        'image', folder='yachts/details', null=True, blank=True
+    )
+    detail_image3 = CloudinaryField(
+        'image', folder='yachts/details', null=True, blank=True
+    )
 
     def get_card_images(self):
+        """ Returns card image URL if available """
         card_images = []
         if self.card_image:
-            logger.debug(f"Card image URL: {self.card_image.url}")
             card_images.append(self.card_image.url)
-        else:
-            logger.warning("No card image available for this yacht.")
         return card_images
 
     def get_detail_images(self):
-        detail_images = [image.url for image in [self.detail_image1, self.detail_image2, self.detail_image3] if image]
-        if not detail_images:
-            logger.warning("No detail images available for this yacht.")
-        return detail_images
+        """ Returns a list of detail image URLs if available """
+        return [
+            image.url for image in [
+                self.detail_image1, self.detail_image2, self.detail_image3
+            ] if image
+        ]
 
     def save(self, *args, **kwargs):
-        try:
-            logger.debug(f"Attempting to save yacht: {self.name}")
-            super().save(*args, **kwargs)
-        except Exception as e:
-            logger.error(f"Error uploading image: {e}")
-            raise
+        """ Overrides save method """
+        super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        try:
-            logger.info(f"Attempting to delete yacht: {self.name}")
-            super().delete(*args, **kwargs)
-        except Exception as e:
-            logger.error(f"Error deleting yacht: {e}")
-            raise
+        """ Overrides delete method """
+        super().delete(*args, **kwargs)
 
     def __str__(self):
+        """ String representation of the Yacht model """
         return self.name
