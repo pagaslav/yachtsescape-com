@@ -118,15 +118,12 @@ Our Fleet
                         <p class="card-price">
                             ${{ yacht.price_per_day }} <span class="text-muted">Per Day</span>
                         </p>
-                        <p class="location">
-                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i> {{ yacht.location }}
-                        </p>
                     </div>
                     <!-- Yacht details -->
                     <ul class="list-inline yacht-details">
+                         <li class="list-inline-item detail-item"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> {{ yacht.location }}</li>
                         <li class="list-inline-item detail-item"><i class="fas fa-users" aria-hidden="true"></i> {{ yacht.capacity }} Guests</li>
                         <li class="list-inline-item detail-item"><i class="fas fa-bed" aria-hidden="true"></i> 2 Master Bedroom</li>
-                        <li class="list-inline-item detail-item"><i class="fas fa-ruler-combined" aria-hidden="true"></i> 44 Feet</li>
                         <li class="list-inline-item detail-item"><i class="fas fa-utensils" aria-hidden="true"></i> Fully Equipped Kitchen</li>
                     </ul>
 
