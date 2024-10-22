@@ -35,3 +35,12 @@
     text-align: center;
     margin-left: 10px;
 }
+
+@media (max-width: 991.98px) {
+        .hero-content,
+        .allauth-header-content,
+        .hero-title,
+        .breadcrumb-container {
+            display: none !important;
+        }
+    }

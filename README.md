@@ -916,28 +916,36 @@ This table allows users to leave reviews for yachts.
 
 ### Responsiveness
 
+The **YachtsEscape** website was carefully designed and tested to ensure a smooth and seamless experience across different devices and screen sizes. During the responsiveness testing phase, the following screen resolutions were selected for each device type:
+
+- **Desktop**: 1920 x 1080
+- **Tablet**: 820 x 1180
+- **Mobile**: 390 x 844
+
+These resolutions represent common screen sizes for each device category, ensuring that the website performs optimally on a wide range of devices. Adjustments were made to layout, navigation, and interactive elements to guarantee a consistent and user-friendly experience across all platforms.
+
 <details>
 <summary>Home Page</summary>
 
-![Home Page](documentation/pages/responsiv/home-page-responsive.webp)
+![Home Page](docs/images/respons/home.webp)
 </details>
 
 <details>
-<summary>Log in Page</summary>
+<summary>Sign In Page</summary>
 
-![Log in Page](documentation/pages/responsiv/login-page-responsive.webp)
+![Sign in Page](docs/images/respons/signin.webp)
 </details>
 
 <details>
 <summary>Sign Up Page</summary>
 
-![Sign Up Page](documentation/pages/responsiv/signup-page-responsive.webp)
+![Sign Up Page](docs/images/respons/signup.webp)
 </details>
 
 <details>
 <summary>Our Fleet</summary>
 
-![Our Fleet](documentation/pages/responsiv/doctors-page-responsive.webp)
+![Our Fleet](docs/images/respons/fleet.webp)
 </details>
 
 <details>
@@ -949,19 +957,19 @@ This table allows users to leave reviews for yachts.
 <details>
 <summary>About Us Page</summary>
 
-![About Us Page](documentation/pages/responsiv/about-page-responsive.webp)
+![About Us Page](docs/images/respons/about.webp)
 </details>
 
 <details>
 <summary>Profile Page</summary>
 
-![Profile Page](documentation/pages/responsiv/profil-patient-page-responsive.webp)
+![Profile Page](docs/images/respons/profile.webp)
 </details>
 
 <details>
 <summary>Edit Profile Page</summary>
 
-![Edit Profile Page](documentation/pages/responsiv/profil-patient-page-responsive.webp)
+![Edit Profile Page](docs/images/respons/edit-profile.webp)
 </details>
 
 <details>
@@ -970,28 +978,29 @@ This table allows users to leave reviews for yachts.
 ![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
 </details>
 
+
 <details>
 <summary>Add Yacht Page</summary>
 
-![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
+![Add Yacht Pagee](docs/images/respons/add-yacht.webp)
 </details>
 
 <details>
 <summary>Edit Yacht Page</summary>
 
-![Edit Yacht Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
+![Edit Yacht Page](docs/images/respons/edit-yacht.webp)
 </details>
 
 <details>
 <summary>Users Management Page</summary>
 
-![Users Management Page](documentation/pages/responsiv/all-users-page-responsive.webp)
+![Users Management Page](docs/images/respons/user-managment.webp)
 </details>
 
 <details>
 <summary>Edit Users Profile Page</summary>
 
-![Edit Users Profile Page](documentation/pages/responsiv/all-users-page-responsive.webp)
+![Edit Users Profile Page](docs/images/respons/edit-user.webp)
 </details>
 
 <details>

@@ -13,7 +13,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Secret key for the Django project, should be kept secret
 SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
