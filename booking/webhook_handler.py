@@ -45,7 +45,6 @@ class StripeWH_Handler:
         try:
             booking = Booking.objects.get(id=booking_id)
             booking.confirm_booking()
-            self._send_confirmation_email(booking)
             logger.info(
                 f"Booking {booking_id} confirmed and email sent."
             )
