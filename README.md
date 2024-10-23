@@ -1292,58 +1292,15 @@ Below is the confirmation screenshot for the successful validation:
 I have used the recommended [JShint Validator](https://jshint.com/) to validate my JS file.
 
 <details>
-<summary> static/css/about/about.css, no errors</summary>
+<summary> static/js/base.js, no errors</summary>
 
-![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
+![base.js](docs/images/w3c-validation/base-js.jpeg)
 </details>
 
-<details>
-<summary> static/css/about/about.css, no errors</summary>
+details>
+<summary> static/js/yachts.js, no errors</summary>
 
-![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary> static/css/about/about.css, no errors</summary>
-
-![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary> static/css/about/about.css, no errors</summary>
-
-![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary> static/css/about/about.css, no errors</summary>
-
-![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary> static/css/about/about.css, no errors</summary>
-
-![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary> static/css/about/about.css, no errors</summary>
-
-![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-
-<details>
-<summary>static/js/yachts.js, no errors</summary>
-
-![static/js/yachts.js](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary>static/js/base.js, no errors</summary>
-
-![static/js/base.js](documentation/pages/responsiv/403-page-responsive.webp)
+![yachts.js](docs/images/w3c-validation/yacht-js.jpeg)
 </details>
 
 ### LightHouse report

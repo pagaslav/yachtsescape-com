@@ -65,8 +65,12 @@ Sign In
 
         <!-- Home button and Sign In button with icons -->
         <div class="container text-center mt-4">
-            <button class="base-btn me-2" href="{% url 'home' %}"><i class="fas fa-home"></i> &nbsp;Home</button>
-            <button class="base-btn add-btn" type="submit"><i class="fas fa-sign-in-alt"></i> &nbsp;Sign In</button>
+            <a class="base-btn align-top me-2" href="{% url 'home' %}">
+                <i class="fas fa-home"></i> &nbsp;Home
+            </a>
+        <button class="base-btn add-btn" type="submit">
+            <i class="fas fa-sign-in-alt"></i> &nbsp;Sign In
+        </button>
         </div>
 
         <!-- Link to reset the password -->
