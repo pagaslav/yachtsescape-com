@@ -5,24 +5,25 @@
 {% load i18n %}
 
 {% block extra_css %}
-<style>
-    .text-red {
-        color: red; /* Color for error messages */
-    }
+    <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+    <style>
+        .text-red {
+            color: red; /* Color for error messages */
+        }
 
-    .text-gray {
-        color: gray; /* Color for valid messages */
-    }
+        .text-gray {
+            color: gray; /* Color for valid messages */
+        }
 
-    .is-invalid {
-        border-color: red; /* Change the border color of invalid inputs */
+        .is-invalid {
+            border-color: red; /* Change the border color of invalid inputs */
+        }
+    @media (max-width: 991.98px) {
+        .allauth-header-content {
+            display: none !important;
+        }
     }
-@media (max-width: 991.98px) {
-    .allauth-header-content {
-        display: none !important;
-    }
-}
-</style>
+    </style>
 {% endblock %}
 
 {% block title %}
