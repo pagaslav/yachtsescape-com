@@ -948,12 +948,6 @@ These resolutions represent common screen sizes for each device category, ensuri
 </details>
 
 <details>
-<summary> Yacht Detail Page</summary>
-
-![Yacht Detail Page](documentation/pages/responsiv/medical-record-page-responsive.webp)
-</details>
-
-<details>
 <summary>About Us Page</summary>
 
 ![About Us Page](docs/images/respons/about.webp)
