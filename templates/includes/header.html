@@ -2,187 +2,187 @@
 
 {% load static %}
 
-<!-- Header section -->
-<header class="{% if request.path == '/' %}header{% else %}header-short{% endif %}">
+<header> 
+    <div class="{% if request.path == '/' %}header{% else %}header-short{% endif %}">
 
-    <!-- Transparent overlay -->
-    <div class="header-overlay"></div>
+        <!-- Transparent overlay -->
+        <div class="header-overlay"></div>
 
-    <!-- Top bar -->
-    <div class="d-flex justify-content-between align-items-center py-2 ms-3 me-3 header-top-bar" id="top-bar">
-        <!-- Phone -->
-        <div class="d-flex align-items-center flex-shrink-0 ms-3 header-top-item">
-            <a href="tel:+447990278555" aria-label="Call us at +44 7990 278555" class="text-decoration-none text-white">
-                <span class="me-3 d-none d-md-block">
-                    <i class="fas fa-phone-square" aria-hidden="true"></i> Phone: +44 7990 278555
-                </span>
-            </a>
-        </div>
-        <!-- Email -->
-        <div class="d-flex align-items-center flex-shrink-0 ms-3 header-top-item" id="email-align">
-            <a href="mailto:support@yachtsescape.com" class="email-link"
-                aria-label="Send an email to support at yachtsescape dot com"
-                title="Send an email to support@yachtsescape.com">
-                <i class="fas fa-envelope"></i>
-                <span>Email: support@yachtsescape.com</span>
-            </a>
-        </div>
-        <!-- Social Media -->
-        <div class="d-flex align-items-center justify-content-end ms-auto">
-            <ul class="list-inline mb-0">
-                <li class="list-inline-item">
-                    <a class="text-white" href="https://twitter.com" target="_blank" rel="noopener noreferrer"
-                        aria-label="Visit our Twitter page (opens in new window)"
-                        title="Visit our Twitter page (opens in new window)">
-                        <i class="fab fa-twitter"></i>
-                        <span class="sr-only">Twitter (opens in new window)</span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="text-white" href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-                        aria-label="Visit our Facebook page (opens in new window)"
-                        title="Visit our Facebook page (opens in new window)">
-                        <i class="fab fa-facebook-f"></i>
-                        <span class="sr-only">Facebook (opens in new window)</span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="text-white" href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-                        aria-label="Visit our Instagram page (opens in new window)"
-                        title="Visit our Instagram page (opens in new window)">
-                        <i class="fab fa-instagram"></i>
-                        <span class="sr-only">Instagram (opens in new window)</span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="text-white" href="https://youtube.com" target="_blank" rel="noopener noreferrer"
-                        aria-label="Visit our YouTube channel (opens in new window)"
-                        title="Visit our YouTube channel (opens in new window)">
-                        <i class="fab fa-youtube"></i>
-                        <span class="sr-only">YouTube (opens in new window)</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Main navigation section -->
-    <div class="navbar navbar-expand-lg header-main" id="main-nav">
-        <!-- Brand logo -->
-        <div class="d-flex align-items-center">
-            <a href="{% url 'home' %}" aria-label="Go to homepage" title="Go to homepage">
-                <img class="normal-logo img-fluid" id="logo" src="{% static 'images/logo-light.png' %}"
-                    data-light-logo="{% static 'images/logo-light.png' %}"
-                    data-dark-logo="{% static 'images/logo-dark.png' %}"
-                    data-small-light-logo="{% static 'images/logo-light-small.png' %}"
-                    data-small-dark-logo="{% static 'images/logo-dark-small.png' %}" alt="YachtsEscape logo" />
-            </a>
-        </div>
-
-        <!-- Navigation toggler button (for mobile menu) -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Offcanvas menu -->
-        <div class="offcanvas offcanvas-end text-center" tabindex="-1" id="offcanvasNavbar"
-            aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header justify-content-between">
-                <h5 class="offcanvas-title flex-grow-1 text-center" id="offcanvasNavbarLabel">Menu</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                    aria-label="Close navigation menu"></button>
+        <!-- Top bar -->
+        <div class="d-flex justify-content-between align-items-center py-2 ms-3 me-3 header-top-bar" id="top-bar">
+            <!-- Phone -->
+            <div class="d-flex align-items-center flex-shrink-0 ms-3 header-top-item">
+                <a href="tel:+447990278555" aria-label="Call us at +44 7990 278555" class="text-decoration-none text-white">
+                    <span class="me-3 d-none d-md-block">
+                        <i class="fas fa-phone-square" aria-hidden="true"></i> Phone: +44 7990 278555
+                    </span>
+                </a>
             </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}"
-                            aria-label="Homepage">Home</a>
-                    </li>
-
-                    <!-- Conditional Menu Based on User Authentication Status -->
-                    {% if user.is_authenticated %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {% if '/profile/' in request.path or '/yachts_management/' in request.path or '/users_management/' in request.path %}active{% endif %}"
-                            href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                            aria-haspopup="true" aria-controls="accountDropdownMenu">
-                            My Account
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="accountDropdownMenu" role="menu">
-                            {% if user.is_superuser or user.is_staff %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'yachts_management' %}" role="menuitem" aria-label="Yachts Management">
-                                    Yachts Management
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'users_management' %}" role="menuitem" aria-label="User Management">
-                                    User Management
-                                </a>
-                            </li>
-                            {% endif %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'profile' %}" role="menuitem" aria-label="View My Profile">
-                                    My Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'account_logout' %}" role="menuitem" aria-label="Sign Out">
-                                    Sign Out
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/accounts/login/' %}active{% endif %}"
-                            href="{% url 'account_login' %}" aria-label="Log In Page">
-                            Sign In
+            <!-- Email -->
+            <div class="d-flex align-items-center flex-shrink-0 ms-3 header-top-item" id="email-align">
+                <a href="mailto:support@yachtsescape.com" class="email-link"
+                    aria-label="Send an email to support at yachtsescape dot com"
+                    title="Send an email to support@yachtsescape.com">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email: support@yachtsescape.com</span>
+                </a>
+            </div>
+            <!-- Social Media -->
+            <div class="d-flex align-items-center justify-content-end ms-auto">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a class="text-white" href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                            aria-label="Visit our Twitter page (opens in new window)"
+                            title="Visit our Twitter page (opens in new window)">
+                            <i class="fab fa-twitter"></i>
+                            <span class="sr-only">Twitter (opens in new window)</span>
                         </a>
                     </li>
-                    {% endif %}
-
-                    <!-- Our Fleet section -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {% if '/yachts/' in request.path and not '/yachts_management/' in request.path %}active{% endif %}"
-                            href="#" id="yachtTypeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                            aria-haspopup="true" aria-controls="yachtDropdownMenu">
-                            Our Fleet
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="yachtTypeDropdown" id="yachtDropdownMenu" role="menu">
-                            <li>
-                                <a class="dropdown-item" href="{% url 'yacht_list' %}" role="menuitem" aria-label="View all yachts">All Yachts</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'yacht_list' %}?type=Leisure" role="menuitem"
-                                    aria-label="View leisure yachts">Leisure</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'yacht_list' %}?type=Fishing" role="menuitem"
-                                    aria-label="View fishing yachts">Fishing</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'yacht_list' %}?type=Celebrations" role="menuitem"
-                                    aria-label="View yachts for celebrations">Celebrations</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}"
-                            aria-label="About Us Page">
-                            About us
+                    <li class="list-inline-item">
+                        <a class="text-white" href="https://facebook.com" target="_blank" rel="noopener noreferrer"
+                            aria-label="Visit our Facebook page (opens in new window)"
+                            title="Visit our Facebook page (opens in new window)">
+                            <i class="fab fa-facebook-f"></i>
+                            <span class="sr-only">Facebook (opens in new window)</span>
                         </a>
                     </li>
-
-                    <!-- "Book Now" button -->
-                    <button class="btn btn-sm header-main-btn d-none d-md-block" data-bs-toggle="modal"
-                        data-bs-target="#bookNowModal" aria-label="Book your yacht now">Filter Yachts</button>
+                    <li class="list-inline-item">
+                        <a class="text-white" href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            aria-label="Visit our Instagram page (opens in new window)"
+                            title="Visit our Instagram page (opens in new window)">
+                            <i class="fab fa-instagram"></i>
+                            <span class="sr-only">Instagram (opens in new window)</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="text-white" href="https://youtube.com" target="_blank" rel="noopener noreferrer"
+                            aria-label="Visit our YouTube channel (opens in new window)"
+                            title="Visit our YouTube channel (opens in new window)">
+                            <i class="fab fa-youtube"></i>
+                            <span class="sr-only">YouTube (opens in new window)</span>
+                        </a>
+                    </li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- Main navigation section -->
+        <div class="navbar navbar-expand-lg header-main" id="main-nav">
+            <!-- Brand logo -->
+            <div class="d-flex align-items-center">
+                <a href="{% url 'home' %}" aria-label="Go to homepage" title="Go to homepage">
+                    <img class="normal-logo img-fluid" id="logo" src="{% static 'images/logo-light.png' %}"
+                        data-light-logo="{% static 'images/logo-light.png' %}"
+                        data-dark-logo="{% static 'images/logo-dark.png' %}"
+                        data-small-light-logo="{% static 'images/logo-light-small.png' %}"
+                        data-small-dark-logo="{% static 'images/logo-dark-small.png' %}" alt="YachtsEscape logo" />
+                </a>
+            </div>
+
+            <!-- Navigation toggler button (for mobile menu) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Offcanvas menu -->
+            <div class="offcanvas offcanvas-end text-center" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header justify-content-between">
+                    <h5 class="offcanvas-title flex-grow-1 text-center" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                        aria-label="Close navigation menu"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}"
+                                aria-label="Homepage">Home</a>
+                        </li>
+
+                        <!-- Conditional Menu Based on User Authentication Status -->
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {% if '/profile/' in request.path or '/yachts_management/' in request.path or '/users_management/' in request.path %}active{% endif %}"
+                                href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                aria-haspopup="true" aria-controls="accountDropdownMenu">
+                                My Account
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="accountDropdownMenu" role="menu">
+                                {% if user.is_superuser or user.is_staff %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'yachts_management' %}" role="menuitem" aria-label="Yachts Management">
+                                        Yachts Management
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'users_management' %}" role="menuitem" aria-label="User Management">
+                                        User Management
+                                    </a>
+                                </li>
+                                {% endif %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'profile' %}" role="menuitem" aria-label="View My Profile">
+                                        My Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'account_logout' %}" role="menuitem" aria-label="Sign Out">
+                                        Sign Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/accounts/login/' %}active{% endif %}"
+                                href="{% url 'account_login' %}" aria-label="Log In Page">
+                                Sign In
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        <!-- Our Fleet section -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {% if '/yachts/' in request.path and not '/yachts_management/' in request.path %}active{% endif %}"
+                                href="#" id="yachtTypeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                aria-haspopup="true" aria-controls="yachtDropdownMenu">
+                                Our Fleet
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="yachtTypeDropdown" id="yachtDropdownMenu">
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'yacht_list' %}" aria-label="View all yachts">All Yachts</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'yacht_list' %}?type=Leisure" 
+                                        aria-label="View leisure yachts">Leisure</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'yacht_list' %}?type=Fishing" 
+                                        aria-label="View fishing yachts">Fishing</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'yacht_list' %}?type=Celebrations" role="menuitem"
+                                        aria-label="View yachts for celebrations">Celebrations</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}"
+                                aria-label="About Us Page">
+                                About us
+                            </a>
+                        </li>
+                        <li>
+                            <button class="btn btn-sm header-main-btn d-none d-md-block" data-bs-toggle="modal"
+                            data-bs-target="#bookNowModal" aria-label="Book your yacht now">Filter Yachts</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </header>
-
 <!-- Book Now Modal -->
 <div class="modal fade" id="bookNowModal" tabindex="-1" aria-labelledby="bookNowModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -201,14 +201,6 @@
                             <option value="celebrations">Celebrations</option>
                             <option value="fishing">Fishing</option>
                             <option value="leisure">Leisure</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="capacity" class="form-label">Select Capacity</label>
-                        <select id="capacity" name="capacity" class="form-select">
-                            <option value="">Any Capacity</option>
-                            <option value="2-8">Up to 8</option>
-                            <option value="8_plus">More than 8</option>
                         </select>
                     </div>
                     <div class="mb-3">

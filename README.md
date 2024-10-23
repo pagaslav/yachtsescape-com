@@ -563,7 +563,6 @@ The **YachtsEscape** Sign Up page allows new users to create an account. The pag
 ![Sign Up Page 1](docs/images/features/pass-req-js.webp)
 
      - Clicking the eye icon allows the user to toggle password visibility for easier input.
-
 ![Sign Up Page 2](docs/images/features/pass-e-js.webp)
 
 4. **Address Details**:
@@ -582,7 +581,7 @@ The form includes validation for required fields and password strength, ensuring
 
 ### Our Fleet Page
 
-![Sign Up Page 2](docs/images/features/our-fleet.webp)
+![Our Fleet Page](docs/images/features/our-fleet.webp)
 
 
 The **Our Fleet** page on **YachtsEscape** allows users to browse through available yachts and filter them by location, capacity, and price. Below is a breakdown of its key features:
