@@ -1978,47 +1978,44 @@ A tutorial on how to do that can be found [here](https://www.gitpod.io/docs/conf
 
 #### Yachts
 
-1. Doctor Illustrator Design, [License.](documentation/images/image-1-license-certificate.txt)
-2. Physiotherapist check X ray, [License.](documentation/images/image-2-license-certificate.txt)
-3. Hands operating a patient, [License.](documentation/images/image-3-license-certificate.txt)
-4. Knee joint model , [License.](documentation/images/image-4-license-certificate.txt)
-5. Ligament Reconstruction image was generated using AI from [ChatGPT](https://www.openai.com/chatgpt)
-6. Bandaging woman's injured knee, [License.](documentation/images/image-6-license-certificate.txt)
-7. Injection Procedures, [License.](documentation/images/image-7-license-certificate.txt)
-8. Dr. John Doe photo, [License.](documentation/images/image-8-license-certificate.txt)
-9. Dr. Jane Smith photo, [License.](documentation/images/image-9-license-certificate.txt)
-10. Dr. Emily Johnson photo, [License.](documentation/images/image-10-license-certificate.txt)
-11. Dr. Michael Brown photo, [License.](documentation/images/image-11-license-certificate.txt)
-12. Hospital reception counter, [License.](documentation/images/image-12-license-certificate.txt)
-13. Busy Hospital Corridor, [License.](documentation/images/image-13-license-certificate.txt)
-14. Modern operating theatre, [License.](documentation/images/image-14-license-certificate.txt)
-15. A room of an hospital, [License.](documentation/images/image-15-license-certificate.txt)
-16.
-17.
+1. Yacht #1, [License.](docs/licenses/yachts/license_certificate_2KUZDV8J7E.txt)
+2. Yacht #2, [License.](docs/licenses/yachts/license_certificate_4G9CKHXRSU.txt)
+3. Yacht #3, [License.](docs/licenses/yachts/license_certificate_4MULPVWXJ6.txt)
+4. Yacht #4, [License.](docs/licenses/yachts/license_certificate_5Y8XNRVCBH.txt)
+5. Yacht #5, [License.](docs/licenses/yachts/license_certificate_AYN8FUS2P6.txt)
+6. Yacht #6, [License.](docs/licenses/yachts/license_certificate_B72J83QM5R.txt)
+7. Yacht #7, [License.](docs/licenses/yachts/license_certificate_CLH2U3PNZF.txt)
+8. Yacht #8, [License.](docs/licenses/yachts/license_certificate_CSB76JAZQ9.txt)
+9. Yacht #9, [License.](docs/licenses/yachts/license_certificate_JU5CYRXKQD.txt)
+10. Yacht #10, [License.](docs/licenses/yachts/license_certificate_MXUJ9RZKS6.txt)
+11. Yacht #11, [License.](docs/licenses/yachts/license_certificate_P837RZJHEB.txt)
+12. Yacht #12, [License.](docs/licenses/yachts/license_certificate_PBY9L78W3R.txt)
+13. Yacht #13, [License.](docs/licenses/yachts/license_certificate_PMFEW8DN5V.txt)
+14. Yacht #14, [License.](docs/licenses/yachts/license_certificate_V5NGQ89F4K.txt)
+15. Yacht #15, [License.](docs/licenses/yachts/license_certificate_XS8A2CLDG6.txt)
+16. Yacht #16, [License.](docs/licenses/yachts/license_certificate_Y6MTFLKCBW.txt)
+17. Yacht #17, [License.](docs/licenses/yachts/license_certificate_SQBFDYJL97.txt)
 
 #### People
 
 1. Candid portrait of sailor wearing life jacket, [License.](docs/licenses/people/license_certificate_AYEW2S89Q4.txt)
-2. Physiotherapist check X ray, [License.](documentation/images/image-2-license-certificate.txt)
-3. Hands operating a patient, [License.](documentation/images/image-3-license-certificate.txt)
-4. Knee joint model , [License.](documentation/images/image-4-license-certificate.txt)
-5. Ligament Reconstruction image was generated using AI from [ChatGPT](https://www.openai.com/chatgpt)
-6. Bandaging woman's injured knee, [License.](documentation/images/image-6-license-certificate.txt)
-
+2. Young smiling fashion woman, [License.](docs/licenses/people/license_certificate_CT3MELNJHP.txt)
+3. Hands operating a patient, [License.](docs/licenses/people/license_certificate_L4NGC6BZVS.txt)
+4. Knee joint model , [License.](docs/licenses/people/license_certificate_MNE7ZATS3U.txt)
+5. Ligament Reconstruction image was generated, [License.](docs/licenses/people/license_certificate_PH3LYKJ5TM.txt)
+6. Bandaging woman's injured knee, [License.](docs/licenses/people/license_certificate_Q6HB8WVYJS.txt)
 
 ## Acknowledgments
 
-- [Code Institute](https://codeinstitute.net/) tutors and Slack community members for their support and help.
-  
+- [Code Institute](https://codeinstitute.net/) tutors and Slack community members for their support and help. A special thank you to Code Institute for their outdated videos, which made the learning process challenging and forced me to figure things out early on. This experience likely saved me from failures in the production phase.
+
 - [Iuliia Konovalova](https://github.com/IuliiaKonovalova), my mentor, for her invaluable advice and guidance during our online meetings.
 
 - [Stack Overflow](https://stackoverflow.com/): For being an indispensable resource for troubleshooting and problem-solving. The community's expertise and willingness to help have been critical to overcoming many technical challenges.
   
 - [Kevin Powell](https://www.youtube.com/user/KepowOb) for his amazing CSS tutorials.
   
-- A heartfelt thank you to the creators of [Bootstrap](https://getbootstrap.com/) for providing an excellent style framework. Their toolkit not only accelerates the
-development process but also empowers beginners to exceed their own
-capabilities.
+- - A heartfelt thank you to the creators of [Django](https://www.djangoproject.com/) for developing such a powerful web framework. Its ease of use and robust features not only simplify back-end development but also allow developers to create complex applications with confidence and efficiency.
 
 ## Future Improvements
 
