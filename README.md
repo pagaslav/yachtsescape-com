@@ -1821,6 +1821,8 @@ Deployment steps are as follows, after account setup:
 | `CLOUDINARY_URL` | user's own value |
 
 
+Config vars, Heroku
+![Config vars, Heroku](docs/images/heroku.webp)
 
 Heroku needs three additional files in order to deploy properly.
 
@@ -1965,7 +1967,7 @@ A tutorial on how to do that can be found [here](https://www.gitpod.io/docs/conf
 
 ## Acknowledgments
 
-- [Code Institute](https://codeinstitute.net/) tutors and Slack community members for their support and help. A special thank you to Code Institute for their outdated videos, which made the learning process challenging and forced me to figure things out early on. This experience likely saved me from failures in the production phase.
+- [Code Institute](https://codeinstitute.net/) tutors and Slack community members for their support and help.
 
 - [Iuliia Konovalova](https://github.com/IuliiaKonovalova), my mentor, for her invaluable advice and guidance during our online meetings.
 
