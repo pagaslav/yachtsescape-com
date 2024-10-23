@@ -1006,8 +1006,9 @@ These resolutions represent common screen sizes for each device category, ensuri
 <details>
 <summary> 404 Page</summary>
 
-![404 Page](documentation/pages/responsiv/404-page-responsive.webp)
+![404 Page](docs/images/respons/404.webp)
 </details>
+All error pages on **YachtsEscape** (including 403, 400, and 500) are designed to behave in the same way as the **404 - Page Not Found** page. They share the same layout, navigation, and call-to-action elements, ensuring a consistent user experience. Therefore, only the screenshot of the **404** page is provided for reference.
 
 ### Validator testing
 
@@ -1269,55 +1270,24 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org/) to v
 </details>
 
 #### CSS
-I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/) to validate my CSS code.
+The following CSS files were validated to ensure that the styles used in the **YachtsEscape** project are error-free:
 
-<details>
-<summary> static/css/responsive.css, no errors</summary>
+- **base.css**
+- **header.css**
+- **footer.css**
+- **responsive.css**
+- **index.css**
+- **yacht-list.css**
+- **about.css**
+- **allauth.css**
 
-![static/css/responsive.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
+The validation process for all styles was smooth and successful. Due to the nature of the project, I found the most straightforward and efficient method to validate each stylesheet was to directly transfer the code via clipboard. The result was the same for every file: 
 
-<details>
-<summary> static/css/header.css, no errors</summary>
+**"Congratulations! No Error Found."**
 
-![static/css/header.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
+Below is the confirmation screenshot for the successful validation:
 
-<details>
-<summary> static/css/footer.css, no errors</summary>
-
-![static/css/footer.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary> static/css/base.css, no errors</summary>
-
-![static/css/base.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary> static/css/allauth.css, no errors</summary>
-
-![static/css/allauth.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary>static/css/yachts/yacht-list.css, no errors</summary>
-
-![static/css/yachts/yacht-list.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary>static/css/home/index.csse, no errors</summary>
-
-![static/css/home/index.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary> static/css/about/about.css, no errors</summary>
-
-![static/css/about/about.css](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
+![CSS Validation Success](docs/images/w3c-validation/css-w3c.webp)
 
 #### JavaScript
 I have used the recommended [JShint Validator](https://jshint.com/) to validate my JS file.
@@ -1568,6 +1538,7 @@ I have used the recommended [JShint Validator](https://jshint.com/) to validate 
 
 ![500 Page Desktop](documentation/pages/responsiv/403-page-responsive.webp)
 </details>
+
 <details>
 <summary>Mobile</summary>
 
@@ -1617,119 +1588,170 @@ Safari.
 
 For manual testing documentation, please continue to [TEST_SUITE_MANUAL.md](TEST_SUITE_MANUAL.md)
 
-### Bugs
+### Resolved Bugs
 
-#### SSL !!!!!Й!!!!!!!!!!!!!!"!"!"!"!"!"!""!!"!"!"!!!!!!!!!!!!!!!!!!
+#### 1. Bug Report: Flatpickr Disabling All Dates
 
-**SSL Certificate Verification Failed When Connecting to MongoDB:** Encountered an SSL certificate verification error (SSL: CERTIFICATE_VERIFY_FAILED) when trying to connect to MongoDB.
+##### Description
+A bug was identified in the yacht booking system where the **Flatpickr** date picker was incorrectly disabling all available dates instead of only those with a "confirmed" status. This issue significantly impacted user experience by preventing users from selecting dates that should be available for booking.
 
-![Bug 1, code](documentation/bugs/1/bug-1.jpg)
-![Bug 1, Error Message](documentation/bugs/1/bug-1-1.jpg)
+##### Steps to Reproduce
+1. Open the yacht booking page.
+2. Attempt to select a date range using the **Flatpickr** date picker.
+3. Observe that all dates are disabled, regardless of their booking status.
 
-**Solution:** Resolved the issue by adding the certifi library (import certifi) and modifying the PyMongo initialization line to specify the tlsCAFile parameter.
+##### Expected Behavior
+Only dates that have been confirmed as booked should be disabled in the **Flatpickr** date picker. Users should be able to select any available dates for their bookings.
 
-**Code Changes and Result:**
+##### Actual Behavior
+The **Flatpickr** date picker disabled all dates, making it impossible for users to select any available booking dates.
 
-![Bug 1, Code Changes](documentation/bugs/1/bug-1-2.jpg)
-![Bug 1, Result](documentation/bugs/1/bug-1-3.jpg)
+##### Impact
+This bug led to frustration among users trying to make bookings, as it restricted their options unnecessarily.
 
-#### Logout Issue
+##### Resolution
+The issue was resolved by reviewing the logic used to determine which dates should be disabled in the **Flatpickr** configuration. Now, only dates with a confirmed booking status are included in the array of disabled dates passed to **Flatpickr**, improving user experience.
 
-**Problem:**
-When a user clicks the "Log Out" link and confirms the logout, the user is redirected to the homepage, but the navigation menu still shows the logged-in state (i.e., it still shows "Profile" and "Log Out" instead of "Log In" and "Sign Up"). Additionally, the user can still access the profile page.
-**Steps to Reproduce:**
+---
 
-1.  Log in to your account.
-2.  Click the "Log Out" link.
-3.  Confirm the logout.
-    **Cause:**
-    The issue was caused by the JavaScript code for the logout not being correctly executed within the context of the Flask application, leading to the user session not being properly terminated on the server side. This issue is specific to how Jinja templates are rendered and how JavaScript interacts with the Flask backend.
-    Initially, the JavaScript code for the logout was included in a custom JavaScript file. This caused the problem as described because the Jinja templating was not correctly interacting with the external JavaScript file. Once the code was moved directly into the `base.html` template, everything worked as expected.
-    **Solution:**
-    Ensure the JavaScript code is included at the right place in the `base.html` template to properly interact with the Flask backend:
+#### 2. Bug Report: Incorrect Webhook URL Preventing Stripe Event Reception
 
-            ```html
-            <!-- Inline script for logout modal -->
-            <script>
-              $(document).ready(function () {
-                // Attach a click event handler to the confirmLogout button
-                $("#confirmLogout").click(function () {
-                  // Redirect the user to the logout URL
-                  window.location.href = "{{ url_for('logout') }}"
-                })
-              })
-            </script>
-            ```
+##### Description
+A bug was discovered in the **Stripe** integration where the webhook URL configured in the **Stripe** dashboard was incorrect. This resulted in **Stripe** being unable to send events to the designated endpoint in the application.
 
-After implementing the above solution, the logout functionality works as expected, with the user being properly logged out and the navigation menu updating correctly to reflect the logged-out state.
+##### Steps to Reproduce
+1. Log in to the **Stripe** dashboard.
+2. Navigate to the **Webhooks** section.
+3. Verify the webhook URL configured for the application.
+4. Trigger a test event from **Stripe** (e.g., a successful payment or checkout session).
+5. Observe that no events are received by the application.
 
-#### User Email Update Issue
+##### Expected Behavior
+The configured webhook URL in the **Stripe** dashboard should correctly point to the application's webhook endpoint, allowing the application to process events accordingly.
 
-**Problem:**
-When a user updates their email address in the profile settings, the user remains logged in with the new email address, but they are redirected to the home page. Upon returning to the profile page, the user’s profile information is displayed correctly, but a “User not found” notification appears at the top of the page.
+##### Actual Behavior
+Due to an incorrect webhook URL, **Stripe** was unable to send events to the application, resulting in no webhook events being processed.
 
-**Steps to Reproduce:**
+##### Impact
+This bug led to the failure of payment processing, causing confusion for users attempting to make bookings.
 
-    1.	Log in to your account.
-    2.	Go to the profile page.
-    3.	Click the “Edit” button to enable editing mode.
-    4.	Change the email address to a new valid email address.
-    5.	Enter the current password and click “Save.”
-    6.	Observe the redirection to the home page.
-    7.	Navigate back to the profile page.
-    8.	Observe the “User not found” notification at the top of the page.
+##### Resolution
+The issue was resolved by updating the webhook URL in the **Stripe** dashboard to ensure it matches the correct endpoint in the application. Testing was conducted to confirm that events are now received and processed correctly, restoring proper payment functionality.
 
-**Expected Behavior:**
+---
 
-    •	The user should remain on the profile page after updating the email address.
-    •	No “User not found” notification should appear if the profile information is displayed correctly.
+#### 3. Bug Report: Images Not Displaying on Yacht Details Page
 
-**Actual Behavior:**
+##### Description
+A bug was identified on the yacht details page where images were not displaying correctly due to incorrect URLs stored in the **Django** database for the images.
 
-    •	The user is redirected to the home page after updating the email address.
-    •	A “User not found” notification appears at the top of the profile page upon returning.
+##### Steps to Reproduce
+1. Navigate to the yacht details page in the application.
+2. Observe that the images meant to showcase the yacht are not visible.
+3. Check the HTML source code or use developer tools to inspect the image elements.
+4. Verify that the `src` attributes of the image tags contain incorrect or malformed URLs.
 
-**Screenshot:**
-![Bug 3, User not found Message](documentation/bugs/3/bug-3-1.webp)
+##### Expected Behavior
+Images should display correctly on the yacht details page, with valid URLs pointing to the images stored in **Cloudinary**.
 
-**Cause:**
-The issue was caused by the Flask application not correctly updating the session and redirecting after an email change. Although the session email was updated, the redirection logic did not reflect the new session state, leading to the user being treated as unauthenticated or non-existent in subsequent requests.
+##### Actual Behavior
+The images were not displayed because the URLs retrieved from the **Django** database were incorrect or incomplete, resulting in 404 errors.
 
-**Solution:**
-Ensure that after updating the email in the session, the user is redirected correctly and the session state is fully updated:
+##### Impact
+This bug negatively impacted user experience by failing to showcase the yacht effectively.
 
-      ```python
-      # Update session email if changed
-      if current_email != new_email:
-          session["user"] = new_email
-          flash("Your email has been updated to {}.".format(new_email), "success")
-          return {"success": True, "message": "Your email has been updated.", "redirect": url_for("profile", username=new_email)}
-      else:
-          flash("Your information has been updated.", "success")
-          return {"success": True, "message": "Your information has been updated.", "redirect": url_for("profile", username=current_email)}
-      ```
+##### Resolution
+The issue was resolved by reviewing and updating the database entries to ensure that the URLs for images are correctly formatted and point to the appropriate **Cloudinary** resources. Validation for image URLs was implemented in the **Django** model to prevent future occurrences of this issue. Thorough testing confirmed that images now display correctly.
 
-Ensure the JavaScript handles the success response correctly:
+### Unresolved Bugs
 
-      ```javascript
-      success: function (response) {
-        if (response.success) {
-          alert(response.message);
-          window.location.href = response.redirect; // Updated to redirect after successful email change
-        } else {
-          alert(response.message);
-        }
-      }
-      ```
+#### Bug Report: Unresolved Issue with Yacht Filtering Allowing Past Dates
 
-After implementing the above solution, the email change functionality works as expected, keeping the user authenticated with the new email address and displaying the appropriate success message on the profile page.
+##### Description
+An unresolved bug was identified on the homepage of the yacht booking system where users are able to filter and select past dates for bookings. This can cause confusion and frustration, as booking yachts for past dates is not possible.
 
-![Bug 3, Result](documentation/bugs/3/bug-3-2.webp)
+##### Steps to Reproduce
+1. Navigate to the homepage of the yacht booking system.
+2. Use the date filter to select a booking date.
+3. Observe that past dates are selectable in the date picker.
+4. Attempt to proceed with the booking process.
 
-### Unsolved Bugs
+##### Expected Behavior
+The date filter should block users from selecting past dates. Only current and future dates should be available for selection to ensure valid booking options.
 
-To the best of my knowledge, there are no unresolved bugs at the
-moment.
+##### Actual Behavior
+Users are able to select past dates, allowing them to attempt to book yachts for dates that have already passed.
+
+##### Impact
+This bug can lead to user frustration, as they may attempt to book yachts for invalid dates. It can also increase support requests due to booking errors.
+
+##### Suggested Fix
+1. Review the logic used in the date filter to ensure past dates are disabled in the date picker.
+2. Add validation to prevent bookings with past dates.
+3. Test the filtering functionality to ensure it works as expected after the fix.
+
+##### Conclusion
+Fixing this bug is crucial for improving the booking experience, ensuring users can only select valid dates and reducing confusion during the process.
+
+---
+
+#### Bug Report: Unresolved Issue on Sign-In Page - No Error Message for Incorrect Credentials
+
+##### Description
+A bug was identified on the sign-in page where users do not receive any feedback when they enter an incorrect username or password. This lack of feedback makes it difficult for users to correct their input and try again.
+
+##### Steps to Reproduce
+1. Navigate to the sign-in page.
+2. Enter an incorrect username or password.
+3. Click on the "Sign In" button.
+4. Observe that no error message is displayed to inform the user of the invalid credentials.
+
+##### Expected Behavior
+The system should display an error message when incorrect credentials are entered, guiding users to correct their input.
+
+##### Actual Behavior
+Currently, no feedback is provided when invalid credentials are entered, leading to a confusing experience.
+
+##### Impact
+This bug can cause frustration for users, as they may repeatedly attempt to log in without knowing why it fails.
+
+##### Suggested Fix
+1. Implement client-side validation to detect invalid credentials.
+2. Display a user-friendly error message or notification when invalid credentials are entered.
+3. Ensure the error message clearly indicates the issue, helping users correct their input.
+
+##### Conclusion
+Fixing this bug is important for enhancing the user experience on the sign-in page by providing immediate feedback when users enter incorrect credentials.
+
+---
+
+#### Bug Report: Unresolved Issue on Yacht Management Page - Fleet Navbar Button Appears Blue
+
+##### Description
+A bug was identified on the yacht management page where the "Fleet" navigation button is displayed in blue, even when the user is not on the fleet page. This happens because the URL starts with `/yachts`, incorrectly highlighting the button as active.
+
+##### Steps to Reproduce
+1. Navigate to the yacht management page.
+2. Observe the "Fleet" button in the navigation bar.
+3. Notice that the "Fleet" button is highlighted in blue, even though the user is not on the fleet page.
+4. Verify the URL starts with `/yachts`.
+
+##### Expected Behavior
+The "Fleet" button should only be highlighted when the user is on the fleet management page. It should reflect the actual active section.
+
+##### Actual Behavior
+The "Fleet" button is highlighted incorrectly, confusing users by suggesting they are in the fleet section when they are not.
+
+##### Impact
+This can cause confusion for users, as it misrepresents the current page and may lead to navigation issues.
+
+##### Suggested Fix
+1. Update the logic for determining which navigation buttons should be active, based on the exact URL.
+2. Ensure the "Fleet" button is only highlighted when the user is on the fleet management page.
+3. Test the changes to confirm the correct buttons are highlighted.
+
+##### Conclusion
+Fixing this bug will improve the navigation experience, ensuring users see the correct section highlighted, reducing confusion within the yacht management page.
 
 ### Mistakes
 
@@ -1854,6 +1876,38 @@ Set Up Cloudinary in env.py
 8. Add cloudinary configuration at the bottom of your static files declation in settings.py:
 
 `cloudinary.config(secure=True, )`
+
+### Flatpickr API
+
+![Flatpickr API](docs/images/features/yacht-detail-calend.webp)
+
+The **Flatpickr** library makes date selection easy and user-friendly in the yacht booking system. Here’s a quick overview of how it works:
+
+#### 1. Easy Setup
+Flatpickr is attached to the date input field (`#dateRange`), letting users pick a date range for their yacht booking. It starts working right after the booked dates are loaded, ensuring only available dates are shown.
+
+#### 2. Selecting Dates
+Users can select a start and end date for their booking. The system uses the `Y-m-d` date format to keep things consistent.
+
+#### 3. Blocking Booked Dates
+The system loads already booked dates from the server and blocks those dates in the calendar, so users can’t select unavailable times.
+
+#### 4. Tracking Selected Dates
+Selected dates are saved in a global variable (`selectedDateRange`), making it easy to access and use them throughout the system.
+
+#### 5. Handling Date Changes
+When users pick new dates, the system listens for changes and saves the new dates in an array (`dateRange`) to be sent when the booking form is submitted.
+
+#### 6. Booking with Flatpickr
+Once the user clicks **Book Now**, the selected dates are sent as part of the booking request. The system handles the submission smoothly.
+
+### Why Flatpickr?
+
+- **User-Friendly**: The calendar is easy to use and makes date picking quick and simple.
+- **Error-Free**: Blocked dates help avoid booking mistakes.
+- **Flexibility**: Users can select a range of dates, which is important for booking yachts.
+
+Flatpickr improves the booking process by making it easier for users to choose dates and ensuring they can’t book unavailable times.
 
 ### Django WhiteNoise
 This project uses [Django WhiteNoise](https://whitenoise.readthedocs.io/en/stable/django.html) to serve static files
@@ -2066,21 +2120,90 @@ capabilities.
 
 ## Future Improvements
 
-Websites with a backend structure similar to this project offer a wide range of opportunities for continuous improvement and modernization. This ongoing evolution is driven not only by advancing technologies but also by the practical experiences of a real working team. As the team uses the site and gains real-world insights, the site can be further customized and adapted to meet the specific needs of the team and business.
+### Future Improvement: Addition of a Model and News Page
 
-Here are a few key improvements planned for the future:
+#### Overview
+To improve user engagement and keep the community informed, the addition of a model and a news page is proposed. This will provide a dedicated space for showcasing new features, updates, and recently added yachts to the fleet.
 
-1. **Enhanced Appointment Management System**
-  - Develop a more intuitive appointment management system that simplifies each stage of the process. This includes allowing admins to easily view, edit, and delete appointments as needed. The goal is to make the system as user-friendly and efficient as possible for all users involved.
+#### Objectives
+- **Inform Users**: Offer a section where users can find updates and new features easily.
+- **Showcase Yachts**: Highlight newly added yachts with details and booking options.
+- **Enhance Experience**: Keep users engaged with regular updates.
 
-2. **Addition of Articles and Helpful Materials**
-  - Add articles and useful materials to the site that address issues related to the clinic's profile or prepare patients for various procedures. This will provide valuable information and support to patients, enhancing their experience and knowledge.
+#### Proposed Features
 
-3. **Search Functionality**
-  - Implement a search mechanism for the website. This will enable users to search through articles, doctors to search for patients, and admins to search through all users. This feature will enhance the usability and efficiency of the platform.
+##### 1. Model Addition
+- **Dynamic Content**: Create a model to manage news articles and yacht announcements with fields like title, description, image URL, date, and tags.
+- **Admin Interface**: Ensure easy management of articles (add, edit, delete) via the admin panel.
 
-4. **Interactive Image**
-  - The main page of this project was designed to include an interactive image feature. However, due to time constraints, this feature was not implemented in the current version. I plan to add this interactive element in future updates to enhance the user experience and functionality of the site.
+##### 2. News Page
+- **Display Section**: A dedicated news page with recent articles, thumbnails, descriptions, and filtering options.
+- **Detailed View**: Each news item links to a detailed view with more content, images, and booking options.
 
-5. **And Much More**
-  - Continuously add features and improvements as necessary, based on real-world use and feedback from the team and users. This ongoing development will ensure the platform remains relevant and effective in meeting its users' needs.
+##### 3. Notifications
+- **User Alerts**: Implement notifications to keep users informed about updates and newly added yachts.
+
+#### Conclusion
+This addition will enhance user experience by keeping them informed about updates and encouraging them to explore the new yachts, ultimately driving more bookings.
+
+---
+
+### Future Improvement: Discounts and Benefits for Loyal Customers
+
+#### Overview
+To reward loyal customers and encourage retention, a loyalty program with discounts and benefits is proposed. This will recognize frequent bookers and motivate them to continue using the platform.
+
+#### Objectives
+- **Reward Loyalty**: Offer rewards to frequent users to build long-term relationships.
+- **Increase Bookings**: Drive repeat bookings through attractive incentives.
+- **Customer Satisfaction**: Provide a better experience by recognizing and rewarding loyalty.
+
+#### Proposed Features
+
+##### 1. Loyalty Program Structure
+- **Points System**: Customers earn points for bookings and can redeem them for discounts.
+- **Tiered Levels**: Silver, Gold, and Platinum tiers with increasing benefits like discounts and exclusive access to new yachts.
+
+##### 2. Discounts and Offers
+- **Discount Codes**: Personalized codes for loyal customers, providing instant savings.
+- **Special Promotions**: Exclusive offers like double points weeks or anniversary discounts.
+
+##### 3. Communication
+- **Loyalty Dashboard**: A user-friendly dashboard displaying points, tier status, and available rewards.
+- **Regular Updates**: Notify customers about new rewards and promotions.
+
+#### Conclusion
+A loyalty program will enhance customer satisfaction, encourage repeat bookings, and build a loyal user base that drives business growth.
+
+---
+
+### Future Improvement: Support Channel for Customer Inquiries
+
+#### Overview
+To provide better customer support, a dedicated support channel is proposed. This will help users get quick answers to their questions, improving overall satisfaction with the platform.
+
+#### Objectives
+- **Improve Accessibility**: Provide easy access to help.
+- **Enhance Satisfaction**: Ensure quick responses to reduce frustration.
+- **Foster Engagement**: Encourage users to interact with the platform by offering support.
+
+#### Proposed Features
+
+##### 1. Multi-Channel Support Options
+- **Live Chat**: Real-time assistance through chat during business hours.
+- **Email Support**: A dedicated support email with responses within 24-48 hours.
+- **FAQ Section**: A comprehensive FAQ section to help users find answers quickly.
+
+##### 2. User-Friendly Interface
+- **Support Widget**: A widget providing quick access to chat, email, and FAQs.
+- **Ticketing System**: Allows users to track inquiries and receive notifications.
+
+##### 3. Knowledge Base
+- **Resource Library**: Articles, guides, and tutorials to help users navigate the platform.
+- **Video Tutorials**: Demonstrations on booking yachts, using the platform, and resolving common issues.
+
+##### 4. Community Forum
+- **Customer Forum**: A space where users can share experiences and help each other, enhancing engagement.
+
+#### Conclusion
+A dedicated support channel will improve customer satisfaction by providing multiple avenues for assistance, fostering a supportive community, and ensuring that users get the help they need efficiently.

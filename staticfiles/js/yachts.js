@@ -1,67 +1,77 @@
-document.addEventListener("DOMContentLoaded", async function () {
-  console.log("DOMContentLoaded event fired")
+/* jshint esversion: 11 */
+/* global flatpickr */
 
-  let selectedDateRange = [] // Store selected date range globally
-  let dateRange = [] // New array to store start and end dates
-  const dateRangeInput = document.querySelector("#dateRange")
+document.addEventListener("DOMContentLoaded", async function () {
+  console.log("DOMContentLoaded event fired");
+
+  let selectedDateRange = []; // Store selected date range globally
+  let dateRange = []; // New array to store start and end dates
+  const dateRangeInput = document.querySelector("#dateRange");
 
   // Initialize yacht ID variable
-  let yachtId = null
-  const listItems = document.querySelectorAll("li")
+  let yachtId = null;
+  const listItems = document.querySelectorAll("li");
 
   // Find yacht ID by looping through all <li> elements
   listItems.forEach((item) => {
     if (item.textContent.includes("ID:")) {
-      yachtId = item.textContent.replace("ID:", "").trim()
+      yachtId = item.textContent.replace("ID:", "").trim();
     }
-  })
+  });
 
   // Check if yacht ID was found
   if (!yachtId) {
-    console.error("Yacht ID not found.")
-    return // Stop execution if yacht ID is not found
+    console.error("Yacht ID not found.");
+    return; // Stop execution if yacht ID is not found
   }
-  console.log("Yacht ID found:", yachtId)
+  console.log("Yacht ID found:", yachtId);
 
-  // Fetch booked dates
+  /**
+   * Function to fetch booked dates for the selected yacht
+   * @returns {Promise<Array>} - List of booked dates
+   */
   async function fetchBookedDates() {
     try {
-      const response = await fetch(`/yachts/yacht/${yachtId}/bookings/`)
+      const response = await fetch(`/yachts/yacht/${yachtId}/bookings/`);
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`)
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      const data = await response.json()
-      return data.booked_dates // Return booked dates directly
+      const data = await response.json();
+      return data.booked_dates; // Return booked dates directly
     } catch (error) {
-      console.error("Error fetching booked dates:", error)
-      return [] // Return an empty array on error
+      console.error("Error fetching booked dates:", error);
+      return []; // Return an empty array on error
     }
   }
 
-  // Generate a list of dates to disable for booking
+  /**
+   * Function to generate a list of disabled dates based on booked dates
+   * @param {Array} bookedDates - Array of booked date ranges
+   * @returns {Array} - List of disabled dates
+   */
   function getDisabledDates(bookedDates) {
-    const disabledDates = []
+    const disabledDates = [];
 
     bookedDates.forEach((dateRange) => {
-      const startDate = new Date(dateRange.start)
-      const endDate = new Date(dateRange.end)
-      let currentDate = new Date(startDate)
+      const startDate = new Date(dateRange.start);
+      const endDate = new Date(dateRange.end);
+      let currentDate = new Date(startDate);
 
       while (currentDate <= endDate) {
-        disabledDates.push(currentDate.toISOString().split("T")[0]) // Convert to YYYY-MM-DD format
-        currentDate.setDate(currentDate.getDate() + 1) // Increment the date
+        disabledDates.push(currentDate.toISOString().split("T")[0]); // Convert to YYYY-MM-DD format
+        currentDate.setDate(currentDate.getDate() + 1); // Increment the date
       }
-    })
+    });
 
-    return disabledDates
+    return disabledDates;
   }
 
   // Log yacht ID to ensure it's found correctly
-  console.log("Yacht ID:", yachtId)
+  console.log("Yacht ID:", yachtId);
 
   // Fetch booked dates and initialize Flatpickr
-  const bookedDates = await fetchBookedDates()
-  const disabledDates = getDisabledDates(bookedDates)
+  const bookedDates = await fetchBookedDates();
+  const disabledDates = getDisabledDates(bookedDates);
 
   // Initialize Flatpickr for date selection
   if (dateRangeInput) {
@@ -73,58 +83,54 @@ document.addEventListener("DOMContentLoaded", async function () {
       onChange: function (selectedDates) {
         if (selectedDates.length === 2) {
           // Store the selected date range globally
-          selectedDateRange = [selectedDates[0], selectedDates[1]]
+          selectedDateRange = [selectedDates[0], selectedDates[1]];
 
           // Store start and end dates in the dateRange array
-          const startDate = new Date(selectedDates[0])
-          const endDate = new Date(selectedDates[1])
+          const startDate = new Date(selectedDates[0]);
+          const endDate = new Date(selectedDates[1]);
 
           // Convert dates to local format
           dateRange = [
-            `${startDate.getFullYear()}-${String(
-              startDate.getMonth() + 1
-            ).padStart(2, "0")}-${String(startDate.getDate()).padStart(
-              2,
-              "0"
-            )}`, // Start Date
-            `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(
-              2,
-              "0"
-            )}-${String(endDate.getDate()).padStart(2, "0")}`, // End Date
-          ]
+            `${startDate.getFullYear()}-${String(startDate.getMonth() + 1).padStart(2, "0")}-${String(startDate.getDate()).padStart(2, "0")}`, // Start Date
+            `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, "0")}-${String(endDate.getDate()).padStart(2, "0")}`, // End Date
+          ];
         }
       },
-    })
+    });
   }
 
-  // Fetch CSRF token for form submission
+  /**
+   * Function to fetch the CSRF token for form submission
+   * @returns {string|null} - CSRF token
+   */
   function getCSRFToken() {
-    let cookieValue = null
+    let cookieValue = null;
     if (document.cookie && document.cookie !== "") {
-      const cookies = document.cookie.split("; ")
+      const cookies = document.cookie.split("; ");
       for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim()
+        const cookie = cookies[i].trim();
         if (cookie.startsWith("csrftoken=")) {
-          cookieValue = decodeURIComponent(
-            cookie.substring("csrftoken=".length)
-          )
-          break
+          cookieValue = decodeURIComponent(cookie.substring("csrftoken=".length));
+          break;
         }
       }
     }
-    return cookieValue
+    return cookieValue;
   }
 
-  // Handle form submission for booking
+  /**
+   * Function to handle form submission for booking
+   * @param {Event} event - Form submission event
+   */
   function handleFormSubmit(event) {
-    event.preventDefault() // Prevent default form submission
+    event.preventDefault(); // Prevent default form submission
 
     if (dateRange.length === 2) {
-      console.log("Date Range:", `${dateRange[0]} to ${dateRange[1]}`)
+      console.log("Date Range:", `${dateRange[0]} to ${dateRange[1]}`);
 
-      const formData = new FormData()
-      formData.append("yacht", yachtId)
-      formData.append("date_range", `${dateRange[0]} to ${dateRange[1]}`)
+      const formData = new FormData();
+      formData.append("yacht", yachtId);
+      formData.append("date_range", `${dateRange[0]} to ${dateRange[1]}`);
 
       // Send a POST request for booking
       fetch("/booking/booking/create/", {
@@ -136,27 +142,27 @@ document.addEventListener("DOMContentLoaded", async function () {
       })
         .then((response) => {
           if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`)
+            throw new Error(`HTTP error! Status: ${response.status}`);
           }
-          return response.json()
+          return response.json();
         })
         .then((data) => {
-          console.log("Success:", data)
+          console.log("Success:", data);
           if (data.success) {
-            window.location.href = data.redirect_url
+            window.location.href = data.redirect_url;
           } else {
-            alert(data.message || "An error occurred.")
+            alert(data.message || "An error occurred.");
           }
         })
         .catch((error) => {
-          console.error("Error during booking:", error)
-          alert("An error occurred during booking.")
-        })
+          console.error("Error during booking:", error);
+          alert("An error occurred during booking.");
+        });
     } else {
-      alert("No valid date range selected.")
+      alert("No valid date range selected.");
     }
   }
 
   // Attach form submission handler globally
-  window.handleFormSubmit = handleFormSubmit
-})
+  window.handleFormSubmit = handleFormSubmit;
+});
