@@ -193,9 +193,7 @@ About Us
         Only registered users can leave comments.
     </div>
     <!-- Sign In button -->
-    <button class="mb-3 mt-3">
-        <a href="{% url 'account_login' %}" class="base-btn">Sign In</a>
-    </button>
+        <a class="base-btn mb-3 mt-3" href="{% url 'account_login' %}">Sign In</a>
     {% endif %}
 
     <!-- Displaying reviews -->
@@ -306,6 +304,7 @@ About Us
             </div>
         </div>
     </div>
+</div>
     {% endblock %}
 
     {% block extra_js %}
