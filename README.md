@@ -1216,42 +1216,6 @@ During the testing and validation phase, an error that occurred in the early sta
 ![Profile Page](docs/images/w3c-validation/profile.webp)
 </details>
 
-<details>
-<summary>Edit Profile Page, no errors</summary>
-
-![Edit Profile Page](documentation/pages/responsiv/profil-patient-page-responsive.webp)
-</details>
-
-<details>
-<summary>Yachts Management Page, no errors</summary>
-
-![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
-</details>
-
-<details>
-<summary>Add Yacht Page, no errors</summary>
-
-![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
-</details>
-
-<details>
-<summary>Edit Yacht Page, no errors</summary>
-
-![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
-</details>
-
-<details>
-<summary>Users Management Page, no errors</summary>
-
-![Users Management Page](documentation/pages/responsiv/all-users-page-responsive.webp)
-</details>
-
-<details>
-<summary>Edit Users Profile Page, no errors</summary>
-
-![UEdit Users Profile Page](documentation/pages/responsiv/all-users-page-responsive.webp)
-</details>
-
 The other pages (Yacht Management, User Management, adding yachts, or editing user profiles) are not accessible without administrator privileges, so it was pointless to validate them since the validation would repeatedly check the same page — the login page.
 
 #### CSS
@@ -1455,7 +1419,7 @@ All pages loaded equally well across these browsers. As an example, the most vis
 <details>
 <summary>Our Fleet Page Chrome</summary>
 
-![Chrome. Our Fleet](documentation/pages/home-page-full.webp)
+![Chrome. Our Fleet](docs/images/compatibility/chrome.webp)
 </details>
 
 #### Firefox
@@ -1463,7 +1427,7 @@ All pages loaded equally well across these browsers. As an example, the most vis
 <details>
 <summary>Our Fleet Firefox</summary>
 
-![Firefox. Our Fleet](documentation/pages/fire-shot-firefox-index-full.webp)
+![Firefox. Our Fleet](docs/images/compatibility/firefox.webp)
 </details>
 
 #### Safari
@@ -1471,7 +1435,7 @@ All pages loaded equally well across these browsers. As an example, the most vis
 <details>
 <summary>Our Fleet Safari</summary>
 
-![Safari. Our Fleet](documentation/pages/safari-index-full.webp)
+![Safari. Our Fleet](docs/images/compatibility/safari.webp)
 </details>
 
 
