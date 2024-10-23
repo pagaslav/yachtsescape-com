@@ -3,7 +3,7 @@
 {% load static %}
 
 <header> 
-    <div class="header-short">
+    <div class="{% if request.path == '/' %}header{% else %}header-short{% endif %}">
 
         <!-- Transparent overlay -->
         <div class="header-overlay"></div>
