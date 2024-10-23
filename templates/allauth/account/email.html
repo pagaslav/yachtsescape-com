@@ -1,12 +1,16 @@
-<!-- templates/allauth/account/email.html -->
-
 {% extends "base.html" %}
 {% load static %}
 {% load allauth %}
 {% load i18n %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/allauth.css' %}">
+  <style>
+    @media (max-width: 991.98px) {
+        .allauth-header-content {
+            display: none !important;
+        }
+    }
+  </style>
 {% endblock %}
 
 {% block title %}
