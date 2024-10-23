@@ -968,7 +968,7 @@ These resolutions represent common screen sizes for each device category, ensuri
 <details>
 <summary>Yachts Management Page</summary>
 
-![Yachts Management Page](documentation/pages/responsiv/add-doctor-page-responsive.webp)
+![Yachts Management Page](docs/images/respons/yacht-managment.webp)
 </details>
 
 
