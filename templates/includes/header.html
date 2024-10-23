@@ -111,23 +111,23 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="accountDropdownMenu" role="menu">
                                 {% if user.is_superuser or user.is_staff %}
                                 <li>
-                                    <a class="dropdown-item" href="{% url 'yachts_management' %}" role="menuitem" aria-label="Yachts Management">
+                                    <a class="dropdown-item" href="{% url 'yachts_management' %}" aria-label="Yachts Management">
                                         Yachts Management
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{% url 'users_management' %}" role="menuitem" aria-label="User Management">
+                                    <a class="dropdown-item" href="{% url 'users_management' %}" aria-label="User Management">
                                         User Management
                                     </a>
                                 </li>
                                 {% endif %}
                                 <li>
-                                    <a class="dropdown-item" href="{% url 'profile' %}" role="menuitem" aria-label="View My Profile">
+                                    <a class="dropdown-item" href="{% url 'profile' %}" aria-label="View My Profile">
                                         My Profile
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{% url 'account_logout' %}" role="menuitem" aria-label="Sign Out">
+                                    <a class="dropdown-item" href="{% url 'account_logout' %}" aria-label="Sign Out">
                                         Sign Out
                                     </a>
                                 </li>
@@ -162,7 +162,7 @@
                                         aria-label="View fishing yachts">Fishing</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{% url 'yacht_list' %}?type=Celebrations" role="menuitem"
+                                    <a class="dropdown-item" href="{% url 'yacht_list' %}?type=Celebrations"
                                         aria-label="View yachts for celebrations">Celebrations</a>
                                 </li>
                             </ul>
