@@ -4,8 +4,8 @@
 document.addEventListener("DOMContentLoaded", async function () {
   console.log("DOMContentLoaded event fired");
 
-  let selectedDateRange = []; // Store selected date range globally
-  let dateRange = []; // New array to store start and end dates
+  let selectedDateRange = [];
+  let dateRange = [];
   const dateRangeInput = document.querySelector("#dateRange");
 
   // Initialize yacht ID variable
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Check if yacht ID was found
   if (!yachtId) {
     console.error("Yacht ID not found.");
-    return; // Stop execution if yacht ID is not found
+    return;
   }
   console.log("Yacht ID found:", yachtId);
 
@@ -37,10 +37,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      return data.booked_dates; // Return booked dates directly
+      return data.booked_dates;
     } catch (error) {
       console.error("Error fetching booked dates:", error);
-      return []; // Return an empty array on error
+      return [];
     }
   }
 
@@ -58,8 +58,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       let currentDate = new Date(startDate);
 
       while (currentDate <= endDate) {
-        disabledDates.push(currentDate.toISOString().split("T")[0]); // Convert to YYYY-MM-DD format
-        currentDate.setDate(currentDate.getDate() + 1); // Increment the date
+        disabledDates.push(currentDate.toISOString().split("T")[0]); 
+        currentDate.setDate(currentDate.getDate() + 1); 
       }
     });
 
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       mode: "range",
       minDate: "today",
       dateFormat: "Y-m-d",
-      disable: disabledDates, // Use the array of disabled dates directly
+      disable: disabledDates,
       onChange: function (selectedDates) {
         if (selectedDates.length === 2) {
           // Store the selected date range globally
@@ -91,8 +91,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           // Convert dates to local format
           dateRange = [
-            `${startDate.getFullYear()}-${String(startDate.getMonth() + 1).padStart(2, "0")}-${String(startDate.getDate()).padStart(2, "0")}`, // Start Date
-            `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, "0")}-${String(endDate.getDate()).padStart(2, "0")}`, // End Date
+            `${startDate.getFullYear()}-${String(startDate.getMonth() + 1).padStart(2, "0")}-${String(startDate.getDate()).padStart(2, "0")}`,
+            `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, "0")}-${String(endDate.getDate()).padStart(2, "0")}`,
           ];
         }
       },
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", async function () {
    * @param {Event} event - Form submission event
    */
   function handleFormSubmit(event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
 
     if (dateRange.length === 2) {
       console.log("Date Range:", `${dateRange[0]} to ${dateRange[1]}`);

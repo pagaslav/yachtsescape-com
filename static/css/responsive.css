@@ -49,7 +49,6 @@
   .navbar-nav {
     display: flex;
     flex-direction: column !important;
-    /* z-index: 1050; */
   }
 
   /* Style individual nav links (menu items) */
