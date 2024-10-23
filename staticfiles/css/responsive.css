@@ -12,8 +12,8 @@
 
 @media (max-width: 991.98px) {
 
-  /* Hide top bar for screens smaller than 992px */
-  .header-top-bar {
+  .header-top-bar,
+  .allauth-header-content {
     display: none !important;
   }
 
@@ -22,7 +22,6 @@
   .breadcrumb-container {
     display: none !important;
   }
-
 
   .header,
   .header-short {
@@ -50,7 +49,6 @@
   .navbar-nav {
     display: flex;
     flex-direction: column !important;
-    /* z-index: 1050; */
   }
 
   /* Style individual nav links (menu items) */
