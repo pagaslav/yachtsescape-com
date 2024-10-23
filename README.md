@@ -1172,46 +1172,54 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 #### HTML
 I have used the recommended [HTML W3C Validator](https://validator.w3.org/) to validate all of my HTML files.
 
-<details>
-<summary>Home Page, no errors</summary>
+During the testing and validation phase, an error that occurred in the early stages of writing the HTML code was identified. In the header, I created a class named header, which is considered potentially problematic. So far, I have not noticed any issues related to this. In the next stages of website development, I will, of course, correct this oversight. Since this error is in the header template, it appears on all pages. Otherwise, the code did not produce any more errors, only informational messages and warnings, mostly related to the Django template syntax.
 
-![Home Page](documentation/pages/responsiv/home-page-responsive.webp)
+<details>
+<summary>Home Page</summary>
+
+![Home Page](docs/images/w3c-validation/index.webp)
 </details>
 
 <details>
-<summary>Log in Page, no errors</summary>
+<summary>Log in Page</summary>
 
-![Log in Page](documentation/pages/responsiv/login-page-responsive.webp)
+![Log in Page](docs/images/w3c-validation/login.webp)
 </details>
 
 <details>
-<summary>Sign Up Page, no errors</summary>
+<summary>Sign Up Page</summary>
 
-![Sign Up Page](documentation/pages/responsiv/signup-page-responsive.webp)
+![Sign Up Page](docs/images/w3c-validation/signup.webp)
 </details>
 
 <details>
-<summary>Our Fleet, no errors</summary>
+<summary>Sign Out Page</summary>
 
-![Our Fleet](documentation/pages/responsiv/doctors-page-responsive.webp)
+![Sign Out Page](docs/images/w3c-validation/logout.webp)
 </details>
 
 <details>
-<summary> Yacht Detail Page, no errors</summary>
+<summary>Our Fleet</summary>
 
-![Yacht Detail Page](documentation/pages/responsiv/medical-record-page-responsive.webp)
+![Our Fleet](docs/images/w3c-validation/yachts-list.webp)
 </details>
 
 <details>
-<summary>About Us Page, no errors</summary>
+<summary> Yacht Detail Page</summary>
 
-![About Us Page](documentation/pages/responsiv/about-page-responsive.webp)
+![Yacht Detail Page](docs/images/w3c-validation/yachts-det.webp)
 </details>
 
 <details>
-<summary>Edit Profile Page, no errors</summary>
+<summary>About Us Page</summary>
 
-![Edit Profile Page](documentation/pages/responsiv/profil-patient-page-responsive.webp)
+![About Us Page](docs/images/w3c-validation/about.webp)
+</details>
+
+<details>
+<summary>Profile Page</summary>
+
+![Profile Page](docs/images/w3c-validation/profile.webp)
 </details>
 
 <details>
@@ -1250,23 +1258,7 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org/) to v
 ![UEdit Users Profile Page](documentation/pages/responsiv/all-users-page-responsive.webp)
 </details>
 
-<details>
-<summary> 404 Page, no errors</summary>
-
-![404 Page](documentation/pages/responsiv/404-page-responsive.webp)
-</details>
-
-<details>
-<summary> 403 Page, no errors</summary>
-
-![403 Page](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary> 500 Page, no errors</summary>
-
-![500 Page](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
+The other pages (Yacht Management, User Management, adding yachts, or editing user profiles) are not accessible without administrator privileges, so it was pointless to validate them since the validation would repeatedly check the same page — the login page.
 
 #### CSS
 The following CSS files were validated to ensure that the styles used in the **YachtsEscape** project are error-free:
@@ -1310,12 +1302,12 @@ details>
 <details>
 <summary>Desktop</summary>
 
-![Home Page Desktop](documentation/pages/responsiv/home-page-responsive.webp)
+![Home Page Desktop](docs/images/lighthouse/home-d.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Home Page Mobile](documentation/pages/responsiv/home-page-responsive.webp)
+![Home Page Mobile](docs/images/lighthouse/home-m.webp)
 </details>
 
 #### Log in Page
@@ -1323,12 +1315,12 @@ details>
 <details>
 <summary>Desktop</summary>
 
-![Log in Page Desktop](documentation/pages/responsiv/login-page-responsive.webp)
+![Log in Page Desktop](docs/images/lighthouse/login-d.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Log in Page Mobile](documentation/pages/responsiv/login-page-responsive.webp)
+![Log in Page Mobile](docs/images/lighthouse/login-m.webp)
 </details>
 
 #### Sign Up Page
@@ -1336,12 +1328,12 @@ details>
 <details>
 <summary>Desktop</summary>
 
-![Sign Up Page Desktop](documentation/pages/responsiv/signup-page-responsive.webp)
+![Sign Up Page Desktop](docs/images/lighthouse/signup-d.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Sign Up Page Mobile](documentation/pages/responsiv/signup-page-responsive.webp)
+![Sign Up Page Mobile](docs/images/lighthouse/signup-m.webp)
 </details>
 
 #### Our Fleet
@@ -1349,12 +1341,12 @@ details>
 <details>
 <summary>Desktop</summary>
 
-![Our Fleet Desktop](documentation/pages/responsiv/doctors-page-responsive.webp)
+![Our Fleet Desktop](docs/images/lighthouse/yacht-list-d.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Our Fleet Mobile](documentation/pages/responsiv/doctors-page-responsive.webp)
+![Our Fleet Mobile](docs/images/lighthouse/yacht-list-m.webp)
 </details>
 
 #### Yacht Detail Page
@@ -1362,12 +1354,12 @@ details>
 <details>
 <summary>Desktop</summary>
 
-![Yacht Detail Page Desktop](documentation/pages/responsiv/medical-record-page-responsive.webp)
+![Yacht Detail Page Desktop](docs/images/lighthouse/yacht-det-d.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Yacht Detail Page Mobile](documentation/pages/responsiv/medical-record-page-responsive.webp)
+![Yacht Detail Page Mobile](docs/images/lighthouse/yacht-det.webp)
 </details>
 
 #### About Us Page
@@ -1375,12 +1367,25 @@ details>
 <details>
 <summary>Desktop</summary>
 
-![About Us Page Desktop](documentation/pages/responsiv/about-page-responsive.webp)
+![About Us Page Desktop](docs/images/lighthouse/about-d.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![About Us Page Mobile](documentation/pages/responsiv/about-page-responsive.webp)
+![About Us Page Mobile](docs/images/lighthouse/about-m.webp)
+</details>
+
+#### Profile Page
+
+<details>
+<summary>Desktop</summary>
+
+![Profile Page Desktop](docs/images/lighthouse/profile-d.webp)
+</details>
+<details>
+<summary>Mobile</summary>
+
+![Profile Page Mobile](docs/images/lighthouse/profile-m.webp)
 </details>
 
 #### Edit Profile Page
@@ -1388,12 +1393,12 @@ details>
 <details>
 <summary>Desktop</summary>
 
-![Edit Profile Page Desktop](documentation/pages/responsiv/profil-patient-page-responsive.webp)
+![Edit Profile Page Desktop](docs/images/lighthouse/profile-edit-d.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Edit Profile Page Mobile](documentation/pages/responsiv/profil-patient-page-responsive.webp)
+![Edit Profile Page Mobile](docs/images/lighthouse/profile-edit-m.webp)
 </details>
 
 #### Yachts Management Page
@@ -1401,12 +1406,12 @@ details>
 <details>
 <summary>Desktop</summary>
 
-![Yachts Management Page Desktop](documentation/pages/responsiv/add-doctor-page-responsive.webp)
+![Yachts Management Page Desktop](docs/images/lighthouse/yacht-manag-d.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Yachts Management Page Mobile](documentation/pages/responsiv/add-doctor-page-responsive.webp)
+![Yachts Management Page Mobile](docs/images/lighthouse/yacht-manag-m.webp)
 </details>
 
 #### Add Yacht Page
@@ -1414,25 +1419,12 @@ details>
 <details>
 <summary>Desktop</summary>
 
-![Add Yacht Page Desktop](documentation/pages/responsiv/add-doctor-page-responsive.webp)
+![Add Yacht Page Desktop](docs/images/lighthouse/add-yacht-d.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Add Yacht Page Mobile](documentation/pages/responsiv/add-doctor-page-responsive.webp)
-</details>
-
-#### Edit Yacht Page
-
-<details>
-<summary>Desktop</summary>
-
-![Edit Yacht Page Desktop](documentation/pages/responsiv/add-doctor-page-responsive.webp)
-</details>
-<details>
-<summary>Mobile</summary>
-
-![Edit Yacht Page Mobile](documentation/pages/responsiv/add-doctor-page-responsive.webp)
+![Add Yacht Page Mobile](docs/images/lighthouse/add-yacht-m.webp)
 </details>
 
 #### Users Management Page
@@ -1440,65 +1432,12 @@ details>
 <details>
 <summary>Desktop</summary>
 
-![Users Management Page Desktop](documentation/pages/responsiv/all-users-page-responsive.webp)
+![Users Management Page Desktop](docs/images/lighthouse/user-manag-d.webp)
 </details>
 <details>
 <summary>Mobile</summary>
 
-![Users Management Page Mobile](documentation/pages/responsiv/all-users-page-responsive.webp)
-</details>
-
-#### Edit Users Profile Page
-
-<details>
-<summary>Desktop</summary>
-
-![Edit Users Profile Page Desktop](documentation/pages/responsiv/all-users-page-responsive.webp)
-</details>
-<details>
-<summary>Mobile</summary>
-
-![Edit Users Profile Page Mobile](documentation/pages/responsiv/all-users-page-responsive.webp)
-</details>
-
-#### 404 Page
-
-<details>
-<summary>Desktop</summary>
-
-![404 Page Desktop](documentation/pages/responsiv/404-page-responsive.webp)
-</details>
-<details>
-<summary>Mobile</summary>
-
-![404 Page Mobile](documentation/pages/responsiv/404-page-responsive.webp)
-</details>
-
-#### 403 Page
-
-<details>
-<summary>Desktop</summary>
-
-![403 Page Desktop](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-<details>
-<summary>Mobile</summary>
-
-![403 Page Mobile](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-#### 500 Page
-
-<details>
-<summary>Desktop</summary>
-
-![500 Page Desktop](documentation/pages/responsiv/403-page-responsive.webp)
-</details>
-
-<details>
-<summary>Mobile</summary>
-
-![500 Page Mobile](documentation/pages/responsiv/403-page-responsive.webp)
+![Users Management Page Mobile](docs/images/lighthouse/user-manag.webp)
 </details>
 
 
@@ -1515,28 +1454,30 @@ Safari.
 | FireFox | Good | Good |
 | Safari | Good | Good |
 
+All pages loaded equally well across these browsers. As an example, the most visually rich page, the yacht listing page, is shown in the screenshot below.
+
 #### Chrome
 
 <details>
-<summary>Home Page Chrome</summary>
+<summary>Our Fleet Page Chrome</summary>
 
-![Chrome. Index page](documentation/pages/home-page-full.webp)
+![Chrome. Our Fleet](documentation/pages/home-page-full.webp)
 </details>
 
 #### Firefox
 
 <details>
-<summary>Home Page Firefox</summary>
+<summary>Our Fleet Firefox</summary>
 
-![Firefox. Index page](documentation/pages/fire-shot-firefox-index-full.webp)
+![Firefox. Our Fleet](documentation/pages/fire-shot-firefox-index-full.webp)
 </details>
 
 #### Safari
 
 <details>
-<summary>Home Page Safari</summary>
+<summary>Our Fleet Safari</summary>
 
-![Safari. Index page](documentation/pages/safari-index-full.webp)
+![Safari. Our Fleet](documentation/pages/safari-index-full.webp)
 </details>
 
 
@@ -1687,10 +1628,11 @@ Fixing this bug is important for enhancing the user experience on the sign-in pa
 A bug was identified on the yacht management page where the "Fleet" navigation button is displayed in blue, even when the user is not on the fleet page. This happens because the URL starts with `/yachts`, incorrectly highlighting the button as active.
 
 ##### Steps to Reproduce
-1. Navigate to the yacht management page.
-2. Observe the "Fleet" button in the navigation bar.
-3. Notice that the "Fleet" button is highlighted in blue, even though the user is not on the fleet page.
-4. Verify the URL starts with `/yachts`.
+1. Log in as an administrator.
+2. Navigate to the yacht management page.
+3. Observe the "Fleet" button in the navigation bar.
+4. Notice that the "Fleet" button is highlighted in blue, even though the user is not on the fleet page.
+5. Verify the URL starts with `/yachts`.
 
 ##### Expected Behavior
 The "Fleet" button should only be highlighted when the user is on the fleet management page. It should reflect the actual active section.
@@ -1699,7 +1641,7 @@ The "Fleet" button should only be highlighted when the user is on the fleet mana
 The "Fleet" button is highlighted incorrectly, confusing users by suggesting they are in the fleet section when they are not.
 
 ##### Impact
-This can cause confusion for users, as it misrepresents the current page and may lead to navigation issues.
+This can cause confusion for users, as it misrepresents the current page and may lead to navigation issues. However, this issue is only visible to administrators, as the yacht management section is only accessible to users logged in as administrators.
 
 ##### Suggested Fix
 1. Update the logic for determining which navigation buttons should be active, based on the exact URL.
@@ -2034,9 +1976,7 @@ A tutorial on how to do that can be found [here](https://www.gitpod.io/docs/conf
 
 ### Content
 
-### Images
-
-#### Index page
+#### Yachts
 
 1. Doctor Illustrator Design, [License.](documentation/images/image-1-license-certificate.txt)
 2. Physiotherapist check X ray, [License.](documentation/images/image-2-license-certificate.txt)
@@ -2045,20 +1985,26 @@ A tutorial on how to do that can be found [here](https://www.gitpod.io/docs/conf
 5. Ligament Reconstruction image was generated using AI from [ChatGPT](https://www.openai.com/chatgpt)
 6. Bandaging woman's injured knee, [License.](documentation/images/image-6-license-certificate.txt)
 7. Injection Procedures, [License.](documentation/images/image-7-license-certificate.txt)
+8. Dr. John Doe photo, [License.](documentation/images/image-8-license-certificate.txt)
+9. Dr. Jane Smith photo, [License.](documentation/images/image-9-license-certificate.txt)
+10. Dr. Emily Johnson photo, [License.](documentation/images/image-10-license-certificate.txt)
+11. Dr. Michael Brown photo, [License.](documentation/images/image-11-license-certificate.txt)
+12. Hospital reception counter, [License.](documentation/images/image-12-license-certificate.txt)
+13. Busy Hospital Corridor, [License.](documentation/images/image-13-license-certificate.txt)
+14. Modern operating theatre, [License.](documentation/images/image-14-license-certificate.txt)
+15. A room of an hospital, [License.](documentation/images/image-15-license-certificate.txt)
+16.
+17.
 
-#### Our Doctors page
+#### People
 
-1. Dr. John Doe photo, [License.](documentation/images/image-8-license-certificate.txt)
-2. Dr. Jane Smith photo, [License.](documentation/images/image-9-license-certificate.txt)
-3. Dr. Emily Johnson photo, [License.](documentation/images/image-10-license-certificate.txt)
-4. Dr. Michael Brown photo, [License.](documentation/images/image-11-license-certificate.txt)
+1. Candid portrait of sailor wearing life jacket, [License.](docs/licenses/people/license_certificate_AYEW2S89Q4.txt)
+2. Physiotherapist check X ray, [License.](documentation/images/image-2-license-certificate.txt)
+3. Hands operating a patient, [License.](documentation/images/image-3-license-certificate.txt)
+4. Knee joint model , [License.](documentation/images/image-4-license-certificate.txt)
+5. Ligament Reconstruction image was generated using AI from [ChatGPT](https://www.openai.com/chatgpt)
+6. Bandaging woman's injured knee, [License.](documentation/images/image-6-license-certificate.txt)
 
-#### About Us page
-
-1. Hospital reception counter, [License.](documentation/images/image-12-license-certificate.txt)
-2. Busy Hospital Corridor, [License.](documentation/images/image-13-license-certificate.txt)
-3. Modern operating theatre, [License.](documentation/images/image-14-license-certificate.txt)
-4. A room of an hospital, [License.](documentation/images/image-15-license-certificate.txt)
 
 ## Acknowledgments
 
