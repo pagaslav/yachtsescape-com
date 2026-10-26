@@ -5,7 +5,6 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
-from unittest.mock import patch
 from django.test import SimpleTestCase
 from botocore.stub import Stubber
 import boto3
@@ -14,7 +13,7 @@ import black
 class ToolchainUpgradeTests(SimpleTestCase):
     def test_aws_cli_version_and_local_model_validation(self):
         with tempfile.TemporaryDirectory() as directory:
-            env = dict(os.environ, AWS_CONFIG_FILE=str(Path(directory)/'config'), AWS_SHARED_CREDENTIALS_FILE=str(Path(directory)/'credentials'), AWS_EC2_METADATA_DISABLED='true', AWS_DEFAULT_REGION='us-east-1', AWS_PAGER='', HOME=directory)
+            env = dict(os.environ, AWS_CONFIG_FILE=str(Path(directory)/'config'), AWS_SHARED_CREDENTIALS_FILE=str(Path(directory)/'credentials'), AWS_EC2_METADATA_DISABLED='true', AWS_DEFAULT_REGION='us-east-1', AWS_PAGER='', AWS_ACCESS_KEY_ID='synthetic-key', AWS_SECRET_ACCESS_KEY='synthetic-secret')
             result = subprocess.run([sys.executable, '-m', 'awscli', '--version'], env=env, capture_output=True, text=True, timeout=20)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertIn('aws-cli/1.46.2', result.stdout + result.stderr)
